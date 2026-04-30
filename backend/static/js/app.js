@@ -1,4 +1,6 @@
 let conversationHistory = [];
+let currentConversationId = null;
+let currentConversationId = null;
 
 async function sendMessage() {
   const textarea = document.getElementById("message-input");

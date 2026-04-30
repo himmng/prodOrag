@@ -1,8 +1,4 @@
 {
-  "CV_Himanshu.pdf": {
-    "file_name": "CV_Himanshu.pdf",
-    "path": "data/documents/CV_Himanshu.pdf"
-  },
   "test_vector_store.txt": {
     "file_name": "test_vector_store.txt",
     "path": "data/documents/test_vector_store.txt"
