@@ -1,0 +1,17 @@
+llm:
+  provider: ollama
+  base_url: http://localhost:11434
+  api_key: null
+  model: deepseek-r1:1.5b
+embeddings:
+  provider: ollama
+  base_url: http://localhost:11434
+  api_key: null
+  model: embeddinggemma
+storage:
+  vector_dir: ./data/vector_store
+  docs_dir: ./data/documents
+rag:
+  top_k: 5
+  chunk_size: 1000
+  chunk_overlap: 200
