@@ -14,7 +14,10 @@ class EmbeddingClient(ABC):
 
 class OpenAICompatibleEmbeddingClient(EmbeddingClient):
     def __init__(self, base_url: str, api_key: str | None, model: str):
-        self._base_url = base_url.rstrip("/")
+        base = base_url.rstrip("/")
+        if base.endswith("/v1"):
+            base = base[: -len("/v1")]
+        self._base_url = base
         self._api_key = api_key
         self._model = model
         self._client = httpx.AsyncClient(timeout=30.0)

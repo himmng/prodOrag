@@ -62,24 +62,62 @@ function appendMessage(role, content, sources) {
 
 async function uploadDocument() {
   const input = document.getElementById("file-input");
+  const statusEl = document.getElementById("upload-status");
+  const uploadBtn = document.getElementById("upload-btn");
+
   if (!input.files.length) return;
   const file = input.files[0];
 
   const formData = new FormData();
   formData.append("file", file);
 
+  if (statusEl) {
+    statusEl.textContent = `Uploading "${file.name}"...`;
+    statusEl.classList.remove("error", "success");
+  }
+  if (uploadBtn) {
+    uploadBtn.disabled = true;
+  }
+
   try {
     const resp = await fetch("/api/documents", {
       method: "POST",
       body: formData,
     });
+
     if (!resp.ok) {
-      appendMessage("assistant", "Upload failed: " + resp.statusText);
+      let detail = resp.statusText;
+      try {
+        const data = await resp.json();
+        if (data && data.detail) {
+          detail = data.detail;
+        }
+      } catch (_) {}
+
+      if (statusEl) {
+        statusEl.textContent = `Upload failed: ${detail}`;
+        statusEl.classList.add("error");
+      }
+      appendMessage("assistant", "Upload failed: " + detail);
       return;
     }
+
+    if (statusEl) {
+      statusEl.textContent = `Document "${file.name}" uploaded and indexed.`;
+      statusEl.classList.add("success");
+    }
     appendMessage("assistant", "Document uploaded and indexed.");
+    input.value = "";
   } catch (err) {
+    if (statusEl) {
+      statusEl.textContent = `Upload error: ${err}`;
+      statusEl.classList.add("error");
+    }
     appendMessage("assistant", "Upload error: " + err);
+  } finally {
+    if (uploadBtn) {
+      uploadBtn.disabled = false;
+    }
   }
 }
 

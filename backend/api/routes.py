@@ -27,20 +27,42 @@ class ChatResponse(BaseModel):
 
 @router.post("/chat", response_model=ChatResponse)
 async def chat_endpoint(payload: ChatRequest, config: AppConfig = Depends(get_config)):
+    from httpx import HTTPError
+
     orchestrator = get_orchestrator(config)
-    result = await orchestrator.chat(payload.message, [m.dict() for m in payload.history])
+    try:
+        result = await orchestrator.chat(
+            payload.message,
+            [m.dict() for m in payload.history],
+            payload.conversation_id,
+        )
+    except HTTPError as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"LLM request failed. Check LLM base_url/model. Error: {exc}",
+        )
     return ChatResponse(answer=result["answer"], sources=result["sources"])
 
 
 @router.post("/documents")
 async def upload_document(
     file: UploadFile = File(...),
+    conversation_id: Optional[str] = None,
     config: AppConfig = Depends(get_config),
 ):
+    from httpx import HTTPError
+
     if not file.filename:
         raise HTTPException(status_code=400, detail="No file uploaded")
 
-    await save_document_and_index(file, config)
+    try:
+        await save_document_and_index(file, config, conversation_id=conversation_id)
+    except HTTPError as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Embedding request failed. Check embeddings base_url/model. Error: {exc}",
+        )
+
     return {"status": "ok"}
 
 

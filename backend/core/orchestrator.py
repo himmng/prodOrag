@@ -3,7 +3,12 @@ from typing import List, Dict, Any, Optional
 from backend.core.config import AppConfig
 from backend.core.embedding_client import create_embedding_client, EmbeddingClient
 from backend.core.llm_client import create_llm_client, LLMClient
-from backend.core.vector_store import get_vector_store, VectorStore
+from backend.core.vector_store import (
+    get_vector_store,
+    get_vector_store_for_dir,
+    get_conversation_vector_dir,
+    VectorStore,
+)
 
 
 class RAGOrchestrator:
@@ -17,9 +22,20 @@ class RAGOrchestrator:
         self._config = config
         self._llm_client = llm_client or create_llm_client(config)
         self._embedding_client = embedding_client or create_embedding_client(config)
-        self._vector_store = vector_store or get_vector_store(config)
+        self._vector_store = vector_store
 
-    async def chat(self, user_message: str, history: List[Dict[str, Any]]) -> Dict[str, Any]:
+    def _get_vector_store(self, conversation_id: Optional[str]) -> VectorStore:
+        if self._vector_store is not None:
+            return self._vector_store
+        vector_dir = get_conversation_vector_dir(self._config, conversation_id)
+        return get_vector_store_for_dir(self._config, vector_dir)
+
+    async def chat(
+        self,
+        user_message: str,
+        history: List[Dict[str, Any]],
+        conversation_id: Optional[str] = None,
+    ) -> Dict[str, Any]:
         embeddings = await self._embedding_client.embed([user_message])
         if not embeddings:
             answer = ""
@@ -27,7 +43,8 @@ class RAGOrchestrator:
             return {"answer": answer, "sources": sources}
 
         query_embedding = embeddings[0]
-        results = self._vector_store.query(query_embedding, self._config.rag.top_k)
+        vector_store = self._get_vector_store(conversation_id)
+        results = vector_store.query(query_embedding, self._config.rag.top_k)
 
         context_parts = []
         for r in results:

@@ -16,4 +16,4 @@ app.include_router(api_router, prefix="/api")
 
 @app.get("/")
 async def index(request: Request):
-    return templates.TemplateResponse(request, "index.html")
+    return templates.TemplateResponse("index.html", {"request": request})
