@@ -9,6 +9,7 @@ class DocumentBase(BaseModel):
     filename: str
     mime_type: str
     size_bytes: int
+    session_id: UUID | None = None
 
 
 class DocumentCreate(DocumentBase):

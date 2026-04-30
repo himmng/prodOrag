@@ -23,6 +23,7 @@ class Document(Base):
 
     id = Column(String, primary_key=True, default=_uuid_str)
     workspace_id = Column(String, nullable=False)
+    session_id = Column(String, nullable=True)
     filename = Column(String, nullable=False)
     mime_type = Column(String, nullable=False)
     size_bytes = Column(Integer, nullable=False)

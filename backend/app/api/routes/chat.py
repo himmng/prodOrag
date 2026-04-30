@@ -1,11 +1,13 @@
 from typing import List
 
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import JSONResponse
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.infrastructure.db import SessionLocal
 from app.models.domain.sessions import ChatMessage, ChatSession
+from app.models.domain.documents import Document
 from app.models.schemas.chat import (
     ChatMessageCreate,
     ChatMessageRead,
@@ -81,3 +83,48 @@ async def post_message(
     await session.commit()
     await session.refresh(message)
     return ChatMessageRead.model_validate(message)
+
+
+@router.get("/sessions/{session_id}/export-summary")
+async def export_session_summary(
+    session_id: str,
+    session: AsyncSession = Depends(get_session),
+) -> JSONResponse:
+    db_session = await session.get(ChatSession, session_id)
+    if db_session is None:
+        raise HTTPException(status_code=404, detail="Chat session not found")
+    result = await session.execute(
+        select(ChatMessage).where(ChatMessage.session_id == session_id).order_by(ChatMessage.created_at)
+    )
+    messages = result.scalars().all()
+    summary_text = "\n".join(f"[{m.role}] {m.content}" for m in messages)
+    payload = {
+        "session_id": session_id,
+        "title": db_session.title,
+        "summary": summary_text,
+    }
+    return JSONResponse(content=payload)
+
+
+@router.get("/sessions/{session_id}/export-irag")
+async def export_session_irag(
+    session_id: str,
+    session: AsyncSession = Depends(get_session),
+) -> JSONResponse:
+    result = await session.execute(select(Document).where(Document.session_id == session_id))
+    docs = result.scalars().all()
+    payload = {
+        "session_id": session_id,
+        "documents": [
+            {
+                "id": d.id,
+                "filename": d.filename,
+                "mime_type": d.mime_type,
+                "size_bytes": d.size_bytes,
+                "status": d.status,
+                "num_chunks": d.num_chunks,
+            }
+            for d in docs
+        ],
+    }
+    return JSONResponse(content=payload)

@@ -2,6 +2,8 @@ pyproject.toml
 setup.cfg
 app/api/__init__.py
 app/api/routes/__init__.py
+app/api/routes/chat.py
+app/api/routes/config.py
 app/api/routes/health.py
 app/backend.egg-info/PKG-INFO
 app/backend.egg-info/SOURCES.txt
