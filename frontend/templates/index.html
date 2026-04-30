@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Local RAG Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/theme.css" />
+  </head>
+  <body>
+    <div id="app" class="app-root">
+      <aside class="sidebar">
+        <div class="sidebar-header">Local RAG</div>
+        <button id="new-chat" class="primary-btn">New Chat</button>
+        <button id="open-settings" class="secondary-btn">Settings</button>
+      </aside>
+      <main class="chat-container">
+        <header class="chat-header">
+          <h1>Chat</h1>
+        </header>
+        <section id="messages" class="messages"></section>
+        <footer class="chat-input">
+          <input id="file-input" type="file" multiple />
+          <textarea id="prompt" rows="1" placeholder="Send a message..."></textarea>
+          <button id="send" class="primary-btn">Send</button>
+        </footer>
+      </main>
+    </div>
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>

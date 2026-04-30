@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+backend/__init__.py
+backend/__main__.py
+backend/main.py
+backend/server.py
+frontend/__init__.py
+local_rag_app.egg-info/PKG-INFO
+local_rag_app.egg-info/SOURCES.txt
+local_rag_app.egg-info/dependency_links.txt
+local_rag_app.egg-info/requires.txt
+local_rag_app.egg-info/top_level.txt
