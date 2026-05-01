@@ -52,11 +52,15 @@ class RAGOrchestrator:
             context_parts.append(text)
         context = "\n\n".join(context_parts)
 
+        max_chars = getattr(self._config.rag, "max_context_chars", 0)
+        if max_chars and len(context) > max_chars:
+            context = context[-max_chars:]
+
         messages: List[Dict[str, Any]] = []
         messages.append(
             {
                 "role": "system",
-                "content": "You are a helpful assistant that answers questions using the provided context.",
+                "content": "You are a helpful assistant. Use the following context to answer the question.\n If the answer is not in the context, say you do not know.",
             }
         )
         if context:

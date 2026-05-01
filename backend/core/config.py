@@ -1,19 +1,20 @@
 from pathlib import Path
 from typing import Optional
+
 import yaml
 from pydantic import BaseModel
 
 
 class LLMConfig(BaseModel):
     provider: str = "ollama"
-    base_url: str = "http://localhost:11434"
+    base_url: Optional[str] = "http://localhost:11434"
     api_key: Optional[str] = None
     model: str = "llama3"
 
 
 class EmbeddingsConfig(BaseModel):
     provider: str = "ollama"
-    base_url: str = "http://localhost:11434"
+    base_url: Optional[str] = "http://localhost:11434"
     api_key: Optional[str] = None
     model: str = "nomic-embed-text"
 
@@ -21,12 +22,16 @@ class EmbeddingsConfig(BaseModel):
 class StorageConfig(BaseModel):
     vector_dir: str = "./data/vector_store"
     docs_dir: str = "./data/documents"
+    vector_backend: str = "chroma"
+    per_conversation: bool = True
+    index_file: Optional[str] = None
 
 
 class RagConfig(BaseModel):
     top_k: int = 5
     chunk_size: int = 512
     chunk_overlap: int = 64
+    max_context_chars: int = 16000
 
 
 class AppConfig(BaseModel):

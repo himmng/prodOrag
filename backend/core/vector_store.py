@@ -1,21 +1,21 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Union
 
 from pathlib import Path
 
 import chromadb
-from chromadb.config import Settings
 
 from backend.core.config import AppConfig
 
 
 class VectorStore:
-    """Wrapper around a ChromaDB collection stored in a specific directory."""
-
-    def __init__(self, persist_directory: str):
+    def __init__(self, config_or_directory: Union[AppConfig, str]):
+        if isinstance(config_or_directory, AppConfig):
+            persist_directory = config_or_directory.storage.vector_dir
+        else:
+            persist_directory = str(config_or_directory)
         self._persist_directory = persist_directory
-        self._client = chromadb.Client(
-            Settings(persist_directory=persist_directory)
-        )
+        Path(persist_directory).mkdir(parents=True, exist_ok=True)
+        self._client = chromadb.PersistentClient(path=persist_directory)
         self._collection = self._client.get_or_create_collection("protoRAG_docs")
 
     def add_documents(
@@ -25,8 +25,6 @@ class VectorStore:
         metadatas: List[Dict[str, Any]],
         ids: List[str],
     ) -> None:
-        """Add documents and their embeddings to the collection."""
-
         self._collection.add(
             ids=ids,
             embeddings=embeddings,
@@ -35,8 +33,6 @@ class VectorStore:
         )
 
     def query(self, embedding: List[float], top_k: int) -> List[Dict[str, Any]]:
-        """Query the collection by a single embedding and return top_k results."""
-
         result = self._collection.query(
             query_embeddings=[embedding],
             n_results=top_k,
@@ -53,19 +49,14 @@ class VectorStore:
         return outputs
 
 
-# Cache of VectorStore instances keyed by their persist directory
 _vector_store_cache: Dict[str, VectorStore] = {}
 
 
 def get_conversation_vector_dir(config: AppConfig, conversation_id: str | None) -> str:
-    """Return the directory where vectors for a conversation should be stored.
-
-    If conversation_id is None, use the base vector_dir.
-    Otherwise, create/use a subdirectory per conversation.
-    """
-
     base_dir = Path(config.storage.vector_dir)
-    if conversation_id is None:
+    per_conversation = getattr(config.storage, "per_conversation", True)
+    if not per_conversation or conversation_id is None:
+        base_dir.mkdir(parents=True, exist_ok=True)
         return str(base_dir)
 
     conv_dir = base_dir / conversation_id
@@ -74,11 +65,9 @@ def get_conversation_vector_dir(config: AppConfig, conversation_id: str | None) 
 
 
 def get_vector_store_for_dir(config: AppConfig, vector_dir: str) -> VectorStore:
-    """Return a cached VectorStore for the given directory.
-
-    This ensures each directory (e.g., per conversation) has its own Chroma
-    client and persisted data, while avoiding repeated client construction.
-    """
+    backend = getattr(config.storage, "vector_backend", "chroma")
+    if backend != "chroma":
+        raise ValueError(f"Unsupported vector backend: {backend}")
 
     key = vector_dir
     store = _vector_store_cache.get(key)
@@ -89,7 +78,5 @@ def get_vector_store_for_dir(config: AppConfig, vector_dir: str) -> VectorStore:
 
 
 def get_vector_store(config: AppConfig) -> VectorStore:
-    """Backward-compatible helper using the base vector_dir from config."""
-
     vector_dir = config.storage.vector_dir
     return get_vector_store_for_dir(config, vector_dir)

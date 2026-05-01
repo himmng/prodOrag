@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import List
+from typing import List, Optional, Tuple
 
 import httpx
 
-from backend.core.config import AppConfig
+from backend.core.config import AppConfig, EmbeddingsConfig
 
 
 class EmbeddingClient(ABC):
@@ -13,7 +13,7 @@ class EmbeddingClient(ABC):
 
 
 class OpenAICompatibleEmbeddingClient(EmbeddingClient):
-    def __init__(self, base_url: str, api_key: str | None, model: str):
+    def __init__(self, base_url: str, api_key: Optional[str], model: str):
         base = base_url.rstrip("/")
         if base.endswith("/v1"):
             base = base[: -len("/v1")]
@@ -39,10 +39,35 @@ class OpenAICompatibleEmbeddingClient(EmbeddingClient):
         return [item["embedding"] for item in data["data"]]
 
 
+def _resolve_embedding_config(cfg: EmbeddingsConfig) -> Tuple[str, Optional[str], str]:
+    provider = (cfg.provider or "").lower()
+    base_url = cfg.base_url
+    api_key = cfg.api_key
+    model = cfg.model
+
+    if provider == "ollama":
+        if not base_url:
+            base_url = "http://localhost:11434"
+        if not model:
+            model = "nomic-embed-text"
+    elif provider in ("lmstudio", "lm_studio", "lm-studio"):
+        if not base_url:
+            base_url = "http://localhost:1234"
+    elif provider in ("openai", "openai-compatible", "openai_compatible"):
+        if not base_url:
+            base_url = "https://api.openai.com"
+    else:
+        if not base_url:
+            base_url = "http://localhost:11434"
+
+    return str(base_url), api_key, model
+
+
 def create_embedding_client(config: AppConfig) -> EmbeddingClient:
     emb_cfg = config.embeddings
+    base_url, api_key, model = _resolve_embedding_config(emb_cfg)
     return OpenAICompatibleEmbeddingClient(
-        base_url=emb_cfg.base_url,
-        api_key=emb_cfg.api_key,
-        model=emb_cfg.model,
+        base_url=base_url,
+        api_key=api_key,
+        model=model,
     )

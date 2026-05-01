@@ -62,7 +62,13 @@ async def save_document_and_index(
         vector_store = get_vector_store_for_dir(config, vector_dir)
         vector_store.add_documents(doc_id, embeddings, metadatas, ids)
 
-    index_path = storage_dir / "index.json"
+    index_file = getattr(config.storage, "index_file", None)
+    if index_file:
+        index_path = Path(index_file)
+        index_path.parent.mkdir(parents=True, exist_ok=True)
+    else:
+        index_path = storage_dir / "index.json"
+
     index: Dict[str, Any] = {}
     if index_path.exists():
         try:
