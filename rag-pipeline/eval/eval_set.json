@@ -1,0 +1,326 @@
+[
+  {
+    "question": "What are the three capabilities of a Context Retrieval System that should be built?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "- Retrieve relevant clauses (not just text chunks)\n- Use metadata for better accuracy\n- Improve answer grounding"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk a40a116a"
+  },
+  {
+    "question": "What are the expected competencies for designing a modular pipeline for a knowledge-based AI system?",
+    "gold_source_paths": [
+      "data/raw/docx/Self-Assessment - Himanshu T.docx"
+    ],
+    "gold_snippets": [
+      "Pipeline modularization\nSeparation of concerns\nMaintainability and testability"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk 04375abd"
+  },
+  {
+    "question": "What specific types of use cases need working prototypes?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "Core legal use cases"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk ce143563"
+  },
+  {
+    "question": "What are the five evaluation criteria used for SignChain AI?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "Depth of exploration\nPractical thinking\nAbility to identify trade-offs\nQuality of prototypes\nClarity of insights"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk a79f9e9b"
+  },
+  {
+    "question": "When proposing the tech stack, what three types of components must be included?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "Retrieval frameworks\nAgent orchestration tools\nData pipelines"
+    ],
+    "reference_answer": null,
+    "difficulty": "medium",
+    "notes": "auto-gen from docx chunk 1bc7f655"
+  },
+  {
+    "question": "What are the two main components that will be compared in the deliverable?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "Basic RAG vs improved system"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk c358a3ca"
+  },
+  {
+    "question": "What specific types of metadata can be utilized when performing metadata-aware retrieval?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "Contract type\nClause type\nParties, dates, obligations"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk 1b082149"
+  },
+  {
+    "question": "What are the three pillars being explored to build a reliable Legal AI system?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "Context & Retrieval Systems (RAG evolved), Structured AI Outputs & Intelligence Layer, and Agentic Workflows (multi-step reasoning systems)"
+    ],
+    "reference_answer": null,
+    "difficulty": "medium",
+    "notes": "auto-gen from docx chunk 0a853bac"
+  },
+  {
+    "question": "What is the digest listed for the manifest entry?",
+    "gold_source_paths": [
+      "data/raw/json/index.json"
+    ],
+    "gold_snippets": [
+      "sha256:96960a1620798b0d68b7cee150bb242fbdf25bb5265d859912ddf7068d7953aa"
+    ],
+    "reference_answer": null,
+    "difficulty": "medium",
+    "notes": "auto-gen from json chunk 9afff7b2"
+  },
+  {
+    "question": "What are the steps for the Clause Improvement Agent?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "- Identify weak clause\n- Retrieve alternatives\n- Suggest improved version"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk 4b99f2ac"
+  },
+  {
+    "question": "What sporting events were organized during the stay at Unilodge?",
+    "gold_source_paths": [
+      "data/raw/pdfs/CV_Himanshu.pdf"
+    ],
+    "gold_snippets": [
+      "Cricket, Chess, Tennis"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from pdf chunk 2ad63d78"
+  },
+  {
+    "question": "According to the rating scale, what level indicates that a candidate can design and evolve production-grade architectures?",
+    "gold_source_paths": [
+      "data/raw/docx/Self-Assessment - Himanshu T.docx"
+    ],
+    "gold_snippets": [
+      "5, 1 = Can design and evolve production-grade architectures"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk 4555ded5"
+  },
+  {
+    "question": "What are some common topics covered in the ML Fundamentals in Applied Systems section?",
+    "gold_source_paths": [
+      "data/raw/docx/Self-Assessment - Himanshu T.docx"
+    ],
+    "gold_snippets": [
+      "Embeddings & Semantic Representation, RAG System Design, Multi-Step Reasoning Systems, System Evaluation, Scalability & Performance"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk a2abc53f"
+  },
+  {
+    "question": "What software is listed for scientific visualization?",
+    "gold_source_paths": [
+      "data/raw/pdfs/CV_Himanshu.pdf"
+    ],
+    "gold_snippets": [
+      "Blender (Scientific Visualization)"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from pdf chunk 6596ba68"
+  },
+  {
+    "question": "What is the physical address listed for Dr. Nithyanandan Thyagarajan?",
+    "gold_source_paths": [
+      "data/raw/pdfs/CV_Himanshu.pdf"
+    ],
+    "gold_snippets": [
+      "26 Dick Perry Ave (6151), Kensington, Western Australia."
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from pdf chunk d6c3a813"
+  },
+  {
+    "question": "According to the SignChain AI evolution timeline, what is the final step listed in Phase 3?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "Final recommendations"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from docx chunk ea483271"
+  },
+  {
+    "question": "What types of advanced AI systems is the data scientist experienced with?",
+    "gold_source_paths": [
+      "data/raw/pdfs/CV_Himanshu.pdf"
+    ],
+    "gold_snippets": [
+      "machine learning, LLMs, and agentic AI systems"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from pdf chunk a8802bd6"
+  },
+  {
+    "question": "What is the Github link for the EmuPBK pipeline?",
+    "gold_source_paths": [
+      "data/raw/pdfs/CV_Himanshu.pdf"
+    ],
+    "gold_snippets": [
+      "EmuPBK: Artificial Neural Network-based 21-cm signal statistical (Power Spectrum, Bispectrum) emulator and parameter estimation pipeline: Github"
+    ],
+    "reference_answer": null,
+    "difficulty": "medium",
+    "notes": "auto-gen from pdf chunk 76d5be53"
+  },
+  {
+    "question": "Which institution is associated with the Shakti HPC cluster?",
+    "gold_source_paths": [
+      "data/raw/pdfs/CV_Himanshu.pdf"
+    ],
+    "gold_snippets": [
+      "Indian Institute of Technology Kharagpur (IITKGP)"
+    ],
+    "reference_answer": null,
+    "difficulty": "easy",
+    "notes": "auto-gen from pdf chunk 06c84a2b"
+  },
+  {
+    "question": "What is the company's parental leave policy?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "easy",
+    "notes": "NEGATIVE: HR policy absent from corpus (low lexical overlap)"
+  },
+  {
+    "question": "What is the salary range offered for the data scientist role?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "easy",
+    "notes": "NEGATIVE: compensation absent (low lexical overlap)"
+  },
+  {
+    "question": "How many engineers are on the legal AI team?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "medium",
+    "notes": "NEGATIVE: team size absent (medium overlap on 'legal AI')"
+  },
+  {
+    "question": "Which vector database did the team benchmark for production latency?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "hard",
+    "notes": "ADVERSARIAL NEGATIVE: in-domain, dense will pull RAG/vector chunks; no benchmark exists. Tests min_score / hallucination."
+  },
+  {
+    "question": "What were the measured results of the SignChain AI prototype evaluation?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "hard",
+    "notes": "ADVERSARIAL NEGATIVE: high overlap with 'SignChain AI' + 'evaluation criteria'; results don't exist (task not done)."
+  },
+  {
+    "question": "What is the penalty for late submission of the Stage 1 deliverable?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "hard",
+    "notes": "ADVERSARIAL NEGATIVE: 'Stage 1 deliverable' overlap; penalty terms absent."
+  },
+  {
+    "question": "Which recreational competitions did he run for residents at his student accommodation?",
+    "gold_source_paths": [
+      "data/raw/pdfs/CV_Himanshu.pdf"
+    ],
+    "gold_snippets": [
+      "Cricket, Chess, Tennis"
+    ],
+    "reference_answer": null,
+    "difficulty": "medium",
+    "notes": "PARAPHRASE of 'sporting events at Unilodge' — no shared keywords with source"
+  },
+  {
+    "question": "Where was the supercomputer he ran his cosmological code on located?",
+    "gold_source_paths": [
+      "data/raw/pdfs/CV_Himanshu.pdf"
+    ],
+    "gold_snippets": [
+      "Indian Institute of Technology Kharagpur (IITKGP)"
+    ],
+    "reference_answer": null,
+    "difficulty": "hard",
+    "notes": "PARAPHRASE — strips the distinctive 'Shakti'/'HPC' keywords BM25 relied on; pure dense test"
+  },
+  {
+    "question": "What are the core focus areas for developing a trustworthy AI system in the legal domain?",
+    "gold_source_paths": [
+      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+    ],
+    "gold_snippets": [
+      "Context & Retrieval Systems (RAG evolved), Structured AI Outputs & Intelligence Layer, and Agentic Workflows (multi-step reasoning systems)"
+    ],
+    "reference_answer": null,
+    "difficulty": "medium",
+    "notes": "PARAPHRASE of 'three pillars for reliable Legal AI'"
+  },
+  {
+    "question": "What software-design abilities are required to build a cleanly separated, easy-to-extend data flow for an LLM retrieval system?",
+    "gold_source_paths": [
+      "data/raw/docx/Self-Assessment - Himanshu T.docx"
+    ],
+    "gold_snippets": [
+      "Pipeline modularization\nSeparation of concerns\nMaintainability and testability"
+    ],
+    "reference_answer": null,
+    "difficulty": "medium",
+    "notes": "PARAPHRASE of 'competencies for designing a modular pipeline'"
+  }
+]
