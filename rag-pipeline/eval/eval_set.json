@@ -1,326 +1,1122 @@
 [
   {
-    "question": "What are the three capabilities of a Context Retrieval System that should be built?",
+    "question": "According to Section 283, what is the fine for danger or obstruction in public way or line of navigation?",
     "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_25.pdf"
     ],
     "gold_snippets": [
-      "- Retrieve relevant clauses (not just text chunks)\n- Use metadata for better accuracy\n- Improve answer grounding"
+      "fine which may extend to two rupees."
     ],
-    "reference_answer": null,
+    "reference_answer": "Section 283",
     "difficulty": "easy",
-    "notes": "auto-gen from docx chunk a40a116a"
+    "notes": "auto-gen (easy) from chunks f1bb5ac6"
   },
   {
-    "question": "What are the expected competencies for designing a modular pipeline for a knowledge-based AI system?",
+    "question": "According to Section 135, what is the maximum imprisonment term for abetment of desertion of soldier, sailor or airman?",
     "gold_source_paths": [
-      "data/raw/docx/Self-Assessment - Himanshu T.docx"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_11.pdf"
     ],
     "gold_snippets": [
-      "Pipeline modularization\nSeparation of concerns\nMaintainability and testability"
+      "two years"
     ],
-    "reference_answer": null,
+    "reference_answer": "imprisonment of either description a term which may extend to two years",
     "difficulty": "easy",
-    "notes": "auto-gen from docx chunk 04375abd"
+    "notes": "auto-gen (easy) from chunks 44560c79"
   },
   {
-    "question": "What specific types of use cases need working prototypes?",
+    "question": "According to Section 109, what is the rule regarding punishment if the abetted act is committed in India and no express provision is made?",
     "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_7.pdf"
     ],
     "gold_snippets": [
-      "Core legal use cases"
+      "any offence shall, if the act abet"
     ],
-    "reference_answer": null,
+    "reference_answer": "Section 109",
     "difficulty": "easy",
-    "notes": "auto-gen from docx chunk ce143563"
+    "notes": "auto-gen (easy) from chunks e834d0ca"
   },
   {
-    "question": "What are the five evaluation criteria used for SignChain AI?",
+    "question": "What is the maximum imprisonment period for cruelty under Section 498A?",
     "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_47.pdf"
     ],
     "gold_snippets": [
-      "Depth of exploration\nPractical thinking\nAbility to identify trade-offs\nQuality of prototypes\nClarity of insights"
+      "extend to three years"
     ],
-    "reference_answer": null,
+    "reference_answer": "for a term which may extend to three years and shall also liable to fine.",
     "difficulty": "easy",
-    "notes": "auto-gen from docx chunk a79f9e9b"
+    "notes": "auto-gen (easy) from chunks 2c115b42"
   },
   {
-    "question": "When proposing the tech stack, what three types of components must be included?",
+    "question": "According to Section 457, what is the maximum term of imprisonment if the intended offence is theft?",
     "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_44.pdf"
     ],
     "gold_snippets": [
-      "Retrieval frameworks\nAgent orchestration tools\nData pipelines"
+      "may be extended to fourteen years."
     ],
-    "reference_answer": null,
+    "reference_answer": "The term of imprisonment may be extended to fourteen years if the intended offence is theft under Section 457.",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 94b17d4e"
+  },
+  {
+    "question": "According to Section 334, what is the maximum imprisonment period for voluntarily causing hurt on provocation?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_28.pdf"
+    ],
+    "gold_snippets": [
+      "a term which may extend to one month"
+    ],
+    "reference_answer": "a term which may extend to one month, or with fine, or with both.",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks fe44f2d5"
+  },
+  {
+    "question": "According to Section 256, what is the maximum imprisonment period for possessing material for counterfeiting a Government stamp?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_24.pdf"
+    ],
+    "gold_snippets": [
+      "extend to seven years"
+    ],
+    "reference_answer": "imprisonment of either for a term which may extend to seven years",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 0ef52d0c"
+  },
+  {
+    "question": "According to Section 33, what must the harm be for it not to be an offence?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_7.pdf"
+    ],
+    "gold_snippets": [
+      "so slight that no person of ordinary sense"
+    ],
+    "reference_answer": "Section 33",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 4e4629a7"
+  },
+  {
+    "question": "According to Section 228, what is the maximum fine for intentional insult or interruption to a public servant?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_21.pdf"
+    ],
+    "gold_snippets": [
+      "one thousand rupees"
+    ],
+    "reference_answer": "Section 228",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 8cb21af5"
+  },
+  {
+    "question": "According to Section 261, what is the punishment for a public servant who negligently suffers a person to escape from confinement?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_18.pdf"
+    ],
+    "gold_snippets": [
+      "simple imprisonment for a term which may extend to two years"
+    ],
+    "reference_answer": "simple imprisonment for a term which may extend to two years, or with fine, or with both.",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 63133219"
+  },
+  {
+    "question": "Which section addresses promoting enmity between different groups on grounds of race or religion?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_11.pdf"
+    ],
+    "gold_snippets": [
+      "153A."
+    ],
+    "reference_answer": "153A.",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 6f33625c"
+  },
+  {
+    "question": "According to Section 147, what is the punishment for rioting?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_11.pdf"
+    ],
+    "gold_snippets": [
+      "imprisonment of either description for a term which extend to two years"
+    ],
+    "reference_answer": "imprisonment of either description for a term which extend to two years",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 5e88b0d2"
+  },
+  {
+    "question": "According to Section 235, what is the maximum term of imprisonment for possessing materials for counterfeiting Indian coins?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_22.pdf"
+    ],
+    "gold_snippets": [
+      "extend to three years"
+    ],
+    "reference_answer": "Section 235",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks bbafe728"
+  },
+  {
+    "question": "According to the passage, what is the defined term that commits house-trespass?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_43.pdf"
+    ],
+    "gold_snippets": [
+      "\"house-breaking\" commits house-trespass"
+    ],
+    "reference_answer": "The passage defines the term 'house-breaking' or 'house-trespass'.",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks f3a55548"
+  },
+  {
+    "question": "According to Section 476, what type of device or mark is counterfeited?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_45.pdf"
+    ],
+    "gold_snippets": [
+      "other than those described in section 467"
+    ],
+    "reference_answer": "Section 476",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 1c212d38"
+  },
+  {
+    "question": "Which section deals with theft occurring in a dwelling house, or means of transportation or place of worship?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_3.pdf"
+    ],
+    "gold_snippets": [
+      "305. Theft in a dwelling house, or means of transportation or place of worship, etc."
+    ],
+    "reference_answer": "305",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 3eefe52d"
+  },
+  {
+    "question": "What is the maximum term of imprisonment for wearing garb or carrying token used by a soldier, sailor or airman?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_11.pdf"
+    ],
+    "gold_snippets": [
+      "three months"
+    ],
+    "reference_answer": "three months",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 866aa5dc"
+  },
+  {
+    "question": "According to the passage, if an abetment offence is not committed, what is the maximum imprisonment term for the abettor?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_9.pdf"
+    ],
+    "gold_snippets": [
+      "one-fourth part of the longest term provided for that offence"
+    ],
+    "reference_answer": "one-fourth part of the longest term provided for that offence",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks b53eca6e"
+  },
+  {
+    "question": "Which Act substituted the phrase \"transportation for life\"?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_39.pdf"
+    ],
+    "gold_snippets": [
+      "Act 26 of 1955"
+    ],
+    "reference_answer": "Subs. by Act 26 of 1955, s. 117 and Sch., for \"transportation for life\".",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 29aa1c63"
+  },
+  {
+    "question": "What is the maximum term of rigorous imprisonment under Section 254?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_18.pdf"
+    ],
+    "gold_snippets": [
+      "seven years, and shall also be liable to fine."
+    ],
+    "reference_answer": "Rigorous imprisonment for a term which may extend to seven years, and shall also be liable to fine.",
+    "difficulty": "easy",
+    "notes": "auto-gen (easy) from chunks 1eed49ce"
+  },
+  {
+    "question": "According to the provided illustrations, what is the legal distinction between entering a dwelling using a key that was previously lost by the owner, and entering by physically forcing open a door or wall?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_43.pdf"
+    ],
+    "gold_snippets": [
+      "Entering a house using a key that was lost by the owner is considered house-breaking. Conversely, forcing entry by knocking down a wall or passage is also classified as house-breaking."
+    ],
+    "reference_answer": "Illustrations (f) and (g) demonstrate that both using a found key and forcing passage are examples of house-breaking.",
     "difficulty": "medium",
-    "notes": "auto-gen from docx chunk 1bc7f655"
+    "notes": "auto-gen (medium) from chunks e90d5ab6"
   },
   {
-    "question": "What are the two main components that will be compared in the deliverable?",
+    "question": "Under what specific circumstances does the act of taking property (theft) become classified as robbery, according to the law?",
     "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_20.pdf"
     ],
     "gold_snippets": [
-      "Basic RAG vs improved system"
+      "The theft becomes robbery if, during the commission, or while carrying away the property obtained, the person involved voluntarily causes or attempts to cause death, injury, or wrongful restraint, or instills fear of such outcomes."
     ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from docx chunk c358a3ca"
-  },
-  {
-    "question": "What specific types of metadata can be utilized when performing metadata-aware retrieval?",
-    "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
-    ],
-    "gold_snippets": [
-      "Contract type\nClause type\nParties, dates, obligations"
-    ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from docx chunk 1b082149"
-  },
-  {
-    "question": "What are the three pillars being explored to build a reliable Legal AI system?",
-    "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
-    ],
-    "gold_snippets": [
-      "Context & Retrieval Systems (RAG evolved), Structured AI Outputs & Intelligence Layer, and Agentic Workflows (multi-step reasoning systems)"
-    ],
-    "reference_answer": null,
+    "reference_answer": "Theft is robbery if, in order to the committing of the theft, or in committing the theft, or in carrying away or attempting to carry away property obtained by the theft, the offender, for that end voluntarily causes or attempts to cause to any person death or hurt or wrongful restraint, or fear of instant death or of instant hurt, or of instant wrongful restraint.",
     "difficulty": "medium",
-    "notes": "auto-gen from docx chunk 0a853bac"
+    "notes": "auto-gen (medium) from chunks 713189e6"
   },
   {
-    "question": "What is the digest listed for the manifest entry?",
+    "question": "If a person encourages another individual to commit a crime, and during the commission of that crime, the individual also commits a separate, unrelated offense, under what circumstances is the initial encourager held responsible for the second, distinct offense?",
     "gold_source_paths": [
-      "data/raw/json/index.json"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_7.pdf"
     ],
     "gold_snippets": [
-      "sha256:96960a1620798b0d68b7cee150bb242fbdf25bb5265d859912ddf7068d7953aa"
+      "If the act for which the abettor is liable is committed in addition to a distinct act, the abettor is liable to the punishment for each of the offences."
     ],
-    "reference_answer": null,
+    "reference_answer": "The abettor is liable to cumulative punishment for the act abetted and for the distinct act done, provided the distinct act is not a probable consequence of the abetment.",
     "difficulty": "medium",
-    "notes": "auto-gen from json chunk 9afff7b2"
+    "notes": "auto-gen (medium) from chunks c1d9178a"
   },
   {
-    "question": "What are the steps for the Clause Improvement Agent?",
+    "question": "Under the law, what criteria must an individual meet to be considered a 'servant of government'?",
     "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_0.pdf"
     ],
     "gold_snippets": [
-      "- Identify weak clause\n- Retrieve alternatives\n- Suggest improved version"
+      "The law defines this status as applying to any officer or servant who has been appointed or whose service is continued by or under the authority of the Government."
     ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from docx chunk 4b99f2ac"
-  },
-  {
-    "question": "What sporting events were organized during the stay at Unilodge?",
-    "gold_source_paths": [
-      "data/raw/pdfs/CV_Himanshu.pdf"
-    ],
-    "gold_snippets": [
-      "Cricket, Chess, Tennis"
-    ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from pdf chunk 2ad63d78"
-  },
-  {
-    "question": "According to the rating scale, what level indicates that a candidate can design and evolve production-grade architectures?",
-    "gold_source_paths": [
-      "data/raw/docx/Self-Assessment - Himanshu T.docx"
-    ],
-    "gold_snippets": [
-      "5, 1 = Can design and evolve production-grade architectures"
-    ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from docx chunk 4555ded5"
-  },
-  {
-    "question": "What are some common topics covered in the ML Fundamentals in Applied Systems section?",
-    "gold_source_paths": [
-      "data/raw/docx/Self-Assessment - Himanshu T.docx"
-    ],
-    "gold_snippets": [
-      "Embeddings & Semantic Representation, RAG System Design, Multi-Step Reasoning Systems, System Evaluation, Scalability & Performance"
-    ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from docx chunk a2abc53f"
-  },
-  {
-    "question": "What software is listed for scientific visualization?",
-    "gold_source_paths": [
-      "data/raw/pdfs/CV_Himanshu.pdf"
-    ],
-    "gold_snippets": [
-      "Blender (Scientific Visualization)"
-    ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from pdf chunk 6596ba68"
-  },
-  {
-    "question": "What is the physical address listed for Dr. Nithyanandan Thyagarajan?",
-    "gold_source_paths": [
-      "data/raw/pdfs/CV_Himanshu.pdf"
-    ],
-    "gold_snippets": [
-      "26 Dick Perry Ave (6151), Kensington, Western Australia."
-    ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from pdf chunk d6c3a813"
-  },
-  {
-    "question": "According to the SignChain AI evolution timeline, what is the final step listed in Phase 3?",
-    "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
-    ],
-    "gold_snippets": [
-      "Final recommendations"
-    ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from docx chunk ea483271"
-  },
-  {
-    "question": "What types of advanced AI systems is the data scientist experienced with?",
-    "gold_source_paths": [
-      "data/raw/pdfs/CV_Himanshu.pdf"
-    ],
-    "gold_snippets": [
-      "machine learning, LLMs, and agentic AI systems"
-    ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from pdf chunk a8802bd6"
-  },
-  {
-    "question": "What is the Github link for the EmuPBK pipeline?",
-    "gold_source_paths": [
-      "data/raw/pdfs/CV_Himanshu.pdf"
-    ],
-    "gold_snippets": [
-      "EmuPBK: Artificial Neural Network-based 21-cm signal statistical (Power Spectrum, Bispectrum) emulator and parameter estimation pipeline: Github"
-    ],
-    "reference_answer": null,
+    "reference_answer": "The words \"servant of government\" denote any officer or servant continued, appointed or in India by or under the authority of Government.",
     "difficulty": "medium",
-    "notes": "auto-gen from pdf chunk 76d5be53"
+    "notes": "auto-gen (medium) from chunks 1449fc02"
   },
   {
-    "question": "Which institution is associated with the Shakti HPC cluster?",
+    "question": "Under the law, even if a person's actions are provoked by a sudden and severe incident, the defense of 'grave and sudden provocation' may not be accepted as a mitigating factor. According to the provided text, in what specific circumstances will this defense fail, thereby making the offense chargeable?",
     "gold_source_paths": [
-      "data/raw/pdfs/CV_Himanshu.pdf"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_32.pdf"
     ],
     "gold_snippets": [
-      "Indian Institute of Technology Kharagpur (IITKGP)"
+      "The defense will not apply if the provocation was self-induced, if it was given by a public servant acting within the lawful scope of their duties, or if the provocation occurred during the lawful exercise of private defense."
     ],
-    "reference_answer": null,
-    "difficulty": "easy",
-    "notes": "auto-gen from pdf chunk 06c84a2b"
-  },
-  {
-    "question": "What is the company's parental leave policy?",
-    "gold_source_paths": [],
-    "gold_snippets": [],
-    "reference_answer": "I don't have that information in the provided documents.",
-    "difficulty": "easy",
-    "notes": "NEGATIVE: HR policy absent from corpus (low lexical overlap)"
-  },
-  {
-    "question": "What is the salary range offered for the data scientist role?",
-    "gold_source_paths": [],
-    "gold_snippets": [],
-    "reference_answer": "I don't have that information in the provided documents.",
-    "difficulty": "easy",
-    "notes": "NEGATIVE: compensation absent (low lexical overlap)"
-  },
-  {
-    "question": "How many engineers are on the legal AI team?",
-    "gold_source_paths": [],
-    "gold_snippets": [],
-    "reference_answer": "I don't have that information in the provided documents.",
+    "reference_answer": "Section 352 Explanation (IPC)",
     "difficulty": "medium",
-    "notes": "NEGATIVE: team size absent (medium overlap on 'legal AI')"
+    "notes": "auto-gen (medium) from chunks e16ec325"
   },
   {
-    "question": "Which vector database did the team benchmark for production latency?",
-    "gold_source_paths": [],
-    "gold_snippets": [],
-    "reference_answer": "I don't have that information in the provided documents.",
+    "question": "Under the law governing resistance to lawful apprehension, if an individual resists or obstructs their own arrest or escape, what is the relationship between the punishment imposed under that section and the punishment they might face for the original crime they were charged with?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_18.pdf"
+    ],
+    "gold_snippets": [
+      "The punishment for resisting or obstructing lawful apprehension is separate from the punishment for the original offense. Therefore, the penalty under this section is added to the punishment the person was already liable for."
+    ],
+    "reference_answer": "The punishment under Section 262 is cumulative, meaning it is in addition to the punishment for which the person was charged or convicted.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 63133219"
+  },
+  {
+    "question": "According to the law, what specific criteria must an unlawful activity meet to be classified as a 'continuing unlawful activity' under the definition of organized crime?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_13.pdf"
+    ],
+    "gold_snippets": [
+      "For an activity to qualify, it must be a law-prohibited, cognizable offense punishable by three years or more imprisonment. Furthermore, it must be undertaken by a syndicate or on its behalf, and more than one charge-sheet must have been filed regarding this offense within the preceding ten years."
+    ],
+    "reference_answer": "A 'continuing unlawful activity' is defined as an activity prohibited by law that is a cognizable offense punishable with imprisonment of three years or more. It must be undertaken by any person, either singly or jointly, as a member of an organized crime syndicate or on behalf of such syndicate, and for which more than one charge-sheet has been filed before a competent Court within the preceding period of ten years, and that Court has taken cognizance of such offense. This definition explicitly includes economic offenses.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 98c93dec"
+  },
+  {
+    "question": "Under the law, what specific conditions must be met for the use of physical force to be considered a criminal act, and what must the person using the force intend to achieve?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_31.pdf"
+    ],
+    "gold_snippets": [
+      "The force must be used intentionally and without the consent of the person. Furthermore, the person must either intend to commit an offense or intend to cause, or make likely, fear or annoyance to the person receiving the force."
+    ],
+    "reference_answer": "Criminal force is defined as the intentional use of force without consent, where the intent is either to commit an offense or to cause fear or annoyance to the victim.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks af32c3e6"
+  },
+  {
+    "question": "If a person intentionally causes significant damage to a large boat, and they use burning materials or blast materials to achieve this, what is the prescribed punishment under the law?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_42.pdf"
+    ],
+    "gold_snippets": [
+      "Whoever commits such damage using fire or any explosive substance shall be punished with imprisonment for a term which may extend to ten years, and shall also be liable to fine."
+    ],
+    "reference_answer": "438. Punishment for the mischief described in section 437 by fire or explosive substance.--Whoever commits, or to commit, by fire or any explosive substance, such mischief is described in the last preceding section. shall be punished with for a term which may extend to ten years, and shall also liable to fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 8d7778e1"
+  },
+  {
+    "question": "Under what circumstances, regarding the causing of death, does the law impose a harsher penalty: when the person intended the death or the injury was likely to cause death, or when the person merely knew that their action was likely to cause death but did not intend it?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_12.pdf"
+    ],
+    "gold_snippets": [
+      "If the act was done with the intention of causing death, or of causing bodily injury likely to cause death, the punishment is imprisonment for life or a minimum of five years. However, if the act was done only with the knowledge that death was likely, the punishment is imprisonment for a term that may extend to ten years."
+    ],
+    "reference_answer": "Whoever commits culpable homicide not amounting to murder, shall be punished with imprisonment for life, or imprisonment of either description for a term which shall not be less than five years but which may extend to ten years, and shall also be liable to fine, if the act by which the death is caused is done with the intention of causing death, or of causing such bodily injury as is likely to cause death; or with imprisonment of either description for a term which may extend to ten years and with fine, if the act is done with the knowledge that it is likely to cause death, but without any intention to cause death, or to cause such bodily injury as is likely to cause death.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 4803f152"
+  },
+  {
+    "question": "Under the law governing the fake reproduction of government revenue stamps, what is the distinction between merely possessing the necessary tools or materials for counterfeiting, and actively engaging in the process of making or selling those tools?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_24.pdf"
+    ],
+    "gold_snippets": [
+      "An individual who merely possesses the materials for counterfeiting faces a specific penalty. However, the offense escalates when a person actively makes, buys, sells, or otherwise disposes of instruments for the purpose of counterfeiting, even if they are not the ones doing the actual fake printing."
+    ],
+    "reference_answer": "Section 256 addresses the offense of having possession of instruments or material for counterfeiting, while Section 257 covers the more active offense of making, buying, selling, or disposing of such instruments.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 0ef52d0c"
+  },
+  {
+    "question": "Under the law concerning the fake production of currency, what specific actions, beyond the actual creation of fake money, can lead to criminal charges related to the tools used for such deception?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_22.pdf"
+    ],
+    "gold_snippets": [
+      "A person can be charged if they make, repair, or dispose of any die or instrument, or if they buy or sell such an item, knowing or having reason to believe it is intended for the purpose of faking coin."
+    ],
+    "reference_answer": "Section 233 specifies that making, mending, buying, selling, or disposing of any die or instrument for the purpose of counterfeiting coin constitutes an offense.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks b635ad77"
+  },
+  {
+    "question": "If a person buys, sells, or otherwise deals with fake currency, stamps, or coins, what is the legal consequence, and what level of awareness must the person possess regarding the authenticity of the item?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_15.pdf"
+    ],
+    "gold_snippets": [
+      "A person who deals with fake currency, stamps, or coins, knowing or having reason to believe they are fake, faces severe penalties. These penalties include imprisonment for life or up to ten years, and they are also liable to a fine."
+    ],
+    "reference_answer": "Whoever imports or exports, or sells or delivers to, or buys or receives from, any other person, or otherwise traffics or uses as genuine, any forged or counterfeit coin, stamp, currency-note or bank-note, knowing or having reason to believe the same to be forged or counterfeit, shall be punished with imprisonment for life, or with imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 0ea1317f"
+  },
+  {
+    "question": "If an individual illegally removes a tool used for making coins from a mint, how does the severity of the punishment compare to someone who secretly changes the weight or material of an existing coin?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_22.pdf"
+    ],
+    "gold_snippets": [
+      "The crime of taking a coining instrument from a mint carries a potential imprisonment of up to seven years, whereas fraudulently altering the weight or composition of a coin carries a maximum imprisonment of three years."
+    ],
+    "reference_answer": "Section 245 provides up to seven years imprisonment for taking a coining instrument from a mint, while Section 246 provides up to three years imprisonment for diminishing the weight or altering the composition of a coin.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 448a84a4"
+  },
+  {
+    "question": "Under the law, what is required for a person to commit an 'assault' if they do not physically touch another person, and what is the role of accompanying speech in this offense?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_14.pdf"
+    ],
+    "gold_snippets": [
+      "A person commits an assault by making a gesture or preparation such that another person reasonably believes that physical force is about to be used. While mere words are not enough, the words used can give meaning to gestures or preparations, thereby constituting an assault."
+    ],
+    "reference_answer": "Section 130. Assault. -Whoever makes any gesture, or any preparation intending or knowing it to be likely that such gesture or preparation will cause any person present to apprehend that he who makes that gesture or preparation is about to use criminal force to that person, is said to commit an assault. Explanation . -Mere words do not amount to an assault. But the words which a person uses may give to his gestures or preparation such a meaning as may make those gestures or preparations amount to an assault.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks d23da5bf"
+  },
+  {
+    "question": "According to the provided definitions, what criteria must be met for an individual to be considered a 'public functionary,' and what specific condition must a piece of currency meet to be classified as 'counterfeit Indian currency'?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_13.pdf"
+    ],
+    "gold_snippets": [
+      "A person qualifies as a public functionary if they are constitutional authorities or any functionary designated by the Central Government in the Official Gazette. For currency to be deemed counterfeit, it must be declared by an authorized forensic authority that it either imitates or compromises the key security features of genuine Indian currency."
+    ],
+    "reference_answer": "For the purpose of this sub-section, 'public functionary' means the constitutional authorities or any other functionary notified in the Official Gazette by the Central Government as public functionary; and 'counterfeit Indian currency' means the counterfeit currency as may be declared after examination by an authorised or notified forensic authority that such currency imitates or compromises with the key security features of Indian currency.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 6f2c06f1"
+  },
+  {
+    "question": "Under the law, if a person performs an action—such as performing a medical procedure, intervening in an emergency, or even communicating information—with the genuine intention of helping another person, but the action results in harm or death, what is the legal status of that person's liability?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_5.pdf"
+    ],
+    "gold_snippets": [
+      "If an action is performed in good faith for the benefit of another person, the person who performed the act is not guilty of an offense, even if the action causes harm or death."
+    ],
+    "reference_answer": "The law provides that an act done in good faith for the benefit of another person, such as emergency medical procedures or necessary interventions, does not constitute an offense, even if the outcome is severe or fatal.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 7d31e3b8"
+  },
+  {
+    "question": "If a person who is legally obligated to hand over a document fails to do so, what is the specific penalty structure if the document was intended for a Court Justice, compared to a general public servant?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_14.pdf"
+    ],
+    "gold_snippets": [
+      "If the document is meant for a Court Justice, the penalty involves simple imprisonment up to six months, or a fine up to one thousand rupees, or both."
+    ],
+    "reference_answer": "or, if the document is to be produced or delivered up to a Court Justice, with simple imprisonment for a term which may extend to six months, or with fine which may extend to one thousand rupees, or both.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 259aeb1f"
+  },
+  {
+    "question": "According to the law, what combination of elements must be present for an act to be classified as cheating, focusing on the required mental state and the resulting damage?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_20.pdf"
+    ],
+    "gold_snippets": [
+      "Cheating requires that a person deceives another with dishonest or fraudulent intent, causing the victim to either give up property, agree to its retention, or perform an action they otherwise would not."
+    ],
+    "reference_answer": "Cheating is defined as deceiving a person, acting with dishonest or fraudulent intent, and thereby causing the victim to deliver property, consent to property retention, or perform an act or omission that causes or is likely to cause damage to their body, mind, reputation, or property.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 3819173a"
+  },
+  {
+    "question": "Under what circumstances is an action considered not an offense, provided the person genuinely believes they are legally obligated to perform it, and this belief stems from an error regarding the facts rather than an error regarding the law?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_6.pdf"
+    ],
+    "gold_snippets": [
+      "Nothing is an offence which is done by a person who, or who by reason of a mistake of fact and not by reason of a mistake of law in good faith believes himself to be, bound by law to do it."
+    ],
+    "reference_answer": "Section 76 of the IPC states that an act is not an offense if it is done by a person who, or who by mistake of fact, genuinely believes they are legally bound to perform it.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 6f42a8dc"
+  },
+  {
+    "question": "Under the law concerning reduced culpability due to emotional distress, if a person is subjected to an action that is legally permissible by an authority figure, can that action still be considered a valid source of provocation that mitigates the severity of the resulting crime?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_26.pdf"
+    ],
+    "gold_snippets": [
+      "The law specifies that provocation cannot be attributed to actions taken during the lawful exercise of private defense or by a public servant acting within their powers."
+    ],
+    "reference_answer": "The law explicitly states that provocation is not considered valid if it arises from an action taken during the lawful exercise of private defense or by a public servant acting within their powers.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 287aa25b"
+  },
+  {
+    "question": "Under the law governing elections, if a person spends money or authorizes expenses for promoting a candidate without the necessary written permission, what is the general penalty, and what specific condition allows such spending to be considered authorized if the amount is small?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_15.pdf"
+    ],
+    "gold_snippets": [
+      "Generally, incurring unauthorized expenses for an election campaign can result in a fine up to ten thousand rupees. However, if the expenses do not exceed ten rupees and the person obtains the candidate's written approval within ten days, the spending will be considered authorized."
+    ],
+    "reference_answer": "Section 176 (Illegal payments in connection with an election)",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks b4ddc060"
+  },
+  {
+    "question": "If an individual is apprehended for an offense that carries a penalty of life imprisonment, what is the maximum term of imprisonment they face under this provision, and what other penalties may apply?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_20.pdf"
+    ],
+    "gold_snippets": [
+      "If the original offense is punishable with imprisonment for life, the person shall be punished with imprisonment for a term that may extend up to three years, and they may also be liable to a fine."
+    ],
+    "reference_answer": "if the offence is punishable with imprisonment for life, or with imprisonment.the offence is punishable with 3*[imprisonment for life]   or for  ten years, he shall be punished with imprisonment of description for a term which may extend to three years, with or fine;",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks e7656368"
+  },
+  {
+    "question": "Under the law of abetment, if a person encourages another to commit a crime that involves failing to act (an illegal omission), or if the crime they encouraged is never actually carried out, can they still be held responsible? Explain the conditions under which abetment can still be established.",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_7.pdf"
+    ],
+    "gold_snippets": [
+      "Yes, abetment can still be established even if the crime involves an illegal omission, or if the act that was encouraged is never committed. It is not necessary for the abettor to be legally bound to perform the act, nor is it necessary that the act abetted or the required effect actually takes place."
+    ],
+    "reference_answer": "Explanation 1 states that the abetment of an illegal omission may amount to an offence even if the abettor is not bound to do that act. Explanation 2 clarifies that to constitute the offence of abetment, it is not necessary that the act abetted should be committed, or that the effect requisite to constitute the offence should be caused.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 135bcfd3"
+  },
+  {
+    "question": "Under what specific circumstances can an individual's right to defend their physical person extend to causing the death of the aggressor, and what general principle governs the start and continuation of this right?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_1.pdf"
+    ],
+    "gold_snippets": [
+      "The right to defend the body can extend to causing death when the assault is deadly. Furthermore, the commencement and continuation of this right are governed by specific rules outlined in the Code."
+    ],
+    "reference_answer": "Sections 38 and 40",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 20412144"
+  },
+  {
+    "question": "According to the provided illustrations, what is the specific penalty imposed on a person who takes a child, who is not the child's legal caretaker, and uses that child for the purpose of begging?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_14.pdf"
+    ],
+    "gold_snippets": [
+      "The punishment for this act involves rigorous imprisonment for a minimum of ten years, which may extend up to life imprisonment, and the person is also liable to a fine."
+    ],
+    "reference_answer": "Whoever kidnaps any child or, not being the lawful guardian of such child, obtains the custody of the child, in order that such child may be employed or used for the purposes of begging shall be punishable with rigorous imprisonment for a term which shall not be less than ten years but which may extend to imprisonment for life, and shall also be liable to fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks b0a3043a"
+  },
+  {
+    "question": "If a servant receives money and furniture that were previously in the possession of a deceased person, and the servant is legally entitled to take custody of those items, what offense is committed if the servant dishonestly misuses or diverts that property?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_37.pdf"
+    ],
+    "gold_snippets": [
+      "The servant has committed the defined offense because the money came into the possession of a person entitled to it, and the servant dishonestly misappropriated it."
+    ],
+    "reference_answer": "Criminal Breach of Trust (Section 405)",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 3fe263bd"
+  },
+  {
+    "question": "If an individual intentionally causes a death by combining several distinct actions—such as depriving a person of necessary sustenance and physically assaulting them—what legal principle dictates that the person is held accountable for the resulting crime?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_2.pdf"
+    ],
+    "gold_snippets": [
+      "A person who intentionally co-operates in the commission of an offense by means of several acts, whether those acts are performed alone or with others, is considered to have committed that offense."
+    ],
+    "reference_answer": "Co-operation by doing one of several acts constituting an offence is committed by means of several acts, intentionally co-operates in the commission of that offence by any one of those acts, either singly or jointly with any other commits that offence.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 9a4490af"
+  },
+  {
+    "question": "Under what circumstances is a person guilty of an offense if they possess knowledge of a serious crime occurring within their jurisdiction, but instead provide false information to a judicial or police authority?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_14.pdf"
+    ],
+    "gold_snippets": [
+      "A person who knows of a crime, such as a death or a planned robbery, but deliberately misleads the authorities by providing inaccurate details, is guilty of the offense."
+    ],
+    "reference_answer": "A person who knows of a crime, such as a death or a planned robbery, but deliberately misleads the authorities by providing inaccurate details, is guilty of the offense.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 173922b8"
+  },
+  {
+    "question": "Based on the provided illustrations, what critical element, beyond the physical act of creating or changing a document, must be present for an action to constitute a crime involving the falsification of records?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_44.pdf"
+    ],
+    "gold_snippets": [
+      "The act must be done with a specific intent to deceive or gain an advantage. For example, altering a special endorsement or writing a letter with a false name only constitutes the crime if the person intends to induce the recipient to part with property or enter into a contract."
+    ],
+    "reference_answer": "The illustrations demonstrate that the crime requires not only the physical act of creating or altering a document but also the accompanying intent (such as dishonestly, intending to defraud, or intending to obtain alms/service) to deceive the recipient and induce them to act upon the false document.",
+    "difficulty": "medium",
+    "notes": "auto-gen (medium) from chunks 8c90c674"
+  },
+  {
+    "question": "A section of the penal code detailing the punishment for aiding or harboring offenders has been subject to numerous legislative modifications over time. If a legal scholar were citing a recent amendment to this specific section, and the citation included the abbreviation G.S.R., what does this abbreviation signify regarding the source of the law, and what does this imply about the nature of the legal change?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_0.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_20.pdf"
+    ],
+    "gold_snippets": [
+      "The abbreviation G.S.R. stands for General Statutory Rules. When a section, such as the one concerning the punishment for harboring offenders, is amended and documented under this designation, it indicates that the modification has been formally incorporated into the general body of statutory rules, providing a comprehensive record of the legal update."
+    ],
+    "reference_answer": "G.S.R. stands for General Statutory Rules. The passage detailing the punishment for harboring offenders shows that the law is subject to continuous amendments, and citing it under G.S.R. means the change is documented within the general statutory rules.",
     "difficulty": "hard",
-    "notes": "ADVERSARIAL NEGATIVE: in-domain, dense will pull RAG/vector chunks; no benchmark exists. Tests min_score / hallucination."
+    "notes": "auto-gen (hard) from chunks 8c627122,3961b3a1"
   },
   {
-    "question": "What were the measured results of the SignChain AI prototype evaluation?",
-    "gold_source_paths": [],
-    "gold_snippets": [],
-    "reference_answer": "I don't have that information in the provided documents.",
+    "question": "When analyzing offenses related to the creation or possession of fake items, what fundamental differences exist in the required material scope and the necessary mental state (mens rea) when the object being counterfeited is a tool for authenticating written records versus when the object is a piece of currency?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_45.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_24.pdf"
+    ],
+    "gold_snippets": [
+      "Forgery involving authentication tools for documents requires the intent that the device or mark shall be used for the purpose of giving authenticity to documents, whether forged or intended to be forged. Conversely, offenses related to currency require the accused to have known, at the time of possession or delivery, that the coin was altered or that the delivery was intended to mislead the recipient regarding its genuine nature."
+    ],
+    "reference_answer": "Passage A (Sections 475 & 476) and Passage B (Sections 253 & 254)",
     "difficulty": "hard",
-    "notes": "ADVERSARIAL NEGATIVE: high overlap with 'SignChain AI' + 'evaluation criteria'; results don't exist (task not done)."
+    "notes": "auto-gen (hard) from chunks 1c212d38,b89fd962"
   },
   {
-    "question": "What is the penalty for late submission of the Stage 1 deliverable?",
-    "gold_source_paths": [],
-    "gold_snippets": [],
-    "reference_answer": "I don't have that information in the provided documents.",
+    "question": "A person convinces another individual to create and distribute fake currency notes and coins. If the initial plan was merely to deceive the public using these fake items, but the resulting actions also involve the theft of property from a victim, under what circumstances would the instigator be held criminally responsible for the theft, given the nature of the initial illegal act?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_15.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_7.pdf"
+    ],
+    "gold_snippets": [
+      "The instigator's liability for the theft depends on whether that specific crime was a probable consequence of the initial act of creating or using the counterfeit currency. While the creation and use of fake currency notes or coins constitute a distinct offense, the instigator is only liable for the subsequent theft if the law deems it a probable outcome of the abetment, and not merely a separate, unrelated act."
+    ],
+    "reference_answer": "The instigator's liability for the theft depends on whether that specific crime was a probable consequence of the initial act of creating or using the counterfeit currency. While the creation and use of fake currency notes or coins constitute a distinct offense, the instigator is only liable for the subsequent theft if the law deems it a probable outcome of the abetment, and not merely a separate, unrelated act.",
     "difficulty": "hard",
-    "notes": "ADVERSARIAL NEGATIVE: 'Stage 1 deliverable' overlap; penalty terms absent."
+    "notes": "auto-gen (hard) from chunks 0ea1317f,c1d9178a"
   },
   {
-    "question": "Which recreational competitions did he run for residents at his student accommodation?",
+    "question": "A political operative forcibly removes a candidate from their residence and holds them captive. The operative then forces the captive to make a statement that is demonstrably untrue, with the explicit goal of damaging the candidate's reputation and thereby altering the outcome of the upcoming election. What distinct criminal liabilities would the operative face for both the physical restraint and the subsequent attempt to manipulate the electoral process?",
     "gold_source_paths": [
-      "data/raw/pdfs/CV_Himanshu.pdf"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_33.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_15.pdf"
     ],
     "gold_snippets": [
-      "Cricket, Chess, Tennis"
+      "The initial act of forcibly removing or confining the individual constitutes a serious offense related to unlawful custody or abduction. Additionally, the subsequent use of the captive to generate a false statement, with the intent to improperly affect the election results, would constitute a separate and distinct offense related to electoral misconduct."
     ],
-    "reference_answer": null,
-    "difficulty": "medium",
-    "notes": "PARAPHRASE of 'sporting events at Unilodge' — no shared keywords with source"
-  },
-  {
-    "question": "Where was the supercomputer he ran his cosmological code on located?",
-    "gold_source_paths": [
-      "data/raw/pdfs/CV_Himanshu.pdf"
-    ],
-    "gold_snippets": [
-      "Indian Institute of Technology Kharagpur (IITKGP)"
-    ],
-    "reference_answer": null,
+    "reference_answer": "The question requires knowledge of the penalties for unlawful confinement/kidnapping (Passage A) and the penalties for making false statements with the intent to affect election results (Passage B).",
     "difficulty": "hard",
-    "notes": "PARAPHRASE — strips the distinctive 'Shakti'/'HPC' keywords BM25 relied on; pure dense test"
+    "notes": "auto-gen (hard) from chunks c181f67c,b4ddc060"
   },
   {
-    "question": "What are the core focus areas for developing a trustworthy AI system in the legal domain?",
+    "question": "A person forcibly detains another individual, intending to compel them to reveal sensitive information or property. If this detention is carried out in a situation where the detaining person genuinely believes they are preventing an immediate, greater danger to life or property, and they acted with due care and caution, can the act still be considered a criminal offense under the law?",
     "gold_source_paths": [
-      "data/raw/docx/Stage 1_ AI Onboarding - Himanshu.docx"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_13.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_4.pdf"
     ],
     "gold_snippets": [
-      "Context & Retrieval Systems (RAG evolved), Structured AI Outputs & Intelligence Layer, and Agentic Workflows (multi-step reasoning systems)"
+      "While the act of wrongfully confining a person for the purpose of obtaining information or property constitutes a serious offense, the law provides defenses that may negate criminal liability. If the confinement was done in good faith, without criminal intent, and was genuinely aimed at preventing an imminent and greater harm, the defense principles related to necessity or lawful action may apply, potentially excusing the act."
     ],
-    "reference_answer": null,
-    "difficulty": "medium",
-    "notes": "PARAPHRASE of 'three pillars for reliable Legal AI'"
+    "reference_answer": "The question requires understanding that wrongful confinement for extortion or information is a distinct crime (Passage A). However, the defense principles outlined in the law (Passage B) state that an act done without criminal intent, particularly when done in a lawful manner or for the purpose of preventing other harm, may negate the offense, even if the act itself appears illegal.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks cb0a7abf,d613568b"
   },
   {
-    "question": "What software-design abilities are required to build a cleanly separated, easy-to-extend data flow for an LLM retrieval system?",
+    "question": "Under what circumstances might a person's culpability be reduced, considering both a genuine misunderstanding of the situation and the involvement of another party who assists in the commission of the crime?",
     "gold_source_paths": [
-      "data/raw/docx/Self-Assessment - Himanshu T.docx"
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_6.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_2.pdf"
     ],
     "gold_snippets": [
-      "Pipeline modularization\nSeparation of concerns\nMaintainability and testability"
+      "If an individual acts based on a mistaken belief regarding the identity or actions of another person, they may not be held criminally liable, even if the act causes apprehension of harm. However, if that individual's actions are combined with the assistance of a second person, the law may still assign a degree of culpability to the second person, even if the first person's charge is mitigated due to the initial misunderstanding."
     ],
-    "reference_answer": null,
-    "difficulty": "medium",
-    "notes": "PARAPHRASE of 'competencies for designing a modular pipeline'"
+    "reference_answer": "The answer requires understanding that a mistaken belief (Passage A) can negate an offense, while the involvement of a co-accused or accomplice (Passage B) can still lead to a finding of guilt, though the degree of that guilt may be reduced.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks fa29173b,c7d40ce9"
+  },
+  {
+    "question": "If an individual commits an act that, by statute, constitutes a serious sexual offense due to the victim's age or inability to provide valid consent, but the accused can prove that they genuinely believed they were legally obligated to perform the act, how would the general principles of criminal law address the culpability of the accused?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_34.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_6.pdf"
+    ],
+    "gold_snippets": [
+      "While the specific statutory provisions define the elements of the offense, such as the lack of consent or the victim's age, the general defense allows for the exclusion of guilt. If the accused can demonstrate that their actions were taken because they were genuinely mistaken about the law and believed they were legally bound to act, the offense may not be considered criminal."
+    ],
+    "reference_answer": "The question requires combining the specific criteria for establishing the crime of rape (Passage A) with the general defense of acting under a mistake of fact or legal compulsion (Passage B).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 7074da07,6f42a8dc"
+  },
+  {
+    "question": "A woman is subjected to continuous harassment by her in-laws who repeatedly demand a substantial sum of money for the family's upkeep. When she refuses, they begin publicly displaying her personal injuries and repeatedly enter her private residence to pressure her into compliance. Under the relevant penal provisions, what dual nature of illegal activity is being committed, and how do the elements of coercion and public display contribute to the severity of the offense?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_47.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_33.pdf"
+    ],
+    "gold_snippets": [
+      "The scenario describes a combination of domestic coercion and fraudulent solicitation. The family's actions constitute cruelty if the harassment is aimed at forcing the woman or her relatives to meet an unlawful demand for property or valuable security. Furthermore, the act of publicly displaying injuries to extract money falls under the definition of begging, indicating that the coercion is being executed through methods of fraudulent solicitation."
+    ],
+    "reference_answer": "The answer requires understanding that Passage A defines cruelty as harassment aimed at coercing a woman to meet an unlawful demand for property. Passage B defines begging, specifically including the act of exposing injuries or diseases for the purpose of obtaining alms, which applies to the public display element in the scenario.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 2c115b42,3dec3270"
+  },
+  {
+    "question": "A person deceives another by falsely claiming to be a high-ranking bank official and subsequently uses fabricated bank notes to execute the fraud. Considering the distinct nature of the deception—the false identity and the fake currency—what are the maximum potential penalties the law prescribes for these two separate criminal acts?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_20.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_15.pdf"
+    ],
+    "gold_snippets": [
+      "The individual would face two distinct sets of penalties. For the act of assuming a false identity to deceive, the punishment can extend up to five years. Separately, for the act of creating or using fake currency, the penalty is significantly harsher, potentially involving imprisonment for life or up to ten years, in addition to a fine."
+    ],
+    "reference_answer": "Passage A (Cheating by Personation) establishes the penalty for assuming a false identity (up to 5 years). Passage B (Counterfeiting) establishes the penalty for creating or using fake currency (up to 10 years or life imprisonment).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 924dc65f,b15b8328"
+  },
+  {
+    "question": "A person illegally enters a dwelling by utilizing a passage that was secured but subsequently opened by an accomplice. If, during this unauthorized entry, the occupants feel threatened and believe their lives are in immediate danger, what legal considerations govern the scope of the occupants' right to defend themselves, and how does the nature of the initial entry affect the continuation of that defensive right?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_6.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_43.pdf"
+    ],
+    "gold_snippets": [
+      "The right to defend oneself against a deadly assault is extensive, particularly if the defender is in a difficult position and cannot fully exercise that right without risking harm to an innocent person. Furthermore, the initial illegal entry, even if conducted through a passage that was previously secured, is considered part of the house-trespass, and the defensive right remains active as long as the trespass itself continues."
+    ],
+    "reference_answer": "The right of private defence against deadly assault extends even if the defender is in a difficult position. The right of private defence of property against house-trespass continues as long as the house-trespass has begun.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 39b876ac,0836b5a2"
+  },
+  {
+    "question": "A person commits an act that results in the death of a quick unborn child, an act which, by its nature, constitutes culpable homicide. To conceal this crime, the accused subsequently submits a fabricated document to the court, claiming it is genuine evidence. What is the legal liability of the accused, considering both the initial act and the subsequent attempt to mislead the judicial process?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_11.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_16.pdf"
+    ],
+    "gold_snippets": [
+      "The accused faces liability under two distinct criminal provisions. For the death of the quick unborn child, the act constitutes culpable homicide, punishable with imprisonment up to ten years and a fine. Furthermore, the submission of the fabricated document constitutes using false evidence, which carries a penalty of imprisonment for life or up to ten years, depending on the specific charge."
+    ],
+    "reference_answer": "The accused is liable for culpable homicide concerning the death of the quick unborn child (up to 10 years imprisonment/fine, per Section 92). Additionally, the act of submitting a fabricated document constitutes using false evidence, which is punishable with imprisonment for life or up to ten years, in the same manner as if the evidence was genuinely given (per Section 196).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 72d6354a,fc898bbe"
+  },
+  {
+    "question": "A person, intending to cause social discord and prejudice against a specific community, fabricates a document that falsely suggests a historical grievance or dispute regarding the rights of that group. If this fabricated document is used to mislead the public and incite hatred, what dual legal concerns are raised regarding the nature of the deception and the resulting social harm?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_44.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_11.pdf"
+    ],
+    "gold_snippets": [
+      "The act of creating or altering a document to mislead others constitutes a criminal offense related to forgery. When the underlying intent of this fraudulent document is specifically to promote enmity or hatred between different groups based on protected characteristics like religion or community, the offense escalates, addressing both the material deception and the threat to public harmony."
+    ],
+    "reference_answer": "The question requires combining the elements of forgery (Passage A) with the provisions concerning promoting enmity between groups (Passage B).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 1b0c2eb3,6f33625c"
+  },
+  {
+    "question": "When a statute defines a serious offense and subsequently carves out an exception, what common legal principle governs the exclusion of liability when the person facilitating or committing the act is related to the accused?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_11.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_18.pdf"
+    ],
+    "gold_snippets": [
+      "The law provides specific exemptions to prevent prosecution when the act of concealment or facilitation is performed by the spouse of the individual involved. This limitation applies whether the underlying crime involves the harboring of individuals accused of violent offenses or relates to the scope of authority within a place of custody."
+    ],
+    "reference_answer": "The passages both contain exceptions limiting the scope of the law. Passage B explicitly exempts the act of harbouring if the spouse is involved. Passage A, while dealing with sexual offenses and definitions of authority, establishes the principle of defining boundaries and limitations for legal action.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks db9c07ef,1eed49ce"
+  },
+  {
+    "question": "If an individual commits a serious crime and subsequently threatens another person to prevent them from reporting the incident or revealing evidence, what legal considerations govern the use of force by the perpetrator, and what separate criminal liability might the perpetrator face?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_6.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_19.pdf"
+    ],
+    "gold_snippets": [
+      "The use of force by the perpetrator would only be legally justifiable if the threat meets specific criteria, such as causing the reasonable apprehension of grievous hurt or death. However, regardless of the justification for the force used, the act of offering property or concealing the original offense constitutes a distinct and punishable crime under the law."
+    ],
+    "reference_answer": "Passage A (Illustrations 100 & 101) governs the conditions under which the right of private defence of the body extends to causing death or harm. Passage B (Section 214) defines the separate offense of offering or restoring property to conceal an offense or prevent legal punishment.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks c2fc8e76,57c62a59"
+  },
+  {
+    "question": "A person is accused of causing a woman to miscarry, resulting in death, and the prosecution alleges that the act was done with specific intent. If it is established that the accused was intoxicated at the time of the offense, what factors must be considered regarding their criminal liability, particularly concerning the degree of knowledge required for the offense?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_4.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_11.pdf"
+    ],
+    "gold_snippets": [
+      "The accused's liability for the death resulting from the miscarriage depends on whether the intoxication was voluntary or involuntary. If the intoxication was administered without the person's knowledge or against their will, the law may mitigate the offense, potentially treating the act as if the accused lacked the necessary knowledge or intent. However, if the crime requires a specific intent, the defense of intoxication may still hold the accused liable as if they possessed the requisite knowledge, unless the specific exception regarding involuntary intoxication applies."
+    ],
+    "reference_answer": "Passage A (Sections 85 & 86) and Passage B (Section 90)",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks fc544959,ee6192b2"
+  },
+  {
+    "question": "Given the detailed, tiered penal structure for property damage, such as the specific monetary thresholds for causing loss or maiming animals, how does the stated legislative intent to modernize the criminal code address the complexity and specificity of existing provisions like those governing mischief?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_40.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_23.pdf"
+    ],
+    "gold_snippets": [
+      "The current legal framework establishes highly specific penalties for property damage, varying based on the value of the damage or the type of animal harmed. The proposed reform aims to simplify the existing law by repealing the current code, thereby streamlining provisions and making the legal structure more relevant to contemporary needs, moving away from overly detailed, historical classifications."
+    ],
+    "reference_answer": "The current law contains specific, tiered penalties for mischief based on monetary thresholds (e.g., ₹50 or ₹10). The proposed reform aims to simplify the complex and detailed provisions of the existing code, making the law more streamlined and relevant to modern times.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 4c9b1e76,67bda44e"
+  },
+  {
+    "question": "A person is charged with a serious offense involving the intentional misuse of explosive materials or the deliberate grounding of a vessel with the intent to steal. If, following the filing of charges, the court issues a formal notice requiring the accused to appear in person, but the accused fails to appear, what is the combined legal consequence they face, considering both the gravity of the initial crime and the failure to comply with the court's directive?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_16.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_21.pdf"
+    ],
+    "gold_snippets": [
+      "The accused would face the severe penalty associated with the substantive crime, which could include imprisonment for life or a term extending up to ten years, along with a fine. Furthermore, because the failure to appear was related to a serious matter requiring personal attendance, the accused would also be liable for the enhanced penalty for non-compliance, which involves a custodial sentence extending up to six months or a fine of ten thousand rupees, or both."
+    ],
+    "reference_answer": "The answer requires combining the penalty structure for serious property offenses (Passage B) with the enhanced penalty for failure to appear in person (Passage A(b)).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks fd614fb3,c269fa62"
+  },
+  {
+    "question": "A person residing in India plans and instigates a crime that is ultimately committed by a third party in a foreign country. If the statute of limitations for this offense is calculated based on the date the crime was completed, and the planning and instigation occurred over a period spanning several months, what legal considerations must be applied regarding the abettor's liability and the calculation of the time frame?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_3.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_7.pdf"
+    ],
+    "gold_snippets": [
+      "The individual who instigated the crime remains liable in India, even if the actual offense took place outside the country. Furthermore, when determining the duration of the period for which the crime was committed, any reference to a 'year' or 'month' must strictly adhere to the conventions of the British calendar."
+    ],
+    "reference_answer": "Passage A (Calendar Rule); Passage B (Abetment/Jurisdiction)",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks c6c3929c,e834d0ca"
+  },
+  {
+    "question": "A group of individuals circulates false reports designed to incite hatred and ill-will between different communities based on their religion and caste. Subsequently, when a public servant attempts to restore order in the area, one of the individuals involved physically assaults the public servant with the intent of preventing them from discharging their duty. Under the law, what distinct criminal liabilities could be established against the perpetrators for both the initial dissemination of the false reports and the subsequent physical attack on the official?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_28.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_49.pdf"
+    ],
+    "gold_snippets": [
+      "The perpetrators could face charges for inciting communal disharmony by publishing statements that promote enmity between groups, which carries a maximum penalty of three years. Furthermore, the physical assault on the public servant, especially if the intent was to deter them from their official duties, constitutes a separate and more severe offense, potentially leading to imprisonment up to ten years."
+    ],
+    "reference_answer": "Passage B (Section 153A) addresses the crime of creating enmity through statements, while Passage A (Section 333) addresses the aggravated offense of voluntarily causing grievous hurt to deter a public servant from duty.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks fe44f2d5,b8992445"
+  },
+  {
+    "question": "Under what circumstances might an individual who encourages or assists in a crime, particularly if that crime involves a public servant, avoid criminal liability, even if the resulting act was likely to cause harm?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_9.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_6.pdf"
+    ],
+    "gold_snippets": [
+      "While the law prescribes specific penalties for abetment, especially when the involved parties are public servants, an act that is likely to cause harm is not automatically an offense. If the action is taken in good faith, without criminal intent, and solely for the purpose of preventing or avoiding a greater harm, the act may be excused, provided the necessity was imminent and justifiable."
+    ],
+    "reference_answer": "An act that is likely to cause harm but is done without criminal intent and in good faith to prevent or avoid other harm is generally not an offense. However, if an individual abets an offense, the punishment structure is detailed, which includes enhanced penalties if the abettor or the person abetted is a public servant whose duty is prevention.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks b53eca6e,f6bae012"
+  },
+  {
+    "question": "A person organizes an unauthorized scheme promising financial rewards based on the drawing of numbers. To enhance the perceived value of the prize, they advertise that the winning ticket holder will receive a specialized, non-standard treatment or cure. If the person administering this 'cure' is acting in good faith but the procedure carries inherent risks, what legal considerations must be balanced when determining criminal liability for the organizer and the person performing the treatment?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_5.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_19.pdf"
+    ],
+    "gold_snippets": [
+      "The initial act of organizing or promoting the unauthorized scheme is punishable under the law governing illegal lotteries. However, if the subsequent action taken to fulfill the promise involves a medical procedure, the law provides specific exceptions. For the procedure to be legally defensible, the action must be done in good faith for the benefit of the person, and critically, it must fall within the narrow scope of preventing death, curing a grievous disease, or being necessary, and cannot be merely for profit or non-medical purposes."
+    ],
+    "reference_answer": "The question requires combining the prohibition on unauthorized lotteries (Passage B) with the exceptions to criminal liability concerning medical necessity and good faith (Passage A).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 3b54e7cd,272259dc"
+  },
+  {
+    "question": "A person illegally removes a minor from the custody of their legal guardian and takes them across the international border. Later, when questioned by law enforcement regarding the child's whereabouts and the circumstances of the removal, the person deliberately provides false details to the police officer. What dual legal liabilities might this individual face, considering both the initial removal of the child and the subsequent misleading statements made to the authorities?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_16.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_14.pdf"
+    ],
+    "gold_snippets": [
+      "The individual would face two separate offenses. First, the act of taking the minor across the border without consent constitutes kidnapping from India. Second, the deliberate provision of false information to the police officer, knowing the truth, constitutes a separate offense of misinforming the authorities. Both actions are punishable under different sections of the law."
+    ],
+    "reference_answer": "The initial act of taking a person across the border without consent is defined as kidnapping from India (Passage B). The subsequent act of willfully misinforming the police officer about the circumstances of the crime is an offense defined by the law regarding false reporting (Passage A).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks b05ee3aa,b0a3043a"
+  },
+  {
+    "question": "A person illegally enters a dwelling by utilizing a passage that was secured and subsequently opened by the perpetrator or an accomplice. Once inside, the individual then threatens the occupant with severe bodily harm until the victim agrees to reveal sensitive information or restore valuable assets. Which criminal offenses are implicated by this combined conduct, and what elements must be proven regarding the entry and the coercion?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_43.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_28.pdf"
+    ],
+    "gold_snippets": [
+      "The conduct involves multiple offenses. The initial entry or exit through a secured internal passage constitutes house-trespass. Furthermore, the act of threatening severe bodily harm to compel the victim to confess or restore property constitutes the offense of voluntarily causing grievous hurt. Therefore, the accused is liable for both the trespass and the coercive use of violence."
+    ],
+    "reference_answer": "The question requires combining the elements of illegal entry/exit through a secured passage (Passage A) with the use of grievous hurt to extort confession or property (Passage B).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 0836b5a2,b703c29d"
+  },
+  {
+    "question": "A person is accused of selling goods bearing fake identifiers. If the accused attempts to defend themselves by stating that the accuser's claims are based on unverified, defamatory statements regarding the accused's character or conduct, which legal principles govern the validity of the accusation and the defense?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_4.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_23.pdf"
+    ],
+    "gold_snippets": [
+      "The law strictly prohibits the creation, possession, or sale of goods bearing false identifiers, constituting a specific commercial offense. However, when addressing the underlying facts or the conduct of the accused within the context of legal proceedings, the law provides specific protections. These protections allow an individual to express opinions or report facts about the case's merits or the conduct of parties involved, provided the statements are made in good faith and are not purely defamatory."
+    ],
+    "reference_answer": "The law strictly prohibits the creation, possession, or sale of goods bearing false identifiers, constituting a specific commercial offense. However, when addressing the underlying facts or the conduct of the accused within the context of legal proceedings, the law provides specific protections. These protections allow an individual to express opinions or report facts about the case's merits or the conduct of parties involved, provided the statements are made in good faith and are not purely defamatory.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks c729e580,19b4cef9"
+  },
+  {
+    "question": "A citizen reports to a police officer that a specific piece of metal is a genuine, circulating Indian coin. If the citizen knows that the metal piece was never officially stamped or issued by the Government of India, what legal liability might the citizen face, and what specific criteria must the metal meet to avoid such liability?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_22.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_15.pdf"
+    ],
+    "gold_snippets": [
+      "The citizen could be liable for making a false statement to a public servant, particularly if the intent was to misuse the officer's power or mislead them. To avoid such charges, the metal must meet the legal definition of an Indian coin, meaning it must be metal stamped and issued by the Government of India for use as money, regardless of whether it is currently circulating."
+    ],
+    "reference_answer": "Passage A (IPC 230) defines an Indian coin as metal stamped and issued by the Government of India for use as money. Passage B (IPC 181/182) addresses the criminal liability for making false statements or providing false information to a public servant, which applies if the citizen knowingly misrepresents the object's authenticity.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 15b33787,a31cadf3"
+  },
+  {
+    "question": "A vendor is apprehended by law enforcement officers while attempting to sell a medicinal preparation that has been deliberately altered to reduce its effectiveness. During the arrest, the vendor physically resists the officers, using force and threats against them. Based on the relevant penal provisions, what dual set of offenses could the vendor potentially face, and how would the law treat the penalties for both the deceptive sale and the physical resistance?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_25.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_32.pdf"
+    ],
+    "gold_snippets": [
+      "The vendor could face charges related to the deceptive sale of goods, specifically for adulterating a drug or making it noxious for medicinal use. Separately, the vendor would also be liable for the physical resistance and assault against the officers. The law provides distinct penalties for each offense: the deceptive sale carries a maximum imprisonment of six months or a fine up to one thousand rupees, while the physical assault or use of force against the officers carries a separate penalty of up to three months' imprisonment or a fine up to five hundred rupees, or both."
+    ],
+    "reference_answer": "The answer requires knowledge of the penalties for adulteration/noxious goods (Passage A) and the penalties for assault/criminal force (Passage B).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks c0469859,e16ec325"
+  },
+  {
+    "question": "If an individual, while being lawfully detained by authorities, resists their apprehension and attempts to escape, and during this struggle, the authorities use threatening words and gestures that constitute an assault, what legal considerations must be applied to determine the culpability for both the resistance and the initial threat?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_32.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_19.pdf"
+    ],
+    "gold_snippets": [
+      "The law addresses the resistance to lawful detention separately, imposing penalties for obstructing or escaping custody. Furthermore, the threat or use of force must be assessed under provisions governing assault or criminal force, which considers whether the action was provoked or if the threat itself constitutes an offense, regardless of the context of the resistance."
+    ],
+    "reference_answer": "The answer requires knowledge of IPC Section 265 (Resistance/Obstruction) for the act of resisting lawful apprehension, and IPC Section 352 (Assault/Criminal Force) for assessing the threat or force used, while also considering the mitigating factors related to provocation under Section 352.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks e16ec325,4c0af584"
+  },
+  {
+    "question": "A group of individuals engages in a public fight that disturbs the peace. Following this incident, a relative of one of the participants actively assists that individual by providing shelter and resources to prevent their apprehension by law enforcement. Under the relevant penal provisions, what specific liability would attach to the relative for their actions, and how does the nature of the initial public disturbance influence the overall legal assessment?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_18.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_15.pdf"
+    ],
+    "gold_snippets": [
+      "The relative would face separate criminal liability for aiding the escape and concealment of the offender, as this act of screening a person from legal punishment is a distinct offense. This liability is independent of the initial public disturbance, such as an affray, which itself constitutes a separate breach of public peace. Therefore, the relative is liable under the provisions governing the taking of gifts or providing shelter to shield an accused person."
+    ],
+    "reference_answer": "The relative is liable under the provisions governing the taking of gifts or providing shelter to shield an accused person, which is a separate offense. This liability is independent of the initial public disturbance, such as an affray, which itself constitutes a separate breach of public peace.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 54114af4,e10abbf0"
+  },
+  {
+    "question": "A person threatens a business owner, stating that unless the owner complies with their demands, they will publicly display a document that appears to be a legitimate financial note, but which is actually fabricated. Under the Indian Penal Code, what two distinct criminal offenses might the accused be liable for, and how do the elements of the threat and the nature of the fake document contribute to the overall legal liability?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_15.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_22.pdf"
+    ],
+    "gold_snippets": [
+      "The accused could be liable for two separate offenses. First, the act of threatening the business owner's reputation or property constitutes criminal intimidation. Second, the creation or use of the document that resembles a genuine financial note, regardless of the threat, constitutes a separate offense related to the making or using of documents that mimic currency."
+    ],
+    "reference_answer": "The threat itself falls under Section 351 (Criminal Intimidation) because the accused used the fake document as a means to cause alarm or force action. The creation and use of the fake document, which resembles a currency note, is punishable under Section 182, making the accused liable for both the threat and the forgery/misrepresentation.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 9011c674,007537b5"
+  },
+  {
+    "question": "A professional, acting in good faith, publicly reports the misconduct of a subordinate to the appropriate authority. If this report were to be deemed defamatory, what legal consequence might the professional face, and how does the law provide a mechanism to mitigate or alter the severity of the potential penalty?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_5.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_48.pdf"
+    ],
+    "gold_snippets": [
+      "When an accusation is made in good faith, the law provides specific exceptions that shield the individual from charges of defamation. Because the action is legally protected, the individual is shielded from the imposition of various penalties, such as imprisonment or fines, which are otherwise available under the penal code. Furthermore, even if a punishment were applicable, the appropriate government retains the power to commute the sentence to a different form of penalty."
+    ],
+    "reference_answer": "Passage B provides the defense (good faith accusation/censure), while Passage A details the range of potential punishments (imprisonment, fine, etc.) and the government's power to commute them.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 5ef5e571,58a089b9"
+  },
+  {
+    "question": "A person who holds a position of authority, even if their legal right to that position is questionable, encourages another individual to commit a serious offense. Considering the principles governing criminal liability for instigation, what is the legal standing of the initial instigator, and how does the definition of a public servant affect the determination of their culpability?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_7.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_1.pdf"
+    ],
+    "gold_snippets": [
+      "The status of the instigator as a public servant, regardless of whether their appointment is legally flawless, does not negate their criminal liability. The law determines that the instigator is guilty of abetment if they encourage the commission of a crime. Furthermore, the law does not require that the person who is abetted must share the same guilty intention or knowledge as the instigator."
+    ],
+    "reference_answer": "The question requires combining the definition of a public servant (Passage B) with the principles of abetment and instigation (Passage A). The answer must establish that the status of the instigator (even if they are a public servant by actual possession, regardless of legal defect) is irrelevant to the core criminal liability, which is determined by the act of instigation itself, and not by the shared intent or capability of the abetted person.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 26bd8aeb,499d2908"
+  },
+  {
+    "question": "A person is accused of distributing material that is deemed to corrupt or deprave those who view it. If the accused attempts to defend their actions by claiming their intent was solely to prevent a greater harm or cure an ailment, what two distinct legal thresholds must the prosecution successfully establish to prove the offense?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_25.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_6.pdf"
+    ],
+    "gold_snippets": [
+      "To secure a conviction, the prosecution must first establish that the material itself meets the legal definition of being corrupting or appealing to prurient interests. Furthermore, they must prove that the accused's actions were not protected by the specific exceptions related to intent, meaning the purpose of the action was not merely preventing death, curing a disease, or otherwise mitigating harm."
+    ],
+    "reference_answer": "Passage A defines the nature of the material (obscene/corrupting). Passage B defines the limitations on criminal liability based on the intent or purpose of the action (exceptions).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks f5db74f9,b4af9371"
+  },
+  {
+    "question": "A citizen, fearing for their life, confronts a state official who is acting under the color of their office. The official's actions, while intended to maintain order, do not reasonably create an immediate apprehension of death or grievous hurt. If the citizen, in retaliation, uses force that results in the permanent disability of the official, what legal principles must be considered regarding the citizen's right to self-defense and the resulting criminal liability?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_6.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_13.pdf"
+    ],
+    "gold_snippets": [
+      "The citizen's right to private defense may be curtailed if the state official's actions fall under specific exceptions, particularly if the threat does not reasonably cause the apprehension of death or grievous hurt, or if the citizen had time to seek public protection. However, regardless of the initial justification for the force used, the resulting permanent disability constitutes a severe offense, triggering the most stringent penalties for voluntarily causing grievous hurt."
+    ],
+    "reference_answer": "The answer requires combining the limitations on private defense when public authorities are involved (Passage A) with the specific aggravated penalties for causing permanent disability or grievous hurt (Passage B).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks fa29173b,d682bb66"
+  },
+  {
+    "question": "A group of individuals, intending to destabilize the government and challenge the nation's sovereignty, decide to use a major navigable waterway as part of their plan. They deliberately obstruct the waterway and use the vessel in a manner that poses an immediate threat to the lives of all passing citizens. Under the law, what dual nature of offense would this coordinated action represent, considering both the threat to the state and the immediate danger to the public?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_25.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_1.pdf"
+    ],
+    "gold_snippets": [
+      "Such an action would constitute a severe breach of public order, simultaneously violating laws concerning the safety of navigation and the integrity of the state. The deliberate obstruction and dangerous operation of the vessel would fall under offenses related to endangering public ways, while the underlying intent to undermine the government's authority would trigger charges related to acts endangering the sovereignty and unity of the nation."
+    ],
+    "reference_answer": "The act combines the physical danger of obstructing a public way or navigating rashly (Passage A) with the political intent of undermining the state's authority (Passage B).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks f1bb5ac6,ad1c2101"
+  },
+  {
+    "question": "A group of individuals, angered by a perceived slight against their faith, physically disrupt a gathering of people engaged in worship. During the disruption, one member throws a stone at a person who is participating in the ceremony, intending to cause fear and annoyance, thereby aiming to outrage the religious sentiments of the community. Which two distinct legal principles govern the criminal liability for this action, and how do they interact?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_19.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_31.pdf"
+    ],
+    "gold_snippets": [
+      "The act of throwing the stone constitutes the use of criminal force, as it involves intentionally causing annoyance or fear to another person without their consent. Furthermore, because the underlying motive for using this force was to insult or outrage the religious feelings of the assembled group, the action would also fall under the specific provisions dealing with disturbing religious assemblies or insulting religious beliefs."
+    ],
+    "reference_answer": "Passage B (Illustrations) defines the use of criminal force, requiring intent or knowledge of causing annoyance/fear. Passage A (Sections 298, 299, 300) defines the specific offenses related to insulting or disturbing religious assemblies, providing the motive and context for the crime.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks f3a29d39,b302bfa4"
+  },
+  {
+    "question": "When interpreting a specific provision detailing the circumstances under which a person who finds property may or may not be liable for misappropriation, what overarching legal principle must a legal scholar consider to ensure the provision is applied correctly?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_20.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_0.pdf"
+    ],
+    "gold_snippets": [
+      "The specific rules governing the handling of found property, such as the conditions under which a finder is deemed guilty or not guilty, cannot be treated as absolute law. Instead, they must be understood and applied subject to the general statutory principle that all definitions and penal provisions within the Code are subject to any exceptions contained within the law."
+    ],
+    "reference_answer": "The general principle of statutory interpretation dictates that all definitions and penal provisions must be understood subject to any exceptions contained within the Code. Therefore, the specific rules regarding found property must be interpreted through this lens, meaning the exceptions detailed in the property law provision govern its application.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks f196a46e,81eb7340"
+  },
+  {
+    "question": "A person commits a violent crime involving the attempt to cause death or grievous hurt during a robbery or dacoity. If this individual subsequently claims that their actions were undertaken in good faith for the benefit of another person, can this defense successfully negate their criminal liability? Explain the legal constraints governing such a defense.",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_5.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_3.pdf"
+    ],
+    "gold_snippets": [
+      "While the law generally exempts acts done in good faith for the benefit of another person from being considered offenses, this defense is not absolute. The law explicitly restricts this exception, stating that it cannot be used to justify actions that involve the intentional attempt to cause death or grievous hurt, regardless of the underlying good intentions."
+    ],
+    "reference_answer": "The defense of acting in good faith (Passage A) is limited and does not apply to acts involving the attempt to cause death or grievous hurt, even if the underlying crime is a violent offense like robbery or dacoity (Passage B).",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 3b54e7cd,37a4081a"
+  },
+  {
+    "question": "A person takes a digital record, which contains sensitive financial data, from a colleague's locked drawer without permission. If the person's stated motive is only to review the data and return it immediately, does this act constitute theft under the law? Explain your reasoning by referencing the necessary mental element required for such an offense.",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_36.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_4.pdf"
+    ],
+    "gold_snippets": [
+      "The act of taking the digital record, even if the intent is merely to review and return it, would likely constitute theft. Theft requires the taking of property with the specific intention of causing wrongful gain to one person or wrongful loss to another. Since the taking of the document was done without the owner's consent and the intent was not dishonest, the element of criminal intent necessary for theft is missing."
+    ],
+    "reference_answer": "The concept of theft requires the taking of property with dishonest intent. The definition of 'dishonestly' specifies the intention of causing wrongful gain or wrongful loss. If the intent is merely to review and return the item, the necessary dishonest intent is absent, thus negating the charge of theft.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 7e0903a5,e6e8e32e"
+  },
+  {
+    "question": "A person intends to defraud another party by using a weight they know to be inaccurate. If this individual takes preparatory steps towards executing this fraudulent transaction but fails to complete the act, what legal provision governs their punishment, and what is the maximum penalty they could face for this incomplete offense?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_24.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_10.pdf"
+    ],
+    "gold_snippets": [
+      "The law governing an incomplete attempt to commit the fraud involving weights or measures is found under the general provisions for attempts. Since the offense of fraudulent use or possession of false weights is punishable by imprisonment, the individual who attempts the crime will be penalized with a term that is half of the longest maximum imprisonment period prescribed for the completed offense, or with a fine, or both."
+    ],
+    "reference_answer": "Passage A establishes the specific fraudulent acts (e.g., fraudulent use or possession of false weights/measures) which are punishable by imprisonment. Passage B establishes the general rule that if an attempt is made to commit an offense punishable by imprisonment, and no specific provision exists for the attempt, the offender is punished with a term extending up to half of the longest maximum imprisonment provided for that offense.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks 0b54d6cb,1a02751e"
+  },
+  {
+    "question": "A person deceives another by falsely claiming to hold a specific professional status, thereby inducing the victim to provide goods on credit, which the deceiver has no intention of repaying. Based on the general legal framework provided, which specific offense is committed by this act, and what elements of fraud or deception must be present for the crime to be established?",
+    "gold_source_paths": [
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_split_4.pdf",
+      "/home/thimu/Downloads/pdf_splitter/IPC/IPC_OLD_split_39.pdf"
+    ],
+    "gold_snippets": [
+      "The scenario described constitutes the offense of cheating. For this crime to be established, the perpetrator must not only use a false pretense regarding their status but must also intentionally deceive the victim, thereby inducing them to deliver property or goods. This act of deception, which involves misrepresentation to gain an advantage, falls under the general provisions concerning fraudulent acts and deception."
+    ],
+    "reference_answer": "The question requires applying the general principles of 'Cheating' (Section 318) from Passage A to the specific factual scenario of false pretense and inducement detailed in Passage B.",
+    "difficulty": "hard",
+    "notes": "auto-gen (hard) from chunks d0eb75bb,29aa1c63"
   }
 ]
