@@ -1118,5 +1118,53 @@
     "reference_answer": "The question requires applying the general principles of 'Cheating' (Section 318) from Passage A to the specific factual scenario of false pretense and inducement detailed in Passage B.",
     "difficulty": "hard",
     "notes": "auto-gen (hard) from chunks d0eb75bb,29aa1c63"
+  },
+  {
+    "question": "What is the procedure for filing an income tax return in India?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "easy",
+    "notes": "NEGATIVE: tax law, not IPC"
+  },
+  {
+    "question": "What is the GST rate on legal services in India?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "easy",
+    "notes": "NEGATIVE: indirect tax, not IPC"
+  },
+  {
+    "question": "What is the procedure for filing an FIR under the Code of Criminal Procedure?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "hard",
+    "notes": "ADVERSARIAL: CrPC procedure, not IPC substantive law — heavy overlap on 'criminal'/'procedure'"
+  },
+  {
+    "question": "What are the provisions for cybercrime under the Information Technology Act 2000?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "hard",
+    "notes": "ADVERSARIAL: IT Act, not IPC — overlaps on 'offence'/'punishment'"
+  },
+  {
+    "question": "How does the Indian Evidence Act define hearsay evidence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "hard",
+    "notes": "ADVERSARIAL: Evidence Act, not IPC"
+  },
+  {
+    "question": "What does Article 21 of the Indian Constitution guarantee?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "reference_answer": "I don't have that information in the provided documents.",
+    "difficulty": "medium",
+    "notes": "ADVERSARIAL: Constitutional law, not IPC"
   }
 ]
