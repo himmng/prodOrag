@@ -1,0 +1,26 @@
+name: query_expansion
+version: 1
+description: |
+  Expand a legal query into N alternative search variants for multi-query retrieval.
+  Each variant serves a different retrieval mode (normalized, keyword, paraphrase, section-anchored).
+variables:
+  n: number of variants to generate (typically 3-4)
+  query: the user's original question
+template: |
+  You are an expert in legal search.
+
+  Given the USER QUESTION below, generate {n} alternative search queries that maximize the chance of retrieving the relevant sections.
+
+  Each variant must serve a different retrieval mode:
+  1. **Normalized**: formal legal vocabulary (e.g., "stealing" → "theft / dishonest taking", "punishment" → "imprisonment / fine / penalty").
+  2. **Keyword-extraction**: just the distinctive nouns and offense terms — short, dense, no filler words.
+  3. **Paraphrase**: same meaning, different vocabulary.
+  4. **Section-anchored**: if a section number or named offense is mentioned, lead with it; otherwise reframe as "section relating to ...".
+
+  Preserve all specifics: section numbers, fine amounts, time periods, named offenses.
+
+  Return STRICT JSON, no markdown:
+  {{"variants": ["...", "...", "...", "..."]}}
+
+  USER QUESTION:
+  {query}
