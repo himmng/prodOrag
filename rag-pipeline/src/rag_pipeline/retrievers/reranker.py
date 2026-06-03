@@ -25,10 +25,26 @@ class Reranker:
         normalize: bool = True,
     ):
         from FlagEmbedding import FlagReranker
+        import atexit
         self.model_name = model_name
         self.normalize = normalize
         log.info(f"Loading reranker: {model_name}")
         self._model = FlagReranker(model_name, use_fp16=False)
+
+        # Cleanly shut down FlagEmbedding's worker pool BEFORE Python's
+        # module-globals teardown — sidesteps the __del__ NoneType bug.
+        atexit.register(self._safe_cleanup)
+    
+    def _safe_cleanup(self):
+        """Stop the FlagEmbedding worker pool explicitly, ignoring teardown errors."""
+        try:
+            if hasattr(self, "_model") and self._model is not None:
+                stop = getattr(self._model, "stop_self_pool", None)
+                if callable(stop):
+                    stop()
+                self._model = None
+        except Exception:
+            pass
 
     def score(self, query: str, documents: list["Document"]) -> list[float]:
         if not documents:

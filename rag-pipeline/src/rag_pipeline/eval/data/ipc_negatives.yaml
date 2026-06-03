@@ -1,0 +1,40 @@
+name: ipc_negatives
+description: |
+  Curated out-of-corpus questions for refusal-rate testing on the Indian Penal Code corpus.
+  Phase 4 measured 100% refusal rate with hybrid_reranked + min_score=0.5 + SYSTEM_PROMPT.
+
+  When adding to this list:
+    - Each question must be answerable ONLY by something OUTSIDE the IPC.
+    - Include at least one "obviously out-of-scope" (different domain entirely).
+    - Include at least two "adversarial" (other Indian codes — CrPC, IT Act, Evidence Act, etc.).
+    - `difficulty` reflects how *plausibly relevant* the question seems to the IPC, not how easy it is.
+version: 1
+
+examples:
+  - question: How many days of parental leave are employees entitled to in India?
+    difficulty: medium
+    notes: Out-of-scope — labor law, not IPC.
+
+  - question: What is the current GST rate on luxury items?
+    difficulty: easy
+    notes: Out-of-scope — tax law.
+
+  - question: How many members must a startup team have?
+    difficulty: easy
+    notes: Nonsense / no domain.
+
+  - question: What is the procedure for filing an FIR under the CrPC?
+    difficulty: hard
+    notes: Adversarial — CrPC is procedural, separate from substantive IPC.
+
+  - question: What does the IT Act say about cybercrime penalties?
+    difficulty: hard
+    notes: Adversarial — IT Act, not IPC.
+
+  - question: What does Article 21 of the Constitution guarantee?
+    difficulty: hard
+    notes: Adversarial — Constitution, not IPC.
+
+  - question: Under the Indian Evidence Act, what is the rule regarding hearsay?
+    difficulty: hard
+    notes: Adversarial — Evidence Act, not IPC.

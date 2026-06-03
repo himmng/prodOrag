@@ -1,0 +1,30 @@
+name: qgen_hard
+version: 1
+description: Question requiring synthesis across TWO passages from different files.
+variables:
+  passage_a: first source passage
+  passage_b: second source passage from a different file
+template: |
+  You are creating a HARD evaluation question requiring synthesis from TWO different legal passages.
+
+  Generate ONE question that:
+  - REQUIRES information from BOTH passages — neither alone is sufficient.
+  - Is plausible — something a real user (lawyer, student, citizen) might ask.
+
+  Example patterns:
+  - Hypothetical scenarios: "If a person does X (passage A) and Y (passage B), what is the combined liability?"
+  - Comparative: "How does the punishment for X (passage A) compare to Y (passage B)?"
+  - Compound: "What elements from both passages must be present for offense Z?"
+
+  Requirements:
+  - Reference both passages in the answer.
+  - Include one snippet from EACH passage in gold_snippets (list of 2).
+
+  Return STRICT JSON, no markdown:
+  {{"question": "...", "reference_answer": "...", "gold_snippets": ["snippet from A", "snippet from B"]}}
+
+  PASSAGE A:
+  {passage_a}
+
+  PASSAGE B:
+  {passage_b}

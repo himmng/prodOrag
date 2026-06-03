@@ -1,0 +1,18 @@
+name: refusal_markers
+description: |
+  Substrings that signal a well-formed RAG refusal. The is_refusal() helper
+  checks all of these against the LLM's normalized response.
+
+  Stays in sync with:
+    - the refusal-phrase rule in prompts/templates/system.yaml
+    - REFUSAL_TEXT in generation/pipeline.py
+  Each entry is matched case-insensitively after whitespace normalization.
+version: 1
+
+markers:
+  - "i don't have that information in the provided documents"
+  - "do not have that information"
+  - "no information about"
+  - "not contained in the provided documents"
+  - "no relevant information"
+  - "cannot answer"

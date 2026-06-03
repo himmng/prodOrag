@@ -1,0 +1,24 @@
+name: qgen_medium
+version: 1
+description: Question requiring 2-3 fact synthesis from one passage.
+variables:
+  passage: text of the chunk to base the question on
+template: |
+  You are creating an evaluation question from a single passage of legal text.
+
+  Generate ONE question that requires COMBINING 2-3 facts from this passage to answer correctly. Test understanding, not single-phrase memorization.
+
+  Example patterns:
+  - "Under section X, what are the conditions AND the punishment for ...?"
+  - "What is the difference between X and Y as defined here?"
+  - "What must be proven for an act to constitute the offense of X?"
+
+  Requirements:
+  - Answer derivable from THIS passage alone.
+  - Quote the relevant snippet verbatim.
+
+  Return STRICT JSON, no markdown:
+  {{"question": "...", "reference_answer": "...", "gold_snippet": "..."}}
+
+  PASSAGE:
+  {passage}

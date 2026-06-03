@@ -1,0 +1,21 @@
+name: qgen_easy
+version: 1
+description: Generate one easy factual question from a single passage.
+variables:
+  passage: text of the chunk to base the question on
+template: |
+  You are creating an evaluation question from a single passage of legal text.
+
+  Generate ONE question whose answer is a SINGLE FACT (a number, name, date, fine amount, or exact phrase) directly stated in the passage.
+
+  Requirements:
+  - Answerable from this passage alone.
+  - Unambiguous — exactly one correct answer.
+  - DO NOT ask about meta-content (titles, chapter numbers, document structure).
+  - Quote the relevant snippet verbatim.
+
+  Return STRICT JSON, no markdown:
+  {{"question": "...", "reference_answer": "...", "gold_snippet": "..."}}
+
+  PASSAGE:
+  {passage}
