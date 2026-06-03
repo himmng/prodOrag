@@ -45,7 +45,7 @@ class Config(BaseSettings):
     # ollama (env-overrideable)
     OLLAMA_HOST: str = "http://localhost:11434"
     OLLAMA_MODEL: str = "gemma-4-e4b:latest"
-    EMBEDDING_MODEL: str = "embeddinggemma:latest"
+    OLLAMA_EMBEDDING_MODEL: str = "embeddinggemma:latest"
 
     # azure openai
     AZURE_OPENAI_ENDPOINT:             Optional[str] = None
@@ -104,4 +104,4 @@ def setup_logging(level: str | None = None) -> logging.Logger:
 
 log = setup_logging()
 log.info(f"Project root: {cfg.PROJECT_ROOT}")
-log.info(f"Ollama: {cfg.OLLAMA_HOST}, LLM model: {cfg.OLLAMA_MODEL} | Embedding model: {cfg.EMBEDDING_MODEL}")
+log.info(f"Ollama: {cfg.OLLAMA_HOST}, LLM model: {cfg.OLLAMA_MODEL} | Embedding model: {cfg.OLLAMA_EMBEDDING_MODEL}")

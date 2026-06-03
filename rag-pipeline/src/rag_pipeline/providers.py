@@ -75,7 +75,7 @@ def _ollama_llm():
 def _ollama_emb():
     from langchain_ollama import OllamaEmbeddings
     return OllamaEmbeddings(
-        model=cfg.EMBEDDING_MODEL,
+        model=cfg.OLLAMA_EMBEDDING_MODEL,
         base_url=cfg.OLLAMA_HOST,
     )
 

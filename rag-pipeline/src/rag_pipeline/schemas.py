@@ -89,7 +89,7 @@ class RagChunk(BaseModel):
     
     def to_langchain_document(self):
         """Convert to langchain Document for vectorstore ingest."""
-        from langchain_core import Document
+        from langchain_core.documents import Document
         return Document(
             page_content=self.text,
             metadata=self.to_langchain_metadata(),

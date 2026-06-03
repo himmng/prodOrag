@@ -79,9 +79,7 @@ class ParserDispatcher:
                 per_format[c.source_format] += 1
             all_chunks.extend(new_chunks)
         
-        log.info(f"Produced {len(all_chunks)} unique chunks "
-                 f"({sum(len(self.parse_file(p)) for p in [] or 'dedup applied')})")
-        
+        log.info(f"Produced {len(all_chunks)} unique chunks (after content-hash dedup)")
         for fmt, n in sorted(per_format.items()):
             log.info(f"  {fmt}: {n} chunks")
         return all_chunks
