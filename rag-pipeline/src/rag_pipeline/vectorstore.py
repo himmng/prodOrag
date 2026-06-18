@@ -9,13 +9,13 @@ Future: Azure AI search / Qdrant / pgvector
 upgrade will require to change only this file, everything else like retrievers, ingest, eval remain unaffected.
 
 """
-import os
-os.environ.setdefault("ANONYMIZED_TELEMETRY", "FALSE")
+
 
 from __future__ import annotations
 from functools import lru_cache
 from typing import TYPE_CHECKING
-
+import os
+os.environ.setdefault("ANONYMIZED_TELEMETRY", "FALSE")
 from rag_pipeline.config import cfg, log
 from rag_pipeline.providers import get_embeddings
 

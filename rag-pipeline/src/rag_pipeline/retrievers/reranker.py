@@ -29,7 +29,7 @@ class Reranker:
         self.model_name = model_name
         self.normalize = normalize
         log.info(f"Loading reranker: {model_name}")
-        self._model = FlagReranker(model_name, use_fp16=False)
+        self._model = FlagReranker(model_name, use_fp16=True, devices=['cuda:0'])
 
         # Cleanly shut down FlagEmbedding's worker pool BEFORE Python's
         # module-globals teardown — sidesteps the __del__ NoneType bug.

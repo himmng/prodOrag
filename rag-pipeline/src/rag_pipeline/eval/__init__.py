@@ -1,6 +1,7 @@
 """Evaluation framework: schemas, metrics, and runners."""
 
 from rag_pipeline.eval.qgen import generate_balanced_eval_set
+from rag_pipeline.eval.latency import LatencyTracker, timed
 from rag_pipeline.eval.ragas_runner import (
     build_ragas_dataset,
     get_default_metrics,
@@ -40,4 +41,7 @@ __all__ = [
     "get_ragas_judges", "get_default_metrics", "get_default_run_config",
     "build_ragas_dataset", "load_ragas_dataset",
     "score_ragas_dataset", "run_full_eval",
+    # Latency
+    "LatencyTracker",
+    "timed",
 ]
