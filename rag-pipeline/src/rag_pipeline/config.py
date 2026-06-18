@@ -39,6 +39,8 @@ class Config(BaseSettings):
     EVAL_SET_PATH: ClassVar[Path] = EVAL_DIR / "eval_set.json"
     EVAL_RESULTS_DIR: ClassVar[Path] = EVAL_DIR / "results"
 
+    #
+    API_KEYS: str = "" # comma-separated; empty= auth disabled (dev mode)
     # provider switch
     MODEL_PROVIDER: Literal["ollama", "azure", "openai", "gcp", "aws"] = "ollama"
 

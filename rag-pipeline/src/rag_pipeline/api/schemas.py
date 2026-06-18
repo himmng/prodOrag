@@ -33,3 +33,48 @@ class AnswerResponse(BaseModel):
 class HealthResponse(BaseModel):
     status:     Literal["healthy", "degraded", "unhealthy"]
     components: dict[str, str]
+
+
+class DocInfo(BaseModel):
+    doc_id:       str
+    filename:     str
+    char_count:   int
+    uploaded_at:  str
+    section_refs: list[str]
+
+
+class DocListResponse(BaseModel):
+    documents: list[DocInfo]
+    total:     int
+
+
+class DeleteResponse(BaseModel):
+    doc_id:  str
+    deleted: bool
+
+class EvalRetrievalRequest(BaseModel):
+    retriever: Literal["hybrid_reranked", "dense", "bm25", "ensemble"] = "hybrid_reranked"
+    top_k:     int = Field(default=5, ge=1, le=20)
+
+
+class EvalRetrievalResponse(BaseModel):
+    retriever:    str
+    n_examples:   int
+    top_k:        int
+    metrics:      dict             # hit@k, recall@k, mrr, snippet@k
+    by_difficulty: dict             # same metrics, sliced
+    latency_ms:   float
+
+
+class ThresholdSweepRequest(BaseModel):
+    thresholds: list[float] = Field(
+        default=[0.0, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.3, 0.5],
+    )
+    top_k:      int = Field(default=5, ge=1, le=20)
+
+
+class ThresholdSweepResponse(BaseModel):
+    top_k:       int
+    rows:        list[dict]   # one per threshold
+    recommended: dict         # threshold with highest f1
+    latency_ms:  float

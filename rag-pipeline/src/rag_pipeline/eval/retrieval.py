@@ -132,7 +132,63 @@ def evaluate_retriever(
         "n_positive":    len(positives),
     }
 
+def threshold_sweep(
+    retriever_no_filter,
+    examples: list[EvalExample],
+    thresholds: list[float],
+    top_k: int = 5,
+) -> list[dict]:
+    """Pre-retrieve once with no filter, then score each threshold.
 
+    For each threshold:
+      - recall_positive: mean hit@k across positives after filtering
+      - refusal_negative: fraction of negatives where all docs were filtered out
+      - f1: harmonic mean of the two
+    """
+    # Cache retrievals once (expensive, otherwise we'd repeat per threshold)
+    cached_pos: list[tuple[EvalExample, list]] = []
+    cached_neg: list[tuple[EvalExample, list]] = []
+    for ex in examples:
+        results = retriever_no_filter.retrieve(ex.question, top_k=top_k)
+        (cached_neg if ex.is_negative() else cached_pos).append((ex, results))
+
+    rows = []
+    for thresh in thresholds:
+        # Positives: use hit_at_k on the filtered set
+        hits = 0
+        for ex, results in cached_pos:
+            kept_paths = [
+                doc.metadata.get("source_path", "")
+                for doc, score in results
+                if score >= thresh
+            ]
+            hits += hit_at_k(ex, kept_paths)
+
+        # Negatives: refusal = no doc survived the filter
+        refused = 0
+        for ex, results in cached_neg:
+            if not any(score >= thresh for _, score in results):
+                refused += 1
+
+        n_pos = max(len(cached_pos), 1)
+        n_neg = max(len(cached_neg), 1)
+        recall = hits / n_pos
+        refusal = refused / n_neg
+        f1 = (
+            2 * recall * refusal / (recall + refusal)
+            if (recall + refusal) > 0 else 0.0
+        )
+
+        rows.append({
+            "threshold":        round(thresh, 4),
+            "recall_positive":  round(recall, 4),
+            "refusal_negative": round(refusal, 4),
+            "f1":               round(f1, 4),
+            "n_positives":      len(cached_pos),
+            "n_negatives":      len(cached_neg),
+        })
+
+    return rows
 # ── Refusal detection (for negative-example testing) ────────────────────
 
 # All substrings are pre-normalized. Each covers the exact phrase OR a
