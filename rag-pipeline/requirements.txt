@@ -36,3 +36,7 @@ tqdm==4.67.1
 
 #
 slowapi>=0.1.9
+
+# test
+pytest>=8
+pytest-cov>=5
