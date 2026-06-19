@@ -7,3 +7,30 @@ data/processed/
 data/raw/*
 !data/raw/.gitkeep
 chroma_db/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Env / venv
+.venv/
+.env
+
+# Project data (regenerable / large / sensitive)
+chroma_db/
+data/raw/
+data/processed/
+eval/results/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# OS
+*.swp
