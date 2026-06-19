@@ -1,4 +1,4 @@
-[![CI](https://github.com/himmng/protorag/rag-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/protorag/rag-pipeline/actions/workflows/ci.yml)
+[![CI](https://github.com/himmng/protorag/actions/workflows/ci.yml/badge.svg)](https://github.com/protorag/actions/workflows/ci.yml)
 
 ## Pre-merge quality check
 
