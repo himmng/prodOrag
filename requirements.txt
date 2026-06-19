@@ -15,7 +15,6 @@ langchain-openai==0.2.14
 langchain-chroma==0.1.4
 langchain-ollama==0.2.2
 langchain-text-splitters
-langchain-embeddings==0.1.4
 langchain-aws
 langchain-google-vertexai
 
