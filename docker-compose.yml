@@ -1,0 +1,42 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rag-api
+    ports:
+      - "8000:8000"
+    environment:
+      PROJECT_ROOT:           /app
+      MODEL_PROVIDER:         ollama
+      OLLAMA_HOST:            host.docker.internal
+      OLLAMA_PORT:            "11434"
+      OLLAMA_MODEL:           gemma-4-e4b:latest
+      EMBEDDING_MODEL:        embeddinggemma:latest
+      LLM_TEMPERATURE:        "0.0"
+      LLM_NUM_CTX:            "8192"
+      CHUNK_SIZE:             "800"
+      CHUNK_OVERLAP:          "120"
+      TOP_K:                  "5"
+      API_KEYS:               ${API_KEYS:-dev-key-123}
+      LOG_LEVEL:              INFO
+      CHROMA_PERSIST_DIR:     /app/chroma_db
+      DATA_PROCESSED_DIR:     /app/data/processed
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./chroma_db:/app/chroma_db
+      - ./eval:/app/eval:ro
+      - ./data:/app/data:ro
+      - hf_cache:/home/app/.cache/huggingface
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
+
+volumes:
+  hf_cache:

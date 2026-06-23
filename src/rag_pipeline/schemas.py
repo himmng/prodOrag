@@ -18,6 +18,18 @@ SourceFormat = Literal[
     "csv", "xlsx", "xls", "json", "jsonl", "ndjson",
 ]
 
+ChunkType = Literal[
+    "definition",     # Sections 1-3 of either act, defining terms
+    "offence",        # The substantive offence text
+    "punishment",     # "Whoever ... shall be punished with..."
+    "exception",      # "This section does not apply to..."
+    "illustration",   # "Illustration: A puts jewels..."
+    "explanation",    # "Explanation 1.— For the purposes..."
+    "proviso",        # "Provided that..."
+    "other",          # Fallback for unclassifiable spans
+]
+
+
 def _content_hash(source_path: str, text: str, n: int = 16) -> str:
     """SHA-256 of (source_path \0 text), truncated to `n` hex chars."""
     h = hashlib.sha256()
@@ -94,3 +106,49 @@ class RagChunk(BaseModel):
             page_content=self.text,
             metadata=self.to_langchain_metadata(),
         )
+
+
+
+class StatuteChunk(BaseModel):
+    """A chunk of statutory text (IPC or BNS), enriched with cross-references.
+
+    chunk_id is content-addressed: SHA-256 of (act + section + text)[:16].
+    This makes ingest idempotent — same content → same id, no duplicates.
+    """
+
+    chunk_id:        str
+
+    # Provenance
+    source_path:     str
+    page_number:     int
+
+    # Statute structure
+    act:             Literal["IPC", "BNS"]
+    section:         str                              # "302", "302A", "498A"
+    subsection:      Optional[str]    = None         # "(1)", "(2)(a)"
+    parent_section:  Optional[str]    = None         # if subsection chunk, link to parent
+    section_title:   str
+    chapter_number:  Optional[str]    = None
+    chapter_title:   Optional[str]    = None
+
+    # Classification
+    chunk_type:      ChunkType        = "other"
+
+    # Cross-reference (joined from concordance at ingest)
+    corresponds_to:  Optional[str]    = None         # IPC chunk → BNS section, vice versa
+    change_status:   Optional[Literal[
+                       "new", "changed", "deleted", "unchanged"
+                     ]] = None
+
+    # Content
+    text:            str
+    char_count:      int               = Field(default=0)
+
+    def model_post_init(self, __context) -> None:
+        if self.char_count == 0:
+            self.char_count = len(self.text)
+
+    @classmethod
+    def make_id(cls, act: str, section: str, text: str) -> str:
+        h = hashlib.sha256(f"{act}|{section}|{text}".encode("utf-8")).hexdigest()
+        return h[:16]

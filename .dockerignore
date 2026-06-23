@@ -1,0 +1,36 @@
+# Git
+.git
+.github
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*.egg-info
+.pytest_cache
+.coverage
+coverage.xml
+htmlcov
+
+# Venv (we build a fresh one in the image)
+.venv
+
+# Secrets
+.env
+
+# Project data (mount as volumes instead)
+chroma_db
+data/raw
+data/processed
+eval/results
+notebooks
+last_log.log
+
+# Tests (not needed at runtime)
+tests
+
+# OS / IDE
+.DS_Store
+.vscode
+.idea
+*.swp

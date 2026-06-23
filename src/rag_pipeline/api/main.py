@@ -117,17 +117,19 @@ app.add_middleware(RequestLoggingMiddleware)
 
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
-    """Readiness probe: returns 'healthy' iff every dep is reachable."""
     components = {
         "chunks":    "ok" if _state.get("chunks") else "missing",
         "retriever": "ok" if _state.get("hybrid_r") else "missing",
         "llm":       "ok" if _state.get("llm") else "missing",
     }
     try:
-        _state["llm"].invoke("ping")
-        components["ollama"] = "ok"
+        import socket
+        host = cfg.OLLAMA_HOST.replace("http://", "").replace("https://", "").split("/")[0]
+        port = int(cfg.OLLAMA_PORT)
+        with socket.create_connection((host, port), timeout=2):
+            components["ollama"] = "ok"
     except Exception as e:
-        components["ollama"] = f"unreachable: {str(e)[:80]}"
+        components["ollama"] = f"unreachable: {str(e)[:60]}"
 
     all_ok = all(v == "ok" for v in components.values())
     return HealthResponse(
@@ -135,6 +137,25 @@ def health() -> HealthResponse:
         components=components,
     )
 
+def _build_retriever_for_request(req: AnswerRequest):
+    """Build a retriever instance honoring any per-request overrides.
+    Reuses the cached underlying components (dense, bm25, reranker)."""
+    fetch_k = req.fetch_k or 20
+
+    if req.retriever == "bm25":
+        return _state["bm25"]
+    if req.retriever == "dense":
+        return _state["dense"]
+    if req.retriever == "ensemble":
+        return EnsembleRetriever([_state["dense"], _state["bm25"]], fetch_k=fetch_k)
+    if req.retriever == "hybrid_reranked":
+        ensemble = EnsembleRetriever([_state["dense"], _state["bm25"]], fetch_k=fetch_k)
+        return RerankedRetriever(
+            ensemble, _state["reranker"],
+            fetch_k=fetch_k,
+            min_score=req.min_score if req.min_score is not None else 0.01,
+        )
+    raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
 
 @app.post(
     "/answer",
@@ -154,7 +175,7 @@ def answer_route(
         "bm25":            _state["bm25"],
         "ensemble":        _state["ensemble"],
     }
-    retriever = retriever_map.get(req.retriever)
+    retriever = _build_retriever_for_request(req)
     if retriever is None:
         raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
 
@@ -208,7 +229,7 @@ def answer_stream_route(
         "bm25":            _state["bm25"],
         "ensemble":        _state["ensemble"],
     }
-    retriever = retriever_map.get(req.retriever)
+    retriever = _build_retriever_for_request(req)
     if retriever is None:
         raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
 

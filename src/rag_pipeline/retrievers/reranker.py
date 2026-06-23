@@ -6,54 +6,47 @@ Use as a second stage: get fetch_k candidates from a fast retriever, thank reran
 Default: BAAI/bge-reranker-base (~100MB, CPU friendly)"""
 
 from __future__ import annotations
-
+import torch
 from typing import TYPE_CHECKING
 
 from rag_pipeline.config import log
 from rag_pipeline.retrievers.base import BaseRetriever
+import numpy as np
+from sentence_transformers import CrossEncoder
+
 
 if TYPE_CHECKING:
     from langchain_core.documents import Document
 
 
 class Reranker:
-    """Cross-encoder reranker. Returns calibrated [0, 1] scores when normalize=True."""
+    """Wraps a HuggingFace cross-encoder for relevance scoring."""
 
     def __init__(
         self,
         model_name: str = "BAAI/bge-reranker-base",
         normalize: bool = True,
     ):
-        from FlagEmbedding import FlagReranker
-        import atexit
-        self.model_name = model_name
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        log.info(f"Loading reranker: {model_name} (device={device})")
+        self._model = CrossEncoder(model_name, device=device, trust_remote_code=False)
         self.normalize = normalize
-        log.info(f"Loading reranker: {model_name}")
-        self._model = FlagReranker(model_name, use_fp16=True, devices=['cuda:0'])
 
-        # Cleanly shut down FlagEmbedding's worker pool BEFORE Python's
-        # module-globals teardown — sidesteps the __del__ NoneType bug.
-        atexit.register(self._safe_cleanup)
-    
-    def _safe_cleanup(self):
-        """Stop the FlagEmbedding worker pool explicitly, ignoring teardown errors."""
-        try:
-            if hasattr(self, "_model") and self._model is not None:
-                stop = getattr(self._model, "stop_self_pool", None)
-                if callable(stop):
-                    stop()
-                self._model = None
-        except Exception:
-            pass
+    def score(self, query: str, docs: list) -> list[float]:
+        """Score (query, doc) pairs. Returns floats; higher = more relevant."""
+        # Accept Document objects or plain strings
+        texts = [d.page_content if hasattr(d, "page_content") else str(d) for d in docs]
+        pairs = [[query, t] for t in texts]
 
-    def score(self, query: str, documents: list["Document"]) -> list[float]:
-        if not documents:
-            return []
-        pairs = [[query, d.page_content] for d in documents]
-        scores = self._model.compute_score(pairs, normalize=self.normalize)
-        if isinstance(scores, float):
-            scores = [scores]
-        return list(scores)
+        scores = self._model.predict(pairs, show_progress_bar=False)
+        scores = np.asarray(scores, dtype=np.float32)
+
+        if self.normalize:
+            # Sigmoid → [0, 1] (BGE reranker outputs raw logits)
+            scores = 1.0 / (1.0 + np.exp(-scores))
+
+        return scores.tolist()
+
 
 
 class RerankedRetriever(BaseRetriever):

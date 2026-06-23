@@ -12,6 +12,8 @@ class AnswerRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=2000)
     top_k: int = Field(default=5, ge=1, le=20)
     retriever: Literal["hybrid_reranked", "dense", "bm25", "ensemble"] = "hybrid_reranked"
+    fetch_k:   Optional[int]   = Field(default=None, ge=5, le=50)
+    min_score: Optional[float] = Field(default=None, ge=0.0, le=1.0)
 
 
 class Citation(BaseModel):

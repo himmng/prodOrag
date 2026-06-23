@@ -5,19 +5,26 @@ PROJECT_ROOT is auto-detected by walking up from this file until pyproject.toml 
  """
 
 from __future__ import annotations # for forward references in type hints (e.g. in dataclasses)
-
+import os
 import logging # for logging
 from pathlib import Path # for filesystem paths
 from typing import ClassVar, Literal, Optional # for class variables in dataclasses
 from pydantic_settings import BaseSettings, SettingsConfigDict # for configuration management with environment variable support
 
 def _find_project_root(marker: str = "pyproject.toml") -> Path:
-    """Walk up from this file's location until `marker` is found."""
+    # 1. Explicit env override (containers, deployed environments)
+    env_root = os.environ.get("PROJECT_ROOT")
+    if env_root:
+        return Path(env_root).resolve()
+
+    # 2. Walk up from this file looking for the marker (editable installs)
     here = Path(__file__).resolve().parent
-    for parent in [here, *here.parents]:
+    for parent in (here, *here.parents):
         if (parent / marker).exists():
             return parent
-    raise FileNotFoundError(f"Could not find {marker} in any parent of {here}")
+
+    # 3. Last resort — current working directory
+    return Path.cwd()
 
 PROJECT_ROOT = _find_project_root()
 

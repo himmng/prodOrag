@@ -1,0 +1,33 @@
+# configs/corpora/ipc_bns.yaml
+# Corpus configuration: Indian criminal law (IPC 1860 + BNS 2023)
+
+name:         ipc_bns
+display_name: Indian Criminal Law (IPC 1860 + BNS 2023)
+
+# Each "source" produces one ChromaDB collection
+sources:
+  - act:           IPC
+    pdf_path:      data/raw/IPC_1860.pdf
+    collection:    IPC_Corpus
+    chunks_output: data/processed/ipc_chunks.json
+
+  - act:           BNS
+    pdf_path:      data/raw/BNS_2023.pdf
+    collection:    BNS_Corpus
+    chunks_output: data/processed/bns_chunks.json
+
+# Cross-reference table — parsed once, joined into chunks at ingest
+concordance:
+  pdf_path:    data/raw/IPC_BNS_concordance.pdf
+  output_json: data/processed/concordance.json
+
+# Structural parser config
+parser:
+  # Matches "302.", "302A.", "498A.", "2(1)" at start of line/block
+  section_regex:    '(?m)^\s*(\d+[A-Z]*)(?:\s*\(([^)]+)\))?\s*\.\s*'
+  preserve_blocks:  [illustration, exception, explanation, proviso]
+  max_chunk_chars:  1500
+
+# Eval (to be built in Stage E)
+eval_set_path:  eval/eval_set_ipc_bns.json
+negatives_path: eval/data/ipc_bns_negatives.yaml
