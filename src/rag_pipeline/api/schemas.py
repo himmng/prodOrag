@@ -14,6 +14,7 @@ class AnswerRequest(BaseModel):
     retriever: Literal["hybrid_reranked", "dense", "bm25", "ensemble"] = "hybrid_reranked"
     fetch_k:   Optional[int]   = Field(default=None, ge=5, le=50)
     min_score: Optional[float] = Field(default=None, ge=0.0, le=1.0)
+    collections: list[Literal["IPC", "BNS"]] = Field(default=["IPC", "BNS"])
 
 
 class Citation(BaseModel):
@@ -22,6 +23,11 @@ class Citation(BaseModel):
     page_number:   Optional[int]  = None
     section_title: Optional[str]  = None
     score:         float
+
+    act:           Optional[str]    = None    # "IPC" | "BNS"
+    section:       Optional[str]    = None    # "302", "498A", etc.
+    corresponds_to: Optional[str]   = None    # cross-act mapping
+    change_status: Optional[str]    = None    # "new"|"changed"|"deleted"|"unchanged"
 
 
 class AnswerResponse(BaseModel):

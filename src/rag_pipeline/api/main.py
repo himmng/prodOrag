@@ -18,6 +18,7 @@ from rag_pipeline.eval.retrieval import evaluate_retriever, threshold_sweep
 from rag_pipeline.eval.schema   import load_eval_set 
 import time
 import tempfile
+from typing import Optional
 from fastapi import UploadFile, File
 from rag_pipeline.api.documents import DocumentStore, UploadedDoc
 from rag_pipeline.api.schemas import (
@@ -33,6 +34,7 @@ from fastapi import FastAPI, HTTPException, Depends, Request, Response
 from rag_pipeline.api.schemas import (
     AnswerRequest, AnswerResponse, Citation, HealthResponse,
 )
+from rag_pipeline.generation.context import build_context
 from rag_pipeline.config import cfg, log
 from rag_pipeline.generation import answer
 from rag_pipeline.parsers import load_chunks_cache
@@ -61,45 +63,169 @@ _state: dict = {}
 # Call once at module import — before app = FastAPI(...)
 install_json_logging(level="INFO")
 
+
+def _retrieve_across_collections(
+    query: str,
+    acts: list[str],
+    retriever_kind: str,
+    top_k: int,
+    min_score: Optional[float],
+) -> list[tuple]:
+    """Retrieve from one or more act collections, merge by score, return top_k.
+
+    Each act has its own pre-built retrievers in _state["by_act"][act].
+    When the user picks both IPC and BNS, we retrieve top_k from each then
+    sort the union by reranker score.
+    """
+    retriever_attr = {
+        "hybrid_reranked": "hybrid_r",
+        "dense":           "dense",
+        "bm25":            "bm25",
+        "ensemble":        "ensemble",
+    }.get(retriever_kind)
+
+    if retriever_attr is None:
+        raise HTTPException(422, detail=f"Unknown retriever: {retriever_kind}")
+
+    if not acts:
+        raise HTTPException(422, detail="At least one act required in `collections`")
+
+    # When the user requests min_score=None on hybrid, swap in the no-filter variant
+    if retriever_kind == "hybrid_reranked" and min_score is None:
+        retriever_attr = "hybrid_r_nofilter"
+
+    merged: list[tuple] = []
+    per_collection_k = top_k if len(acts) == 1 else max(top_k, 5)
+
+    for act in acts:
+        setup = _state["by_act"].get(act)
+        if setup is None:
+            log.warning(f"Unknown act in request: {act}")
+            continue
+        retriever = setup[retriever_attr]
+        results = retriever.retrieve(query, top_k=per_collection_k)
+        merged.extend(results)
+
+    merged.sort(key=lambda r: r[1], reverse=True)
+    return merged[:top_k]
+
+
+def _enrich_citation(doc, score: float, n: int) -> Citation:
+    """Build a Citation from (Document, score), pulling fields from metadata."""
+    meta = doc.metadata or {}
+    return Citation(
+        n=n,
+        source_path=meta.get("source_path", ""),
+        page_number=meta.get("page_number"),
+        section_title=meta.get("section_title"),
+        score=float(score),
+        act=meta.get("act"),
+        section=meta.get("section"),
+        corresponds_to=meta.get("corresponds_to"),
+        change_status=meta.get("change_status"),
+    )
+
+
+def _to_doc_info(d: UploadedDoc) -> DocInfo:
+    return DocInfo(
+        doc_id=d.doc_id,
+        filename=d.filename,
+        char_count=d.char_count,
+        uploaded_at=d.uploaded_at,
+        section_refs=d.section_refs,
+    )
+
+def _build_retriever_for_request(req: AnswerRequest):
+    """Build a retriever instance honoring any per-request overrides.
+    Reuses the cached underlying components (dense, bm25, reranker)."""
+    fetch_k = req.fetch_k or 20
+
+    if req.retriever == "bm25":
+        return _state["bm25"]
+    if req.retriever == "dense":
+        return _state["dense"]
+    if req.retriever == "ensemble":
+        return EnsembleRetriever([_state["dense"], _state["bm25"]], fetch_k=fetch_k)
+    if req.retriever == "hybrid_reranked":
+        # Prefer a cached hybrid retriever (tests inject this) to avoid
+        # constructing a RerankedRetriever when no reranker is available.
+        if _state.get("hybrid_r") is not None:
+            return _state["hybrid_r"]
+
+        ensemble = EnsembleRetriever([_state["dense"], _state["bm25"]], fetch_k=fetch_k)
+        # If the process doesn't have a reranker (e.g. tests), fall back
+        # to the ensemble rather than constructing a broken reranker wrapper.
+        if _state.get("reranker") is None:
+            return ensemble
+
+        return RerankedRetriever(
+            ensemble, _state["reranker"],
+            fetch_k=fetch_k,
+            min_score=req.min_score if req.min_score is not None else 0.01,
+        )
+    raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Load all heavy objects ONCE at startup."""
     log.info("API starting up — loading pipeline...")
-    chunks_path = cfg.PROJECT_ROOT / "data" / "processed" / "phase1_chunks.json"
-    if not chunks_path.exists():
-        raise RuntimeError(
-            f"Chunks cache missing: {chunks_path}. "
-            f"Run the ingest notebook first."
-        )
 
-    chunks   = load_chunks_cache(chunks_path)
-    dense    = DenseRetriever(collection_name="IPC_Corpus")
-    bm25     = BM25Retriever(chunks)
-    ensemble = EnsembleRetriever([dense, bm25], fetch_k=20)
-    reranker = Reranker()
-    hybrid_r = RerankedRetriever(ensemble, reranker, fetch_k=20, min_score=0.01)  # this is important, I changed min_score from 0.5 to None to now 0.01 as calibrated currently.
-    hybrid_r_nofilter = RerankedRetriever(ensemble, reranker, fetch_k=20, min_score=None)
-    _state["hybrid_r_nofilter"] = hybrid_r_nofilter
-    llm      = get_llm()
-    _state["doc_store"] = DocumentStore()
-    _state["uploaded_parser"] = DoclingHybridParser()  # reuse one instance
+    # 1. Shared reranker FIRST (used by all collections)
+    shared_reranker = Reranker()
+
+    # 2. Per-collection retrievers
+    collection_setups = {}
+    for act, collection in [("IPC", "IPC_Corpus"), ("BNS", "BNS_Corpus")]:
+        log.info(f"Loading {act} retrievers ({collection})...")
+        
+        chunks_path = cfg.PROJECT_ROOT / "data" / "processed" / f"{act.lower()}_chunks.json"
+        if not chunks_path.exists():
+            raise RuntimeError(f"Chunks file missing: {chunks_path}. Run `rag-ingest --corpus ipc_bns`.")
+        
+        import json
+        with open(chunks_path) as f:
+            raw_chunks = json.load(f)
+        from rag_pipeline.schemas import StatuteChunk
+        chunks = [StatuteChunk(**c) for c in raw_chunks]
+
+        dense = DenseRetriever(collection_name=collection)
+        bm25  = BM25Retriever(chunks)
+        ensemble = EnsembleRetriever([dense, bm25], fetch_k=20)
+        
+        collection_setups[act] = {
+            "dense":             dense,
+            "bm25":              bm25,
+            "ensemble":          ensemble,
+            "hybrid_r":          RerankedRetriever(ensemble, shared_reranker, fetch_k=20, min_score=0.01),
+            "hybrid_r_nofilter": RerankedRetriever(ensemble, shared_reranker, fetch_k=20, min_score=None),
+            "n_chunks":          len(chunks),
+        }
+        log.info(f"  {act}: {len(chunks)} chunks loaded")
+
+    # 3. Concordance
+    from rag_pipeline.corpus.concordance import Concordance
+    conc_path = cfg.PROJECT_ROOT / "data" / "processed" / "concordance.json"
+    concordance = Concordance.from_json(conc_path) if conc_path.exists() else None
+    if concordance:
+        log.info("Loaded concordance for cross-references")
+
     _state.update({
-        "chunks":    chunks,
-        "dense":     dense,
-        "bm25":      bm25,
-        "ensemble":  ensemble,
-        "reranker":  reranker,
-        "hybrid_r":  hybrid_r,
-        "llm":       llm,
+        "by_act":      collection_setups,
+        "reranker":    shared_reranker,
+        "llm":         get_llm(),
+        "concordance": concordance,
     })
+
+    # 4. Eval set (optional, may not exist for fresh corpus)
     eval_path = cfg.PROJECT_ROOT / "eval" / "eval_set.json"
-    _state["eval_set"] = load_eval_set(eval_path)
-    log.info(f"Loaded {len(_state['eval_set'])} eval examples")
-    log.info(f"API ready — {len(chunks)} chunks loaded")
+    if eval_path.exists():
+        _state["eval_set"] = load_eval_set(eval_path)
+        log.info(f"Loaded {len(_state['eval_set'])} eval examples")
+
+    log.info("API ready")
     yield
     log.info("API shutting down")
     _state.clear()
-
 
 app = FastAPI(
     title="RAG Pipeline API",
@@ -137,25 +263,8 @@ def health() -> HealthResponse:
         components=components,
     )
 
-def _build_retriever_for_request(req: AnswerRequest):
-    """Build a retriever instance honoring any per-request overrides.
-    Reuses the cached underlying components (dense, bm25, reranker)."""
-    fetch_k = req.fetch_k or 20
 
-    if req.retriever == "bm25":
-        return _state["bm25"]
-    if req.retriever == "dense":
-        return _state["dense"]
-    if req.retriever == "ensemble":
-        return EnsembleRetriever([_state["dense"], _state["bm25"]], fetch_k=fetch_k)
-    if req.retriever == "hybrid_reranked":
-        ensemble = EnsembleRetriever([_state["dense"], _state["bm25"]], fetch_k=fetch_k)
-        return RerankedRetriever(
-            ensemble, _state["reranker"],
-            fetch_k=fetch_k,
-            min_score=req.min_score if req.min_score is not None else 0.01,
-        )
-    raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
+# ── /answer (non-streaming) ──────────────────────────────────────────
 
 @app.post(
     "/answer",
@@ -165,45 +274,54 @@ def _build_retriever_for_request(req: AnswerRequest):
 @limiter.limit("60/minute")
 def answer_route(
     request: Request,
-    response: Response,        # ← add this
+    response: Response,
     req: AnswerRequest,
 ) -> AnswerResponse:
     """End-to-end RAG: retrieve → contextualize → LLM → return cited answer."""
-    retriever_map = {
-        "hybrid_reranked": _state["hybrid_r"],
-        "dense":           _state["dense"],
-        "bm25":            _state["bm25"],
-        "ensemble":        _state["ensemble"],
-    }
-    retriever = _build_retriever_for_request(req)
-    if retriever is None:
-        raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
-
     start = time.perf_counter()
-    response = answer(
+
+    docs_with_scores = _retrieve_across_collections(
         query=req.query,
-        retriever=retriever,
-        llm=_state["llm"],
+        acts=req.collections,
+        retriever_kind=req.retriever,
         top_k=req.top_k,
+        min_score=req.min_score,
     )
-    latency_ms = (time.perf_counter() - start) * 1000.0
+
+    if not docs_with_scores:
+        return AnswerResponse(
+            question=req.query,
+            answer="I don't have that information in the provided documents.",
+            citations=[],
+            retriever=req.retriever,
+            latency_ms=(time.perf_counter() - start) * 1000.0,
+        )
+
+    context = build_context(docs_with_scores)
+    prompt = (
+        f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
+        f"Bharatiya Nyaya Sanhita excerpts below. Cite sources by their [n] marker. "
+        f"If the answer is not in the excerpts, say so.\n\n"
+        f"CONTEXT:\n{context}\n\nQUESTION: {req.query}\n\nANSWER:"
+    )
+    llm_resp = _state["llm"].invoke(prompt)
+    answer_text = getattr(llm_resp, "content", None) or str(llm_resp)
+
+    citations = [
+        _enrich_citation(doc, score, i + 1)
+        for i, (doc, score) in enumerate(docs_with_scores)
+    ]
 
     return AnswerResponse(
-        question=response["question"],
-        answer=response["answer"],
-        citations=[Citation(**c) for c in response["citations"]],
-        retriever=response["retriever"],
-        latency_ms=latency_ms,
+        question=req.query,
+        answer=answer_text,
+        citations=citations,
+        retriever=req.retriever,
+        latency_ms=(time.perf_counter() - start) * 1000.0,
     )
 
-def _to_doc_info(d: UploadedDoc) -> DocInfo:
-    return DocInfo(
-        doc_id=d.doc_id,
-        filename=d.filename,
-        char_count=d.char_count,
-        uploaded_at=d.uploaded_at,
-        section_refs=d.section_refs,
-    )
+
+# ── /answer/stream (SSE) ─────────────────────────────────────────────
 
 @app.post(
     "/answer/stream",
@@ -212,35 +330,72 @@ def _to_doc_info(d: UploadedDoc) -> DocInfo:
 @limiter.limit("20/minute")
 def answer_stream_route(
     request: Request,
-    response: Response,        # ← add this
+    response: Response,
     req: AnswerRequest,
 ):
-    """Streaming variant of /answer. Returns text/event-stream.
-
-    Client receives:
-      • citations event ASAP (~1.5s after request)
-      • token events as the LLM generates
-      • done event when complete
-      • error event on any failure (terminal)
-    """
-    retriever_map = {
-        "hybrid_reranked": _state["hybrid_r"],
-        "dense":           _state["dense"],
-        "bm25":            _state["bm25"],
-        "ensemble":        _state["ensemble"],
-    }
-    retriever = _build_retriever_for_request(req)
-    if retriever is None:
+    """Streaming variant of /answer. Returns text/event-stream."""
+    if req.retriever not in {"hybrid_reranked", "dense", "bm25", "ensemble"}:
         raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
 
     def event_generator():
-        for evt in answer_stream(
-            query=req.query,
-            retriever=retriever,
-            llm=_state["llm"],
-            top_k=req.top_k,
-        ):
-            yield sse_event(evt["event"], evt["data"])
+        start = time.perf_counter()
+        try:
+            docs_with_scores = _retrieve_across_collections(
+                query=req.query,
+                acts=req.collections,
+                retriever_kind=req.retriever,
+                top_k=req.top_k,
+                min_score=req.min_score,
+            )
+        except HTTPException as e:
+            yield sse_event("error", {"stage": "retrieve", "message": e.detail})
+            return
+        except Exception as e:
+            yield sse_event("error", {"stage": "retrieve", "message": str(e)})
+            return
+
+        if not docs_with_scores:
+            yield sse_event("citations", {"citations": []})
+            yield sse_event("token", {"text": "I don't have that information in the provided documents."})
+            yield sse_event("done", {
+                "latency_ms": round((time.perf_counter() - start) * 1000, 1),
+                "retriever":  req.retriever,
+                "refused":    True,
+            })
+            return
+
+        citations = [
+            _enrich_citation(doc, score, i + 1).model_dump()
+            for i, (doc, score) in enumerate(docs_with_scores)
+        ]
+        yield sse_event("citations", {"citations": citations})
+
+        context = build_context(docs_with_scores)
+        prompt = (
+            f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
+            f"Bharatiya Nyaya Sanhita excerpts below. Cite sources by their [n] marker. "
+            f"If the answer is not in the excerpts, say so.\n\n"
+            f"CONTEXT:\n{context}\n\nQUESTION: {req.query}\n\nANSWER:"
+        )
+        try:
+            for chunk in _state["llm"].stream(prompt):
+                if isinstance(chunk, str):
+                    text = chunk
+                elif hasattr(chunk, "content"):
+                    text = chunk.content or ""
+                else:
+                    text = ""
+                if text:
+                    yield sse_event("token", {"text": text})
+        except Exception as e:
+            yield sse_event("error", {"stage": "llm", "message": str(e)})
+            return
+
+        yield sse_event("done", {
+            "latency_ms": round((time.perf_counter() - start) * 1000, 1),
+            "retriever":  req.retriever,
+            "refused":    False,
+        })
 
     return StreamingResponse(
         event_generator(),
@@ -248,9 +403,12 @@ def answer_stream_route(
         headers={
             "Cache-Control":     "no-cache",
             "Connection":        "keep-alive",
-            "X-Accel-Buffering": "no",   # disable nginx/proxy buffering
+            "X-Accel-Buffering": "no",
         },
     )
+
+
+# ── /eval/* (point at IPC by default for now) ────────────────────────
 
 @app.post(
     "/eval/retrieval",
@@ -263,25 +421,26 @@ def eval_retrieval_route(
     response: Response,
     req: EvalRetrievalRequest,
 ) -> EvalRetrievalResponse:
-    retriever_map = {
-        "hybrid_reranked": _state["hybrid_r_nofilter"],
-        "dense":           _state["dense"],
-        "bm25":            _state["bm25"],
-        "ensemble":        _state["ensemble"],
-    }
-    retriever = retriever_map.get(req.retriever)
-    if retriever is None:
+    if "eval_set" not in _state:
+        raise HTTPException(503, detail="Eval set not loaded. Run Stage E eval rebuild first.")
+
+    # Eval against IPC for now; Stage E rebuilds a combined eval set
+    setup = _state["by_act"].get("IPC")
+    retriever_attr = {
+        "hybrid_reranked": "hybrid_r_nofilter",
+        "dense":           "dense",
+        "bm25":            "bm25",
+        "ensemble":        "ensemble",
+    }.get(req.retriever)
+    if retriever_attr is None:
         raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
+    retriever = setup[retriever_attr]
 
     start = time.perf_counter()
-    result = evaluate_retriever(
-        retriever,
-        _state["eval_set"],
-        top_k=req.top_k,
-    )
+    result = evaluate_retriever(retriever, _state["eval_set"], top_k=req.top_k)
     return EvalRetrievalResponse(
         retriever=req.retriever,
-        n_examples=result["n_positive"],     # only positives are scored
+        n_examples=result["n_positive"],
         top_k=req.top_k,
         metrics=result["overall"],
         by_difficulty=result["by_difficulty"],
@@ -300,9 +459,12 @@ def threshold_sweep_route(
     response: Response,
     req: ThresholdSweepRequest,
 ) -> ThresholdSweepResponse:
+    if "eval_set" not in _state:
+        raise HTTPException(503, detail="Eval set not loaded. Run Stage E eval rebuild first.")
+
     start = time.perf_counter()
     rows = threshold_sweep(
-        _state["hybrid_r_nofilter"],
+        _state["by_act"]["IPC"]["hybrid_r_nofilter"],
         _state["eval_set"],
         thresholds=req.thresholds,
         top_k=req.top_k,
@@ -315,12 +477,11 @@ def threshold_sweep_route(
         latency_ms=(time.perf_counter() - start) * 1000.0,
     )
 
+
+# ── /documents/* (uploaded case files — unchanged) ───────────────────
+
 @app.post("/documents/upload", response_model=DocInfo)
 async def upload_document(file: UploadFile = File(...)) -> DocInfo:
-    """Parse and ingest a case file into the in-memory doc store.
-    
-    Never touches the IPC ChromaDB collection.
-    """
     if not file.filename:
         raise HTTPException(422, detail="filename required")
 
@@ -329,7 +490,6 @@ async def upload_document(file: UploadFile = File(...)) -> DocInfo:
         raise HTTPException(415, detail=f"Unsupported file type: .{suffix}")
 
     raw = await file.read()
-
     if suffix == "pdf":
         with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
             tmp.write(raw)

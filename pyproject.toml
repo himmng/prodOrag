@@ -89,6 +89,9 @@ eval = [
 Repository = "https://github.com/himmng/protoRAG"
 Issues     = "https://github.com/himmng/protoRAG/issues"
 
+[project.scripts]
+rag-ingest = "rag_pipeline.cli.ingest:main"
+
 # ─────────────────────────────────────────────────────────────────────
 # Packaging
 # ─────────────────────────────────────────────────────────────────────

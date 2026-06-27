@@ -12,25 +12,24 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from langchain_core.documents import Document
 
+def build_context(docs_with_scores: list[tuple]) -> str:
+    """Format retrieved (doc, score) pairs as numbered context for the LLM.
 
-def build_context(
-    results: list[tuple["Document", float]],
-) -> tuple[str, list[dict]]:
-    """Build a numbered context block + citations list."""
-    blocks: list[str] = []
-    citations: list[dict] = []
-    for i, (doc, score) in enumerate(results, start=1):
-        meta = doc.metadata
-        blocks.append(f"[{i}] {doc.page_content}")
-        citations.append({
-            "n":             i,
-            "source_path":   meta.get("source_path", "?"),
-            "page_number":   meta.get("page_number"),
-            "section_title": meta.get("section_title"),
-            "score":         score,
-        })
-    return "\n\n".join(blocks), citations
-
+    Each block: [n] ACT §SECTION — title\n<full text>
+    """
+    parts = []
+    for i, (doc, _score) in enumerate(docs_with_scores, start=1):
+        meta = doc.metadata or {}
+        header = f"[{i}]"
+        if meta.get("act") and meta.get("section"):
+            header += f" {meta['act']} §{meta['section']}"
+            if meta.get("section_title"):
+                header += f" — {meta['section_title']}"
+        elif meta.get("source_path"):
+            # Fallback for old RagChunk-style metadata
+            header += f" {meta['source_path'].split('/')[-1]}"
+        parts.append(f"{header}\n{doc.page_content}")
+    return "\n\n".join(parts)
 
 def pretty_print(response: dict, score_label: str = "score") -> None:
     """Human-readable rendering of an answer dict (question, answer, citations)."""

@@ -147,8 +147,18 @@ class StatuteChunk(BaseModel):
     def model_post_init(self, __context) -> None:
         if self.char_count == 0:
             self.char_count = len(self.text)
+    
+    def to_langchain_metadata(self) -> dict:
+        """Return metadata dict suitable for langchain Document (excludes text)."""
+        data = self.model_dump()
+        data.pop("text", None)
+        # Chroma/langchain don't accept None values
+        return {k: v for k, v in data.items() if v is not None}
 
     @classmethod
     def make_id(cls, act: str, section: str, text: str) -> str:
+        """Content-addressed ID. Two chunks with identical (act, section, text)
+        will collide — callers can disambiguate by including subsection or
+        chunk_type in the `section` argument."""
         h = hashlib.sha256(f"{act}|{section}|{text}".encode("utf-8")).hexdigest()
         return h[:16]

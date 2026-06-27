@@ -6,15 +6,17 @@ display_name: Indian Criminal Law (IPC 1860 + BNS 2023)
 
 # Each "source" produces one ChromaDB collection
 sources:
-  - act:           IPC
-    pdf_path:      data/raw/IPC_1860.pdf
-    collection:    IPC_Corpus
-    chunks_output: data/processed/ipc_chunks.json
+  - act:              IPC
+    pdf_path:         data/raw/IPC_1860.pdf
+    collection:       IPC_Corpus
+    chunks_output:    data/processed/ipc_chunks.json
+    body_start_page:  14          # ← TOC ends at page 13
 
-  - act:           BNS
-    pdf_path:      data/raw/BNS_2023.pdf
-    collection:    BNS_Corpus
-    chunks_output: data/processed/bns_chunks.json
+  - act:              BNS
+    pdf_path:         data/raw/BNS_2023.pdf
+    collection:       BNS_Corpus
+    chunks_output:    data/processed/bns_chunks.json
+    body_start_page:  16          # ← TOC ends at page 15
 
 # Cross-reference table — parsed once, joined into chunks at ingest
 concordance:
@@ -24,7 +26,7 @@ concordance:
 # Structural parser config
 parser:
   # Matches "302.", "302A.", "498A.", "2(1)" at start of line/block
-  section_regex:    '(?m)^\s*(\d+[A-Z]*)(?:\s*\(([^)]+)\))?\s*\.\s*'
+  section_regex: '(?m)^\s*(\d+[A-Z]*)(?:\s*\((\d+[A-Za-z]?)\))?\s*\.\s+(?=[A-Z])'
   preserve_blocks:  [illustration, exception, explanation, proviso]
   max_chunk_chars:  1500
 

@@ -56,7 +56,9 @@ def _infer_status(bns_text: str, ipc_text: str) -> str:
 
 
 # Section ID at start of cell: "1(1)", "2", "302A", "29A"
-_SECTION_HEAD = re.compile(r"^\s*(\d+[A-Z]?(?:\([^)]+\))?)\b")
+_SECTION_HEAD = re.compile(
+    r"^\s*(\d+[A-Z]?(?:\(\d+[A-Za-z]?\))?)\s*[.\s]?"
+)
 
 
 def _split_section_and_title(cell: str) -> tuple[Optional[str], Optional[str]]:
@@ -64,98 +66,112 @@ def _split_section_and_title(cell: str) -> tuple[Optional[str], Optional[str]]:
     cell = cell.strip()
     if not cell:
         return None, None
-    m = _SECTION_HEAD.match(cell)
-    if not m:
-        return None, cell or None
-    sec = m.group(1)
-    rest = cell[m.end():].strip().lstrip(".").strip()
-    # Strip surrounding quotes from titles like "'document'"
-    rest = rest.strip("'\"").strip()
-    return sec, (rest or None)
+
+    lines = [ln.strip() for ln in cell.split("\n") if ln.strip()]
+
+    for i, line in enumerate(lines):
+        m = _SECTION_HEAD.match(line)
+        if not m:
+            continue
+
+        sec = m.group(1)
+        # Title candidate: text in this line after the section ID
+        remainder = line[m.end():].strip().lstrip(".").strip()
+
+        # If this line has nothing after the section ID, use the next line(s)
+        if not remainder and i + 1 < len(lines):
+            remainder = " ".join(lines[i + 1:]).strip()
+
+        # Clean trailing/leading punctuation and quotes
+        title = remainder.strip().rstrip(".").strip().strip("'\"").strip()
+        return sec, (title or None)
+
+    # No section header at all — whole cell is the title
+    title = " ".join(lines).strip("'\"").strip()
+    return None, title or None
 
 
 # ── Main extractor ────────────────────────────────────────────────────
 
 class ConcordanceParser:
-    """Extracts rows from the concordance PDF.
+    """Extracts table rows from the concordance PDF using pdfplumber.
 
-    Docling returns tables as text-rich chunks. We scan for two-column
-    patterns where each row has a BNS cell and an IPC cell.
+    pdfplumber preserves cell boundaries, unlike Docling which flattens
+    tables to prose. Each row gives us (bns_cell, ipc_cell) directly.
     """
 
-    def __init__(self):
-        self._docling = DoclingHybridParser()
-
     def parse(self, pdf_path: Path) -> list[ConcordanceRow]:
-        log.info(f"Parsing concordance: {pdf_path.name}")
+        log.info(f"Parsing concordance with pdfplumber: {pdf_path.name}")
 
-        # Strategy: use Docling's table-aware extraction. Each "doc chunk"
-        # often corresponds to one table row when the parser detects tables.
-        doc_chunks = self._docling.parse(pdf_path)
+        import pdfplumber
 
         rows: list[ConcordanceRow] = []
+        seen: set[tuple[Optional[str], Optional[str]]] = set()
 
-        for dc in doc_chunks:
-            text = (dc.text if hasattr(dc, "text") else str(dc)).strip()
-            if not text:
-                continue
+        with pdfplumber.open(pdf_path) as pdf:
+            for page_num, page in enumerate(pdf.pages, start=1):
+                tables = page.extract_tables()
+                for table in tables:
+                    for raw_row in table:
+                        # Skip None-only or header rows
+                        cells = [(c or "").strip() for c in raw_row]
+                        if all(not c for c in cells):
+                            continue
 
-            # Skip header rows / banners
-            low = text.lower()
-            if "corresponding section table" in low \
-               or "bharatiya nyaya sanhita" in low and "indian penal code" in low:
-                continue
+                        # Header detection
+                        joined = " ".join(cells).lower()
+                        if "bharatiya nyaya sanhita" in joined and \
+                           "indian penal code" in joined and \
+                           "chapter" not in joined:
+                            continue
 
-            # Two-column rows usually have a tab, multiple spaces, or newline as separator
-            cells = self._split_two_columns(text)
-            if not cells:
-                continue
-            left, right = cells
+                        # Expecting 2 cells per row: [BNS, IPC]
+                        if len(cells) < 2:
+                            continue
+                        bns_cell, ipc_cell = cells[0], cells[1]
 
-            bns_section, bns_title = _split_section_and_title(left)
-            ipc_section, ipc_title = _split_section_and_title(right)
+                        row = self._build_row(bns_cell, ipc_cell)
+                        if row is None:
+                            continue
 
-            # Drop rows where neither side has a section ID
-            if not (bns_section or ipc_section):
-                continue
+                        key = (row.bns_section, row.ipc_section)
+                        if key in seen:
+                            continue
+                        seen.add(key)
+                        rows.append(row)
 
-            row = ConcordanceRow(
-                bns_section=bns_section,
-                ipc_section=ipc_section,
-                bns_title=bns_title,
-                ipc_title=ipc_title,
-                status=_infer_status(left, right),
-            )
-            rows.append(row)
-
-        log.info(f"  Extracted {len(rows)} concordance rows")
+        log.info(f"  Extracted {len(rows)} unique rows")
         log.info(f"  Status distribution: {self._status_counts(rows)}")
         return rows
 
     @staticmethod
-    def _split_two_columns(text: str) -> Optional[tuple[str, str]]:
-        """Heuristically split a row into (left, right) cells."""
-        # Prefer tab separator
-        if "\t" in text:
-            parts = [p.strip() for p in text.split("\t") if p.strip()]
-            if len(parts) >= 2:
-                return parts[0], parts[1]
+    def _build_row(bns_cell: str, ipc_cell: str) -> Optional[ConcordanceRow]:
+        bns_cell = bns_cell.strip().rstrip(",").strip()
+        ipc_cell = ipc_cell.strip().rstrip(".").strip()
+        if not bns_cell and not ipc_cell:
+            return None
 
-        # Try 2+ spaces as separator (common in PDF table extraction)
-        parts = re.split(r"\s{2,}", text)
-        parts = [p.strip() for p in parts if p.strip()]
-        if len(parts) == 2:
-            return parts[0], parts[1]
-        if len(parts) > 2:
-            # Re-join into halves — last item is usually IPC side
-            return " ".join(parts[:-1]), parts[-1]
+        # Skip the act-name banner row
+        # ("Bharatiya Nyaya Sanhita, 2023 (BNS)" / "Indian Penal Code, 1860 (IPC)")
+        joined = (bns_cell + " " + ipc_cell).lower()
+        if "(bns)" in joined or "(ipc)" in joined or \
+           "sanhita" in joined or "penal code" in joined:
+            return None
+        # Skip chapter divider rows ("CHAPTER I – PRELIMINARY")
+        if bns_cell.lower().startswith("chapter ") or \
+           ipc_cell.lower().startswith("chapter "):
+            return None
 
-        # Fallback: split on newline if there's exactly one
-        nl_parts = [p.strip() for p in text.split("\n") if p.strip()]
-        if len(nl_parts) == 2:
-            return nl_parts[0], nl_parts[1]
+        bns_section, bns_title = _split_section_and_title(bns_cell)
+        ipc_section, ipc_title = _split_section_and_title(ipc_cell)
 
-        return None
+        return ConcordanceRow(
+            bns_section=bns_section,
+            ipc_section=ipc_section,
+            bns_title=bns_title,
+            ipc_title=ipc_title,
+            status=_infer_status(bns_cell, ipc_cell),
+        )
 
     @staticmethod
     def _status_counts(rows: list[ConcordanceRow]) -> dict[str, int]:
@@ -163,7 +179,6 @@ class ConcordanceParser:
         for r in rows:
             out[r.status] = out.get(r.status, 0) + 1
         return out
-
 
 # ── Lookup helper (used at retrieval time) ────────────────────────────
 

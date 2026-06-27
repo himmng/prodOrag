@@ -74,14 +74,15 @@ st.markdown(
 
 DEFAULTS = {
     "messages":       [],
-    "api_url":        "http://localhost:4040",
+    "api_url":        "http://localhost:8000",
     "api_key":        "dev-key-123",
     "retriever":      "hybrid_reranked",
     "top_k":          5,
     "fetch_k":        20,
     "min_score":      0.01,
     "use_streaming":  True,
-    "events":         [],   # live event log for the monitor
+    "collections":    ["IPC", "BNS"],     # ← add this line
+    "events":         [],
     "req_count":      0,
     "total_tokens":   0,
 }
@@ -113,10 +114,11 @@ def check_health(api_url: str) -> dict:
         return {"status": "unhealthy", "components": {"error": str(e)[:80]}}
 
 
-def call_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score) -> dict:
+def call_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score, collections):
     payload = {
         "query": query, "retriever": retriever, "top_k": top_k,
         "fetch_k": fetch_k, "min_score": min_score,
+        "collections": collections,
     }
     r = requests.post(
         f"{api_url}/answer",
@@ -128,11 +130,11 @@ def call_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score) -
         raise RuntimeError(f"API {r.status_code}: {r.text[:200]}")
     return r.json()
 
-
-def stream_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score) -> Iterator[dict]:
+def stream_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score, collections):
     payload = {
         "query": query, "retriever": retriever, "top_k": top_k,
         "fetch_k": fetch_k, "min_score": min_score,
+        "collections": collections, 
     }
     with requests.post(
         f"{api_url}/answer/stream",
@@ -163,13 +165,28 @@ def render_citations(citations: list, container) -> None:
         with st.expander(f"📚 {len(citations)} citations", expanded=False):
             for c in citations:
                 fname = (c.get("source_path") or "").split("/")[-1]
+                act   = c.get("act") or "—"
+                sec   = c.get("section") or "?"
+
+                # Build cross-reference badge
+                xref_parts = []
+                if c.get("corresponds_to"):
+                    other_act = "BNS" if act == "IPC" else "IPC"
+                    xref_parts.append(f"↔ {other_act} §{c['corresponds_to']}")
+                if c.get("change_status") and c["change_status"] != "unchanged":
+                    badge = {"new": "🟢 new", "changed": "🟡 changed", "deleted": "🔴 deleted"}.get(
+                        c["change_status"], c["change_status"]
+                    )
+                    xref_parts.append(badge)
+                xref = "  ·  ".join(xref_parts)
+
                 st.markdown(
-                    f"**[{c['n']}]** `{c.get('section_title', '—')}`  "
-                    f"&nbsp;·&nbsp; score `{c.get('score', 0):.4f}`  "
-                    f"&nbsp;·&nbsp; *{fname}*"
+                    f"**[{c['n']}] {act} §{sec}** — `{c.get('section_title', '—')}`  "
+                    f"&nbsp;·&nbsp; score `{c.get('score', 0):.4f}`"
                 )
-
-
+                if xref:
+                    st.caption(xref)
+                st.caption(f"📄 {fname} · p.{c.get('page_number', '?')}")
 # ── Sidebar — Summary, flow, settings ────────────────────────────────
 
 with st.sidebar:
@@ -241,7 +258,19 @@ with st.sidebar:
 
     st.divider()
     st.markdown("### 🔍 Retrieval (live tunable)")
-
+    st.session_state.collections = st.multiselect(
+        "Search in",
+        options=["IPC", "BNS"],
+        default=st.session_state.collections,
+        help=(
+            "**IPC (1860)**: original act, used for crimes pre-July 2024.\n\n"
+            "**BNS (2023)**: current law from 1 July 2024.\n\n"
+            "Select both for cross-references and complete answers."
+        ),
+    )
+    if not st.session_state.collections:
+        st.warning("Pick at least one act")
+        st.session_state.collections = ["IPC", "BNS"]
     st.session_state.retriever = st.selectbox(
         "Retriever strategy",
         options=["hybrid_reranked", "dense", "bm25", "ensemble"],
@@ -425,6 +454,7 @@ with chat_col:
                             st.session_state.top_k,
                             st.session_state.fetch_k,
                             st.session_state.min_score,
+                            st.session_state.collections,
                         ):
                             ev_t = evt.get("event")
                             data = evt.get("data", {})
@@ -456,6 +486,7 @@ with chat_col:
                             st.session_state.top_k,
                             st.session_state.fetch_k,
                             st.session_state.min_score,
+                            st.session_state.collections,
                         )
                     full_answer    = result.get("answer", "")
                     citations      = result.get("citations", [])

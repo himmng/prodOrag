@@ -16,12 +16,11 @@ from rag_pipeline.config import cfg
 
 
 class SourceConfig(BaseModel):
-    """One PDF → one collection."""
-    act:           Literal["IPC", "BNS"]
-    pdf_path:      Path
-    collection:    str
-    chunks_output: Path
-
+    act:              Literal["IPC", "BNS"]
+    pdf_path:         Path
+    collection:       str
+    chunks_output:    Path
+    body_start_page:  int = 1   # ← new field, default 1 = no skip
 
 class ConcordanceConfig(BaseModel):
     pdf_path:    Path

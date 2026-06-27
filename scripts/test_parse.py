@@ -14,7 +14,7 @@ def main():
     print("--- Parsing IPC ---")
     ipc_source = next(s for s in corpus.sources if s.act == "IPC")
     statute_parser = StatuteParser(corpus.parser)
-    ipc_chunks = statute_parser.parse(ipc_source.pdf_path, act="IPC")
+    ipc_chunks = statute_parser.parse(ipc_source.pdf_path, act="IPC", body_start_page=ipc_source.body_start_page)
 
     print(f"\nFirst 3 chunks:")
     for c in ipc_chunks[:3]:

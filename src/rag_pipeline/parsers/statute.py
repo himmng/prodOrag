@@ -83,6 +83,19 @@ _CHAPTER_RE = re.compile(
     r"^\s*CHAPTER\s+([IVXLCDM]+|\d+)\s*[—:.-]?\s*(.{3,160})?",
     re.IGNORECASE | re.MULTILINE,
 )
+# Marker substring near the start of the actual law body.
+# Both acts have "ARRANGEMENT OF SECTIONS" in the TOC; the LAW BODY starts
+# with the long form act name (or its first numbered section after).
+_TOC_END_MARKERS = {
+    "IPC": [
+        "An Act to provide a general Penal Code for India",  # IPC preamble
+        "Preamble.",                                          # alternative
+    ],
+    "BNS": [
+        "An Act to consolidate and amend the provisions",     # BNS preamble
+        "Preamble.",
+    ],
+}
 
 
 def _extract_title(body: str) -> str:
@@ -167,6 +180,22 @@ def _page_for_offset(
             return current
     return current if page_offsets else 1
 
+# skip ToC
+def _skip_toc(text: str, act: str) -> str:
+    """Find where the real body starts; discard the TOC."""
+    markers = _TOC_END_MARKERS.get(act, [])
+    best = -1
+    for marker in markers:
+        idx = text.find(marker)
+        if idx != -1 and (best == -1 or idx < best):
+            best = idx
+
+    if best == -1:
+        log.warning(f"  No TOC end marker found for {act}; keeping full text")
+        return text
+
+    log.info(f"  TOC ends at char {best:,}; using body only")
+    return text[best:]
 
 # ── Public entry point ───────────────────────────────────────────────
 
@@ -180,56 +209,70 @@ class StatuteParser:
     def __init__(self, parser_cfg: ParserConfig):
         self.cfg = parser_cfg
         self._docling = DoclingHybridParser()
+    
 
-    def parse(self, pdf_path: Path, act: str) -> list[StatuteChunk]:
-        """Parse one PDF → list of StatuteChunks tagged with `act`."""
-        log.info(f"Parsing {pdf_path.name} as {act} statute")
+    def parse(
+        self,
+        pdf_path: Path,
+        act: str,
+        body_start_page: int = 1,
+    ) -> list[StatuteChunk]:
+        """Parse one PDF → list of StatuteChunks tagged with `act`.
 
-        # Step 1: extract per-page text via Docling
+        body_start_page: skip pages before this (1-indexed).
+        TOC pages should be excluded by setting this past the TOC.
+        """
+        log.info(f"Parsing {pdf_path.name} as {act} statute (body from page {body_start_page})")
+
+        # Step 1: extract via Docling
         doc_chunks = self._docling.parse(pdf_path)
 
-        # Concatenate with explicit page boundaries
+        # Step 2: KEEP ONLY chunks at/after body_start_page
         parts: list[str] = []
         page_offsets: list[tuple[int, int]] = []
         running = 0
+        kept_pages = 0
         for dc in doc_chunks:
-            text = dc.text if hasattr(dc, "text") else str(dc)
             page = getattr(dc, "page_number", None) or \
                    (dc.metadata or {}).get("page_number", 1)
+            if page < body_start_page:
+                continue
+            text = dc.text if hasattr(dc, "text") else str(dc)
             page_offsets.append((running, page))
             parts.append(text)
-            running += len(text) + 1  # +1 for the join newline
+            running += len(text) + 1
+            kept_pages += 1
 
         full_text = "\n".join(parts)
-        log.info(f"  Extracted {len(full_text):,} chars from {len(doc_chunks)} doc-chunks")
+        log.info(f"  Kept {kept_pages} chunks; body text = {len(full_text):,} chars")
 
-        # Step 2: build chapter index for tagging
+        # Step 3: build chapter index from body text only
         chapters = _build_chapter_index(full_text)
         log.info(f"  Found {len(chapters)} chapter headers")
 
-        # Step 3: split by section regex
+        # Step 4: split by section regex
         sections = _split_by_section(full_text, self.cfg.section_regex)
-        log.info(f"  Found {len(sections)} section headers")
+        log.info(f"  Found {len(sections)} sections in body")
 
-        # Step 4: build chunks
+        # Step 5: build chunks (no more TOC filtering — we already skipped it)
         out: list[StatuteChunk] = []
         for section_id, subsection, doc_offset, body in sections:
-            if not body.strip():
+            body_clean = body.strip()
+            if not body_clean:
                 continue
 
             chapter_num, chapter_title = _chapter_for_offset(doc_offset, chapters)
             page = _page_for_offset(doc_offset, page_offsets)
-            section_title = _extract_title(body)
+            section_title = _extract_title(body_clean)
             parent = section_id if subsection else None
 
-            # Step 5: split section into sub-blocks
-            subblocks = _split_subblocks(body)
+            subblocks = _split_subblocks(body_clean)
 
-            # If section is small AND has only one block, keep it whole
-            if len(subblocks) == 1 and len(body) <= self.cfg.max_chunk_chars:
+            if len(subblocks) == 1 and len(body_clean) <= self.cfg.max_chunk_chars:
                 ctype, text = subblocks[0]
+                disambiguator = f"{section_id}|{subsection or ''}|{doc_offset}"
                 out.append(StatuteChunk(
-                    chunk_id=StatuteChunk.make_id(act, section_id, text),
+                    chunk_id=StatuteChunk.make_id(act, disambiguator, text),
                     source_path=str(pdf_path),
                     page_number=page,
                     act=act,
@@ -243,12 +286,12 @@ class StatuteParser:
                     text=text,
                 ))
             else:
-                # Emit one chunk per sub-block
-                for ctype, text in subblocks:
+                for idx, (ctype, text) in enumerate(subblocks):
                     if not text.strip():
                         continue
+                    disambiguator = f"{section_id}|{subsection or ''}|{doc_offset}|{idx}|{ctype}"
                     out.append(StatuteChunk(
-                        chunk_id=StatuteChunk.make_id(act, f"{section_id}_{ctype}", text),
+                        chunk_id=StatuteChunk.make_id(act, disambiguator, text),
                         source_path=str(pdf_path),
                         page_number=page,
                         act=act,
@@ -262,11 +305,9 @@ class StatuteParser:
                         text=text,
                     ))
 
-        log.info(f"  Produced {len(out)} chunks "
-                 f"(types: {dict(_count_types(out))})")
+        log.info(f"  Produced {len(out)} chunks (types: {dict(_count_types(out))})")
         return out
-
-
+    
 def _count_types(chunks: list[StatuteChunk]) -> dict[str, int]:
     counts: dict[str, int] = {}
     for c in chunks:
