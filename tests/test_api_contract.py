@@ -21,7 +21,6 @@ from rag_pipeline.api.main import app, _state
 
 
 # ── Mocks ──────────────────────────────────────────────────────────────
-
 class _MockRetriever:
     name = "mock"
 
@@ -31,17 +30,19 @@ class _MockRetriever:
                 Document(
                     page_content=f"Mock content for query: {query}",
                     metadata={
-                        "source_path":   "/test/mock_section.pdf",
-                        "page_number":   1,
-                        "section_title": "Mock Section",
-                        "chunk_id":      "mock-001",
+                        "source_path":    "/test/mock_section.pdf",
+                        "page_number":    1,
+                        "section_title":  "Mock Section",
+                        "chunk_id":       "mock-001",
+                        "act":            "IPC",          # ← add
+                        "section":        "302",          # ← add
+                        "corresponds_to": "103",          # ← add
+                        "change_status":  "unchanged",    # ← add
                     },
                 ),
                 0.5,
             ),
         ]
-
-
 class _MockLLM:
     """Behaves like ChatOllama for both .invoke() and .stream()."""
 
@@ -54,27 +55,34 @@ class _MockLLM:
 
 
 # ── Fixtures ───────────────────────────────────────────────────────────
-
 @pytest.fixture(scope="module")
 def client():
     """TestClient with mocked state — lifespan is NOT triggered."""
     mock = _MockRetriever()
     llm  = _MockLLM()
 
-    _state.clear()
-    _state.update({
-        "chunks":            [],
+    # Build the per-act structure the routes now expect
+    act_setup = {
         "dense":             mock,
         "bm25":              mock,
         "ensemble":          mock,
-        "reranker":          None,
         "hybrid_r":          mock,
         "hybrid_r_nofilter": mock,
-        "llm":               llm,
-        "eval_set":          [],
+        "n_chunks":          0,
+    }
+
+    _state.clear()
+    _state.update({
+        "by_act": {
+            "IPC": dict(act_setup),
+            "BNS": dict(act_setup),
+        },
+        "reranker":    None,
+        "llm":         llm,
+        "concordance": None,
+        "eval_set":    [],
     })
     return TestClient(app)
-
 
 # ── Health ─────────────────────────────────────────────────────────────
 
