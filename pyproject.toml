@@ -119,9 +119,13 @@ where = ["src"]
 testpaths   = ["tests"]
 pythonpath  = ["src"]
 addopts     = "-ra --strict-markers"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
 markers = [
     "slow:        marks tests as slow (deselect with -m 'not slow')",
     "integration: marks tests that hit the live API (require Ollama)",
+    
 ]
 
 # ─────────────────────────────────────────────────────────────────────
