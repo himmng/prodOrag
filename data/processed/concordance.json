@@ -1,0 +1,3880 @@
+[
+  {
+    "bns_section": "1",
+    "ipc_section": "1",
+    "bns_title": "Short title, commencement and application",
+    "ipc_title": "Title and extent of operation of the Code",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "1(2)",
+    "ipc_section": null,
+    "bns_title": null,
+    "ipc_title": "New Sub-Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "1(3)",
+    "ipc_section": "2",
+    "bns_title": null,
+    "ipc_title": "Punishment of offences committed within India",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "1(4)",
+    "ipc_section": "3",
+    "bns_title": null,
+    "ipc_title": "Punishment of offences committed beyond, but",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "1(5)",
+    "ipc_section": "4",
+    "bns_title": null,
+    "ipc_title": "Extension of Code to extra-territorial offences",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "1(6)",
+    "ipc_section": "5",
+    "bns_title": null,
+    "ipc_title": "Certain laws not to be affected by this Act",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2",
+    "ipc_section": null,
+    "bns_title": "Definitions. (Change)",
+    "ipc_title": null,
+    "status": "changed"
+  },
+  {
+    "bns_section": "2(1)",
+    "ipc_section": "33",
+    "bns_title": "‘act’",
+    "ipc_title": "“Act”. “Omission”",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "2(2)",
+    "ipc_section": "47",
+    "bns_title": "‘animal’",
+    "ipc_title": "“Animal”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(3)",
+    "ipc_section": null,
+    "bns_title": "‘child’",
+    "ipc_title": "New Sub-Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "2(4)",
+    "ipc_section": "28",
+    "bns_title": "‘counterfeit’",
+    "ipc_title": "“Counterfeit”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(5)",
+    "ipc_section": "20",
+    "bns_title": "‘Court’",
+    "ipc_title": "“Court of Justice”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(6)",
+    "ipc_section": "46",
+    "bns_title": "‘death’",
+    "ipc_title": "“Death”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(7)",
+    "ipc_section": "24",
+    "bns_title": "‘dishonestly’",
+    "ipc_title": "“Dishonestly”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(8)",
+    "ipc_section": "29",
+    "bns_title": "‘document’ (Change)",
+    "ipc_title": "“Document”",
+    "status": "changed"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "29A",
+    "bns_title": "Deleted",
+    "ipc_title": "“Electronic record”",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "2(9)",
+    "ipc_section": "25",
+    "bns_title": "’fraudulently’",
+    "ipc_title": "“Fraudulently”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(10)",
+    "ipc_section": "8",
+    "bns_title": "‘gender’ (Change)",
+    "ipc_title": "Gender",
+    "status": "changed"
+  },
+  {
+    "bns_section": "2(11)",
+    "ipc_section": "52",
+    "bns_title": "‘good faith’",
+    "ipc_title": "“Good faith”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(12)",
+    "ipc_section": "17",
+    "bns_title": "‘Government’",
+    "ipc_title": "“Government”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "18",
+    "bns_title": "Deleted",
+    "ipc_title": "“India”",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "2(13)",
+    "ipc_section": "52A",
+    "bns_title": "‘harbour’",
+    "ipc_title": "“Harbour“",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(14)",
+    "ipc_section": "44",
+    "bns_title": "‘injury’",
+    "ipc_title": "“Injury”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(15)",
+    "ipc_section": "43",
+    "bns_title": "‘illegal’and “legally bound to do”",
+    "ipc_title": "“Illegal”. “Legally bound to do”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(16)",
+    "ipc_section": "19",
+    "bns_title": "‘Judge’",
+    "ipc_title": "“Judge”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(17)",
+    "ipc_section": "45",
+    "bns_title": "‘life’",
+    "ipc_title": "“Life”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(18)",
+    "ipc_section": "42",
+    "bns_title": "‘local law’",
+    "ipc_title": "“Local law”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(19)",
+    "ipc_section": "10",
+    "bns_title": "‘man’",
+    "ipc_title": "“Man”. “Woman”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(20)",
+    "ipc_section": "49",
+    "bns_title": "‘month’ and ‘year’",
+    "ipc_title": "“Year”. “Month”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(21)",
+    "ipc_section": "22",
+    "bns_title": "‘movable property’ (Change)",
+    "ipc_title": "“Movable property”",
+    "status": "changed"
+  },
+  {
+    "bns_section": "2(22)",
+    "ipc_section": "9",
+    "bns_title": "‘number’",
+    "ipc_title": "Number",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(23)",
+    "ipc_section": "51",
+    "bns_title": "‘oath’",
+    "ipc_title": "“Oath”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(24)",
+    "ipc_section": "40",
+    "bns_title": "‘offence’",
+    "ipc_title": "“Offence”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(25)",
+    "ipc_section": "33",
+    "bns_title": "‘omission’",
+    "ipc_title": "“Act”. “Omission”",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "2(26)",
+    "ipc_section": "11",
+    "bns_title": "‘person’",
+    "ipc_title": "“Person”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(27)",
+    "ipc_section": "12",
+    "bns_title": "‘public’",
+    "ipc_title": "“Public”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "14",
+    "bns_title": "Deleted",
+    "ipc_title": "- “Servant of Government”",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "2(28)",
+    "ipc_section": "21",
+    "bns_title": "‘public servant’",
+    "ipc_title": "“Public servant”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(29)",
+    "ipc_section": "26",
+    "bns_title": "‘reason to believe’",
+    "ipc_title": "“Reason to believe”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "50",
+    "bns_title": "Deleted",
+    "ipc_title": "“Section”",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "2(30)",
+    "ipc_section": "41",
+    "bns_title": "‘special law’",
+    "ipc_title": "“Special law”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(31)",
+    "ipc_section": "30",
+    "bns_title": "‘valuable security’",
+    "ipc_title": "“Valuable security”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(32)",
+    "ipc_section": "48",
+    "bns_title": "‘vessel’",
+    "ipc_title": "“Vessel”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(33)",
+    "ipc_section": "39",
+    "bns_title": "‘voluntarily’",
+    "ipc_title": "“Voluntarily”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(34)",
+    "ipc_section": "31",
+    "bns_title": "‘will’",
+    "ipc_title": "“A will”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(35)",
+    "ipc_section": "10",
+    "bns_title": "‘woman’",
+    "ipc_title": "“Man”. “Woman”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(36)",
+    "ipc_section": "23",
+    "bns_title": "‘wrongful gain’",
+    "ipc_title": "“Wrongful gain”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(37)",
+    "ipc_section": "23",
+    "bns_title": "‘wrongful loss’",
+    "ipc_title": "“Wrongful loss”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(38)",
+    "ipc_section": "23",
+    "bns_title": "‘gaining wrongfully’ and ‘losing wrongfully’",
+    "ipc_title": "“gaining wrongfully’ and ‘losing wrongfully”",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "2(39)",
+    "ipc_section": null,
+    "bns_title": null,
+    "ipc_title": "New Sub-Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "3",
+    "ipc_section": "6",
+    "bns_title": "General explanations",
+    "ipc_title": "Definitions in the Code to be understood subject",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "3(2)",
+    "ipc_section": "7",
+    "bns_title": null,
+    "ipc_title": "Sense of expression once explained",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "3(3)",
+    "ipc_section": "27",
+    "bns_title": null,
+    "ipc_title": "Property in possession of wife, clerk or servant",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "3(4)",
+    "ipc_section": "32",
+    "bns_title": null,
+    "ipc_title": "Words referring to acts include illegal omissions",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "3(5)",
+    "ipc_section": "34",
+    "bns_title": null,
+    "ipc_title": "Acts done by several persons in furtherance of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "3(6)",
+    "ipc_section": "35",
+    "bns_title": null,
+    "ipc_title": "When such an act is criminal by reason of its",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "3(7)",
+    "ipc_section": "36",
+    "bns_title": null,
+    "ipc_title": "Effect caused partly by act and partly by",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "3(8)",
+    "ipc_section": "37",
+    "bns_title": null,
+    "ipc_title": "Co-operation by doing one of several acts",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "3(9)",
+    "ipc_section": "38",
+    "bns_title": null,
+    "ipc_title": "Persons concerned in criminal act may be guilty",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "4",
+    "ipc_section": "53",
+    "bns_title": "Punishments. (Change)",
+    "ipc_title": "Punishments",
+    "status": "changed"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "53A",
+    "bns_title": "Deleted",
+    "ipc_title": "Construction of reference to transportation",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "5",
+    "ipc_section": "54",
+    "bns_title": "Commutation of sentence",
+    "ipc_title": "Commutation of sentence of death",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "5",
+    "ipc_section": "55",
+    "bns_title": "(b)",
+    "ipc_title": "Commutation of sentence of imprisonment for",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "6",
+    "ipc_section": "57",
+    "bns_title": "Fractions of terms of punishment",
+    "ipc_title": "Fractions of terms of punishment",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "7",
+    "ipc_section": "60",
+    "bns_title": "Sentence may be (in certain cases of",
+    "ipc_title": "Sentence may be (in certain cases of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "8",
+    "ipc_section": "63",
+    "bns_title": "Amount of fine, liability in default of payment",
+    "ipc_title": "Amount of fine",
+    "status": "changed"
+  },
+  {
+    "bns_section": "8(2)",
+    "ipc_section": "64",
+    "bns_title": null,
+    "ipc_title": "Sentence of imprisonment for non-payment of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "8(3)",
+    "ipc_section": "65",
+    "bns_title": null,
+    "ipc_title": "Limit to imprisonment for non-payment of fine,",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "8(4)",
+    "ipc_section": "66",
+    "bns_title": null,
+    "ipc_title": "Description of imprisonment for non-payment of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "8(5)",
+    "ipc_section": "67",
+    "bns_title": null,
+    "ipc_title": "Imprisonment for non-payment of fine, when",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "8(6)",
+    "ipc_section": "68",
+    "bns_title": "(a)",
+    "ipc_title": "Imprisonment to terminate on payment of fine",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "8(6)",
+    "ipc_section": "69",
+    "bns_title": "(b)",
+    "ipc_title": "Termination of imprisonment on payment of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "8(7)",
+    "ipc_section": "70",
+    "bns_title": null,
+    "ipc_title": "Fine leviable within six years, of during",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": null,
+    "bns_title": null,
+    "ipc_title": "liability",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "9",
+    "ipc_section": "71",
+    "bns_title": "Limit of punishment of offence made up of",
+    "ipc_title": "Limit of punishment of offence made up of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "10",
+    "ipc_section": "72",
+    "bns_title": "Punishment of person guilty of one of several",
+    "ipc_title": "Punishment of person guilty of one of several",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "11",
+    "ipc_section": "73",
+    "bns_title": "Solitary confinement",
+    "ipc_title": "Solitary confinement",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "12",
+    "ipc_section": "74",
+    "bns_title": "Limit of solitary confinement",
+    "ipc_title": "Limit of solitary confinement",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "13",
+    "ipc_section": "75",
+    "bns_title": "Enhanced punishment for certain offences after",
+    "ipc_title": "Enhanced punishment for certain offences under",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "14",
+    "ipc_section": "76",
+    "bns_title": "Act done by a person bound, or by mistake of",
+    "ipc_title": "Act done by a person bound, or by mistake of fact",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "15",
+    "ipc_section": "77",
+    "bns_title": "Act of Judge when acting judicially",
+    "ipc_title": "Act of Judge when acting judicially",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "16",
+    "ipc_section": "78",
+    "bns_title": "Act done pursuant to judgment or order of",
+    "ipc_title": "Act done pursuant to the judgment or order of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "17",
+    "ipc_section": "79",
+    "bns_title": "Act done by a person justified, or by mistake of",
+    "ipc_title": "Act done by a person justified, or by mistake of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "18",
+    "ipc_section": "80",
+    "bns_title": "Accident in doing a lawful act",
+    "ipc_title": "Accident in doing a lawful act",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "19",
+    "ipc_section": "81",
+    "bns_title": "Act likely to cause harm, but done without",
+    "ipc_title": "Act likely to cause harm, but done without",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "20",
+    "ipc_section": "82",
+    "bns_title": "Act of a child under seven years of age",
+    "ipc_title": "Act of a child under seven years of age",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "21",
+    "ipc_section": "83",
+    "bns_title": "Act of a child above seven and under twelve",
+    "ipc_title": "Act of a child above seven and under twelve of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "22",
+    "ipc_section": "84",
+    "bns_title": "Act of a person of unsound mind",
+    "ipc_title": "Act of a person of unsound mind",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "23",
+    "ipc_section": "85",
+    "bns_title": "Act of a person incapable of judgment by",
+    "ipc_title": "Act of a person incapable of judgment by reason",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "24",
+    "ipc_section": "86",
+    "bns_title": "Offence requiring a particular intent or",
+    "ipc_title": "Offence requiring a particular intent or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "25",
+    "ipc_section": "87",
+    "bns_title": "Act not intended and not known to be likely to",
+    "ipc_title": "Act not intended and not known to be likely to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "26",
+    "ipc_section": "88",
+    "bns_title": "Act not intended to cause death, done by",
+    "ipc_title": "Act not intended to cause death, done by consent",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "27",
+    "ipc_section": "89",
+    "bns_title": "Act done in good faith for benefit of child or",
+    "ipc_title": "Act done in good faith for benefit of child or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "28",
+    "ipc_section": "90",
+    "bns_title": "Consent known to be given under fear or",
+    "ipc_title": "Consent known to be given under fear or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "29",
+    "ipc_section": "91",
+    "bns_title": "Exclusion of acts which are offences",
+    "ipc_title": "Exclusion of acts which are offences",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "30",
+    "ipc_section": "92",
+    "bns_title": "Act done in good faith for benefit of a person",
+    "ipc_title": "Act done in good faith for benefit of a person",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "31",
+    "ipc_section": "93",
+    "bns_title": "Communication made in good faith",
+    "ipc_title": "Communication made in good faith",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "32",
+    "ipc_section": "94",
+    "bns_title": "Act to which a person is compelled by threats",
+    "ipc_title": "Act to which a person is compelled by threats",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "33",
+    "ipc_section": "95",
+    "bns_title": "Act causing slight harm",
+    "ipc_title": "Act causing slight harm",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "34",
+    "ipc_section": "96",
+    "bns_title": "Things done in private defence",
+    "ipc_title": "Things done in private defence",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "35",
+    "ipc_section": "97",
+    "bns_title": "Right of private defence of body and of",
+    "ipc_title": "Right of private defence of the body and of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "36",
+    "ipc_section": "98",
+    "bns_title": "Right of private defence against act of a person",
+    "ipc_title": "Right of private defence against the act of a",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "37",
+    "ipc_section": "99",
+    "bns_title": "Acts against which there is no right of private",
+    "ipc_title": "Acts against which there is no right of private",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "38",
+    "ipc_section": "100",
+    "bns_title": "When right of private defence of body extends",
+    "ipc_title": "When the right of private defence of the body",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "39",
+    "ipc_section": "101",
+    "bns_title": "When such right extends to causing any harm",
+    "ipc_title": "When such right extends to causing any harm",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "40",
+    "ipc_section": "102",
+    "bns_title": "Commencement and continuance of right of",
+    "ipc_title": "Commencement and continuance of the right of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "41",
+    "ipc_section": "103",
+    "bns_title": "When right of private defence of property",
+    "ipc_title": "When the right of private defence of property",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "42",
+    "ipc_section": "104",
+    "bns_title": "When such right extends to causing any harm",
+    "ipc_title": "When such right extends to causing any harm",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "43",
+    "ipc_section": "105",
+    "bns_title": "Commencement and continuance of right of",
+    "ipc_title": "Commencement and continuance of the right of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "44",
+    "ipc_section": "106",
+    "bns_title": "Right of private defence against deadly assault",
+    "ipc_title": "Right of private defence against deadly assault",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "45",
+    "ipc_section": "107",
+    "bns_title": "Abetment of a thing",
+    "ipc_title": "Abetment of a thing",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "46",
+    "ipc_section": "108",
+    "bns_title": "Abettor",
+    "ipc_title": "Abettor",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "47",
+    "ipc_section": "108A",
+    "bns_title": "Abetment in India of offences outside India",
+    "ipc_title": "Abetment in India of offences outside India",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "48",
+    "ipc_section": null,
+    "bns_title": "Abetment outside India for offence in India",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "49",
+    "ipc_section": "109",
+    "bns_title": "Punishment of abetment if act abetted is",
+    "ipc_title": "Punishment of abetment if the act abetted is",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "50",
+    "ipc_section": "110",
+    "bns_title": "Punishment of abetment if person abetted does",
+    "ipc_title": "Punishment of abetment if person abetted does",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "51",
+    "ipc_section": "111",
+    "bns_title": "Liability of abettor when one act abetted and",
+    "ipc_title": "Liability of abettor when one act abetted and",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "52",
+    "ipc_section": "112",
+    "bns_title": "Abettor when liable to cumulative punishment",
+    "ipc_title": "Abettor when liable to cumulative punishment",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "53",
+    "ipc_section": "113",
+    "bns_title": "Liability of abettor for an effect caused by act",
+    "ipc_title": "Liability of abettor for an effect caused by the",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "54",
+    "ipc_section": "114",
+    "bns_title": "Abettor present when offence is committed",
+    "ipc_title": "Abettor present when offence is committed",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "55",
+    "ipc_section": "115",
+    "bns_title": "Abetment of offence punishable with death or",
+    "ipc_title": "Abetment of offence punishable with death or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "56",
+    "ipc_section": "116",
+    "bns_title": "Abetment of offence punishable with",
+    "ipc_title": "Abetment of offence punishable with",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "57",
+    "ipc_section": "117",
+    "bns_title": "Abetting commission of offence by public or by",
+    "ipc_title": "Abetting commission of offence by the public or",
+    "status": "changed"
+  },
+  {
+    "bns_section": "58",
+    "ipc_section": "118",
+    "bns_title": "Concealing design to commit offence",
+    "ipc_title": "Concealing design to commit offence punishable",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "59",
+    "ipc_section": "119",
+    "bns_title": "Public servant concealing design to commit",
+    "ipc_title": "Public servant concealing design to commit",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "60",
+    "ipc_section": "120",
+    "bns_title": "Concealing design to commit offence",
+    "ipc_title": "Concealing design to commit offence punishable",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "61",
+    "ipc_section": "120A",
+    "bns_title": "Criminal conspiracy",
+    "ipc_title": "Definition of criminal conspiracy",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "61(2)",
+    "ipc_section": "120B",
+    "bns_title": null,
+    "ipc_title": "Punishment of criminal conspiracy",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "62",
+    "ipc_section": "511",
+    "bns_title": "Punishment for attempting to commit offences",
+    "ipc_title": "Punishment for attempting to commit offences",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "63",
+    "ipc_section": "375",
+    "bns_title": "Rape",
+    "ipc_title": "Rape",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "64",
+    "ipc_section": "376",
+    "bns_title": "Punishment for rape",
+    "ipc_title": "Punishment for rape",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "65",
+    "ipc_section": "376(3)",
+    "bns_title": "Punishment for rape in certain cases",
+    "ipc_title": null,
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "65(2)",
+    "ipc_section": "376A",
+    "bns_title": null,
+    "ipc_title": "B. Punishment for rape on woman under twelve",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "66",
+    "ipc_section": "376A",
+    "bns_title": "Punishment for causing death or resulting in",
+    "ipc_title": "Punishment for causing death or resulting in",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "67",
+    "ipc_section": "376B",
+    "bns_title": "Sexual intercourse by husband upon his wife",
+    "ipc_title": "Sexual intercourse by husband upon his wife",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "68",
+    "ipc_section": "376C",
+    "bns_title": "Sexual intercourse by a person in authority",
+    "ipc_title": "Sexual intercourse by a person in authority",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "69",
+    "ipc_section": null,
+    "bns_title": "Sexual intercourse by employing deceitful",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "70",
+    "ipc_section": "376D",
+    "bns_title": "Gang rape",
+    "ipc_title": "Gang rape",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "70(2)",
+    "ipc_section": "376D",
+    "bns_title": "(Gang Rape - Below 18 years) (Change)",
+    "ipc_title": "A.Punishment for gang rape on woman under",
+    "status": "changed"
+  },
+  {
+    "bns_section": "71",
+    "ipc_section": "376E",
+    "bns_title": "Punishment for repeat offenders",
+    "ipc_title": "Punishment for repeat offenders",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "377",
+    "bns_title": "Deleted",
+    "ipc_title": "Unnatural Offences",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "72",
+    "ipc_section": "228A",
+    "bns_title": "Disclosure of identity of victim of certain",
+    "ipc_title": "Disclosure of identity of the victim of certain",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "73",
+    "ipc_section": "228A",
+    "bns_title": "Printing or publishing of any matter relating to",
+    "ipc_title": "(3)",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "74",
+    "ipc_section": "354",
+    "bns_title": "Assault or use of criminal force to woman with",
+    "ipc_title": "Assault or criminal force to woman with intent",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "75",
+    "ipc_section": "354A",
+    "bns_title": "Sexual harassment",
+    "ipc_title": "Sexual harassment and punishment for sexual",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "76",
+    "ipc_section": "354B",
+    "bns_title": "Assault or use of criminal force to woman with",
+    "ipc_title": "Assault or use of criminal force to woman with",
+    "status": "changed"
+  },
+  {
+    "bns_section": "77",
+    "ipc_section": "354C",
+    "bns_title": "Voyeurism. (Change)",
+    "ipc_title": "Voyeurism",
+    "status": "changed"
+  },
+  {
+    "bns_section": "78",
+    "ipc_section": "354D",
+    "bns_title": "Stalking",
+    "ipc_title": "Stalking",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "79",
+    "ipc_section": "509",
+    "bns_title": "Word, gesture or act intended to insult",
+    "ipc_title": "Word, gesture or act intended to insult the",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "80",
+    "ipc_section": "304B",
+    "bns_title": "Dowry death",
+    "ipc_title": "Dowry death",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "81",
+    "ipc_section": "493",
+    "bns_title": "Cohabitation caused by man deceitfully",
+    "ipc_title": "Cohabitation caused by a man deceitfully",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "82",
+    "ipc_section": "494",
+    "bns_title": "Marrying again during lifetime of husband or",
+    "ipc_title": "Marrying again during lifetime of husband or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "82(2)",
+    "ipc_section": "495",
+    "bns_title": null,
+    "ipc_title": "Same offence with concealment of former",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "83",
+    "ipc_section": "496",
+    "bns_title": "Marriage ceremony fraudulently gone through",
+    "ipc_title": "Marriage ceremony fraudulently gone through",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "497",
+    "bns_title": "Deleted",
+    "ipc_title": "Adultery",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "84",
+    "ipc_section": "498",
+    "bns_title": "Enticing or taking away or detaining with",
+    "ipc_title": "Enticing or taking away or detaining with",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "85",
+    "ipc_section": "498A",
+    "bns_title": "Husband or relative of husband of a woman",
+    "ipc_title": "Husband or relative of husband of a woman",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "86",
+    "ipc_section": "498A",
+    "bns_title": "Cruelty Defined",
+    "ipc_title": "Explanation",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "87",
+    "ipc_section": "366",
+    "bns_title": "Kidnapping, abducting or inducing woman to",
+    "ipc_title": "Kidnapping, abducting or inducing woman to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "88",
+    "ipc_section": "312",
+    "bns_title": "Causing miscarriage",
+    "ipc_title": "Causing miscarriage",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "89",
+    "ipc_section": "313",
+    "bns_title": "Causing miscarriage without woman’s consent",
+    "ipc_title": "Causing miscarriage without woman's consent",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "90",
+    "ipc_section": "314",
+    "bns_title": "Death caused by act done with intent to cause",
+    "ipc_title": "Death caused by act done with intent to cause",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "91",
+    "ipc_section": "315",
+    "bns_title": "Act done with intent to prevent child being",
+    "ipc_title": "Act done with intent to prevent child being born",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "92",
+    "ipc_section": "316",
+    "bns_title": "Causing death of quick unborn child by act",
+    "ipc_title": "Causing death of quick unborn child by act",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "93",
+    "ipc_section": "317",
+    "bns_title": "Exposure and abandonment of child under",
+    "ipc_title": "Exposure and abandonment of child under",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "94",
+    "ipc_section": "318",
+    "bns_title": "Concealment of birth by secret disposal of dead",
+    "ipc_title": "Concealment of birth by secret disposal of dead",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "95",
+    "ipc_section": null,
+    "bns_title": "Hiring, employing or engaging a child to",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "96",
+    "ipc_section": "366A",
+    "bns_title": "Procuration of child",
+    "ipc_title": "Procuration of minor girl",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "97",
+    "ipc_section": "369",
+    "bns_title": "Kidnapping or abducting child under ten years",
+    "ipc_title": "Kidnapping or abducting child under ten years",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "98",
+    "ipc_section": "372",
+    "bns_title": "Selling child for purposes of prostitution, etc",
+    "ipc_title": "Selling minor for purposes of prostitution, etc",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "99",
+    "ipc_section": "373",
+    "bns_title": "Buying child for purposes of prostitution, etc",
+    "ipc_title": "Buying minor for purposes of prostitution, etc",
+    "status": "changed"
+  },
+  {
+    "bns_section": "100",
+    "ipc_section": "299",
+    "bns_title": "Culpable homicide",
+    "ipc_title": "Culpable homicide",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "101",
+    "ipc_section": "300",
+    "bns_title": "Murder",
+    "ipc_title": "Murder",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "102",
+    "ipc_section": "301",
+    "bns_title": "Culpable homicide by causing death of person",
+    "ipc_title": "Culpable homicide by causing death of person",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "103",
+    "ipc_section": "302",
+    "bns_title": "Punishment for murder. (Change)",
+    "ipc_title": "Punishment for murder",
+    "status": "changed"
+  },
+  {
+    "bns_section": "104",
+    "ipc_section": "303",
+    "bns_title": "Punishment for murder by life-convict",
+    "ipc_title": "Punishment for murder by life-convict",
+    "status": "changed"
+  },
+  {
+    "bns_section": "105",
+    "ipc_section": "304",
+    "bns_title": "Punishment for culpable homicide not",
+    "ipc_title": "Punishment for culpable homicide not",
+    "status": "changed"
+  },
+  {
+    "bns_section": "106",
+    "ipc_section": "304A",
+    "bns_title": "Causing death by negligence. (Change)",
+    "ipc_title": "Causing death by negligence",
+    "status": "changed"
+  },
+  {
+    "bns_section": "106(2)",
+    "ipc_section": null,
+    "bns_title": "(Section 106(2) of BNS shall not come into",
+    "ipc_title": "New Sub-Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "107",
+    "ipc_section": "305",
+    "bns_title": "Abetment of suicide of child or person of",
+    "ipc_title": "Abetment of suicide of child or insane person",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "108",
+    "ipc_section": "306",
+    "bns_title": "Abetment of suicide",
+    "ipc_title": "Abetment of suicide",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "109",
+    "ipc_section": "307",
+    "bns_title": "Attempt to murder. (Change)",
+    "ipc_title": "Attempt to murder",
+    "status": "changed"
+  },
+  {
+    "bns_section": "110",
+    "ipc_section": "308",
+    "bns_title": "Attempt to commit culpable homicide",
+    "ipc_title": "Attempt to commit culpable homicide",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "111",
+    "ipc_section": null,
+    "bns_title": "Organised crime",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "112",
+    "ipc_section": null,
+    "bns_title": "Petty organised crime",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "113",
+    "ipc_section": null,
+    "bns_title": "Terrorist act",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "114",
+    "ipc_section": "319",
+    "bns_title": "Hurt",
+    "ipc_title": "Hurt",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "115",
+    "ipc_section": "321",
+    "bns_title": "Voluntarily causing hurt. (Change)",
+    "ipc_title": "Voluntarily causing hurt",
+    "status": "changed"
+  },
+  {
+    "bns_section": "115(2)",
+    "ipc_section": "323",
+    "bns_title": null,
+    "ipc_title": "Punishment for voluntarily causing hurt",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "116",
+    "ipc_section": "320",
+    "bns_title": "Grievous hurt. (Change)",
+    "ipc_title": "Grievous hurt",
+    "status": "changed"
+  },
+  {
+    "bns_section": "117",
+    "ipc_section": "322",
+    "bns_title": "Voluntarily causing grievous hurt. (Change)",
+    "ipc_title": "Voluntarily causing grievous hurt",
+    "status": "changed"
+  },
+  {
+    "bns_section": "117(2)",
+    "ipc_section": "325",
+    "bns_title": null,
+    "ipc_title": "Punishment for voluntarily causing grievous",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "118",
+    "ipc_section": "324",
+    "bns_title": "Voluntarily causing hurt or grievous hurt by",
+    "ipc_title": "Voluntarily causing hurt by dangerous weapons",
+    "status": "changed"
+  },
+  {
+    "bns_section": "118(2)",
+    "ipc_section": "326",
+    "bns_title": null,
+    "ipc_title": "Voluntarily causing grievous hurt by dangerous",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "119",
+    "ipc_section": "327",
+    "bns_title": "Voluntarily causing hurt or grievous hurt to",
+    "ipc_title": "Voluntarily causing hurt to extort property, or to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "119(2)",
+    "ipc_section": "329",
+    "bns_title": null,
+    "ipc_title": "Voluntarily causing grievous hurt to extort",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "120(1)",
+    "ipc_section": "330",
+    "bns_title": null,
+    "ipc_title": "Voluntarily causing hurt to extort confession, or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "120(2)",
+    "ipc_section": "331",
+    "bns_title": null,
+    "ipc_title": "Voluntarily causing grievous hurt to extort",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "121",
+    "ipc_section": "332",
+    "bns_title": "Voluntarily causing hurt or grievous hurt to",
+    "ipc_title": "Voluntarily causing hurt to deter public servant",
+    "status": "changed"
+  },
+  {
+    "bns_section": "121(2)",
+    "ipc_section": "333",
+    "bns_title": null,
+    "ipc_title": "Voluntarily causing grievous hurt to deter public",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "122",
+    "ipc_section": "334",
+    "bns_title": "Voluntarily causing hurt or grievous hurt on",
+    "ipc_title": "Voluntarily causing hurt on provocation",
+    "status": "changed"
+  },
+  {
+    "bns_section": "122(2)",
+    "ipc_section": "335",
+    "bns_title": null,
+    "ipc_title": "Voluntarily causing grievous hurt on",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "123",
+    "ipc_section": "328",
+    "bns_title": "Causing hurt by means of poison, etc., with",
+    "ipc_title": "Causing hurt by means of poison, etc., with",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "124",
+    "ipc_section": "326A",
+    "bns_title": "Voluntarily causing grievous hurt by use of",
+    "ipc_title": "Voluntarily causing grievous hurt by use of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "124(2)",
+    "ipc_section": "326B",
+    "bns_title": null,
+    "ipc_title": "Voluntarily throwing or attempting to throw",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "125",
+    "ipc_section": "336",
+    "bns_title": "Act endangering life or personal safety of",
+    "ipc_title": "Act endangering life or personal safety of",
+    "status": "changed"
+  },
+  {
+    "bns_section": "125",
+    "ipc_section": "337",
+    "bns_title": "(a)",
+    "ipc_title": "Causing hurt by act endangering life or personal",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "125",
+    "ipc_section": "338",
+    "bns_title": "(b)",
+    "ipc_title": "Causing grievous hurt by act endangering life or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "126",
+    "ipc_section": "339",
+    "bns_title": "Wrongful restraint. (Change)",
+    "ipc_title": "Wrongful restraint",
+    "status": "changed"
+  },
+  {
+    "bns_section": "126(2)",
+    "ipc_section": "341",
+    "bns_title": null,
+    "ipc_title": "Punishment for wrongful restraint",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "127",
+    "ipc_section": "340",
+    "bns_title": "Wrongful confinement",
+    "ipc_title": "Wrongful confinement",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "127(2)",
+    "ipc_section": "342",
+    "bns_title": null,
+    "ipc_title": "Punishment for wrongful confinement",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "127(3)",
+    "ipc_section": "343",
+    "bns_title": null,
+    "ipc_title": "Wrongful confinement for three or more days",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "127(4)",
+    "ipc_section": "344",
+    "bns_title": null,
+    "ipc_title": "Wrongful confinement for ten or more days",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "127(5)",
+    "ipc_section": "345",
+    "bns_title": null,
+    "ipc_title": "Wrongful confinement of person for whose",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "127(6)",
+    "ipc_section": "346",
+    "bns_title": null,
+    "ipc_title": "Wrongful confinement in secret",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "127(7)",
+    "ipc_section": "347",
+    "bns_title": null,
+    "ipc_title": "Wrongful confinement to extort property, or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "127(8)",
+    "ipc_section": "348",
+    "bns_title": null,
+    "ipc_title": "Wrongful confinement to extort confession, or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "128",
+    "ipc_section": "349",
+    "bns_title": "Force",
+    "ipc_title": "Force",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "129",
+    "ipc_section": "350",
+    "bns_title": "Criminal force",
+    "ipc_title": "Criminal force",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "130",
+    "ipc_section": "351",
+    "bns_title": "Assault",
+    "ipc_title": "Assault",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "131",
+    "ipc_section": "352",
+    "bns_title": "Punishment for assault or criminal force",
+    "ipc_title": "Punishment for assault or criminal force",
+    "status": "changed"
+  },
+  {
+    "bns_section": "132",
+    "ipc_section": "353",
+    "bns_title": "Assault or criminal force to deter public",
+    "ipc_title": "Assault or criminal force to deter public servant",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "133",
+    "ipc_section": "355",
+    "bns_title": "Assault or criminal force with intent to",
+    "ipc_title": "Assault or criminal force with intent to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "134",
+    "ipc_section": "356",
+    "bns_title": "Assault or criminal force in attempt to commit",
+    "ipc_title": "Assault or criminal force in attempt to commit",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "135",
+    "ipc_section": "357",
+    "bns_title": "Assault or criminal force in attempt to",
+    "ipc_title": "Assault or criminal force in attempt wrongfully",
+    "status": "changed"
+  },
+  {
+    "bns_section": "136",
+    "ipc_section": "358",
+    "bns_title": "Assault or criminal force on grave",
+    "ipc_title": "Assault or criminal force on grave provocation",
+    "status": "changed"
+  },
+  {
+    "bns_section": "137",
+    "ipc_section": "359",
+    "bns_title": "Kidnapping",
+    "ipc_title": "Kidnapping",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "137(1)",
+    "ipc_section": "360",
+    "bns_title": "(a)",
+    "ipc_title": "Kidnapping from India",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "137(1)",
+    "ipc_section": "361",
+    "bns_title": "(b)",
+    "ipc_title": "Kidnapping from lawful guardianship",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "137(2)",
+    "ipc_section": "363",
+    "bns_title": null,
+    "ipc_title": "Punishment for kidnapping",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "138",
+    "ipc_section": "362",
+    "bns_title": "Abduction",
+    "ipc_title": "Abduction",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "139",
+    "ipc_section": "363A",
+    "bns_title": "Kidnapping or maiming a child for purposes",
+    "ipc_title": "Kidnapping or maiming a minor for purposes of",
+    "status": "changed"
+  },
+  {
+    "bns_section": "140",
+    "ipc_section": "364",
+    "bns_title": "Kidnapping or abducting in order to murder or",
+    "ipc_title": "Kidnapping or abducting in order to murder",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "140(2)",
+    "ipc_section": "364A",
+    "bns_title": null,
+    "ipc_title": "Kidnapping for ransom, etc",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "140(3)",
+    "ipc_section": "365",
+    "bns_title": null,
+    "ipc_title": "Kidnapping or abducting with intent secretly and",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "140(4)",
+    "ipc_section": "367",
+    "bns_title": null,
+    "ipc_title": "Kidnapping or abducting in order to subject",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "141",
+    "ipc_section": "366B",
+    "bns_title": "Importation of girl or boy from foreign",
+    "ipc_title": "Importation of girl from foreign country",
+    "status": "changed"
+  },
+  {
+    "bns_section": "142",
+    "ipc_section": "368",
+    "bns_title": "Wrongfully concealing or keeping in",
+    "ipc_title": "Wrongfully concealing or keeping in",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "143",
+    "ipc_section": "370",
+    "bns_title": "Trafficking of person. (Change)",
+    "ipc_title": "Trafficking of person",
+    "status": "changed"
+  },
+  {
+    "bns_section": "144",
+    "ipc_section": "370A",
+    "bns_title": "Exploitation of a trafficked person. (Change)",
+    "ipc_title": "Exploitation of a trafficked person",
+    "status": "changed"
+  },
+  {
+    "bns_section": "145",
+    "ipc_section": "371",
+    "bns_title": "Habitual dealing in slaves",
+    "ipc_title": "Habitual dealing in slaves",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "146",
+    "ipc_section": "374",
+    "bns_title": "Unlawful compulsory labour",
+    "ipc_title": "Unlawful compulsory labour",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "147",
+    "ipc_section": "121",
+    "bns_title": "Waging, or attempting to wage war, or",
+    "ipc_title": "Waging, or attempting to wage war, or abetting",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "148",
+    "ipc_section": "121A",
+    "bns_title": "Conspiracy to commit offences punishable by",
+    "ipc_title": "Conspiracy to commit offences punishable by",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "149",
+    "ipc_section": "122",
+    "bns_title": "Collecting arms, etc., with intention of waging",
+    "ipc_title": "Collecting arms, etc., with intention of waging",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "150",
+    "ipc_section": "123",
+    "bns_title": "Concealing with intent to facilitate design to",
+    "ipc_title": "Concealing with intent to facilitate design to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "151",
+    "ipc_section": "124",
+    "bns_title": "Assaulting President, Governor, etc., with",
+    "ipc_title": "Assaulting President, Governor, etc., with intent",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "124A",
+    "bns_title": "Deleted",
+    "ipc_title": "Sedition",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "152",
+    "ipc_section": null,
+    "bns_title": "Acts endangering sovereignty, unity and",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "153",
+    "ipc_section": "125",
+    "bns_title": "Waging war against Government of any",
+    "ipc_title": "Waging war against any Asiatic Power in alliance",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "154",
+    "ipc_section": "126",
+    "bns_title": "Committing depredation on territories of",
+    "ipc_title": "Committing depredation on territories of Power",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "155",
+    "ipc_section": "127",
+    "bns_title": "Receiving property taken by war or",
+    "ipc_title": "Receiving property taken by war or depredation",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "156",
+    "ipc_section": "128",
+    "bns_title": "Public servant voluntarily allowing prisoner of",
+    "ipc_title": "Public servant voluntarily allowing prisoner of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "157",
+    "ipc_section": "129",
+    "bns_title": "Public servant negligently suffering such",
+    "ipc_title": "Public servant negligently suffering such",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "158",
+    "ipc_section": "130",
+    "bns_title": "Aiding escape of, rescuing or harbouring such",
+    "ipc_title": "Aiding escape of, rescuing or harbouring such",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "159",
+    "ipc_section": "131",
+    "bns_title": "Abetting mutiny, or attempting to seduce a",
+    "ipc_title": "Abetting mutiny, or attempting to seduce a",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "160",
+    "ipc_section": "132",
+    "bns_title": "Abetment of mutiny, if mutiny is committed in",
+    "ipc_title": "Abetment of mutiny, if mutiny is committed in",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "161",
+    "ipc_section": "133",
+    "bns_title": "Abetment of assault by soldier, sailor or",
+    "ipc_title": "Abetment of assault by soldier, sailor or airman",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "162",
+    "ipc_section": "134",
+    "bns_title": "Abetment of such assault, if assault",
+    "ipc_title": "Abetment of such assault, if the assault",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "163",
+    "ipc_section": "135",
+    "bns_title": "Abetment of desertion of soldier, sailor or",
+    "ipc_title": "Abetment of desertion of soldier, sailor or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "164",
+    "ipc_section": "136",
+    "bns_title": "Harbouring deserter",
+    "ipc_title": "Harbouring deserter",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "165",
+    "ipc_section": "137",
+    "bns_title": "Deserter concealed on board merchant vessel",
+    "ipc_title": "Deserter concealed on board merchant vessel",
+    "status": "changed"
+  },
+  {
+    "bns_section": "166",
+    "ipc_section": "138",
+    "bns_title": "Abetment of act of insubordination by",
+    "ipc_title": "Abetment of act of insubordination by soldier,",
+    "status": "changed"
+  },
+  {
+    "bns_section": "167",
+    "ipc_section": "139",
+    "bns_title": "Persons subject to certain Acts",
+    "ipc_title": "Persons subject to certain Acts",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "168",
+    "ipc_section": "140",
+    "bns_title": "Wearing garb or carrying token used by",
+    "ipc_title": "Wearing garb or carrying token used by soldier,",
+    "status": "changed"
+  },
+  {
+    "bns_section": "169",
+    "ipc_section": "171A",
+    "bns_title": "Candidate, electoral right defined",
+    "ipc_title": "“Candidate”, “Electoral right” defined",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "170",
+    "ipc_section": "171B",
+    "bns_title": "Bribery",
+    "ipc_title": "Bribery",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "171",
+    "ipc_section": "171C",
+    "bns_title": "Undue influence at elections",
+    "ipc_title": "Undue influence at elections",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "172",
+    "ipc_section": "171D",
+    "bns_title": "Personation at elections",
+    "ipc_title": "Personation at elections",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "173",
+    "ipc_section": "171E",
+    "bns_title": "Punishment for bribery",
+    "ipc_title": "Punishment for bribery",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "174",
+    "ipc_section": "171F",
+    "bns_title": "Punishment for undue influence or",
+    "ipc_title": "Punishment for undue influence or personation",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "175",
+    "ipc_section": "171G",
+    "bns_title": "False statement in connection with an",
+    "ipc_title": "False statement in connection with an",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "176",
+    "ipc_section": "171H",
+    "bns_title": "Illegal payments in connection with an",
+    "ipc_title": "Illegal payments in connection with an",
+    "status": "changed"
+  },
+  {
+    "bns_section": "177",
+    "ipc_section": "171",
+    "bns_title": "Failure to keep election accounts. (Change)",
+    "ipc_title": "-I. Failure to keep election accounts",
+    "status": "changed"
+  },
+  {
+    "bns_section": "178",
+    "ipc_section": "231",
+    "bns_title": "Counterfeiting coin, Government stamps,",
+    "ipc_title": "Counterfeiting coin",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "178",
+    "ipc_section": null,
+    "bns_title": "(1)",
+    "ipc_title": "Explanation to 489A",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "178(2)",
+    "ipc_section": "230",
+    "bns_title": null,
+    "ipc_title": "“Coin” defined",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "178(4)",
+    "ipc_section": null,
+    "bns_title": null,
+    "ipc_title": "Explanation to 231",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "178",
+    "ipc_section": "246",
+    "bns_title": "(5)",
+    "ipc_title": "Fraudulently or dishonestly diminishing weight",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "179",
+    "ipc_section": "237",
+    "bns_title": "Using as genuine, forged or counterfeit coin,",
+    "ipc_title": "Import or export of counterfeit coin",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "180",
+    "ipc_section": "242",
+    "bns_title": "Possession of forged or counterfeit coin,",
+    "ipc_title": "Possession of counterfeit coin by person who",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "181",
+    "ipc_section": "233",
+    "bns_title": "Making or possessing instruments or materials",
+    "ipc_title": "Making or selling instrument for counterfeiting",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "234",
+    "bns_title": "for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes.",
+    "ipc_title": "Making or selling instrument for counterfeiting",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "236",
+    "bns_title": "Deleted",
+    "ipc_title": "Abetting in India the counterfeiting out of India",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "182",
+    "ipc_section": "489E",
+    "bns_title": "Making or using documents resembling",
+    "ipc_title": "Making or using documents resembling",
+    "status": "changed"
+  },
+  {
+    "bns_section": "183",
+    "ipc_section": "261",
+    "bns_title": "Effacing writing from substance bearing",
+    "ipc_title": "Effacing writing from substance bearing",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "184",
+    "ipc_section": "262",
+    "bns_title": "Using Government stamp known to have been",
+    "ipc_title": "Using Government stamp known to have been",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "185",
+    "ipc_section": "263",
+    "bns_title": "Erasure of mark denoting that stamp has been",
+    "ipc_title": "Erasure of mark denoting that stamp has been",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "186",
+    "ipc_section": "263A",
+    "bns_title": "Prohibition of fictitious stamps",
+    "ipc_title": "Prohibition of fictitious stamps",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "187",
+    "ipc_section": "244",
+    "bns_title": "Person employed in mint causing coin to be of",
+    "ipc_title": "Person employed in mint causing coin to be of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "188",
+    "ipc_section": "245",
+    "bns_title": "Unlawfully taking coining instrument from",
+    "ipc_title": "Unlawfully taking coining instrument from mint",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "189",
+    "ipc_section": "141",
+    "bns_title": "Unlawful assembly",
+    "ipc_title": "Unlawful assembly",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "189",
+    "ipc_section": "143",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "189",
+    "ipc_section": "145",
+    "bns_title": "(3)",
+    "ipc_title": "Joining or continuing in unlawful assembly,",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "189",
+    "ipc_section": "144",
+    "bns_title": "(4)",
+    "ipc_title": "Joining unlawful assembly armed with deadly",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "189",
+    "ipc_section": "151",
+    "bns_title": "(5)",
+    "ipc_title": "Knowingly joining or continuing in assembly of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "189",
+    "ipc_section": "150",
+    "bns_title": "(6)",
+    "ipc_title": "Hiring, or conniving at hiring, of persons to join",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "189",
+    "ipc_section": "157",
+    "bns_title": "(7)",
+    "ipc_title": "Harbouring persons hired for an unlawful",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "189",
+    "ipc_section": "158",
+    "bns_title": "(8)",
+    "ipc_title": "Being hired to take part in an unlawful assembly",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "190",
+    "ipc_section": "149",
+    "bns_title": "Every member of unlawful assembly guilty of",
+    "ipc_title": "Every member of unlawful assembly guilty of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "191",
+    "ipc_section": "146",
+    "bns_title": "Rioting. (Change)",
+    "ipc_title": "Rioting",
+    "status": "changed"
+  },
+  {
+    "bns_section": "191",
+    "ipc_section": "147",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for rioting",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "191",
+    "ipc_section": "148",
+    "bns_title": "(3)",
+    "ipc_title": "Rioting, armed with deadly weapon",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "192",
+    "ipc_section": "153",
+    "bns_title": "Wantonly giving provocation with intent to",
+    "ipc_title": "Wantonly giving provocation with intent to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "193",
+    "ipc_section": "154",
+    "bns_title": "Liability of owner, occupier etc., of land on",
+    "ipc_title": "Owner or occupier of land on which an unlawful",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "193",
+    "ipc_section": "155",
+    "bns_title": "(2)",
+    "ipc_title": "Liability of person for whose benefit riot is",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "193",
+    "ipc_section": "156",
+    "bns_title": "(3)",
+    "ipc_title": "Liability of agent of owner or occupier for whose",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "194",
+    "ipc_section": "159",
+    "bns_title": "Affray. (Change)",
+    "ipc_title": "Affray",
+    "status": "changed"
+  },
+  {
+    "bns_section": "194",
+    "ipc_section": "160",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for committing affray",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "195",
+    "ipc_section": "152",
+    "bns_title": "Assaulting or obstructing public servant when",
+    "ipc_title": "Assaulting or obstructing public servant when",
+    "status": "changed"
+  },
+  {
+    "bns_section": "196",
+    "ipc_section": "153A",
+    "bns_title": "Promoting enmity between different groups",
+    "ipc_title": "Promoting enmity between different groups",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "153A",
+    "bns_title": "Deleted",
+    "ipc_title": "A. Punishment for knowingly carrying arms in",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "197",
+    "ipc_section": "153B",
+    "bns_title": "Imputations, assertions prejudicial to",
+    "ipc_title": "Imputations, assertions prejudicial to national",
+    "status": "changed"
+  },
+  {
+    "bns_section": "198",
+    "ipc_section": "166",
+    "bns_title": "Public servant disobeying law, with intent to",
+    "ipc_title": "Public servant disobeying law, with intent to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "199",
+    "ipc_section": "166A",
+    "bns_title": "Public servant disobeying direction under law",
+    "ipc_title": "Public servant disobeying direction under law",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "200",
+    "ipc_section": "166B",
+    "bns_title": "Punishment for non-treatment of victim",
+    "ipc_title": "Punishment for non-treatment of victim",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "201",
+    "ipc_section": "167",
+    "bns_title": "Public servant framing an incorrect document",
+    "ipc_title": "Public servant framing an incorrect document",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "202",
+    "ipc_section": "168",
+    "bns_title": "Public servant unlawfully engaging in trade",
+    "ipc_title": "Public servant unlawfully engaging in trade",
+    "status": "changed"
+  },
+  {
+    "bns_section": "203",
+    "ipc_section": "169",
+    "bns_title": "Public servant unlawfully buying or bidding for",
+    "ipc_title": "Public servant unlawfully buying or bidding for",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "204",
+    "ipc_section": "170",
+    "bns_title": "Personating a public servant. (Change)",
+    "ipc_title": "Personating a public servant",
+    "status": "changed"
+  },
+  {
+    "bns_section": "205",
+    "ipc_section": "171",
+    "bns_title": "Wearing garb or carrying token used by",
+    "ipc_title": "Wearing garb or carrying token used by public",
+    "status": "changed"
+  },
+  {
+    "bns_section": "206",
+    "ipc_section": "172",
+    "bns_title": "Absconding to avoid service of summons or",
+    "ipc_title": "Absconding to avoid service of summons or",
+    "status": "changed"
+  },
+  {
+    "bns_section": "207",
+    "ipc_section": "173",
+    "bns_title": "Preventing service of summons or other",
+    "ipc_title": "Preventing service of summons or other",
+    "status": "changed"
+  },
+  {
+    "bns_section": "208",
+    "ipc_section": "174",
+    "bns_title": "Non-attendance in obedience to an order",
+    "ipc_title": "Non-attendance in obedience to an order from",
+    "status": "changed"
+  },
+  {
+    "bns_section": "210",
+    "ipc_section": "175",
+    "bns_title": "Omission to produce document or electronic",
+    "ipc_title": "Omission to produce document to public",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "211",
+    "ipc_section": "176",
+    "bns_title": "Omission to give notice or information to",
+    "ipc_title": "Omission to give notice or information to public",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "212",
+    "ipc_section": "177",
+    "bns_title": "Furnishing false information. (Change)",
+    "ipc_title": "Furnishing false information",
+    "status": "changed"
+  },
+  {
+    "bns_section": "213",
+    "ipc_section": "178",
+    "bns_title": "Refusing oath or affirmation when duly",
+    "ipc_title": "Refusing oath or affirmation when duly required",
+    "status": "changed"
+  },
+  {
+    "bns_section": "214",
+    "ipc_section": "179",
+    "bns_title": "Refusing to answer public servant authorised",
+    "ipc_title": "Refusing to answer public servant authorised to",
+    "status": "changed"
+  },
+  {
+    "bns_section": "215",
+    "ipc_section": "180",
+    "bns_title": "Refusing to sign statement. (Change)",
+    "ipc_title": "Refusing to sign statement",
+    "status": "changed"
+  },
+  {
+    "bns_section": "216",
+    "ipc_section": "181",
+    "bns_title": "False statement on oath or affirmation to",
+    "ipc_title": "False statement on oath or affirmation to public",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "217",
+    "ipc_section": "182",
+    "bns_title": "False information, with intent to cause public",
+    "ipc_title": "False information, with intent to cause public",
+    "status": "changed"
+  },
+  {
+    "bns_section": "218",
+    "ipc_section": "183",
+    "bns_title": "Resistance to taking of property by lawful",
+    "ipc_title": "Resistance to the taking of property by the",
+    "status": "changed"
+  },
+  {
+    "bns_section": "219",
+    "ipc_section": "184",
+    "bns_title": "Obstructing sale of property offered for sale",
+    "ipc_title": "Obstructing sale of property offered for sale by",
+    "status": "changed"
+  },
+  {
+    "bns_section": "220",
+    "ipc_section": "185",
+    "bns_title": "Illegal purchase or bid for property offered for",
+    "ipc_title": "Illegal purchase or bid for property offered for",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "221",
+    "ipc_section": "186",
+    "bns_title": "Obstructing public servant in discharge of",
+    "ipc_title": "Obstructing public servant in discharge of public",
+    "status": "changed"
+  },
+  {
+    "bns_section": "222",
+    "ipc_section": "187",
+    "bns_title": "Omission to assist public servant when bound",
+    "ipc_title": "Omission to assist public servant when bound by",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "223",
+    "ipc_section": "188",
+    "bns_title": "Disobedience to order duly promulgated by",
+    "ipc_title": "Disobedience to order duly promulgated by",
+    "status": "changed"
+  },
+  {
+    "bns_section": "224",
+    "ipc_section": "189",
+    "bns_title": "Threat of injury to public servant",
+    "ipc_title": "Threat of injury to public servant",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "225",
+    "ipc_section": "190",
+    "bns_title": "Threat of injury to induce person to refrain",
+    "ipc_title": "Threat of injury to induce person to refrain from",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "226",
+    "ipc_section": null,
+    "bns_title": "Attempt to commit suicide to compel or",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "227",
+    "ipc_section": "191",
+    "bns_title": "Giving false evidence",
+    "ipc_title": "Giving false evidence",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "228",
+    "ipc_section": "192",
+    "bns_title": "Fabricating false evidence",
+    "ipc_title": "Fabricating false evidence",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "229",
+    "ipc_section": "193",
+    "bns_title": "Punishment for false evidence. (Change)",
+    "ipc_title": "Punishment for false evidence",
+    "status": "changed"
+  },
+  {
+    "bns_section": "230",
+    "ipc_section": "194",
+    "bns_title": "Giving or fabricating false evidence with",
+    "ipc_title": "Giving or fabricating false evidence with intent",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "231",
+    "ipc_section": "195",
+    "bns_title": "Giving or fabricating false evidence with intent",
+    "ipc_title": "Giving or fabricating false evidence with intent",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "232",
+    "ipc_section": "195A",
+    "bns_title": "Threatening any person to give false evidence",
+    "ipc_title": "Threatening any person to give false evidence",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "233",
+    "ipc_section": "196",
+    "bns_title": "Using evidence known to be false",
+    "ipc_title": "Using evidence known to be false",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "234",
+    "ipc_section": "197",
+    "bns_title": "Issuing or signing false certificate",
+    "ipc_title": "Issuing or signing false certificate",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "235",
+    "ipc_section": "198",
+    "bns_title": "Using as true a certificate known to be false",
+    "ipc_title": "Using as true a certificate known to be false",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "236",
+    "ipc_section": "199",
+    "bns_title": "False statement made in declaration which is",
+    "ipc_title": "False statement made in declaration which is by",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "237",
+    "ipc_section": "200",
+    "bns_title": "Using as true such declaration knowing it to be",
+    "ipc_title": "Using as true such declaration knowing it to be",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "238",
+    "ipc_section": "201",
+    "bns_title": "Causing disappearance of evidence of offence,",
+    "ipc_title": "Causing disappearance of evidence of offence,",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "239",
+    "ipc_section": "202",
+    "bns_title": "Intentional omission to give information of",
+    "ipc_title": "Intentional omission to give information of",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "240",
+    "ipc_section": "203",
+    "bns_title": "Giving false information respecting an offence",
+    "ipc_title": "Giving false information respecting an offence",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "241",
+    "ipc_section": "204",
+    "bns_title": "Destruction of document or electronic record",
+    "ipc_title": "Destruction of document to prevent its",
+    "status": "changed"
+  },
+  {
+    "bns_section": "242",
+    "ipc_section": "205",
+    "bns_title": "False personation for purpose of act or",
+    "ipc_title": "False personation for purpose of act or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "243",
+    "ipc_section": "206",
+    "bns_title": "Fraudulent removal or concealment of",
+    "ipc_title": "Fraudulent removal or concealment of property",
+    "status": "changed"
+  },
+  {
+    "bns_section": "244",
+    "ipc_section": "207",
+    "bns_title": "Fraudulent claim to property to prevent its",
+    "ipc_title": "Fraudulent claim to property to prevent its",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "245",
+    "ipc_section": "208",
+    "bns_title": "Fraudulently suffering decree for sum not due",
+    "ipc_title": "Fraudulently suffering decree for sum not due",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "246",
+    "ipc_section": "209",
+    "bns_title": "Dishonestly making false claim in Court",
+    "ipc_title": "Dishonesty making false claim in Court",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "247",
+    "ipc_section": "210",
+    "bns_title": "Fraudulently obtaining decree for sum not",
+    "ipc_title": "Fraudulently obtaining decree for sum not due",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "248",
+    "ipc_section": "211",
+    "bns_title": "False charge of offence made with intent to",
+    "ipc_title": "False charge of offence made with intent to",
+    "status": "changed"
+  },
+  {
+    "bns_section": "249",
+    "ipc_section": "212",
+    "bns_title": "Harbouring offender",
+    "ipc_title": "Harbouring offender",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "250",
+    "ipc_section": "213",
+    "bns_title": "Taking gift, etc., to screen an offender from",
+    "ipc_title": "Taking gift, etc., to screen an offender from",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "251",
+    "ipc_section": "214",
+    "bns_title": "Offering gift or restoration of property in",
+    "ipc_title": "Offering gift or restoration of property in",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "252",
+    "ipc_section": "215",
+    "bns_title": "Taking gift to help to recover stolen property,",
+    "ipc_title": "Taking gift to help to recover stolen property,",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "253",
+    "ipc_section": "216",
+    "bns_title": "Harbouring offender who has escaped from",
+    "ipc_title": "Harbouring offender who has escaped from",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "254",
+    "ipc_section": "216A",
+    "bns_title": "Penalty for harbouring robbers or dacoits",
+    "ipc_title": "Penalty for harbouring robbers or dacoits",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "255",
+    "ipc_section": "217",
+    "bns_title": "Public servant disobeying direction of law with",
+    "ipc_title": "Public servant disobeying direction of law with",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "256",
+    "ipc_section": "218",
+    "bns_title": "Public servant framing incorrect record or",
+    "ipc_title": "Public servant framing incorrect record or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "257",
+    "ipc_section": "219",
+    "bns_title": "Public servant in judicial proceeding corruptly",
+    "ipc_title": "Public servant in judicial proceeding corruptly",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "258",
+    "ipc_section": "220",
+    "bns_title": "Commitment for trial or confinement by",
+    "ipc_title": "Commitment for trial or confinement by person",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "259",
+    "ipc_section": "221",
+    "bns_title": "Intentional omission to apprehend on part of",
+    "ipc_title": "Intentional omission to apprehend on the part",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "260",
+    "ipc_section": "222",
+    "bns_title": "Intentional omission to apprehend on the part",
+    "ipc_title": "Intentional omission to apprehend on the part",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "261",
+    "ipc_section": "223",
+    "bns_title": "Escape from confinement or custody",
+    "ipc_title": "Escape from confinement or custody negligently",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "262",
+    "ipc_section": "224",
+    "bns_title": "Resistance or obstruction by a person to his",
+    "ipc_title": "Resistance or obstruction by a person to his",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "263",
+    "ipc_section": "225",
+    "bns_title": "Resistance or obstruction to lawful",
+    "ipc_title": "Resistance or obstruction to lawful",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "264",
+    "ipc_section": "225A",
+    "bns_title": "Omission to apprehend, or sufferance of",
+    "ipc_title": "Omission to apprehend, or sufferance of",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "265",
+    "ipc_section": "225B",
+    "bns_title": "Resistance or obstruction to lawful",
+    "ipc_title": "Resistance or obstruction to lawful",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "266",
+    "ipc_section": "227",
+    "bns_title": "Violation of condition of remission of",
+    "ipc_title": "Violation of condition of remission of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "267",
+    "ipc_section": "228",
+    "bns_title": "Intentional insult or interruption to public",
+    "ipc_title": "Intentional insult or interruption to public",
+    "status": "changed"
+  },
+  {
+    "bns_section": "268",
+    "ipc_section": "229",
+    "bns_title": "Personation of an assessor",
+    "ipc_title": "Personation of a juror or assessor",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "269",
+    "ipc_section": "229A",
+    "bns_title": "Failure by person released on bail bond or",
+    "ipc_title": "Failure by person released on bail or bond to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "264",
+    "bns_title": "Deleted",
+    "ipc_title": "Fraudulent use of false instrument for",
+    "status": "deleted"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "265",
+    "bns_title": "Deleted",
+    "ipc_title": "Fraudulent use of false weight or measure",
+    "status": "deleted"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "266",
+    "bns_title": "Deleted",
+    "ipc_title": "Being in possession of false weight or measure",
+    "status": "deleted"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "267",
+    "bns_title": "Deleted",
+    "ipc_title": "Making or selling false weight or measure",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "270",
+    "ipc_section": "268",
+    "bns_title": "Public nuisance",
+    "ipc_title": "Public nuisance",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "271",
+    "ipc_section": "269",
+    "bns_title": "Negligent act likely to spread infection of",
+    "ipc_title": "Negligent act likely to spread infection of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "272",
+    "ipc_section": "270",
+    "bns_title": "Malignant act likely to spread infection of",
+    "ipc_title": "Malignant act likely to spread infection of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "273",
+    "ipc_section": "271",
+    "bns_title": "Disobedience to quarantine rule",
+    "ipc_title": "Disobedience to quarantine rule",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "274",
+    "ipc_section": "272",
+    "bns_title": "Adulteration of food or drink intended for",
+    "ipc_title": "Adulteration of food or drink intended for sale",
+    "status": "changed"
+  },
+  {
+    "bns_section": "275",
+    "ipc_section": "273",
+    "bns_title": "Sale of noxious food or drink. (Change)",
+    "ipc_title": "Sale of noxious food or drink",
+    "status": "changed"
+  },
+  {
+    "bns_section": "276",
+    "ipc_section": "274",
+    "bns_title": "Adulteration of drugs. (Change)",
+    "ipc_title": "Adulteration of drugs",
+    "status": "changed"
+  },
+  {
+    "bns_section": "277",
+    "ipc_section": "275",
+    "bns_title": "Sale of adulterated drugs. (Change)",
+    "ipc_title": "Sale of adulterated drugs",
+    "status": "changed"
+  },
+  {
+    "bns_section": "278",
+    "ipc_section": "276",
+    "bns_title": "Sale of drug as a different drug or",
+    "ipc_title": "Sale of drug as a different drug or preparation",
+    "status": "changed"
+  },
+  {
+    "bns_section": "279",
+    "ipc_section": "277",
+    "bns_title": "Fouling water of public spring or reservoir",
+    "ipc_title": "Fouling water of public spring or reservoir",
+    "status": "changed"
+  },
+  {
+    "bns_section": "280",
+    "ipc_section": "278",
+    "bns_title": "Making atmosphere noxious to health",
+    "ipc_title": "Making atmosphere noxious to health",
+    "status": "changed"
+  },
+  {
+    "bns_section": "281",
+    "ipc_section": "279",
+    "bns_title": "Rash driving or riding on a public way",
+    "ipc_title": "Rash driving or riding on a public way",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "282",
+    "ipc_section": "280",
+    "bns_title": "Rash navigation of vessel. (Change)",
+    "ipc_title": "Rash navigation of vessel",
+    "status": "changed"
+  },
+  {
+    "bns_section": "283",
+    "ipc_section": "281",
+    "bns_title": "Exhibition of false light, mark or buoy",
+    "ipc_title": "Exhibition of false light, mark or buoy",
+    "status": "changed"
+  },
+  {
+    "bns_section": "284",
+    "ipc_section": "282",
+    "bns_title": "Conveying person by water for hire in unsafe",
+    "ipc_title": "Conveying person by water for hire in unsafe or",
+    "status": "changed"
+  },
+  {
+    "bns_section": "285",
+    "ipc_section": "283",
+    "bns_title": "Danger or obstruction in public way or line of",
+    "ipc_title": "Danger or obstruction in public way or line of",
+    "status": "changed"
+  },
+  {
+    "bns_section": "286",
+    "ipc_section": "284",
+    "bns_title": "Negligent conduct with respect to poisonous",
+    "ipc_title": "Negligent conduct with respect to poisonous",
+    "status": "changed"
+  },
+  {
+    "bns_section": "287",
+    "ipc_section": "285",
+    "bns_title": "Negligent conduct with respect to fire or",
+    "ipc_title": "Negligent conduct with respect to fire or",
+    "status": "changed"
+  },
+  {
+    "bns_section": "288",
+    "ipc_section": "286",
+    "bns_title": "Negligent conduct with respect to explosive",
+    "ipc_title": "Negligent conduct with respect to explosive",
+    "status": "changed"
+  },
+  {
+    "bns_section": "289",
+    "ipc_section": "287",
+    "bns_title": "Negligent conduct with respect to machinery",
+    "ipc_title": "Negligent conduct with respect to machinery",
+    "status": "changed"
+  },
+  {
+    "bns_section": "290",
+    "ipc_section": "288",
+    "bns_title": "Negligent conduct with respect to pulling",
+    "ipc_title": "Negligent conduct with respect to pulling down",
+    "status": "changed"
+  },
+  {
+    "bns_section": "291",
+    "ipc_section": "289",
+    "bns_title": "Negligent conduct with respect to animal",
+    "ipc_title": "Negligent conduct with respect to animal",
+    "status": "changed"
+  },
+  {
+    "bns_section": "292",
+    "ipc_section": "290",
+    "bns_title": "Punishment for public nuisance in cases not",
+    "ipc_title": "Punishment for public nuisance in cases not",
+    "status": "changed"
+  },
+  {
+    "bns_section": "293",
+    "ipc_section": "291",
+    "bns_title": "Continuance of nuisance after injunction to",
+    "ipc_title": "Continuance of nuisance after injunction to",
+    "status": "changed"
+  },
+  {
+    "bns_section": "294",
+    "ipc_section": "292",
+    "bns_title": "Sale, etc., of obscene books, etc. (Change)",
+    "ipc_title": "Sale, etc., of obscene books, etc",
+    "status": "changed"
+  },
+  {
+    "bns_section": "295",
+    "ipc_section": "293",
+    "bns_title": "Sale, etc., of obscene objects to child",
+    "ipc_title": "Sale, etc., of obscene objects to young person",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "296",
+    "ipc_section": "294",
+    "bns_title": "Obscene acts and songs. (Change)",
+    "ipc_title": "Obscene acts and songs",
+    "status": "changed"
+  },
+  {
+    "bns_section": "297",
+    "ipc_section": "294A",
+    "bns_title": "Keeping lottery office. (Change)",
+    "ipc_title": "Keeping lottery office",
+    "status": "changed"
+  },
+  {
+    "bns_section": "298",
+    "ipc_section": "295",
+    "bns_title": "Injuring or defiling place of worship with",
+    "ipc_title": "Injuring or defiling place of worship, with intent",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "299",
+    "ipc_section": "295A",
+    "bns_title": "Deliberate and malicious acts, intended to",
+    "ipc_title": "Deliberate and malicious acts, intended to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "300",
+    "ipc_section": "296",
+    "bns_title": "Disturbing religious assembly",
+    "ipc_title": "Disturbing religious assembly",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "301",
+    "ipc_section": "297",
+    "bns_title": "Trespassing on burial places, etc",
+    "ipc_title": "Trespassing on burial places, etc",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "302",
+    "ipc_section": "298",
+    "bns_title": "Uttering words, etc., with deliberate intent to",
+    "ipc_title": "Uttering words, etc., with deliberate intent to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "303",
+    "ipc_section": "378",
+    "bns_title": "Theft. (Change)",
+    "ipc_title": "Theft",
+    "status": "changed"
+  },
+  {
+    "bns_section": "303",
+    "ipc_section": null,
+    "bns_title": "(1)",
+    "ipc_title": null,
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "303",
+    "ipc_section": "379",
+    "bns_title": "(2) (Change)",
+    "ipc_title": "Punishment for theft",
+    "status": "changed"
+  },
+  {
+    "bns_section": "304",
+    "ipc_section": null,
+    "bns_title": "Snatching",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "305",
+    "ipc_section": "380",
+    "bns_title": "Theft in a dwelling house, or means of",
+    "ipc_title": "Theft in dwelling house, etc",
+    "status": "changed"
+  },
+  {
+    "bns_section": "306",
+    "ipc_section": "381",
+    "bns_title": "Theft by clerk or servant of property in",
+    "ipc_title": "Theft by clerk or servant of property in",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "307",
+    "ipc_section": "382",
+    "bns_title": "Theft after preparation made for causing",
+    "ipc_title": "Theft after preparation made for causing death,",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "308",
+    "ipc_section": "383",
+    "bns_title": "Extortion",
+    "ipc_title": "Extortion",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "308",
+    "ipc_section": "384",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for extortion",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "308",
+    "ipc_section": "385",
+    "bns_title": "(3)",
+    "ipc_title": "Putting person in fear of injury in order to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "308",
+    "ipc_section": "387",
+    "bns_title": "(4)",
+    "ipc_title": "Putting person in fear of death or of grievous",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "308",
+    "ipc_section": "386",
+    "bns_title": "(5)",
+    "ipc_title": "Extortion by putting a person in fear of death or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "308",
+    "ipc_section": "389",
+    "bns_title": "(6)",
+    "ipc_title": "Putting person in fear or accusation of offence,",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "308",
+    "ipc_section": "388",
+    "bns_title": "(7)",
+    "ipc_title": "Extortion by threat of accusation of an offence",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "309",
+    "ipc_section": "390",
+    "bns_title": "Robbery",
+    "ipc_title": "Robbery",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "309",
+    "ipc_section": "392",
+    "bns_title": "(4)",
+    "ipc_title": "Punishment for robbery",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "309(5)",
+    "ipc_section": "393",
+    "bns_title": null,
+    "ipc_title": "Attempt to commit robbery",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "309(6)",
+    "ipc_section": "394",
+    "bns_title": null,
+    "ipc_title": "Voluntarily causing hurt in committing robbery",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "310",
+    "ipc_section": "391",
+    "bns_title": "Dacoity (Change)",
+    "ipc_title": "Dacoity",
+    "status": "changed"
+  },
+  {
+    "bns_section": "310",
+    "ipc_section": "395",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for dacoity",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "310",
+    "ipc_section": "396",
+    "bns_title": "(3)",
+    "ipc_title": "Dacoity with murder",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "310",
+    "ipc_section": "399",
+    "bns_title": "(4)",
+    "ipc_title": "Making preparation to commit dacoity",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "310",
+    "ipc_section": "402",
+    "bns_title": "(5)",
+    "ipc_title": "Assembling for purpose of committing dacoity",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "310",
+    "ipc_section": "400",
+    "bns_title": "(6)",
+    "ipc_title": "Punishment for belonging to gang of dacoits",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "311",
+    "ipc_section": "397",
+    "bns_title": "Robbery, or dacoity, with attempt to cause",
+    "ipc_title": "Robbery, or dacoity, with attempt to cause",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "312",
+    "ipc_section": "398",
+    "bns_title": "Attempt to commit robbery or dacoity when",
+    "ipc_title": "Attempt to commit robbery or dacoity when",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "313",
+    "ipc_section": "401",
+    "bns_title": "Punishment for belonging to gang of robbers,",
+    "ipc_title": "Punishment for belonging to gang of thieves",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "314",
+    "ipc_section": "403",
+    "bns_title": "Dishonest misappropriation of property",
+    "ipc_title": "Dishonest misappropriation of property",
+    "status": "changed"
+  },
+  {
+    "bns_section": "315",
+    "ipc_section": "404",
+    "bns_title": "Dishonest misappropriation of property",
+    "ipc_title": "Dishonest misappropriation of property",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "316",
+    "ipc_section": "405",
+    "bns_title": "Criminal breach of trust. (Change)",
+    "ipc_title": "Criminal breach of trust",
+    "status": "changed"
+  },
+  {
+    "bns_section": "316",
+    "ipc_section": "406",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for criminal breach of trust",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "316",
+    "ipc_section": "407",
+    "bns_title": "(3)",
+    "ipc_title": "Criminal breach of trust by carrier, etc",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "316",
+    "ipc_section": "408",
+    "bns_title": "(4)",
+    "ipc_title": "Criminal breach of trust by clerk or servant",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "316",
+    "ipc_section": "409",
+    "bns_title": "(5)",
+    "ipc_title": "Criminal breach of trust by public servant, or by",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "317",
+    "ipc_section": "410",
+    "bns_title": "Stolen property",
+    "ipc_title": "Stolen property",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "317",
+    "ipc_section": "411",
+    "bns_title": "(2)",
+    "ipc_title": "Dishonestly receiving stolen property",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "317",
+    "ipc_section": "412",
+    "bns_title": "(3)",
+    "ipc_title": "Dishonestly receiving property stolen in the",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "317",
+    "ipc_section": "413",
+    "bns_title": "(4)",
+    "ipc_title": "Habitually dealing in stolen property",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "317",
+    "ipc_section": "414",
+    "bns_title": "(5)",
+    "ipc_title": "Assisting in concealment of stolen property",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "318",
+    "ipc_section": "415",
+    "bns_title": "Cheating. (Change)",
+    "ipc_title": "Cheating",
+    "status": "changed"
+  },
+  {
+    "bns_section": "318",
+    "ipc_section": "417",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for cheating",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "318",
+    "ipc_section": "418",
+    "bns_title": "(3)",
+    "ipc_title": "Cheating with knowledge that wrongful loss may",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "318",
+    "ipc_section": "420",
+    "bns_title": "(4)",
+    "ipc_title": "Cheating and dishonestly inducing delivery of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "319(1)",
+    "ipc_section": "416",
+    "bns_title": null,
+    "ipc_title": "Cheating by personation",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "319(2)",
+    "ipc_section": "419",
+    "bns_title": null,
+    "ipc_title": "Punishment of cheating by personation",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "320",
+    "ipc_section": "421",
+    "bns_title": "Dishonest or fraudulent removal or",
+    "ipc_title": "Dishonest or fraudulent removal or",
+    "status": "changed"
+  },
+  {
+    "bns_section": "321",
+    "ipc_section": "422",
+    "bns_title": "Dishonestly or fraudulently preventing debt",
+    "ipc_title": "Dishonestly or fraudulently preventing debt",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "322",
+    "ipc_section": "423",
+    "bns_title": "Dishonest or fraudulent execution of deed of",
+    "ipc_title": "Dishonest or fraudulent execution of deed of",
+    "status": "changed"
+  },
+  {
+    "bns_section": "323",
+    "ipc_section": "424",
+    "bns_title": "Dishonest or fraudulent removal or",
+    "ipc_title": "Dishonest or fraudulent removal or",
+    "status": "changed"
+  },
+  {
+    "bns_section": "324",
+    "ipc_section": "425",
+    "bns_title": "Mischief. (Change)",
+    "ipc_title": "Mischief",
+    "status": "changed"
+  },
+  {
+    "bns_section": "324",
+    "ipc_section": "426",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for mischief",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "324",
+    "ipc_section": null,
+    "bns_title": "(3)",
+    "ipc_title": "New Sub- Section",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "324",
+    "ipc_section": "427",
+    "bns_title": "(4)",
+    "ipc_title": "Mischief causing damage to the amount of fifty",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "324(5)",
+    "ipc_section": null,
+    "bns_title": null,
+    "ipc_title": "New Sub-Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "324",
+    "ipc_section": "440",
+    "bns_title": "(6)",
+    "ipc_title": "Mischief committed after preparation made for",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "325",
+    "ipc_section": "428",
+    "bns_title": "Mischief by killing or maiming animal",
+    "ipc_title": "Mischief by killing or maiming animal of the",
+    "status": "changed"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "429",
+    "bns_title": null,
+    "ipc_title": "Mischief by killing or maiming cattle, etc., of any",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "326",
+    "ipc_section": "430",
+    "bns_title": "Mischief by injury, inundation, fire or explosive",
+    "ipc_title": "Mischief by injury to works of irrigation or by",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "326",
+    "ipc_section": "431",
+    "bns_title": "(b)",
+    "ipc_title": "Mischief by injury to public road, bridge, river or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "326",
+    "ipc_section": "432",
+    "bns_title": "(c)",
+    "ipc_title": "Mischief by causing inundation or obstruction to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "326",
+    "ipc_section": "433",
+    "bns_title": "(d)",
+    "ipc_title": "Mischief by destroying, moving or rendering less",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "326",
+    "ipc_section": "434",
+    "bns_title": "(e)",
+    "ipc_title": "Mischief by destroying or moving, etc., a land-",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "326",
+    "ipc_section": "435",
+    "bns_title": "(f)",
+    "ipc_title": "Mischief by fire or explosive substance with",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "326",
+    "ipc_section": "436",
+    "bns_title": "(g)",
+    "ipc_title": "Mischief by fire or explosive substance with",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "327",
+    "ipc_section": "437",
+    "bns_title": "Mischief with intent to destroy or make unsafe",
+    "ipc_title": "Mischief with intent to destroy or make unsafe a",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "327",
+    "ipc_section": "438",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for the mischief described in",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "328",
+    "ipc_section": "439",
+    "bns_title": "Punishment for intentionally running vessel",
+    "ipc_title": "Punishment for intentionally running vessel",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "329",
+    "ipc_section": "441",
+    "bns_title": "Criminal trespass and house-trespass",
+    "ipc_title": "Criminal trespass",
+    "status": "changed"
+  },
+  {
+    "bns_section": "329",
+    "ipc_section": "442",
+    "bns_title": "(2)",
+    "ipc_title": "House-trespass",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "329",
+    "ipc_section": "447",
+    "bns_title": "(3)",
+    "ipc_title": "Punishment for criminal trespass",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "329",
+    "ipc_section": "448",
+    "bns_title": "(4)",
+    "ipc_title": "Punishment for house-trespass",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "330",
+    "ipc_section": "443",
+    "bns_title": "House-trespass and house-breaking",
+    "ipc_title": "Lurking house-trespass",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "444",
+    "bns_title": "Deleted",
+    "ipc_title": "Lurking house-trespass by night",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "330(2)",
+    "ipc_section": "445",
+    "bns_title": null,
+    "ipc_title": "House-breaking",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "446",
+    "bns_title": "Deleted",
+    "ipc_title": "House-breaking by night",
+    "status": "deleted"
+  },
+  {
+    "bns_section": "331",
+    "ipc_section": "453",
+    "bns_title": "Punishment for house-trespass or house-",
+    "ipc_title": "Punishment for lurking house-trespass or house-",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "331(2)",
+    "ipc_section": "456",
+    "bns_title": null,
+    "ipc_title": "Punishment for lurking house-trespass or house-",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "331",
+    "ipc_section": "454",
+    "bns_title": "(3)",
+    "ipc_title": "Lurking house-trespass or house-breaking in",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "331",
+    "ipc_section": "457",
+    "bns_title": "(4)",
+    "ipc_title": "Lurking house-trespass or house-breaking by",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "331",
+    "ipc_section": "455",
+    "bns_title": "(5)",
+    "ipc_title": "Lurking house-trespass or house-breaking after",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "331",
+    "ipc_section": "458",
+    "bns_title": "(6)",
+    "ipc_title": "Lurking house-trespass or house-breaking by",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "331",
+    "ipc_section": "459",
+    "bns_title": "(7)",
+    "ipc_title": "Grievous hurt caused whilst committing lurking",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "331",
+    "ipc_section": "460",
+    "bns_title": "(8)",
+    "ipc_title": "All persons jointly concerned in lurking house-",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "332",
+    "ipc_section": "449",
+    "bns_title": "House-trespass in order to commit offence",
+    "ipc_title": "House-trespass in order to commit offence",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "332",
+    "ipc_section": "450",
+    "bns_title": "(b)",
+    "ipc_title": "House-trespass in order to commit offence",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "332",
+    "ipc_section": "451",
+    "bns_title": "(c)",
+    "ipc_title": "House-trespass in order to commit offence",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "333",
+    "ipc_section": "452",
+    "bns_title": "House-trespass after preparation for hurt,",
+    "ipc_title": "House-trespass after preparation for hurt,",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "334",
+    "ipc_section": "461",
+    "bns_title": "Dishonestly breaking open receptacle",
+    "ipc_title": "Dishonestly breaking open receptacle containing",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "334(2)",
+    "ipc_section": "462",
+    "bns_title": null,
+    "ipc_title": "Punishment for same offence when committed",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "335",
+    "ipc_section": "464",
+    "bns_title": "Making a false document",
+    "ipc_title": "Making a false document",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "336",
+    "ipc_section": "463",
+    "bns_title": "Forgery",
+    "ipc_title": "Forgery",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "336",
+    "ipc_section": "465",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for forgery",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "336",
+    "ipc_section": "468",
+    "bns_title": "(3)",
+    "ipc_title": "Forgery for purpose of cheating",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "336",
+    "ipc_section": "469",
+    "bns_title": "(4)",
+    "ipc_title": "Forgery for purpose of harming reputation",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "337",
+    "ipc_section": "466",
+    "bns_title": "Forgery of record of Court or of public register,",
+    "ipc_title": "Forgery of record of Court or of public register,",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "338",
+    "ipc_section": "467",
+    "bns_title": "Forgery of valuable security, will, etc",
+    "ipc_title": "Forgery of valuable security, will, etc",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "339",
+    "ipc_section": "474",
+    "bns_title": "Having possession of document described in",
+    "ipc_title": "Having possession of document described in",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "340",
+    "ipc_section": "470",
+    "bns_title": "Forged document or electronic record and",
+    "ipc_title": "Forged document or electronic record",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "340",
+    "ipc_section": "471",
+    "bns_title": "(2)",
+    "ipc_title": "Using as genuine a forged document or",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "341",
+    "ipc_section": "472",
+    "bns_title": "Making or possessing counterfeit seal, etc.,",
+    "ipc_title": "Making or possessing counterfeit seal, etc., with",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "341",
+    "ipc_section": "473",
+    "bns_title": "(2)",
+    "ipc_title": "Making or possessing counterfeit seal, etc., with",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "341",
+    "ipc_section": null,
+    "bns_title": "(3)",
+    "ipc_title": "New Sub-Section",
+    "status": "new"
+  },
+  {
+    "bns_section": "342",
+    "ipc_section": "475",
+    "bns_title": "Counterfeiting device or mark used for",
+    "ipc_title": "Counterfeiting device or mark used for",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "342(2)",
+    "ipc_section": "476",
+    "bns_title": null,
+    "ipc_title": "Counterfeiting device or mark used for",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "343",
+    "ipc_section": "477",
+    "bns_title": "Fraudulent cancellation, destruction, etc., of",
+    "ipc_title": "Fraudulent cancellation, destruction, etc., of",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "344",
+    "ipc_section": "477A",
+    "bns_title": "Falsification of accounts",
+    "ipc_title": "Falsification of accounts",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "345",
+    "ipc_section": "479",
+    "bns_title": "Property mark",
+    "ipc_title": "Property mark",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "345",
+    "ipc_section": "481",
+    "bns_title": "(2)",
+    "ipc_title": "Using a false property mark",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "345",
+    "ipc_section": "482",
+    "bns_title": "(3)",
+    "ipc_title": "Punishment for using a false property mark",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "346",
+    "ipc_section": "489",
+    "bns_title": "Tampering with property mark with intent to",
+    "ipc_title": "Tampering with property mark with intent to",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "347",
+    "ipc_section": "483",
+    "bns_title": "Counterfeiting a property mark",
+    "ipc_title": "Counterfeiting a property mark used by another",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "347",
+    "ipc_section": "484",
+    "bns_title": "(2)",
+    "ipc_title": "Counterfeiting a mark used by a public servant",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "348",
+    "ipc_section": "485",
+    "bns_title": "Making or possession of any instrument for",
+    "ipc_title": "Making or possession of any instrument for",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "349",
+    "ipc_section": "486",
+    "bns_title": "Selling goods marked with a counterfeit",
+    "ipc_title": "Selling goods marked with a counterfeit",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "350",
+    "ipc_section": "487",
+    "bns_title": "Making a false mark upon any receptacle",
+    "ipc_title": "Making a false mark upon any receptacle",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "350",
+    "ipc_section": "488",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for making use of any such false",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "351",
+    "ipc_section": "503",
+    "bns_title": "Criminal intimidation",
+    "ipc_title": "Criminal intimidation",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "351",
+    "ipc_section": "506",
+    "bns_title": "(2), 351 (3)",
+    "ipc_title": "Punishment for criminal intimidation",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "351",
+    "ipc_section": "507",
+    "bns_title": "(4)",
+    "ipc_title": "Criminal intimidation by an anonymous",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "352",
+    "ipc_section": "504",
+    "bns_title": "Intentional insult with intent to provoke",
+    "ipc_title": "Intentional insult with intent to provoke breach",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "353",
+    "ipc_section": "505",
+    "bns_title": "Statements conducing to public mischief",
+    "ipc_title": "Statements conducing to public mischief",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "354",
+    "ipc_section": "508",
+    "bns_title": "Act caused by inducing person to believe that",
+    "ipc_title": "Act caused by inducing person to believe that he",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "355",
+    "ipc_section": "510",
+    "bns_title": "Misconduct in public by a drunken person",
+    "ipc_title": "Misconduct in public by a drunken person",
+    "status": "changed"
+  },
+  {
+    "bns_section": "356",
+    "ipc_section": "499",
+    "bns_title": "Defamation. (Change)",
+    "ipc_title": "Defamation",
+    "status": "changed"
+  },
+  {
+    "bns_section": "356",
+    "ipc_section": "500",
+    "bns_title": "(2)",
+    "ipc_title": "Punishment for defamation",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "356",
+    "ipc_section": "501",
+    "bns_title": "(3)",
+    "ipc_title": "Printing or engraving matter known to be",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "356",
+    "ipc_section": "502",
+    "bns_title": "(4)",
+    "ipc_title": "Sale of printed or engraved substance",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "357",
+    "ipc_section": "491",
+    "bns_title": "Breach of contract to attend on and supply",
+    "ipc_title": "Breach of contract to attend on and supply",
+    "status": "unchanged"
+  },
+  {
+    "bns_section": "358",
+    "ipc_section": null,
+    "bns_title": "Repeal and savings",
+    "ipc_title": "New Section",
+    "status": "new"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "309",
+    "bns_title": "Deleted",
+    "ipc_title": "“Attempt to commit suicide”",
+    "status": "deleted"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "310",
+    "bns_title": "Deleted",
+    "ipc_title": "“Thug”",
+    "status": "deleted"
+  },
+  {
+    "bns_section": null,
+    "ipc_section": "311",
+    "bns_title": "Deleted",
+    "ipc_title": "“Punishment”",
+    "status": "deleted"
+  }
+]
