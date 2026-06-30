@@ -3,10 +3,8 @@
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
-data/processed/
-data/raw/*
 !data/raw/.gitkeep
-chroma_db/
+
 
 # Python
 __pycache__/
@@ -22,9 +20,6 @@ htmlcov/
 .env
 
 # Project data (regenerable / large / sensitive)
-chroma_db/
-data/raw/
-data/processed/
 eval/results/
 
 # IDE
