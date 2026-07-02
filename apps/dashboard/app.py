@@ -3,7 +3,7 @@
 Run:
     streamlit run apps/dashboard/app.py
 """
-
+import os
 import json
 import time
 from typing import Iterator
@@ -74,7 +74,7 @@ st.markdown(
 
 DEFAULTS = {
     "messages":       [],
-    "api_url":        "http://localhost:8000",
+    "api_url": os.environ.get("API_URL", "http://localhost:8000"),
     "api_key":        "dev-key-123",
     "retriever":      "hybrid_reranked",
     "top_k":          5,

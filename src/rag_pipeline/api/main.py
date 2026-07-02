@@ -5,6 +5,7 @@ startup, reused for every request. Avoids per-request reranker reload
 (~20s) and chunks deserialization (~1s).
 """
 import os
+import re
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "FALSE")
 import json
 import json as _json
@@ -63,6 +64,50 @@ _state: dict = {}
 # Call once at module import — before app = FastAPI(...)
 install_json_logging(level="INFO")
 
+_SECTION_MENTION = re.compile(
+    r"(?:(IPC|BNS)\s*)?"
+    r"(?:section|sec\.?|s\.?|§)?\s*"
+    r"(\d+[A-Z]?)"
+    r"(?:\s*(IPC|BNS))?",
+    re.IGNORECASE,
+)
+
+def _concordance_context(query: str) -> str:
+    """If the query mentions a section, look up its cross-reference and
+    return a context string the LLM can cite. Empty string if no match."""
+    concordance = _state.get("concordance")
+    if concordance is None:
+        return ""
+
+    notes = []
+    for m in _SECTION_MENTION.finditer(query):
+        act_before, section, act_after = m.group(1), m.group(2), m.group(3)
+        act = (act_before or act_after or "").upper()
+        if not section:
+            continue
+
+        row = None
+        if act == "IPC":
+            row = concordance.lookup_ipc(section)
+        elif act == "BNS":
+            row = concordance.lookup_bns(section)
+        else:
+            # No act specified — try both
+            row = concordance.lookup_ipc(section) or concordance.lookup_bns(section)
+
+        if row:
+            note = (
+                f"CROSS-REFERENCE: IPC Section {row.ipc_section or '—'} "
+                f"corresponds to BNS Section {row.bns_section or '—'} "
+                f"(status: {row.status})."
+            )
+            if row.ipc_title:
+                note += f" IPC title: {row.ipc_title}."
+            if row.bns_title:
+                note += f" BNS title: {row.bns_title}."
+            notes.append(note)
+
+    return "\n".join(notes)
 
 def _retrieve_across_collections(
     query: str,
@@ -298,9 +343,16 @@ def answer_route(
         )
 
     context = build_context(docs_with_scores)
+
+    # Inject cross-reference mapping if the query mentions a section
+    xref = _concordance_context(req.query)
+    if xref:
+        context = f"{xref}\n\n{context}"
+
     prompt = (
         f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
-        f"Bharatiya Nyaya Sanhita excerpts below. Cite sources by their [n] marker. "
+        f"Bharatiya Nyaya Sanhita excerpts below. Use the CROSS-REFERENCE lines "
+        f"to answer questions about section correspondences. Cite sources by [n]. "
         f"If the answer is not in the excerpts, say so.\n\n"
         f"CONTEXT:\n{context}\n\nQUESTION: {req.query}\n\nANSWER:"
     )
@@ -371,9 +423,16 @@ def answer_stream_route(
         yield sse_event("citations", {"citations": citations})
 
         context = build_context(docs_with_scores)
+
+        # Inject cross-reference mapping if the query mentions a section
+        xref = _concordance_context(req.query)
+        if xref:
+            context = f"{xref}\n\n{context}"
+
         prompt = (
             f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
-            f"Bharatiya Nyaya Sanhita excerpts below. Cite sources by their [n] marker. "
+            f"Bharatiya Nyaya Sanhita excerpts below. Use the CROSS-REFERENCE lines "
+            f"to answer questions about section correspondences. Cite sources by [n]. "
             f"If the answer is not in the excerpts, say so.\n\n"
             f"CONTEXT:\n{context}\n\nQUESTION: {req.query}\n\nANSWER:"
         )

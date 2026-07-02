@@ -38,5 +38,19 @@ services:
               capabilities: [gpu]
     restart: unless-stopped
 
+  streamlit:
+      build:
+        context: .
+        dockerfile: Dockerfile.streamlit
+      container_name: protorag-dashboard
+      ports:
+        - "8501:8501"                      # ← your chosen Streamlit port
+      environment:
+        API_URL: http://api:8000           # ← reaches api via compose network
+      depends_on:
+        - api
+      restart: unless-stopped
+
+
 volumes:
   hf_cache:
