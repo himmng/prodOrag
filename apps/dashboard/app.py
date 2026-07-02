@@ -166,7 +166,26 @@ def render_citations(citations: list, container) -> None:
             for c in citations:
                 fname = (c.get("source_path") or "").split("/")[-1]
                 act   = c.get("act") or "—"
+                page = c.get("page_number")
                 sec   = c.get("section") or "?"
+                if act in ("IPC", "BNS") and page:
+                    if st.button(f"📄 View p.{page}", key=f"pg_{c['n']}_{act}_{page}"):
+                        try:
+                            import requests
+                            resp = requests.get(
+                                f"{st.session_state.api_url}/documents/page-image",
+                                params={"act": act, "page": page},
+                                headers={"X-API-Key": st.session_state.api_key},
+                                timeout=15,
+                            )
+                            if resp.status_code == 200:
+                                st.image(resp.content, caption=f"{act} p.{page}",
+                                         use_container_width=True)
+                            else:
+                                st.error(f"Preview failed: {resp.status_code}")
+                        except Exception as e:
+                            st.error(f"Preview error: {e}")
+                
 
                 # Build cross-reference badge
                 xref_parts = []

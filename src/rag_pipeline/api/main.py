@@ -9,6 +9,8 @@ import re
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "FALSE")
 import json
 import json as _json
+from fastapi import Query
+from fastapi.responses import Response as FastAPIResponse
 from rag_pipeline.api.schemas import (
     EvalRetrievalRequest, EvalRetrievalResponse,
     ThresholdSweepRequest, ThresholdSweepResponse,
@@ -72,27 +74,30 @@ _SECTION_MENTION = re.compile(
     re.IGNORECASE,
 )
 
-def _concordance_context(query: str) -> str:
-    """If the query mentions a section, look up its cross-reference and
-    return a context string the LLM can cite. Empty string if no match."""
+def _concordance_context(query: str) -> tuple[str, list[dict], list]:
+    """Detect section mentions, look up cross-references.
+
+    Returns (prompt_text, resolved, rows):
+      - prompt_text: CROSS-REFERENCE lines for the LLM
+      - resolved:    [{act, section}] pointing at real section texts to cite
+      - rows:        matched ConcordanceRow objects (for table-location citation)
+    """
     concordance = _state.get("concordance")
     if concordance is None:
-        return ""
+        return "", [], []
 
-    notes = []
+    notes, resolved, rows = [], [], []
     for m in _SECTION_MENTION.finditer(query):
         act_before, section, act_after = m.group(1), m.group(2), m.group(3)
         act = (act_before or act_after or "").upper()
         if not section:
             continue
 
-        row = None
         if act == "IPC":
             row = concordance.lookup_ipc(section)
         elif act == "BNS":
             row = concordance.lookup_bns(section)
         else:
-            # No act specified — try both
             row = concordance.lookup_ipc(section) or concordance.lookup_bns(section)
 
         if row:
@@ -106,9 +111,39 @@ def _concordance_context(query: str) -> str:
             if row.bns_title:
                 note += f" BNS title: {row.bns_title}."
             notes.append(note)
+            rows.append(row)
+            if row.ipc_section:
+                resolved.append({"act": "IPC", "section": row.ipc_section})
+            if row.bns_section:
+                resolved.append({"act": "BNS", "section": row.bns_section})
 
-    return "\n".join(notes)
+    return "\n".join(notes), resolved, rows
 
+def _fetch_section_chunk(act: str, section: str):
+    """Return (Document, score) for an exact act+section, or None. Vectorstore-agnostic."""
+    c = _state.get("section_index", {}).get((act, section))
+    if c is None:
+        return None
+    from langchain_core.documents import Document
+    return (Document(page_content=c.text, metadata=c.to_langchain_metadata()), 1.0)
+
+
+def _concordance_citation(row, n: int) -> Citation:
+    """Turn a ConcordanceRow into a citation showing its table location."""
+    return Citation(
+        n=n,
+        source_path="IPC_BNS_concordance.pdf",
+        page_number=None,
+        section_title=(
+            f"Concordance Row {row.row_index or '?'} · "
+            f"BNS §{row.bns_section or '—'} ↔ IPC §{row.ipc_section or '—'}"
+        ),
+        score=1.0,
+        act="CONCORDANCE",
+        section=f"row {row.row_index or '?'}",
+        corresponds_to=(row.bns_section if row.ipc_section else row.ipc_section),
+        change_status=row.status,
+    )
 def _retrieve_across_collections(
     query: str,
     acts: list[str],
@@ -210,7 +245,6 @@ def _build_retriever_for_request(req: AnswerRequest):
         )
     raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
 
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     log.info("API starting up — loading pipeline...")
@@ -232,7 +266,9 @@ async def lifespan(app: FastAPI):
             raw_chunks = json.load(f)
         from rag_pipeline.schemas import StatuteChunk
         chunks = [StatuteChunk(**c) for c in raw_chunks]
-
+        section_index = _state.setdefault("section_index", {})
+        for c in chunks:
+            section_index.setdefault((act, c.section), c)
         dense = DenseRetriever(collection_name=collection)
         bm25  = BM25Retriever(chunks)
         ensemble = EnsembleRetriever([dense, bm25], fetch_k=20)
@@ -289,18 +325,18 @@ app.add_middleware(RequestLoggingMiddleware)
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     components = {
-        "chunks":    "ok" if _state.get("chunks") else "missing",
-        "retriever": "ok" if _state.get("hybrid_r") else "missing",
+        "chunks":    "ok" if _state.get("by_act") else "missing",
+        "retriever": "ok" if (_state.get("by_act", {}).get("IPC", {}).get("hybrid_r")) else "missing",
         "llm":       "ok" if _state.get("llm") else "missing",
     }
+    # Ollama reachability check — OLLAMA_HOST already includes host:port
+    import httpx
+    ollama_url = cfg.OLLAMA_HOST.rstrip("/")
     try:
-        import socket
-        host = cfg.OLLAMA_HOST.replace("http://", "").replace("https://", "").split("/")[0]
-        port = int(cfg.OLLAMA_PORT)
-        with socket.create_connection((host, port), timeout=2):
-            components["ollama"] = "ok"
+        r = httpx.get(f"{ollama_url}/api/tags", timeout=2.0)
+        ollama_status = "ok" if r.status_code == 200 else f"http {r.status_code}"
     except Exception as e:
-        components["ollama"] = f"unreachable: {str(e)[:60]}"
+        ollama_status = f"unreachable: {e}"
 
     all_ok = all(v == "ok" for v in components.values())
     return HealthResponse(
@@ -349,6 +385,25 @@ def answer_route(
     if xref:
         context = f"{xref}\n\n{context}"
 
+    context = build_context(docs_with_scores)
+
+    # Cross-reference detection
+    xref, resolved, rows = _concordance_context(req.query)
+    if xref:
+        context = f"{xref}\n\n{context}"
+
+    # Priority citations: concordance row(s) + real section texts
+    priority = []
+    n = 1
+    for row in rows:
+        priority.append(_concordance_citation(row, n)); n += 1
+
+    priority_docs = []
+    for r in resolved:
+        hit = _fetch_section_chunk(r["act"], r["section"])
+        if hit:
+            priority_docs.append(hit)
+
     prompt = (
         f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
         f"Bharatiya Nyaya Sanhita excerpts below. Use the CROSS-REFERENCE lines "
@@ -359,10 +414,18 @@ def answer_route(
     llm_resp = _state["llm"].invoke(prompt)
     answer_text = getattr(llm_resp, "content", None) or str(llm_resp)
 
-    citations = [
-        _enrich_citation(doc, score, i + 1)
-        for i, (doc, score) in enumerate(docs_with_scores)
+    # Assemble: concordance rows → section texts → deduped semantic
+    seen_ids = {d.metadata.get("chunk_id") for d, _ in priority_docs}
+    section_citations = [_enrich_citation(d, s, 0) for d, s in priority_docs]
+    semantic_citations = [
+        _enrich_citation(d, s, 0) for d, s in docs_with_scores
+        if d.metadata.get("chunk_id") not in seen_ids
     ]
+    keep = priority + section_citations + semantic_citations[: max(0, req.top_k)]
+    citations = []
+    for i, c in enumerate(keep, start=1):
+        c.n = i
+        citations.append(c)
 
     return AnswerResponse(
         question=req.query,
@@ -372,6 +435,8 @@ def answer_route(
         latency_ms=(time.perf_counter() - start) * 1000.0,
     )
 
+
+# ── /answer/stream (SSE) ─────────────────────────────────────────────
 
 # ── /answer/stream (SSE) ─────────────────────────────────────────────
 
@@ -385,12 +450,21 @@ def answer_stream_route(
     response: Response,
     req: AnswerRequest,
 ):
-    """Streaming variant of /answer. Returns text/event-stream."""
+    """Streaming variant of /answer. Returns text/event-stream.
+
+    Events:
+      • citations  — concordance rows + section texts + semantic, after retrieval
+      • token      — one per LLM chunk
+      • done       — terminal frame with latency
+      • error      — terminal frame on failure
+    """
     if req.retriever not in {"hybrid_reranked", "dense", "bm25", "ensemble"}:
         raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
 
     def event_generator():
         start = time.perf_counter()
+
+        # 1. Retrieve
         try:
             docs_with_scores = _retrieve_across_collections(
                 query=req.query,
@@ -406,7 +480,11 @@ def answer_stream_route(
             yield sse_event("error", {"stage": "retrieve", "message": str(e)})
             return
 
-        if not docs_with_scores:
+        # 2. Cross-reference detection (may fire even if semantic retrieval is weak)
+        xref, resolved, rows = _concordance_context(req.query)
+
+        # 3. Empty-result refusal — only if BOTH semantic and concordance are empty
+        if not docs_with_scores and not rows:
             yield sse_event("citations", {"citations": []})
             yield sse_event("token", {"text": "I don't have that information in the provided documents."})
             yield sse_event("done", {
@@ -416,19 +494,38 @@ def answer_stream_route(
             })
             return
 
-        citations = [
-            _enrich_citation(doc, score, i + 1).model_dump()
-            for i, (doc, score) in enumerate(docs_with_scores)
-        ]
-        yield sse_event("citations", {"citations": citations})
-
-        context = build_context(docs_with_scores)
-
-        # Inject cross-reference mapping if the query mentions a section
-        xref = _concordance_context(req.query)
+        # 4. Build context
+        context = build_context(docs_with_scores) if docs_with_scores else ""
         if xref:
             context = f"{xref}\n\n{context}"
 
+        # 5. Priority citations: concordance row(s) + real section texts
+        priority = []
+        n = 1
+        for row in rows:
+            priority.append(_concordance_citation(row, n)); n += 1
+
+        priority_docs = []
+        for r in resolved:
+            hit = _fetch_section_chunk(r["act"], r["section"])
+            if hit:
+                priority_docs.append(hit)
+
+        seen_ids = {d.metadata.get("chunk_id") for d, _ in priority_docs}
+        section_citations = [_enrich_citation(d, s, 0) for d, s in priority_docs]
+        semantic_citations = [
+            _enrich_citation(d, s, 0) for d, s in docs_with_scores
+            if d.metadata.get("chunk_id") not in seen_ids
+        ]
+        keep = priority + section_citations + semantic_citations[: max(0, req.top_k)]
+        for i, c in enumerate(keep, start=1):
+            c.n = i
+        citations = [c.model_dump() for c in keep]
+
+        # 6. Emit citations immediately
+        yield sse_event("citations", {"citations": citations})
+
+        # 7. Build prompt + stream LLM tokens
         prompt = (
             f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
             f"Bharatiya Nyaya Sanhita excerpts below. Use the CROSS-REFERENCE lines "
@@ -450,6 +547,7 @@ def answer_stream_route(
             yield sse_event("error", {"stage": "llm", "message": str(e)})
             return
 
+        # 8. Done
         yield sse_event("done", {
             "latency_ms": round((time.perf_counter() - start) * 1000, 1),
             "retriever":  req.retriever,
@@ -465,7 +563,6 @@ def answer_stream_route(
             "X-Accel-Buffering": "no",
         },
     )
-
 
 # ── /eval/* (point at IPC by default for now) ────────────────────────
 
@@ -573,6 +670,29 @@ def list_documents() -> DocListResponse:
         total=len(docs),
     )
 
+@app.get("/documents/page-image", dependencies=[Depends(verify_api_key)])
+def page_image(
+    act: str = Query(..., pattern="^(IPC|BNS)$"),
+    page: int = Query(..., ge=1),
+):
+    """Render one page of a corpus PDF to PNG for inline preview."""
+    import pdfplumber, io
+
+    pdf_map = {
+        "IPC": cfg.PROJECT_ROOT / "data" / "raw" / "IPC_1860.pdf",
+        "BNS": cfg.PROJECT_ROOT / "data" / "raw" / "BNS_2023.pdf",
+    }
+    pdf_path = pdf_map.get(act)
+    if not pdf_path or not pdf_path.exists():
+        raise HTTPException(404, detail=f"PDF not found for act {act}")
+
+    with pdfplumber.open(pdf_path) as pdf:
+        if page > len(pdf.pages):
+            raise HTTPException(404, detail=f"Page {page} out of range")
+        pil_img = pdf.pages[page - 1].to_image(resolution=120).original
+        buf = io.BytesIO()
+        pil_img.save(buf, format="PNG")
+        return FastAPIResponse(content=buf.getvalue(), media_type="image/png")
 
 @app.delete("/documents/{doc_id}", response_model=DeleteResponse)
 def delete_document(doc_id: str) -> DeleteResponse:
