@@ -33,6 +33,7 @@ class ConcordanceRow:
     ipc_title:   Optional[str] = None
     status:      str          = "unchanged"
     row_index:   Optional[int] = None 
+    page_number: Optional[int] = None 
 
 
 # Status keywords (case-insensitive) → enum
@@ -140,6 +141,7 @@ class ConcordanceParser:
                             continue
                         seen.add(key)
                         row.row_index = len(rows) + 1
+                        row.page_number = page_num 
                         rows.append(row)
 
         log.info(f"  Extracted {len(rows)} unique rows")

@@ -5,7 +5,8 @@
     "bns_title": "Short title, commencement and application",
     "ipc_title": "Title and extent of operation of the Code",
     "status": "unchanged",
-    "row_index": 1
+    "row_index": 1,
+    "page_number": 1
   },
   {
     "bns_section": "1(2)",
@@ -13,7 +14,8 @@
     "bns_title": null,
     "ipc_title": "New Sub-Section",
     "status": "new",
-    "row_index": 2
+    "row_index": 2,
+    "page_number": 1
   },
   {
     "bns_section": "1(3)",
@@ -21,7 +23,8 @@
     "bns_title": null,
     "ipc_title": "Punishment of offences committed within India",
     "status": "unchanged",
-    "row_index": 3
+    "row_index": 3,
+    "page_number": 1
   },
   {
     "bns_section": "1(4)",
@@ -29,7 +32,8 @@
     "bns_title": null,
     "ipc_title": "Punishment of offences committed beyond, but",
     "status": "unchanged",
-    "row_index": 4
+    "row_index": 4,
+    "page_number": 1
   },
   {
     "bns_section": "1(5)",
@@ -37,7 +41,8 @@
     "bns_title": null,
     "ipc_title": "Extension of Code to extra-territorial offences",
     "status": "unchanged",
-    "row_index": 5
+    "row_index": 5,
+    "page_number": 1
   },
   {
     "bns_section": "1(6)",
@@ -45,7 +50,8 @@
     "bns_title": null,
     "ipc_title": "Certain laws not to be affected by this Act",
     "status": "unchanged",
-    "row_index": 6
+    "row_index": 6,
+    "page_number": 1
   },
   {
     "bns_section": "2",
@@ -53,7 +59,8 @@
     "bns_title": "Definitions. (Change)",
     "ipc_title": null,
     "status": "changed",
-    "row_index": 7
+    "row_index": 7,
+    "page_number": 1
   },
   {
     "bns_section": "2(1)",
@@ -61,7 +68,8 @@
     "bns_title": "‘act’",
     "ipc_title": "“Act”. “Omission”",
     "status": "deleted",
-    "row_index": 8
+    "row_index": 8,
+    "page_number": 1
   },
   {
     "bns_section": "2(2)",
@@ -69,7 +77,8 @@
     "bns_title": "‘animal’",
     "ipc_title": "“Animal”",
     "status": "unchanged",
-    "row_index": 9
+    "row_index": 9,
+    "page_number": 1
   },
   {
     "bns_section": "2(3)",
@@ -77,7 +86,8 @@
     "bns_title": "‘child’",
     "ipc_title": "New Sub-Section",
     "status": "new",
-    "row_index": 10
+    "row_index": 10,
+    "page_number": 1
   },
   {
     "bns_section": "2(4)",
@@ -85,7 +95,8 @@
     "bns_title": "‘counterfeit’",
     "ipc_title": "“Counterfeit”",
     "status": "unchanged",
-    "row_index": 11
+    "row_index": 11,
+    "page_number": 1
   },
   {
     "bns_section": "2(5)",
@@ -93,7 +104,8 @@
     "bns_title": "‘Court’",
     "ipc_title": "“Court of Justice”",
     "status": "unchanged",
-    "row_index": 12
+    "row_index": 12,
+    "page_number": 1
   },
   {
     "bns_section": "2(6)",
@@ -101,7 +113,8 @@
     "bns_title": "‘death’",
     "ipc_title": "“Death”",
     "status": "unchanged",
-    "row_index": 13
+    "row_index": 13,
+    "page_number": 1
   },
   {
     "bns_section": "2(7)",
@@ -109,7 +122,8 @@
     "bns_title": "‘dishonestly’",
     "ipc_title": "“Dishonestly”",
     "status": "unchanged",
-    "row_index": 14
+    "row_index": 14,
+    "page_number": 1
   },
   {
     "bns_section": "2(8)",
@@ -117,7 +131,8 @@
     "bns_title": "‘document’ (Change)",
     "ipc_title": "“Document”",
     "status": "changed",
-    "row_index": 15
+    "row_index": 15,
+    "page_number": 1
   },
   {
     "bns_section": null,
@@ -125,7 +140,8 @@
     "bns_title": "Deleted",
     "ipc_title": "“Electronic record”",
     "status": "deleted",
-    "row_index": 16
+    "row_index": 16,
+    "page_number": 1
   },
   {
     "bns_section": "2(9)",
@@ -133,7 +149,8 @@
     "bns_title": "’fraudulently’",
     "ipc_title": "“Fraudulently”",
     "status": "unchanged",
-    "row_index": 17
+    "row_index": 17,
+    "page_number": 1
   },
   {
     "bns_section": "2(10)",
@@ -141,7 +158,8 @@
     "bns_title": "‘gender’ (Change)",
     "ipc_title": "Gender",
     "status": "changed",
-    "row_index": 18
+    "row_index": 18,
+    "page_number": 1
   },
   {
     "bns_section": "2(11)",
@@ -149,7 +167,8 @@
     "bns_title": "‘good faith’",
     "ipc_title": "“Good faith”",
     "status": "unchanged",
-    "row_index": 19
+    "row_index": 19,
+    "page_number": 1
   },
   {
     "bns_section": "2(12)",
@@ -157,7 +176,8 @@
     "bns_title": "‘Government’",
     "ipc_title": "“Government”",
     "status": "unchanged",
-    "row_index": 20
+    "row_index": 20,
+    "page_number": 1
   },
   {
     "bns_section": null,
@@ -165,7 +185,8 @@
     "bns_title": "Deleted",
     "ipc_title": "“India”",
     "status": "deleted",
-    "row_index": 21
+    "row_index": 21,
+    "page_number": 1
   },
   {
     "bns_section": "2(13)",
@@ -173,7 +194,8 @@
     "bns_title": "‘harbour’",
     "ipc_title": "“Harbour“",
     "status": "unchanged",
-    "row_index": 22
+    "row_index": 22,
+    "page_number": 1
   },
   {
     "bns_section": "2(14)",
@@ -181,7 +203,8 @@
     "bns_title": "‘injury’",
     "ipc_title": "“Injury”",
     "status": "unchanged",
-    "row_index": 23
+    "row_index": 23,
+    "page_number": 1
   },
   {
     "bns_section": "2(15)",
@@ -189,7 +212,8 @@
     "bns_title": "‘illegal’and “legally bound to do”",
     "ipc_title": "“Illegal”. “Legally bound to do”",
     "status": "unchanged",
-    "row_index": 24
+    "row_index": 24,
+    "page_number": 1
   },
   {
     "bns_section": "2(16)",
@@ -197,7 +221,8 @@
     "bns_title": "‘Judge’",
     "ipc_title": "“Judge”",
     "status": "unchanged",
-    "row_index": 25
+    "row_index": 25,
+    "page_number": 1
   },
   {
     "bns_section": "2(17)",
@@ -205,7 +230,8 @@
     "bns_title": "‘life’",
     "ipc_title": "“Life”",
     "status": "unchanged",
-    "row_index": 26
+    "row_index": 26,
+    "page_number": 1
   },
   {
     "bns_section": "2(18)",
@@ -213,7 +239,8 @@
     "bns_title": "‘local law’",
     "ipc_title": "“Local law”",
     "status": "unchanged",
-    "row_index": 27
+    "row_index": 27,
+    "page_number": 1
   },
   {
     "bns_section": "2(19)",
@@ -221,7 +248,8 @@
     "bns_title": "‘man’",
     "ipc_title": "“Man”. “Woman”",
     "status": "unchanged",
-    "row_index": 28
+    "row_index": 28,
+    "page_number": 1
   },
   {
     "bns_section": "2(20)",
@@ -229,7 +257,8 @@
     "bns_title": "‘month’ and ‘year’",
     "ipc_title": "“Year”. “Month”",
     "status": "unchanged",
-    "row_index": 29
+    "row_index": 29,
+    "page_number": 1
   },
   {
     "bns_section": "2(21)",
@@ -237,7 +266,8 @@
     "bns_title": "‘movable property’ (Change)",
     "ipc_title": "“Movable property”",
     "status": "changed",
-    "row_index": 30
+    "row_index": 30,
+    "page_number": 1
   },
   {
     "bns_section": "2(22)",
@@ -245,7 +275,8 @@
     "bns_title": "‘number’",
     "ipc_title": "Number",
     "status": "unchanged",
-    "row_index": 31
+    "row_index": 31,
+    "page_number": 1
   },
   {
     "bns_section": "2(23)",
@@ -253,7 +284,8 @@
     "bns_title": "‘oath’",
     "ipc_title": "“Oath”",
     "status": "unchanged",
-    "row_index": 32
+    "row_index": 32,
+    "page_number": 1
   },
   {
     "bns_section": "2(24)",
@@ -261,7 +293,8 @@
     "bns_title": "‘offence’",
     "ipc_title": "“Offence”",
     "status": "unchanged",
-    "row_index": 33
+    "row_index": 33,
+    "page_number": 1
   },
   {
     "bns_section": "2(25)",
@@ -269,7 +302,8 @@
     "bns_title": "‘omission’",
     "ipc_title": "“Act”. “Omission”",
     "status": "deleted",
-    "row_index": 34
+    "row_index": 34,
+    "page_number": 1
   },
   {
     "bns_section": "2(26)",
@@ -277,7 +311,8 @@
     "bns_title": "‘person’",
     "ipc_title": "“Person”",
     "status": "unchanged",
-    "row_index": 35
+    "row_index": 35,
+    "page_number": 1
   },
   {
     "bns_section": "2(27)",
@@ -285,7 +320,8 @@
     "bns_title": "‘public’",
     "ipc_title": "“Public”",
     "status": "unchanged",
-    "row_index": 36
+    "row_index": 36,
+    "page_number": 1
   },
   {
     "bns_section": null,
@@ -293,7 +329,8 @@
     "bns_title": "Deleted",
     "ipc_title": "- “Servant of Government”",
     "status": "deleted",
-    "row_index": 37
+    "row_index": 37,
+    "page_number": 1
   },
   {
     "bns_section": "2(28)",
@@ -301,7 +338,8 @@
     "bns_title": "‘public servant’",
     "ipc_title": "“Public servant”",
     "status": "unchanged",
-    "row_index": 38
+    "row_index": 38,
+    "page_number": 1
   },
   {
     "bns_section": "2(29)",
@@ -309,7 +347,8 @@
     "bns_title": "‘reason to believe’",
     "ipc_title": "“Reason to believe”",
     "status": "unchanged",
-    "row_index": 39
+    "row_index": 39,
+    "page_number": 1
   },
   {
     "bns_section": null,
@@ -317,7 +356,8 @@
     "bns_title": "Deleted",
     "ipc_title": "“Section”",
     "status": "deleted",
-    "row_index": 40
+    "row_index": 40,
+    "page_number": 1
   },
   {
     "bns_section": "2(30)",
@@ -325,7 +365,8 @@
     "bns_title": "‘special law’",
     "ipc_title": "“Special law”",
     "status": "unchanged",
-    "row_index": 41
+    "row_index": 41,
+    "page_number": 1
   },
   {
     "bns_section": "2(31)",
@@ -333,7 +374,8 @@
     "bns_title": "‘valuable security’",
     "ipc_title": "“Valuable security”",
     "status": "unchanged",
-    "row_index": 42
+    "row_index": 42,
+    "page_number": 2
   },
   {
     "bns_section": "2(32)",
@@ -341,7 +383,8 @@
     "bns_title": "‘vessel’",
     "ipc_title": "“Vessel”",
     "status": "unchanged",
-    "row_index": 43
+    "row_index": 43,
+    "page_number": 2
   },
   {
     "bns_section": "2(33)",
@@ -349,7 +392,8 @@
     "bns_title": "‘voluntarily’",
     "ipc_title": "“Voluntarily”",
     "status": "unchanged",
-    "row_index": 44
+    "row_index": 44,
+    "page_number": 2
   },
   {
     "bns_section": "2(34)",
@@ -357,7 +401,8 @@
     "bns_title": "‘will’",
     "ipc_title": "“A will”",
     "status": "unchanged",
-    "row_index": 45
+    "row_index": 45,
+    "page_number": 2
   },
   {
     "bns_section": "2(35)",
@@ -365,7 +410,8 @@
     "bns_title": "‘woman’",
     "ipc_title": "“Man”. “Woman”",
     "status": "unchanged",
-    "row_index": 46
+    "row_index": 46,
+    "page_number": 2
   },
   {
     "bns_section": "2(36)",
@@ -373,7 +419,8 @@
     "bns_title": "‘wrongful gain’",
     "ipc_title": "“Wrongful gain”",
     "status": "unchanged",
-    "row_index": 47
+    "row_index": 47,
+    "page_number": 2
   },
   {
     "bns_section": "2(37)",
@@ -381,7 +428,8 @@
     "bns_title": "‘wrongful loss’",
     "ipc_title": "“Wrongful loss”",
     "status": "unchanged",
-    "row_index": 48
+    "row_index": 48,
+    "page_number": 2
   },
   {
     "bns_section": "2(38)",
@@ -389,7 +437,8 @@
     "bns_title": "‘gaining wrongfully’ and ‘losing wrongfully’",
     "ipc_title": "“gaining wrongfully’ and ‘losing wrongfully”",
     "status": "unchanged",
-    "row_index": 49
+    "row_index": 49,
+    "page_number": 2
   },
   {
     "bns_section": "2(39)",
@@ -397,7 +446,8 @@
     "bns_title": null,
     "ipc_title": "New Sub-Section",
     "status": "new",
-    "row_index": 50
+    "row_index": 50,
+    "page_number": 2
   },
   {
     "bns_section": "3",
@@ -405,7 +455,8 @@
     "bns_title": "General explanations",
     "ipc_title": "Definitions in the Code to be understood subject",
     "status": "unchanged",
-    "row_index": 51
+    "row_index": 51,
+    "page_number": 2
   },
   {
     "bns_section": "3(2)",
@@ -413,7 +464,8 @@
     "bns_title": null,
     "ipc_title": "Sense of expression once explained",
     "status": "unchanged",
-    "row_index": 52
+    "row_index": 52,
+    "page_number": 2
   },
   {
     "bns_section": "3(3)",
@@ -421,7 +473,8 @@
     "bns_title": null,
     "ipc_title": "Property in possession of wife, clerk or servant",
     "status": "unchanged",
-    "row_index": 53
+    "row_index": 53,
+    "page_number": 2
   },
   {
     "bns_section": "3(4)",
@@ -429,7 +482,8 @@
     "bns_title": null,
     "ipc_title": "Words referring to acts include illegal omissions",
     "status": "deleted",
-    "row_index": 54
+    "row_index": 54,
+    "page_number": 2
   },
   {
     "bns_section": "3(5)",
@@ -437,7 +491,8 @@
     "bns_title": null,
     "ipc_title": "Acts done by several persons in furtherance of",
     "status": "unchanged",
-    "row_index": 55
+    "row_index": 55,
+    "page_number": 2
   },
   {
     "bns_section": "3(6)",
@@ -445,7 +500,8 @@
     "bns_title": null,
     "ipc_title": "When such an act is criminal by reason of its",
     "status": "unchanged",
-    "row_index": 56
+    "row_index": 56,
+    "page_number": 2
   },
   {
     "bns_section": "3(7)",
@@ -453,7 +509,8 @@
     "bns_title": null,
     "ipc_title": "Effect caused partly by act and partly by",
     "status": "deleted",
-    "row_index": 57
+    "row_index": 57,
+    "page_number": 2
   },
   {
     "bns_section": "3(8)",
@@ -461,7 +518,8 @@
     "bns_title": null,
     "ipc_title": "Co-operation by doing one of several acts",
     "status": "unchanged",
-    "row_index": 58
+    "row_index": 58,
+    "page_number": 2
   },
   {
     "bns_section": "3(9)",
@@ -469,7 +527,8 @@
     "bns_title": null,
     "ipc_title": "Persons concerned in criminal act may be guilty",
     "status": "unchanged",
-    "row_index": 59
+    "row_index": 59,
+    "page_number": 2
   },
   {
     "bns_section": "4",
@@ -477,7 +536,8 @@
     "bns_title": "Punishments. (Change)",
     "ipc_title": "Punishments",
     "status": "changed",
-    "row_index": 60
+    "row_index": 60,
+    "page_number": 2
   },
   {
     "bns_section": null,
@@ -485,7 +545,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Construction of reference to transportation",
     "status": "deleted",
-    "row_index": 61
+    "row_index": 61,
+    "page_number": 2
   },
   {
     "bns_section": "5",
@@ -493,7 +554,8 @@
     "bns_title": "Commutation of sentence",
     "ipc_title": "Commutation of sentence of death",
     "status": "unchanged",
-    "row_index": 62
+    "row_index": 62,
+    "page_number": 2
   },
   {
     "bns_section": "5",
@@ -501,7 +563,8 @@
     "bns_title": "(b)",
     "ipc_title": "Commutation of sentence of imprisonment for",
     "status": "unchanged",
-    "row_index": 63
+    "row_index": 63,
+    "page_number": 2
   },
   {
     "bns_section": "6",
@@ -509,7 +572,8 @@
     "bns_title": "Fractions of terms of punishment",
     "ipc_title": "Fractions of terms of punishment",
     "status": "unchanged",
-    "row_index": 64
+    "row_index": 64,
+    "page_number": 2
   },
   {
     "bns_section": "7",
@@ -517,7 +581,8 @@
     "bns_title": "Sentence may be (in certain cases of",
     "ipc_title": "Sentence may be (in certain cases of",
     "status": "unchanged",
-    "row_index": 65
+    "row_index": 65,
+    "page_number": 2
   },
   {
     "bns_section": "8",
@@ -525,7 +590,8 @@
     "bns_title": "Amount of fine, liability in default of payment",
     "ipc_title": "Amount of fine",
     "status": "changed",
-    "row_index": 66
+    "row_index": 66,
+    "page_number": 2
   },
   {
     "bns_section": "8(2)",
@@ -533,7 +599,8 @@
     "bns_title": null,
     "ipc_title": "Sentence of imprisonment for non-payment of",
     "status": "unchanged",
-    "row_index": 67
+    "row_index": 67,
+    "page_number": 2
   },
   {
     "bns_section": "8(3)",
@@ -541,7 +608,8 @@
     "bns_title": null,
     "ipc_title": "Limit to imprisonment for non-payment of fine,",
     "status": "unchanged",
-    "row_index": 68
+    "row_index": 68,
+    "page_number": 2
   },
   {
     "bns_section": "8(4)",
@@ -549,7 +617,8 @@
     "bns_title": null,
     "ipc_title": "Description of imprisonment for non-payment of",
     "status": "unchanged",
-    "row_index": 69
+    "row_index": 69,
+    "page_number": 2
   },
   {
     "bns_section": "8(5)",
@@ -557,7 +626,8 @@
     "bns_title": null,
     "ipc_title": "Imprisonment for non-payment of fine, when",
     "status": "unchanged",
-    "row_index": 70
+    "row_index": 70,
+    "page_number": 2
   },
   {
     "bns_section": "8(6)",
@@ -565,7 +635,8 @@
     "bns_title": "(a)",
     "ipc_title": "Imprisonment to terminate on payment of fine",
     "status": "unchanged",
-    "row_index": 71
+    "row_index": 71,
+    "page_number": 2
   },
   {
     "bns_section": "8(6)",
@@ -573,7 +644,8 @@
     "bns_title": "(b)",
     "ipc_title": "Termination of imprisonment on payment of",
     "status": "unchanged",
-    "row_index": 72
+    "row_index": 72,
+    "page_number": 2
   },
   {
     "bns_section": "8(7)",
@@ -581,7 +653,8 @@
     "bns_title": null,
     "ipc_title": "Fine leviable within six years, of during",
     "status": "unchanged",
-    "row_index": 73
+    "row_index": 73,
+    "page_number": 2
   },
   {
     "bns_section": null,
@@ -589,7 +662,8 @@
     "bns_title": null,
     "ipc_title": "liability",
     "status": "unchanged",
-    "row_index": 74
+    "row_index": 74,
+    "page_number": 3
   },
   {
     "bns_section": "9",
@@ -597,7 +671,8 @@
     "bns_title": "Limit of punishment of offence made up of",
     "ipc_title": "Limit of punishment of offence made up of",
     "status": "unchanged",
-    "row_index": 75
+    "row_index": 75,
+    "page_number": 3
   },
   {
     "bns_section": "10",
@@ -605,7 +680,8 @@
     "bns_title": "Punishment of person guilty of one of several",
     "ipc_title": "Punishment of person guilty of one of several",
     "status": "unchanged",
-    "row_index": 76
+    "row_index": 76,
+    "page_number": 3
   },
   {
     "bns_section": "11",
@@ -613,7 +689,8 @@
     "bns_title": "Solitary confinement",
     "ipc_title": "Solitary confinement",
     "status": "unchanged",
-    "row_index": 77
+    "row_index": 77,
+    "page_number": 3
   },
   {
     "bns_section": "12",
@@ -621,7 +698,8 @@
     "bns_title": "Limit of solitary confinement",
     "ipc_title": "Limit of solitary confinement",
     "status": "unchanged",
-    "row_index": 78
+    "row_index": 78,
+    "page_number": 3
   },
   {
     "bns_section": "13",
@@ -629,7 +707,8 @@
     "bns_title": "Enhanced punishment for certain offences after",
     "ipc_title": "Enhanced punishment for certain offences under",
     "status": "unchanged",
-    "row_index": 79
+    "row_index": 79,
+    "page_number": 3
   },
   {
     "bns_section": "14",
@@ -637,7 +716,8 @@
     "bns_title": "Act done by a person bound, or by mistake of",
     "ipc_title": "Act done by a person bound, or by mistake of fact",
     "status": "unchanged",
-    "row_index": 80
+    "row_index": 80,
+    "page_number": 3
   },
   {
     "bns_section": "15",
@@ -645,7 +725,8 @@
     "bns_title": "Act of Judge when acting judicially",
     "ipc_title": "Act of Judge when acting judicially",
     "status": "unchanged",
-    "row_index": 81
+    "row_index": 81,
+    "page_number": 3
   },
   {
     "bns_section": "16",
@@ -653,7 +734,8 @@
     "bns_title": "Act done pursuant to judgment or order of",
     "ipc_title": "Act done pursuant to the judgment or order of",
     "status": "unchanged",
-    "row_index": 82
+    "row_index": 82,
+    "page_number": 3
   },
   {
     "bns_section": "17",
@@ -661,7 +743,8 @@
     "bns_title": "Act done by a person justified, or by mistake of",
     "ipc_title": "Act done by a person justified, or by mistake of",
     "status": "unchanged",
-    "row_index": 83
+    "row_index": 83,
+    "page_number": 3
   },
   {
     "bns_section": "18",
@@ -669,7 +752,8 @@
     "bns_title": "Accident in doing a lawful act",
     "ipc_title": "Accident in doing a lawful act",
     "status": "unchanged",
-    "row_index": 84
+    "row_index": 84,
+    "page_number": 3
   },
   {
     "bns_section": "19",
@@ -677,7 +761,8 @@
     "bns_title": "Act likely to cause harm, but done without",
     "ipc_title": "Act likely to cause harm, but done without",
     "status": "unchanged",
-    "row_index": 85
+    "row_index": 85,
+    "page_number": 3
   },
   {
     "bns_section": "20",
@@ -685,7 +770,8 @@
     "bns_title": "Act of a child under seven years of age",
     "ipc_title": "Act of a child under seven years of age",
     "status": "unchanged",
-    "row_index": 86
+    "row_index": 86,
+    "page_number": 3
   },
   {
     "bns_section": "21",
@@ -693,7 +779,8 @@
     "bns_title": "Act of a child above seven and under twelve",
     "ipc_title": "Act of a child above seven and under twelve of",
     "status": "unchanged",
-    "row_index": 87
+    "row_index": 87,
+    "page_number": 3
   },
   {
     "bns_section": "22",
@@ -701,7 +788,8 @@
     "bns_title": "Act of a person of unsound mind",
     "ipc_title": "Act of a person of unsound mind",
     "status": "unchanged",
-    "row_index": 88
+    "row_index": 88,
+    "page_number": 3
   },
   {
     "bns_section": "23",
@@ -709,7 +797,8 @@
     "bns_title": "Act of a person incapable of judgment by",
     "ipc_title": "Act of a person incapable of judgment by reason",
     "status": "unchanged",
-    "row_index": 89
+    "row_index": 89,
+    "page_number": 3
   },
   {
     "bns_section": "24",
@@ -717,7 +806,8 @@
     "bns_title": "Offence requiring a particular intent or",
     "ipc_title": "Offence requiring a particular intent or",
     "status": "unchanged",
-    "row_index": 90
+    "row_index": 90,
+    "page_number": 3
   },
   {
     "bns_section": "25",
@@ -725,7 +815,8 @@
     "bns_title": "Act not intended and not known to be likely to",
     "ipc_title": "Act not intended and not known to be likely to",
     "status": "unchanged",
-    "row_index": 91
+    "row_index": 91,
+    "page_number": 3
   },
   {
     "bns_section": "26",
@@ -733,7 +824,8 @@
     "bns_title": "Act not intended to cause death, done by",
     "ipc_title": "Act not intended to cause death, done by consent",
     "status": "unchanged",
-    "row_index": 92
+    "row_index": 92,
+    "page_number": 3
   },
   {
     "bns_section": "27",
@@ -741,7 +833,8 @@
     "bns_title": "Act done in good faith for benefit of child or",
     "ipc_title": "Act done in good faith for benefit of child or",
     "status": "unchanged",
-    "row_index": 93
+    "row_index": 93,
+    "page_number": 3
   },
   {
     "bns_section": "28",
@@ -749,7 +842,8 @@
     "bns_title": "Consent known to be given under fear or",
     "ipc_title": "Consent known to be given under fear or",
     "status": "unchanged",
-    "row_index": 94
+    "row_index": 94,
+    "page_number": 3
   },
   {
     "bns_section": "29",
@@ -757,7 +851,8 @@
     "bns_title": "Exclusion of acts which are offences",
     "ipc_title": "Exclusion of acts which are offences",
     "status": "unchanged",
-    "row_index": 95
+    "row_index": 95,
+    "page_number": 3
   },
   {
     "bns_section": "30",
@@ -765,7 +860,8 @@
     "bns_title": "Act done in good faith for benefit of a person",
     "ipc_title": "Act done in good faith for benefit of a person",
     "status": "unchanged",
-    "row_index": 96
+    "row_index": 96,
+    "page_number": 3
   },
   {
     "bns_section": "31",
@@ -773,7 +869,8 @@
     "bns_title": "Communication made in good faith",
     "ipc_title": "Communication made in good faith",
     "status": "unchanged",
-    "row_index": 97
+    "row_index": 97,
+    "page_number": 3
   },
   {
     "bns_section": "32",
@@ -781,7 +878,8 @@
     "bns_title": "Act to which a person is compelled by threats",
     "ipc_title": "Act to which a person is compelled by threats",
     "status": "unchanged",
-    "row_index": 98
+    "row_index": 98,
+    "page_number": 3
   },
   {
     "bns_section": "33",
@@ -789,7 +887,8 @@
     "bns_title": "Act causing slight harm",
     "ipc_title": "Act causing slight harm",
     "status": "unchanged",
-    "row_index": 99
+    "row_index": 99,
+    "page_number": 3
   },
   {
     "bns_section": "34",
@@ -797,7 +896,8 @@
     "bns_title": "Things done in private defence",
     "ipc_title": "Things done in private defence",
     "status": "unchanged",
-    "row_index": 100
+    "row_index": 100,
+    "page_number": 3
   },
   {
     "bns_section": "35",
@@ -805,7 +905,8 @@
     "bns_title": "Right of private defence of body and of",
     "ipc_title": "Right of private defence of the body and of",
     "status": "unchanged",
-    "row_index": 101
+    "row_index": 101,
+    "page_number": 3
   },
   {
     "bns_section": "36",
@@ -813,7 +914,8 @@
     "bns_title": "Right of private defence against act of a person",
     "ipc_title": "Right of private defence against the act of a",
     "status": "unchanged",
-    "row_index": 102
+    "row_index": 102,
+    "page_number": 4
   },
   {
     "bns_section": "37",
@@ -821,7 +923,8 @@
     "bns_title": "Acts against which there is no right of private",
     "ipc_title": "Acts against which there is no right of private",
     "status": "unchanged",
-    "row_index": 103
+    "row_index": 103,
+    "page_number": 4
   },
   {
     "bns_section": "38",
@@ -829,7 +932,8 @@
     "bns_title": "When right of private defence of body extends",
     "ipc_title": "When the right of private defence of the body",
     "status": "unchanged",
-    "row_index": 104
+    "row_index": 104,
+    "page_number": 4
   },
   {
     "bns_section": "39",
@@ -837,7 +941,8 @@
     "bns_title": "When such right extends to causing any harm",
     "ipc_title": "When such right extends to causing any harm",
     "status": "unchanged",
-    "row_index": 105
+    "row_index": 105,
+    "page_number": 4
   },
   {
     "bns_section": "40",
@@ -845,7 +950,8 @@
     "bns_title": "Commencement and continuance of right of",
     "ipc_title": "Commencement and continuance of the right of",
     "status": "unchanged",
-    "row_index": 106
+    "row_index": 106,
+    "page_number": 4
   },
   {
     "bns_section": "41",
@@ -853,7 +959,8 @@
     "bns_title": "When right of private defence of property",
     "ipc_title": "When the right of private defence of property",
     "status": "unchanged",
-    "row_index": 107
+    "row_index": 107,
+    "page_number": 4
   },
   {
     "bns_section": "42",
@@ -861,7 +968,8 @@
     "bns_title": "When such right extends to causing any harm",
     "ipc_title": "When such right extends to causing any harm",
     "status": "unchanged",
-    "row_index": 108
+    "row_index": 108,
+    "page_number": 4
   },
   {
     "bns_section": "43",
@@ -869,7 +977,8 @@
     "bns_title": "Commencement and continuance of right of",
     "ipc_title": "Commencement and continuance of the right of",
     "status": "unchanged",
-    "row_index": 109
+    "row_index": 109,
+    "page_number": 4
   },
   {
     "bns_section": "44",
@@ -877,7 +986,8 @@
     "bns_title": "Right of private defence against deadly assault",
     "ipc_title": "Right of private defence against deadly assault",
     "status": "unchanged",
-    "row_index": 110
+    "row_index": 110,
+    "page_number": 4
   },
   {
     "bns_section": "45",
@@ -885,7 +995,8 @@
     "bns_title": "Abetment of a thing",
     "ipc_title": "Abetment of a thing",
     "status": "unchanged",
-    "row_index": 111
+    "row_index": 111,
+    "page_number": 4
   },
   {
     "bns_section": "46",
@@ -893,7 +1004,8 @@
     "bns_title": "Abettor",
     "ipc_title": "Abettor",
     "status": "unchanged",
-    "row_index": 112
+    "row_index": 112,
+    "page_number": 4
   },
   {
     "bns_section": "47",
@@ -901,7 +1013,8 @@
     "bns_title": "Abetment in India of offences outside India",
     "ipc_title": "Abetment in India of offences outside India",
     "status": "unchanged",
-    "row_index": 113
+    "row_index": 113,
+    "page_number": 4
   },
   {
     "bns_section": "48",
@@ -909,7 +1022,8 @@
     "bns_title": "Abetment outside India for offence in India",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 114
+    "row_index": 114,
+    "page_number": 4
   },
   {
     "bns_section": "49",
@@ -917,7 +1031,8 @@
     "bns_title": "Punishment of abetment if act abetted is",
     "ipc_title": "Punishment of abetment if the act abetted is",
     "status": "unchanged",
-    "row_index": 115
+    "row_index": 115,
+    "page_number": 4
   },
   {
     "bns_section": "50",
@@ -925,7 +1040,8 @@
     "bns_title": "Punishment of abetment if person abetted does",
     "ipc_title": "Punishment of abetment if person abetted does",
     "status": "unchanged",
-    "row_index": 116
+    "row_index": 116,
+    "page_number": 4
   },
   {
     "bns_section": "51",
@@ -933,7 +1049,8 @@
     "bns_title": "Liability of abettor when one act abetted and",
     "ipc_title": "Liability of abettor when one act abetted and",
     "status": "unchanged",
-    "row_index": 117
+    "row_index": 117,
+    "page_number": 4
   },
   {
     "bns_section": "52",
@@ -941,7 +1058,8 @@
     "bns_title": "Abettor when liable to cumulative punishment",
     "ipc_title": "Abettor when liable to cumulative punishment",
     "status": "unchanged",
-    "row_index": 118
+    "row_index": 118,
+    "page_number": 4
   },
   {
     "bns_section": "53",
@@ -949,7 +1067,8 @@
     "bns_title": "Liability of abettor for an effect caused by act",
     "ipc_title": "Liability of abettor for an effect caused by the",
     "status": "unchanged",
-    "row_index": 119
+    "row_index": 119,
+    "page_number": 4
   },
   {
     "bns_section": "54",
@@ -957,7 +1076,8 @@
     "bns_title": "Abettor present when offence is committed",
     "ipc_title": "Abettor present when offence is committed",
     "status": "unchanged",
-    "row_index": 120
+    "row_index": 120,
+    "page_number": 4
   },
   {
     "bns_section": "55",
@@ -965,7 +1085,8 @@
     "bns_title": "Abetment of offence punishable with death or",
     "ipc_title": "Abetment of offence punishable with death or",
     "status": "unchanged",
-    "row_index": 121
+    "row_index": 121,
+    "page_number": 4
   },
   {
     "bns_section": "56",
@@ -973,7 +1094,8 @@
     "bns_title": "Abetment of offence punishable with",
     "ipc_title": "Abetment of offence punishable with",
     "status": "unchanged",
-    "row_index": 122
+    "row_index": 122,
+    "page_number": 4
   },
   {
     "bns_section": "57",
@@ -981,7 +1103,8 @@
     "bns_title": "Abetting commission of offence by public or by",
     "ipc_title": "Abetting commission of offence by the public or",
     "status": "changed",
-    "row_index": 123
+    "row_index": 123,
+    "page_number": 4
   },
   {
     "bns_section": "58",
@@ -989,7 +1112,8 @@
     "bns_title": "Concealing design to commit offence",
     "ipc_title": "Concealing design to commit offence punishable",
     "status": "unchanged",
-    "row_index": 124
+    "row_index": 124,
+    "page_number": 4
   },
   {
     "bns_section": "59",
@@ -997,7 +1121,8 @@
     "bns_title": "Public servant concealing design to commit",
     "ipc_title": "Public servant concealing design to commit",
     "status": "unchanged",
-    "row_index": 125
+    "row_index": 125,
+    "page_number": 4
   },
   {
     "bns_section": "60",
@@ -1005,7 +1130,8 @@
     "bns_title": "Concealing design to commit offence",
     "ipc_title": "Concealing design to commit offence punishable",
     "status": "unchanged",
-    "row_index": 126
+    "row_index": 126,
+    "page_number": 4
   },
   {
     "bns_section": "61",
@@ -1013,7 +1139,8 @@
     "bns_title": "Criminal conspiracy",
     "ipc_title": "Definition of criminal conspiracy",
     "status": "unchanged",
-    "row_index": 127
+    "row_index": 127,
+    "page_number": 5
   },
   {
     "bns_section": "61(2)",
@@ -1021,7 +1148,8 @@
     "bns_title": null,
     "ipc_title": "Punishment of criminal conspiracy",
     "status": "unchanged",
-    "row_index": 128
+    "row_index": 128,
+    "page_number": 5
   },
   {
     "bns_section": "62",
@@ -1029,7 +1157,8 @@
     "bns_title": "Punishment for attempting to commit offences",
     "ipc_title": "Punishment for attempting to commit offences",
     "status": "unchanged",
-    "row_index": 129
+    "row_index": 129,
+    "page_number": 5
   },
   {
     "bns_section": "63",
@@ -1037,7 +1166,8 @@
     "bns_title": "Rape",
     "ipc_title": "Rape",
     "status": "unchanged",
-    "row_index": 130
+    "row_index": 130,
+    "page_number": 5
   },
   {
     "bns_section": "64",
@@ -1045,7 +1175,8 @@
     "bns_title": "Punishment for rape",
     "ipc_title": "Punishment for rape",
     "status": "unchanged",
-    "row_index": 131
+    "row_index": 131,
+    "page_number": 5
   },
   {
     "bns_section": "65",
@@ -1053,7 +1184,8 @@
     "bns_title": "Punishment for rape in certain cases",
     "ipc_title": null,
     "status": "unchanged",
-    "row_index": 132
+    "row_index": 132,
+    "page_number": 5
   },
   {
     "bns_section": "65(2)",
@@ -1061,7 +1193,8 @@
     "bns_title": null,
     "ipc_title": "B. Punishment for rape on woman under twelve",
     "status": "unchanged",
-    "row_index": 133
+    "row_index": 133,
+    "page_number": 5
   },
   {
     "bns_section": "66",
@@ -1069,7 +1202,8 @@
     "bns_title": "Punishment for causing death or resulting in",
     "ipc_title": "Punishment for causing death or resulting in",
     "status": "unchanged",
-    "row_index": 134
+    "row_index": 134,
+    "page_number": 5
   },
   {
     "bns_section": "67",
@@ -1077,7 +1211,8 @@
     "bns_title": "Sexual intercourse by husband upon his wife",
     "ipc_title": "Sexual intercourse by husband upon his wife",
     "status": "unchanged",
-    "row_index": 135
+    "row_index": 135,
+    "page_number": 5
   },
   {
     "bns_section": "68",
@@ -1085,7 +1220,8 @@
     "bns_title": "Sexual intercourse by a person in authority",
     "ipc_title": "Sexual intercourse by a person in authority",
     "status": "unchanged",
-    "row_index": 136
+    "row_index": 136,
+    "page_number": 5
   },
   {
     "bns_section": "69",
@@ -1093,7 +1229,8 @@
     "bns_title": "Sexual intercourse by employing deceitful",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 137
+    "row_index": 137,
+    "page_number": 5
   },
   {
     "bns_section": "70",
@@ -1101,7 +1238,8 @@
     "bns_title": "Gang rape",
     "ipc_title": "Gang rape",
     "status": "unchanged",
-    "row_index": 138
+    "row_index": 138,
+    "page_number": 5
   },
   {
     "bns_section": "70(2)",
@@ -1109,7 +1247,8 @@
     "bns_title": "(Gang Rape - Below 18 years) (Change)",
     "ipc_title": "A.Punishment for gang rape on woman under",
     "status": "changed",
-    "row_index": 139
+    "row_index": 139,
+    "page_number": 5
   },
   {
     "bns_section": "71",
@@ -1117,7 +1256,8 @@
     "bns_title": "Punishment for repeat offenders",
     "ipc_title": "Punishment for repeat offenders",
     "status": "unchanged",
-    "row_index": 140
+    "row_index": 140,
+    "page_number": 5
   },
   {
     "bns_section": null,
@@ -1125,7 +1265,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Unnatural Offences",
     "status": "deleted",
-    "row_index": 141
+    "row_index": 141,
+    "page_number": 5
   },
   {
     "bns_section": "72",
@@ -1133,7 +1274,8 @@
     "bns_title": "Disclosure of identity of victim of certain",
     "ipc_title": "Disclosure of identity of the victim of certain",
     "status": "unchanged",
-    "row_index": 142
+    "row_index": 142,
+    "page_number": 5
   },
   {
     "bns_section": "73",
@@ -1141,7 +1283,8 @@
     "bns_title": "Printing or publishing of any matter relating to",
     "ipc_title": "(3)",
     "status": "unchanged",
-    "row_index": 143
+    "row_index": 143,
+    "page_number": 5
   },
   {
     "bns_section": "74",
@@ -1149,7 +1292,8 @@
     "bns_title": "Assault or use of criminal force to woman with",
     "ipc_title": "Assault or criminal force to woman with intent",
     "status": "unchanged",
-    "row_index": 144
+    "row_index": 144,
+    "page_number": 5
   },
   {
     "bns_section": "75",
@@ -1157,7 +1301,8 @@
     "bns_title": "Sexual harassment",
     "ipc_title": "Sexual harassment and punishment for sexual",
     "status": "unchanged",
-    "row_index": 145
+    "row_index": 145,
+    "page_number": 5
   },
   {
     "bns_section": "76",
@@ -1165,7 +1310,8 @@
     "bns_title": "Assault or use of criminal force to woman with",
     "ipc_title": "Assault or use of criminal force to woman with",
     "status": "changed",
-    "row_index": 146
+    "row_index": 146,
+    "page_number": 5
   },
   {
     "bns_section": "77",
@@ -1173,7 +1319,8 @@
     "bns_title": "Voyeurism. (Change)",
     "ipc_title": "Voyeurism",
     "status": "changed",
-    "row_index": 147
+    "row_index": 147,
+    "page_number": 5
   },
   {
     "bns_section": "78",
@@ -1181,7 +1328,8 @@
     "bns_title": "Stalking",
     "ipc_title": "Stalking",
     "status": "unchanged",
-    "row_index": 148
+    "row_index": 148,
+    "page_number": 5
   },
   {
     "bns_section": "79",
@@ -1189,7 +1337,8 @@
     "bns_title": "Word, gesture or act intended to insult",
     "ipc_title": "Word, gesture or act intended to insult the",
     "status": "unchanged",
-    "row_index": 149
+    "row_index": 149,
+    "page_number": 5
   },
   {
     "bns_section": "80",
@@ -1197,7 +1346,8 @@
     "bns_title": "Dowry death",
     "ipc_title": "Dowry death",
     "status": "unchanged",
-    "row_index": 150
+    "row_index": 150,
+    "page_number": 6
   },
   {
     "bns_section": "81",
@@ -1205,7 +1355,8 @@
     "bns_title": "Cohabitation caused by man deceitfully",
     "ipc_title": "Cohabitation caused by a man deceitfully",
     "status": "unchanged",
-    "row_index": 151
+    "row_index": 151,
+    "page_number": 6
   },
   {
     "bns_section": "82",
@@ -1213,7 +1364,8 @@
     "bns_title": "Marrying again during lifetime of husband or",
     "ipc_title": "Marrying again during lifetime of husband or",
     "status": "unchanged",
-    "row_index": 152
+    "row_index": 152,
+    "page_number": 6
   },
   {
     "bns_section": "82(2)",
@@ -1221,7 +1373,8 @@
     "bns_title": null,
     "ipc_title": "Same offence with concealment of former",
     "status": "unchanged",
-    "row_index": 153
+    "row_index": 153,
+    "page_number": 6
   },
   {
     "bns_section": "83",
@@ -1229,7 +1382,8 @@
     "bns_title": "Marriage ceremony fraudulently gone through",
     "ipc_title": "Marriage ceremony fraudulently gone through",
     "status": "unchanged",
-    "row_index": 154
+    "row_index": 154,
+    "page_number": 6
   },
   {
     "bns_section": null,
@@ -1237,7 +1391,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Adultery",
     "status": "deleted",
-    "row_index": 155
+    "row_index": 155,
+    "page_number": 6
   },
   {
     "bns_section": "84",
@@ -1245,7 +1400,8 @@
     "bns_title": "Enticing or taking away or detaining with",
     "ipc_title": "Enticing or taking away or detaining with",
     "status": "unchanged",
-    "row_index": 156
+    "row_index": 156,
+    "page_number": 6
   },
   {
     "bns_section": "85",
@@ -1253,7 +1409,8 @@
     "bns_title": "Husband or relative of husband of a woman",
     "ipc_title": "Husband or relative of husband of a woman",
     "status": "unchanged",
-    "row_index": 157
+    "row_index": 157,
+    "page_number": 6
   },
   {
     "bns_section": "86",
@@ -1261,7 +1418,8 @@
     "bns_title": "Cruelty Defined",
     "ipc_title": "Explanation",
     "status": "unchanged",
-    "row_index": 158
+    "row_index": 158,
+    "page_number": 6
   },
   {
     "bns_section": "87",
@@ -1269,7 +1427,8 @@
     "bns_title": "Kidnapping, abducting or inducing woman to",
     "ipc_title": "Kidnapping, abducting or inducing woman to",
     "status": "unchanged",
-    "row_index": 159
+    "row_index": 159,
+    "page_number": 6
   },
   {
     "bns_section": "88",
@@ -1277,7 +1436,8 @@
     "bns_title": "Causing miscarriage",
     "ipc_title": "Causing miscarriage",
     "status": "unchanged",
-    "row_index": 160
+    "row_index": 160,
+    "page_number": 6
   },
   {
     "bns_section": "89",
@@ -1285,7 +1445,8 @@
     "bns_title": "Causing miscarriage without woman’s consent",
     "ipc_title": "Causing miscarriage without woman's consent",
     "status": "unchanged",
-    "row_index": 161
+    "row_index": 161,
+    "page_number": 6
   },
   {
     "bns_section": "90",
@@ -1293,7 +1454,8 @@
     "bns_title": "Death caused by act done with intent to cause",
     "ipc_title": "Death caused by act done with intent to cause",
     "status": "unchanged",
-    "row_index": 162
+    "row_index": 162,
+    "page_number": 6
   },
   {
     "bns_section": "91",
@@ -1301,7 +1463,8 @@
     "bns_title": "Act done with intent to prevent child being",
     "ipc_title": "Act done with intent to prevent child being born",
     "status": "unchanged",
-    "row_index": 163
+    "row_index": 163,
+    "page_number": 6
   },
   {
     "bns_section": "92",
@@ -1309,7 +1472,8 @@
     "bns_title": "Causing death of quick unborn child by act",
     "ipc_title": "Causing death of quick unborn child by act",
     "status": "unchanged",
-    "row_index": 164
+    "row_index": 164,
+    "page_number": 6
   },
   {
     "bns_section": "93",
@@ -1317,7 +1481,8 @@
     "bns_title": "Exposure and abandonment of child under",
     "ipc_title": "Exposure and abandonment of child under",
     "status": "unchanged",
-    "row_index": 165
+    "row_index": 165,
+    "page_number": 6
   },
   {
     "bns_section": "94",
@@ -1325,7 +1490,8 @@
     "bns_title": "Concealment of birth by secret disposal of dead",
     "ipc_title": "Concealment of birth by secret disposal of dead",
     "status": "unchanged",
-    "row_index": 166
+    "row_index": 166,
+    "page_number": 6
   },
   {
     "bns_section": "95",
@@ -1333,7 +1499,8 @@
     "bns_title": "Hiring, employing or engaging a child to",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 167
+    "row_index": 167,
+    "page_number": 6
   },
   {
     "bns_section": "96",
@@ -1341,7 +1508,8 @@
     "bns_title": "Procuration of child",
     "ipc_title": "Procuration of minor girl",
     "status": "unchanged",
-    "row_index": 168
+    "row_index": 168,
+    "page_number": 6
   },
   {
     "bns_section": "97",
@@ -1349,7 +1517,8 @@
     "bns_title": "Kidnapping or abducting child under ten years",
     "ipc_title": "Kidnapping or abducting child under ten years",
     "status": "unchanged",
-    "row_index": 169
+    "row_index": 169,
+    "page_number": 6
   },
   {
     "bns_section": "98",
@@ -1357,7 +1526,8 @@
     "bns_title": "Selling child for purposes of prostitution, etc",
     "ipc_title": "Selling minor for purposes of prostitution, etc",
     "status": "unchanged",
-    "row_index": 170
+    "row_index": 170,
+    "page_number": 7
   },
   {
     "bns_section": "99",
@@ -1365,7 +1535,8 @@
     "bns_title": "Buying child for purposes of prostitution, etc",
     "ipc_title": "Buying minor for purposes of prostitution, etc",
     "status": "changed",
-    "row_index": 171
+    "row_index": 171,
+    "page_number": 7
   },
   {
     "bns_section": "100",
@@ -1373,7 +1544,8 @@
     "bns_title": "Culpable homicide",
     "ipc_title": "Culpable homicide",
     "status": "unchanged",
-    "row_index": 172
+    "row_index": 172,
+    "page_number": 7
   },
   {
     "bns_section": "101",
@@ -1381,7 +1553,8 @@
     "bns_title": "Murder",
     "ipc_title": "Murder",
     "status": "unchanged",
-    "row_index": 173
+    "row_index": 173,
+    "page_number": 7
   },
   {
     "bns_section": "102",
@@ -1389,7 +1562,8 @@
     "bns_title": "Culpable homicide by causing death of person",
     "ipc_title": "Culpable homicide by causing death of person",
     "status": "unchanged",
-    "row_index": 174
+    "row_index": 174,
+    "page_number": 7
   },
   {
     "bns_section": "103",
@@ -1397,7 +1571,8 @@
     "bns_title": "Punishment for murder. (Change)",
     "ipc_title": "Punishment for murder",
     "status": "changed",
-    "row_index": 175
+    "row_index": 175,
+    "page_number": 7
   },
   {
     "bns_section": "104",
@@ -1405,7 +1580,8 @@
     "bns_title": "Punishment for murder by life-convict",
     "ipc_title": "Punishment for murder by life-convict",
     "status": "changed",
-    "row_index": 176
+    "row_index": 176,
+    "page_number": 7
   },
   {
     "bns_section": "105",
@@ -1413,7 +1589,8 @@
     "bns_title": "Punishment for culpable homicide not",
     "ipc_title": "Punishment for culpable homicide not",
     "status": "changed",
-    "row_index": 177
+    "row_index": 177,
+    "page_number": 7
   },
   {
     "bns_section": "106",
@@ -1421,7 +1598,8 @@
     "bns_title": "Causing death by negligence. (Change)",
     "ipc_title": "Causing death by negligence",
     "status": "changed",
-    "row_index": 178
+    "row_index": 178,
+    "page_number": 7
   },
   {
     "bns_section": "106(2)",
@@ -1429,7 +1607,8 @@
     "bns_title": "(Section 106(2) of BNS shall not come into",
     "ipc_title": "New Sub-Section",
     "status": "new",
-    "row_index": 179
+    "row_index": 179,
+    "page_number": 7
   },
   {
     "bns_section": "107",
@@ -1437,7 +1616,8 @@
     "bns_title": "Abetment of suicide of child or person of",
     "ipc_title": "Abetment of suicide of child or insane person",
     "status": "unchanged",
-    "row_index": 180
+    "row_index": 180,
+    "page_number": 7
   },
   {
     "bns_section": "108",
@@ -1445,7 +1625,8 @@
     "bns_title": "Abetment of suicide",
     "ipc_title": "Abetment of suicide",
     "status": "unchanged",
-    "row_index": 181
+    "row_index": 181,
+    "page_number": 7
   },
   {
     "bns_section": "109",
@@ -1453,7 +1634,8 @@
     "bns_title": "Attempt to murder. (Change)",
     "ipc_title": "Attempt to murder",
     "status": "changed",
-    "row_index": 182
+    "row_index": 182,
+    "page_number": 7
   },
   {
     "bns_section": "110",
@@ -1461,7 +1643,8 @@
     "bns_title": "Attempt to commit culpable homicide",
     "ipc_title": "Attempt to commit culpable homicide",
     "status": "unchanged",
-    "row_index": 183
+    "row_index": 183,
+    "page_number": 7
   },
   {
     "bns_section": "111",
@@ -1469,7 +1652,8 @@
     "bns_title": "Organised crime",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 184
+    "row_index": 184,
+    "page_number": 7
   },
   {
     "bns_section": "112",
@@ -1477,7 +1661,8 @@
     "bns_title": "Petty organised crime",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 185
+    "row_index": 185,
+    "page_number": 7
   },
   {
     "bns_section": "113",
@@ -1485,7 +1670,8 @@
     "bns_title": "Terrorist act",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 186
+    "row_index": 186,
+    "page_number": 7
   },
   {
     "bns_section": "114",
@@ -1493,7 +1679,8 @@
     "bns_title": "Hurt",
     "ipc_title": "Hurt",
     "status": "unchanged",
-    "row_index": 187
+    "row_index": 187,
+    "page_number": 7
   },
   {
     "bns_section": "115",
@@ -1501,7 +1688,8 @@
     "bns_title": "Voluntarily causing hurt. (Change)",
     "ipc_title": "Voluntarily causing hurt",
     "status": "changed",
-    "row_index": 188
+    "row_index": 188,
+    "page_number": 7
   },
   {
     "bns_section": "115(2)",
@@ -1509,7 +1697,8 @@
     "bns_title": null,
     "ipc_title": "Punishment for voluntarily causing hurt",
     "status": "unchanged",
-    "row_index": 189
+    "row_index": 189,
+    "page_number": 7
   },
   {
     "bns_section": "116",
@@ -1517,7 +1706,8 @@
     "bns_title": "Grievous hurt. (Change)",
     "ipc_title": "Grievous hurt",
     "status": "changed",
-    "row_index": 190
+    "row_index": 190,
+    "page_number": 7
   },
   {
     "bns_section": "117",
@@ -1525,7 +1715,8 @@
     "bns_title": "Voluntarily causing grievous hurt. (Change)",
     "ipc_title": "Voluntarily causing grievous hurt",
     "status": "changed",
-    "row_index": 191
+    "row_index": 191,
+    "page_number": 7
   },
   {
     "bns_section": "117(2)",
@@ -1533,7 +1724,8 @@
     "bns_title": null,
     "ipc_title": "Punishment for voluntarily causing grievous",
     "status": "unchanged",
-    "row_index": 192
+    "row_index": 192,
+    "page_number": 7
   },
   {
     "bns_section": "118",
@@ -1541,7 +1733,8 @@
     "bns_title": "Voluntarily causing hurt or grievous hurt by",
     "ipc_title": "Voluntarily causing hurt by dangerous weapons",
     "status": "changed",
-    "row_index": 193
+    "row_index": 193,
+    "page_number": 7
   },
   {
     "bns_section": "118(2)",
@@ -1549,7 +1742,8 @@
     "bns_title": null,
     "ipc_title": "Voluntarily causing grievous hurt by dangerous",
     "status": "unchanged",
-    "row_index": 194
+    "row_index": 194,
+    "page_number": 7
   },
   {
     "bns_section": "119",
@@ -1557,7 +1751,8 @@
     "bns_title": "Voluntarily causing hurt or grievous hurt to",
     "ipc_title": "Voluntarily causing hurt to extort property, or to",
     "status": "unchanged",
-    "row_index": 195
+    "row_index": 195,
+    "page_number": 7
   },
   {
     "bns_section": "119(2)",
@@ -1565,7 +1760,8 @@
     "bns_title": null,
     "ipc_title": "Voluntarily causing grievous hurt to extort",
     "status": "unchanged",
-    "row_index": 196
+    "row_index": 196,
+    "page_number": 7
   },
   {
     "bns_section": "120(1)",
@@ -1573,7 +1769,8 @@
     "bns_title": null,
     "ipc_title": "Voluntarily causing hurt to extort confession, or",
     "status": "unchanged",
-    "row_index": 197
+    "row_index": 197,
+    "page_number": 7
   },
   {
     "bns_section": "120(2)",
@@ -1581,7 +1778,8 @@
     "bns_title": null,
     "ipc_title": "Voluntarily causing grievous hurt to extort",
     "status": "unchanged",
-    "row_index": 198
+    "row_index": 198,
+    "page_number": 7
   },
   {
     "bns_section": "121",
@@ -1589,7 +1787,8 @@
     "bns_title": "Voluntarily causing hurt or grievous hurt to",
     "ipc_title": "Voluntarily causing hurt to deter public servant",
     "status": "changed",
-    "row_index": 199
+    "row_index": 199,
+    "page_number": 8
   },
   {
     "bns_section": "121(2)",
@@ -1597,7 +1796,8 @@
     "bns_title": null,
     "ipc_title": "Voluntarily causing grievous hurt to deter public",
     "status": "unchanged",
-    "row_index": 200
+    "row_index": 200,
+    "page_number": 8
   },
   {
     "bns_section": "122",
@@ -1605,7 +1805,8 @@
     "bns_title": "Voluntarily causing hurt or grievous hurt on",
     "ipc_title": "Voluntarily causing hurt on provocation",
     "status": "changed",
-    "row_index": 201
+    "row_index": 201,
+    "page_number": 8
   },
   {
     "bns_section": "122(2)",
@@ -1613,7 +1814,8 @@
     "bns_title": null,
     "ipc_title": "Voluntarily causing grievous hurt on",
     "status": "unchanged",
-    "row_index": 202
+    "row_index": 202,
+    "page_number": 8
   },
   {
     "bns_section": "123",
@@ -1621,7 +1823,8 @@
     "bns_title": "Causing hurt by means of poison, etc., with",
     "ipc_title": "Causing hurt by means of poison, etc., with",
     "status": "unchanged",
-    "row_index": 203
+    "row_index": 203,
+    "page_number": 8
   },
   {
     "bns_section": "124",
@@ -1629,7 +1832,8 @@
     "bns_title": "Voluntarily causing grievous hurt by use of",
     "ipc_title": "Voluntarily causing grievous hurt by use of",
     "status": "unchanged",
-    "row_index": 204
+    "row_index": 204,
+    "page_number": 8
   },
   {
     "bns_section": "124(2)",
@@ -1637,7 +1841,8 @@
     "bns_title": null,
     "ipc_title": "Voluntarily throwing or attempting to throw",
     "status": "unchanged",
-    "row_index": 205
+    "row_index": 205,
+    "page_number": 8
   },
   {
     "bns_section": "125",
@@ -1645,7 +1850,8 @@
     "bns_title": "Act endangering life or personal safety of",
     "ipc_title": "Act endangering life or personal safety of",
     "status": "changed",
-    "row_index": 206
+    "row_index": 206,
+    "page_number": 8
   },
   {
     "bns_section": "125",
@@ -1653,7 +1859,8 @@
     "bns_title": "(a)",
     "ipc_title": "Causing hurt by act endangering life or personal",
     "status": "unchanged",
-    "row_index": 207
+    "row_index": 207,
+    "page_number": 8
   },
   {
     "bns_section": "125",
@@ -1661,7 +1868,8 @@
     "bns_title": "(b)",
     "ipc_title": "Causing grievous hurt by act endangering life or",
     "status": "unchanged",
-    "row_index": 208
+    "row_index": 208,
+    "page_number": 8
   },
   {
     "bns_section": "126",
@@ -1669,7 +1877,8 @@
     "bns_title": "Wrongful restraint. (Change)",
     "ipc_title": "Wrongful restraint",
     "status": "changed",
-    "row_index": 209
+    "row_index": 209,
+    "page_number": 8
   },
   {
     "bns_section": "126(2)",
@@ -1677,7 +1886,8 @@
     "bns_title": null,
     "ipc_title": "Punishment for wrongful restraint",
     "status": "unchanged",
-    "row_index": 210
+    "row_index": 210,
+    "page_number": 8
   },
   {
     "bns_section": "127",
@@ -1685,7 +1895,8 @@
     "bns_title": "Wrongful confinement",
     "ipc_title": "Wrongful confinement",
     "status": "unchanged",
-    "row_index": 211
+    "row_index": 211,
+    "page_number": 8
   },
   {
     "bns_section": "127(2)",
@@ -1693,7 +1904,8 @@
     "bns_title": null,
     "ipc_title": "Punishment for wrongful confinement",
     "status": "unchanged",
-    "row_index": 212
+    "row_index": 212,
+    "page_number": 8
   },
   {
     "bns_section": "127(3)",
@@ -1701,7 +1913,8 @@
     "bns_title": null,
     "ipc_title": "Wrongful confinement for three or more days",
     "status": "unchanged",
-    "row_index": 213
+    "row_index": 213,
+    "page_number": 8
   },
   {
     "bns_section": "127(4)",
@@ -1709,7 +1922,8 @@
     "bns_title": null,
     "ipc_title": "Wrongful confinement for ten or more days",
     "status": "unchanged",
-    "row_index": 214
+    "row_index": 214,
+    "page_number": 8
   },
   {
     "bns_section": "127(5)",
@@ -1717,7 +1931,8 @@
     "bns_title": null,
     "ipc_title": "Wrongful confinement of person for whose",
     "status": "unchanged",
-    "row_index": 215
+    "row_index": 215,
+    "page_number": 8
   },
   {
     "bns_section": "127(6)",
@@ -1725,7 +1940,8 @@
     "bns_title": null,
     "ipc_title": "Wrongful confinement in secret",
     "status": "unchanged",
-    "row_index": 216
+    "row_index": 216,
+    "page_number": 8
   },
   {
     "bns_section": "127(7)",
@@ -1733,7 +1949,8 @@
     "bns_title": null,
     "ipc_title": "Wrongful confinement to extort property, or",
     "status": "unchanged",
-    "row_index": 217
+    "row_index": 217,
+    "page_number": 8
   },
   {
     "bns_section": "127(8)",
@@ -1741,7 +1958,8 @@
     "bns_title": null,
     "ipc_title": "Wrongful confinement to extort confession, or",
     "status": "unchanged",
-    "row_index": 218
+    "row_index": 218,
+    "page_number": 8
   },
   {
     "bns_section": "128",
@@ -1749,7 +1967,8 @@
     "bns_title": "Force",
     "ipc_title": "Force",
     "status": "unchanged",
-    "row_index": 219
+    "row_index": 219,
+    "page_number": 8
   },
   {
     "bns_section": "129",
@@ -1757,7 +1976,8 @@
     "bns_title": "Criminal force",
     "ipc_title": "Criminal force",
     "status": "unchanged",
-    "row_index": 220
+    "row_index": 220,
+    "page_number": 8
   },
   {
     "bns_section": "130",
@@ -1765,7 +1985,8 @@
     "bns_title": "Assault",
     "ipc_title": "Assault",
     "status": "unchanged",
-    "row_index": 221
+    "row_index": 221,
+    "page_number": 8
   },
   {
     "bns_section": "131",
@@ -1773,7 +1994,8 @@
     "bns_title": "Punishment for assault or criminal force",
     "ipc_title": "Punishment for assault or criminal force",
     "status": "changed",
-    "row_index": 222
+    "row_index": 222,
+    "page_number": 8
   },
   {
     "bns_section": "132",
@@ -1781,7 +2003,8 @@
     "bns_title": "Assault or criminal force to deter public",
     "ipc_title": "Assault or criminal force to deter public servant",
     "status": "unchanged",
-    "row_index": 223
+    "row_index": 223,
+    "page_number": 8
   },
   {
     "bns_section": "133",
@@ -1789,7 +2012,8 @@
     "bns_title": "Assault or criminal force with intent to",
     "ipc_title": "Assault or criminal force with intent to",
     "status": "unchanged",
-    "row_index": 224
+    "row_index": 224,
+    "page_number": 8
   },
   {
     "bns_section": "134",
@@ -1797,7 +2021,8 @@
     "bns_title": "Assault or criminal force in attempt to commit",
     "ipc_title": "Assault or criminal force in attempt to commit",
     "status": "unchanged",
-    "row_index": 225
+    "row_index": 225,
+    "page_number": 9
   },
   {
     "bns_section": "135",
@@ -1805,7 +2030,8 @@
     "bns_title": "Assault or criminal force in attempt to",
     "ipc_title": "Assault or criminal force in attempt wrongfully",
     "status": "changed",
-    "row_index": 226
+    "row_index": 226,
+    "page_number": 9
   },
   {
     "bns_section": "136",
@@ -1813,7 +2039,8 @@
     "bns_title": "Assault or criminal force on grave",
     "ipc_title": "Assault or criminal force on grave provocation",
     "status": "changed",
-    "row_index": 227
+    "row_index": 227,
+    "page_number": 9
   },
   {
     "bns_section": "137",
@@ -1821,7 +2048,8 @@
     "bns_title": "Kidnapping",
     "ipc_title": "Kidnapping",
     "status": "unchanged",
-    "row_index": 228
+    "row_index": 228,
+    "page_number": 9
   },
   {
     "bns_section": "137(1)",
@@ -1829,7 +2057,8 @@
     "bns_title": "(a)",
     "ipc_title": "Kidnapping from India",
     "status": "unchanged",
-    "row_index": 229
+    "row_index": 229,
+    "page_number": 9
   },
   {
     "bns_section": "137(1)",
@@ -1837,7 +2066,8 @@
     "bns_title": "(b)",
     "ipc_title": "Kidnapping from lawful guardianship",
     "status": "unchanged",
-    "row_index": 230
+    "row_index": 230,
+    "page_number": 9
   },
   {
     "bns_section": "137(2)",
@@ -1845,7 +2075,8 @@
     "bns_title": null,
     "ipc_title": "Punishment for kidnapping",
     "status": "unchanged",
-    "row_index": 231
+    "row_index": 231,
+    "page_number": 9
   },
   {
     "bns_section": "138",
@@ -1853,7 +2084,8 @@
     "bns_title": "Abduction",
     "ipc_title": "Abduction",
     "status": "unchanged",
-    "row_index": 232
+    "row_index": 232,
+    "page_number": 9
   },
   {
     "bns_section": "139",
@@ -1861,7 +2093,8 @@
     "bns_title": "Kidnapping or maiming a child for purposes",
     "ipc_title": "Kidnapping or maiming a minor for purposes of",
     "status": "changed",
-    "row_index": 233
+    "row_index": 233,
+    "page_number": 9
   },
   {
     "bns_section": "140",
@@ -1869,7 +2102,8 @@
     "bns_title": "Kidnapping or abducting in order to murder or",
     "ipc_title": "Kidnapping or abducting in order to murder",
     "status": "unchanged",
-    "row_index": 234
+    "row_index": 234,
+    "page_number": 9
   },
   {
     "bns_section": "140(2)",
@@ -1877,7 +2111,8 @@
     "bns_title": null,
     "ipc_title": "Kidnapping for ransom, etc",
     "status": "unchanged",
-    "row_index": 235
+    "row_index": 235,
+    "page_number": 9
   },
   {
     "bns_section": "140(3)",
@@ -1885,7 +2120,8 @@
     "bns_title": null,
     "ipc_title": "Kidnapping or abducting with intent secretly and",
     "status": "unchanged",
-    "row_index": 236
+    "row_index": 236,
+    "page_number": 9
   },
   {
     "bns_section": "140(4)",
@@ -1893,7 +2129,8 @@
     "bns_title": null,
     "ipc_title": "Kidnapping or abducting in order to subject",
     "status": "unchanged",
-    "row_index": 237
+    "row_index": 237,
+    "page_number": 9
   },
   {
     "bns_section": "141",
@@ -1901,7 +2138,8 @@
     "bns_title": "Importation of girl or boy from foreign",
     "ipc_title": "Importation of girl from foreign country",
     "status": "changed",
-    "row_index": 238
+    "row_index": 238,
+    "page_number": 9
   },
   {
     "bns_section": "142",
@@ -1909,7 +2147,8 @@
     "bns_title": "Wrongfully concealing or keeping in",
     "ipc_title": "Wrongfully concealing or keeping in",
     "status": "unchanged",
-    "row_index": 239
+    "row_index": 239,
+    "page_number": 9
   },
   {
     "bns_section": "143",
@@ -1917,7 +2156,8 @@
     "bns_title": "Trafficking of person. (Change)",
     "ipc_title": "Trafficking of person",
     "status": "changed",
-    "row_index": 240
+    "row_index": 240,
+    "page_number": 9
   },
   {
     "bns_section": "144",
@@ -1925,7 +2165,8 @@
     "bns_title": "Exploitation of a trafficked person. (Change)",
     "ipc_title": "Exploitation of a trafficked person",
     "status": "changed",
-    "row_index": 241
+    "row_index": 241,
+    "page_number": 9
   },
   {
     "bns_section": "145",
@@ -1933,7 +2174,8 @@
     "bns_title": "Habitual dealing in slaves",
     "ipc_title": "Habitual dealing in slaves",
     "status": "unchanged",
-    "row_index": 242
+    "row_index": 242,
+    "page_number": 9
   },
   {
     "bns_section": "146",
@@ -1941,7 +2183,8 @@
     "bns_title": "Unlawful compulsory labour",
     "ipc_title": "Unlawful compulsory labour",
     "status": "unchanged",
-    "row_index": 243
+    "row_index": 243,
+    "page_number": 9
   },
   {
     "bns_section": "147",
@@ -1949,7 +2192,8 @@
     "bns_title": "Waging, or attempting to wage war, or",
     "ipc_title": "Waging, or attempting to wage war, or abetting",
     "status": "unchanged",
-    "row_index": 244
+    "row_index": 244,
+    "page_number": 9
   },
   {
     "bns_section": "148",
@@ -1957,7 +2201,8 @@
     "bns_title": "Conspiracy to commit offences punishable by",
     "ipc_title": "Conspiracy to commit offences punishable by",
     "status": "unchanged",
-    "row_index": 245
+    "row_index": 245,
+    "page_number": 9
   },
   {
     "bns_section": "149",
@@ -1965,7 +2210,8 @@
     "bns_title": "Collecting arms, etc., with intention of waging",
     "ipc_title": "Collecting arms, etc., with intention of waging",
     "status": "unchanged",
-    "row_index": 246
+    "row_index": 246,
+    "page_number": 9
   },
   {
     "bns_section": "150",
@@ -1973,7 +2219,8 @@
     "bns_title": "Concealing with intent to facilitate design to",
     "ipc_title": "Concealing with intent to facilitate design to",
     "status": "unchanged",
-    "row_index": 247
+    "row_index": 247,
+    "page_number": 9
   },
   {
     "bns_section": "151",
@@ -1981,7 +2228,8 @@
     "bns_title": "Assaulting President, Governor, etc., with",
     "ipc_title": "Assaulting President, Governor, etc., with intent",
     "status": "unchanged",
-    "row_index": 248
+    "row_index": 248,
+    "page_number": 9
   },
   {
     "bns_section": null,
@@ -1989,7 +2237,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Sedition",
     "status": "deleted",
-    "row_index": 249
+    "row_index": 249,
+    "page_number": 9
   },
   {
     "bns_section": "152",
@@ -1997,7 +2246,8 @@
     "bns_title": "Acts endangering sovereignty, unity and",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 250
+    "row_index": 250,
+    "page_number": 9
   },
   {
     "bns_section": "153",
@@ -2005,7 +2255,8 @@
     "bns_title": "Waging war against Government of any",
     "ipc_title": "Waging war against any Asiatic Power in alliance",
     "status": "unchanged",
-    "row_index": 251
+    "row_index": 251,
+    "page_number": 10
   },
   {
     "bns_section": "154",
@@ -2013,7 +2264,8 @@
     "bns_title": "Committing depredation on territories of",
     "ipc_title": "Committing depredation on territories of Power",
     "status": "unchanged",
-    "row_index": 252
+    "row_index": 252,
+    "page_number": 10
   },
   {
     "bns_section": "155",
@@ -2021,7 +2273,8 @@
     "bns_title": "Receiving property taken by war or",
     "ipc_title": "Receiving property taken by war or depredation",
     "status": "unchanged",
-    "row_index": 253
+    "row_index": 253,
+    "page_number": 10
   },
   {
     "bns_section": "156",
@@ -2029,7 +2282,8 @@
     "bns_title": "Public servant voluntarily allowing prisoner of",
     "ipc_title": "Public servant voluntarily allowing prisoner of",
     "status": "unchanged",
-    "row_index": 254
+    "row_index": 254,
+    "page_number": 10
   },
   {
     "bns_section": "157",
@@ -2037,7 +2291,8 @@
     "bns_title": "Public servant negligently suffering such",
     "ipc_title": "Public servant negligently suffering such",
     "status": "unchanged",
-    "row_index": 255
+    "row_index": 255,
+    "page_number": 10
   },
   {
     "bns_section": "158",
@@ -2045,7 +2300,8 @@
     "bns_title": "Aiding escape of, rescuing or harbouring such",
     "ipc_title": "Aiding escape of, rescuing or harbouring such",
     "status": "unchanged",
-    "row_index": 256
+    "row_index": 256,
+    "page_number": 10
   },
   {
     "bns_section": "159",
@@ -2053,7 +2309,8 @@
     "bns_title": "Abetting mutiny, or attempting to seduce a",
     "ipc_title": "Abetting mutiny, or attempting to seduce a",
     "status": "unchanged",
-    "row_index": 257
+    "row_index": 257,
+    "page_number": 10
   },
   {
     "bns_section": "160",
@@ -2061,7 +2318,8 @@
     "bns_title": "Abetment of mutiny, if mutiny is committed in",
     "ipc_title": "Abetment of mutiny, if mutiny is committed in",
     "status": "unchanged",
-    "row_index": 258
+    "row_index": 258,
+    "page_number": 10
   },
   {
     "bns_section": "161",
@@ -2069,7 +2327,8 @@
     "bns_title": "Abetment of assault by soldier, sailor or",
     "ipc_title": "Abetment of assault by soldier, sailor or airman",
     "status": "unchanged",
-    "row_index": 259
+    "row_index": 259,
+    "page_number": 10
   },
   {
     "bns_section": "162",
@@ -2077,7 +2336,8 @@
     "bns_title": "Abetment of such assault, if assault",
     "ipc_title": "Abetment of such assault, if the assault",
     "status": "unchanged",
-    "row_index": 260
+    "row_index": 260,
+    "page_number": 10
   },
   {
     "bns_section": "163",
@@ -2085,7 +2345,8 @@
     "bns_title": "Abetment of desertion of soldier, sailor or",
     "ipc_title": "Abetment of desertion of soldier, sailor or",
     "status": "unchanged",
-    "row_index": 261
+    "row_index": 261,
+    "page_number": 10
   },
   {
     "bns_section": "164",
@@ -2093,7 +2354,8 @@
     "bns_title": "Harbouring deserter",
     "ipc_title": "Harbouring deserter",
     "status": "unchanged",
-    "row_index": 262
+    "row_index": 262,
+    "page_number": 10
   },
   {
     "bns_section": "165",
@@ -2101,7 +2363,8 @@
     "bns_title": "Deserter concealed on board merchant vessel",
     "ipc_title": "Deserter concealed on board merchant vessel",
     "status": "changed",
-    "row_index": 263
+    "row_index": 263,
+    "page_number": 10
   },
   {
     "bns_section": "166",
@@ -2109,7 +2372,8 @@
     "bns_title": "Abetment of act of insubordination by",
     "ipc_title": "Abetment of act of insubordination by soldier,",
     "status": "changed",
-    "row_index": 264
+    "row_index": 264,
+    "page_number": 10
   },
   {
     "bns_section": "167",
@@ -2117,7 +2381,8 @@
     "bns_title": "Persons subject to certain Acts",
     "ipc_title": "Persons subject to certain Acts",
     "status": "unchanged",
-    "row_index": 265
+    "row_index": 265,
+    "page_number": 10
   },
   {
     "bns_section": "168",
@@ -2125,7 +2390,8 @@
     "bns_title": "Wearing garb or carrying token used by",
     "ipc_title": "Wearing garb or carrying token used by soldier,",
     "status": "changed",
-    "row_index": 266
+    "row_index": 266,
+    "page_number": 10
   },
   {
     "bns_section": "169",
@@ -2133,7 +2399,8 @@
     "bns_title": "Candidate, electoral right defined",
     "ipc_title": "“Candidate”, “Electoral right” defined",
     "status": "unchanged",
-    "row_index": 267
+    "row_index": 267,
+    "page_number": 10
   },
   {
     "bns_section": "170",
@@ -2141,7 +2408,8 @@
     "bns_title": "Bribery",
     "ipc_title": "Bribery",
     "status": "unchanged",
-    "row_index": 268
+    "row_index": 268,
+    "page_number": 10
   },
   {
     "bns_section": "171",
@@ -2149,7 +2417,8 @@
     "bns_title": "Undue influence at elections",
     "ipc_title": "Undue influence at elections",
     "status": "unchanged",
-    "row_index": 269
+    "row_index": 269,
+    "page_number": 10
   },
   {
     "bns_section": "172",
@@ -2157,7 +2426,8 @@
     "bns_title": "Personation at elections",
     "ipc_title": "Personation at elections",
     "status": "unchanged",
-    "row_index": 270
+    "row_index": 270,
+    "page_number": 10
   },
   {
     "bns_section": "173",
@@ -2165,7 +2435,8 @@
     "bns_title": "Punishment for bribery",
     "ipc_title": "Punishment for bribery",
     "status": "unchanged",
-    "row_index": 271
+    "row_index": 271,
+    "page_number": 10
   },
   {
     "bns_section": "174",
@@ -2173,7 +2444,8 @@
     "bns_title": "Punishment for undue influence or",
     "ipc_title": "Punishment for undue influence or personation",
     "status": "unchanged",
-    "row_index": 272
+    "row_index": 272,
+    "page_number": 10
   },
   {
     "bns_section": "175",
@@ -2181,7 +2453,8 @@
     "bns_title": "False statement in connection with an",
     "ipc_title": "False statement in connection with an",
     "status": "unchanged",
-    "row_index": 273
+    "row_index": 273,
+    "page_number": 10
   },
   {
     "bns_section": "176",
@@ -2189,7 +2462,8 @@
     "bns_title": "Illegal payments in connection with an",
     "ipc_title": "Illegal payments in connection with an",
     "status": "changed",
-    "row_index": 274
+    "row_index": 274,
+    "page_number": 10
   },
   {
     "bns_section": "177",
@@ -2197,7 +2471,8 @@
     "bns_title": "Failure to keep election accounts. (Change)",
     "ipc_title": "-I. Failure to keep election accounts",
     "status": "changed",
-    "row_index": 275
+    "row_index": 275,
+    "page_number": 10
   },
   {
     "bns_section": "178",
@@ -2205,7 +2480,8 @@
     "bns_title": "Counterfeiting coin, Government stamps,",
     "ipc_title": "Counterfeiting coin",
     "status": "unchanged",
-    "row_index": 276
+    "row_index": 276,
+    "page_number": 11
   },
   {
     "bns_section": "178",
@@ -2213,7 +2489,8 @@
     "bns_title": "(1)",
     "ipc_title": "Explanation to 489A",
     "status": "unchanged",
-    "row_index": 277
+    "row_index": 277,
+    "page_number": 11
   },
   {
     "bns_section": "178(2)",
@@ -2221,7 +2498,8 @@
     "bns_title": null,
     "ipc_title": "“Coin” defined",
     "status": "unchanged",
-    "row_index": 278
+    "row_index": 278,
+    "page_number": 11
   },
   {
     "bns_section": "178(4)",
@@ -2229,7 +2507,8 @@
     "bns_title": null,
     "ipc_title": "Explanation to 231",
     "status": "unchanged",
-    "row_index": 279
+    "row_index": 279,
+    "page_number": 11
   },
   {
     "bns_section": "178",
@@ -2237,7 +2516,8 @@
     "bns_title": "(5)",
     "ipc_title": "Fraudulently or dishonestly diminishing weight",
     "status": "unchanged",
-    "row_index": 280
+    "row_index": 280,
+    "page_number": 11
   },
   {
     "bns_section": "179",
@@ -2245,7 +2525,8 @@
     "bns_title": "Using as genuine, forged or counterfeit coin,",
     "ipc_title": "Import or export of counterfeit coin",
     "status": "unchanged",
-    "row_index": 281
+    "row_index": 281,
+    "page_number": 11
   },
   {
     "bns_section": "180",
@@ -2253,7 +2534,8 @@
     "bns_title": "Possession of forged or counterfeit coin,",
     "ipc_title": "Possession of counterfeit coin by person who",
     "status": "unchanged",
-    "row_index": 282
+    "row_index": 282,
+    "page_number": 11
   },
   {
     "bns_section": "181",
@@ -2261,7 +2543,8 @@
     "bns_title": "Making or possessing instruments or materials",
     "ipc_title": "Making or selling instrument for counterfeiting",
     "status": "unchanged",
-    "row_index": 283
+    "row_index": 283,
+    "page_number": 11
   },
   {
     "bns_section": null,
@@ -2269,7 +2552,8 @@
     "bns_title": "for forging or counterfeiting coin, Government stamp, currency-notes or bank-notes.",
     "ipc_title": "Making or selling instrument for counterfeiting",
     "status": "unchanged",
-    "row_index": 284
+    "row_index": 284,
+    "page_number": 12
   },
   {
     "bns_section": null,
@@ -2277,7 +2561,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Abetting in India the counterfeiting out of India",
     "status": "deleted",
-    "row_index": 285
+    "row_index": 285,
+    "page_number": 12
   },
   {
     "bns_section": "182",
@@ -2285,7 +2570,8 @@
     "bns_title": "Making or using documents resembling",
     "ipc_title": "Making or using documents resembling",
     "status": "changed",
-    "row_index": 286
+    "row_index": 286,
+    "page_number": 12
   },
   {
     "bns_section": "183",
@@ -2293,7 +2579,8 @@
     "bns_title": "Effacing writing from substance bearing",
     "ipc_title": "Effacing writing from substance bearing",
     "status": "unchanged",
-    "row_index": 287
+    "row_index": 287,
+    "page_number": 12
   },
   {
     "bns_section": "184",
@@ -2301,7 +2588,8 @@
     "bns_title": "Using Government stamp known to have been",
     "ipc_title": "Using Government stamp known to have been",
     "status": "unchanged",
-    "row_index": 288
+    "row_index": 288,
+    "page_number": 12
   },
   {
     "bns_section": "185",
@@ -2309,7 +2597,8 @@
     "bns_title": "Erasure of mark denoting that stamp has been",
     "ipc_title": "Erasure of mark denoting that stamp has been",
     "status": "unchanged",
-    "row_index": 289
+    "row_index": 289,
+    "page_number": 12
   },
   {
     "bns_section": "186",
@@ -2317,7 +2606,8 @@
     "bns_title": "Prohibition of fictitious stamps",
     "ipc_title": "Prohibition of fictitious stamps",
     "status": "unchanged",
-    "row_index": 290
+    "row_index": 290,
+    "page_number": 12
   },
   {
     "bns_section": "187",
@@ -2325,7 +2615,8 @@
     "bns_title": "Person employed in mint causing coin to be of",
     "ipc_title": "Person employed in mint causing coin to be of",
     "status": "unchanged",
-    "row_index": 291
+    "row_index": 291,
+    "page_number": 12
   },
   {
     "bns_section": "188",
@@ -2333,7 +2624,8 @@
     "bns_title": "Unlawfully taking coining instrument from",
     "ipc_title": "Unlawfully taking coining instrument from mint",
     "status": "unchanged",
-    "row_index": 292
+    "row_index": 292,
+    "page_number": 12
   },
   {
     "bns_section": "189",
@@ -2341,7 +2633,8 @@
     "bns_title": "Unlawful assembly",
     "ipc_title": "Unlawful assembly",
     "status": "unchanged",
-    "row_index": 293
+    "row_index": 293,
+    "page_number": 12
   },
   {
     "bns_section": "189",
@@ -2349,7 +2642,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment",
     "status": "unchanged",
-    "row_index": 294
+    "row_index": 294,
+    "page_number": 12
   },
   {
     "bns_section": "189",
@@ -2357,7 +2651,8 @@
     "bns_title": "(3)",
     "ipc_title": "Joining or continuing in unlawful assembly,",
     "status": "unchanged",
-    "row_index": 295
+    "row_index": 295,
+    "page_number": 12
   },
   {
     "bns_section": "189",
@@ -2365,7 +2660,8 @@
     "bns_title": "(4)",
     "ipc_title": "Joining unlawful assembly armed with deadly",
     "status": "unchanged",
-    "row_index": 296
+    "row_index": 296,
+    "page_number": 12
   },
   {
     "bns_section": "189",
@@ -2373,7 +2669,8 @@
     "bns_title": "(5)",
     "ipc_title": "Knowingly joining or continuing in assembly of",
     "status": "unchanged",
-    "row_index": 297
+    "row_index": 297,
+    "page_number": 12
   },
   {
     "bns_section": "189",
@@ -2381,7 +2678,8 @@
     "bns_title": "(6)",
     "ipc_title": "Hiring, or conniving at hiring, of persons to join",
     "status": "unchanged",
-    "row_index": 298
+    "row_index": 298,
+    "page_number": 12
   },
   {
     "bns_section": "189",
@@ -2389,7 +2687,8 @@
     "bns_title": "(7)",
     "ipc_title": "Harbouring persons hired for an unlawful",
     "status": "unchanged",
-    "row_index": 299
+    "row_index": 299,
+    "page_number": 12
   },
   {
     "bns_section": "189",
@@ -2397,7 +2696,8 @@
     "bns_title": "(8)",
     "ipc_title": "Being hired to take part in an unlawful assembly",
     "status": "unchanged",
-    "row_index": 300
+    "row_index": 300,
+    "page_number": 12
   },
   {
     "bns_section": "190",
@@ -2405,7 +2705,8 @@
     "bns_title": "Every member of unlawful assembly guilty of",
     "ipc_title": "Every member of unlawful assembly guilty of",
     "status": "unchanged",
-    "row_index": 301
+    "row_index": 301,
+    "page_number": 12
   },
   {
     "bns_section": "191",
@@ -2413,7 +2714,8 @@
     "bns_title": "Rioting. (Change)",
     "ipc_title": "Rioting",
     "status": "changed",
-    "row_index": 302
+    "row_index": 302,
+    "page_number": 13
   },
   {
     "bns_section": "191",
@@ -2421,7 +2723,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for rioting",
     "status": "unchanged",
-    "row_index": 303
+    "row_index": 303,
+    "page_number": 13
   },
   {
     "bns_section": "191",
@@ -2429,7 +2732,8 @@
     "bns_title": "(3)",
     "ipc_title": "Rioting, armed with deadly weapon",
     "status": "unchanged",
-    "row_index": 304
+    "row_index": 304,
+    "page_number": 13
   },
   {
     "bns_section": "192",
@@ -2437,7 +2741,8 @@
     "bns_title": "Wantonly giving provocation with intent to",
     "ipc_title": "Wantonly giving provocation with intent to",
     "status": "unchanged",
-    "row_index": 305
+    "row_index": 305,
+    "page_number": 13
   },
   {
     "bns_section": "193",
@@ -2445,7 +2750,8 @@
     "bns_title": "Liability of owner, occupier etc., of land on",
     "ipc_title": "Owner or occupier of land on which an unlawful",
     "status": "unchanged",
-    "row_index": 306
+    "row_index": 306,
+    "page_number": 13
   },
   {
     "bns_section": "193",
@@ -2453,7 +2759,8 @@
     "bns_title": "(2)",
     "ipc_title": "Liability of person for whose benefit riot is",
     "status": "unchanged",
-    "row_index": 307
+    "row_index": 307,
+    "page_number": 13
   },
   {
     "bns_section": "193",
@@ -2461,7 +2768,8 @@
     "bns_title": "(3)",
     "ipc_title": "Liability of agent of owner or occupier for whose",
     "status": "unchanged",
-    "row_index": 308
+    "row_index": 308,
+    "page_number": 13
   },
   {
     "bns_section": "194",
@@ -2469,7 +2777,8 @@
     "bns_title": "Affray. (Change)",
     "ipc_title": "Affray",
     "status": "changed",
-    "row_index": 309
+    "row_index": 309,
+    "page_number": 13
   },
   {
     "bns_section": "194",
@@ -2477,7 +2786,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for committing affray",
     "status": "unchanged",
-    "row_index": 310
+    "row_index": 310,
+    "page_number": 13
   },
   {
     "bns_section": "195",
@@ -2485,7 +2795,8 @@
     "bns_title": "Assaulting or obstructing public servant when",
     "ipc_title": "Assaulting or obstructing public servant when",
     "status": "changed",
-    "row_index": 311
+    "row_index": 311,
+    "page_number": 13
   },
   {
     "bns_section": "196",
@@ -2493,7 +2804,8 @@
     "bns_title": "Promoting enmity between different groups",
     "ipc_title": "Promoting enmity between different groups",
     "status": "unchanged",
-    "row_index": 312
+    "row_index": 312,
+    "page_number": 13
   },
   {
     "bns_section": null,
@@ -2501,7 +2813,8 @@
     "bns_title": "Deleted",
     "ipc_title": "A. Punishment for knowingly carrying arms in",
     "status": "deleted",
-    "row_index": 313
+    "row_index": 313,
+    "page_number": 13
   },
   {
     "bns_section": "197",
@@ -2509,7 +2822,8 @@
     "bns_title": "Imputations, assertions prejudicial to",
     "ipc_title": "Imputations, assertions prejudicial to national",
     "status": "changed",
-    "row_index": 314
+    "row_index": 314,
+    "page_number": 13
   },
   {
     "bns_section": "198",
@@ -2517,7 +2831,8 @@
     "bns_title": "Public servant disobeying law, with intent to",
     "ipc_title": "Public servant disobeying law, with intent to",
     "status": "unchanged",
-    "row_index": 315
+    "row_index": 315,
+    "page_number": 13
   },
   {
     "bns_section": "199",
@@ -2525,7 +2840,8 @@
     "bns_title": "Public servant disobeying direction under law",
     "ipc_title": "Public servant disobeying direction under law",
     "status": "unchanged",
-    "row_index": 316
+    "row_index": 316,
+    "page_number": 13
   },
   {
     "bns_section": "200",
@@ -2533,7 +2849,8 @@
     "bns_title": "Punishment for non-treatment of victim",
     "ipc_title": "Punishment for non-treatment of victim",
     "status": "unchanged",
-    "row_index": 317
+    "row_index": 317,
+    "page_number": 13
   },
   {
     "bns_section": "201",
@@ -2541,7 +2858,8 @@
     "bns_title": "Public servant framing an incorrect document",
     "ipc_title": "Public servant framing an incorrect document",
     "status": "unchanged",
-    "row_index": 318
+    "row_index": 318,
+    "page_number": 13
   },
   {
     "bns_section": "202",
@@ -2549,7 +2867,8 @@
     "bns_title": "Public servant unlawfully engaging in trade",
     "ipc_title": "Public servant unlawfully engaging in trade",
     "status": "changed",
-    "row_index": 319
+    "row_index": 319,
+    "page_number": 13
   },
   {
     "bns_section": "203",
@@ -2557,7 +2876,8 @@
     "bns_title": "Public servant unlawfully buying or bidding for",
     "ipc_title": "Public servant unlawfully buying or bidding for",
     "status": "unchanged",
-    "row_index": 320
+    "row_index": 320,
+    "page_number": 13
   },
   {
     "bns_section": "204",
@@ -2565,7 +2885,8 @@
     "bns_title": "Personating a public servant. (Change)",
     "ipc_title": "Personating a public servant",
     "status": "changed",
-    "row_index": 321
+    "row_index": 321,
+    "page_number": 13
   },
   {
     "bns_section": "205",
@@ -2573,7 +2894,8 @@
     "bns_title": "Wearing garb or carrying token used by",
     "ipc_title": "Wearing garb or carrying token used by public",
     "status": "changed",
-    "row_index": 322
+    "row_index": 322,
+    "page_number": 13
   },
   {
     "bns_section": "206",
@@ -2581,7 +2903,8 @@
     "bns_title": "Absconding to avoid service of summons or",
     "ipc_title": "Absconding to avoid service of summons or",
     "status": "changed",
-    "row_index": 323
+    "row_index": 323,
+    "page_number": 13
   },
   {
     "bns_section": "207",
@@ -2589,7 +2912,8 @@
     "bns_title": "Preventing service of summons or other",
     "ipc_title": "Preventing service of summons or other",
     "status": "changed",
-    "row_index": 324
+    "row_index": 324,
+    "page_number": 14
   },
   {
     "bns_section": "208",
@@ -2597,7 +2921,8 @@
     "bns_title": "Non-attendance in obedience to an order",
     "ipc_title": "Non-attendance in obedience to an order from",
     "status": "changed",
-    "row_index": 325
+    "row_index": 325,
+    "page_number": 14
   },
   {
     "bns_section": "210",
@@ -2605,7 +2930,8 @@
     "bns_title": "Omission to produce document or electronic",
     "ipc_title": "Omission to produce document to public",
     "status": "deleted",
-    "row_index": 326
+    "row_index": 326,
+    "page_number": 14
   },
   {
     "bns_section": "211",
@@ -2613,7 +2939,8 @@
     "bns_title": "Omission to give notice or information to",
     "ipc_title": "Omission to give notice or information to public",
     "status": "deleted",
-    "row_index": 327
+    "row_index": 327,
+    "page_number": 14
   },
   {
     "bns_section": "212",
@@ -2621,7 +2948,8 @@
     "bns_title": "Furnishing false information. (Change)",
     "ipc_title": "Furnishing false information",
     "status": "changed",
-    "row_index": 328
+    "row_index": 328,
+    "page_number": 14
   },
   {
     "bns_section": "213",
@@ -2629,7 +2957,8 @@
     "bns_title": "Refusing oath or affirmation when duly",
     "ipc_title": "Refusing oath or affirmation when duly required",
     "status": "changed",
-    "row_index": 329
+    "row_index": 329,
+    "page_number": 14
   },
   {
     "bns_section": "214",
@@ -2637,7 +2966,8 @@
     "bns_title": "Refusing to answer public servant authorised",
     "ipc_title": "Refusing to answer public servant authorised to",
     "status": "changed",
-    "row_index": 330
+    "row_index": 330,
+    "page_number": 14
   },
   {
     "bns_section": "215",
@@ -2645,7 +2975,8 @@
     "bns_title": "Refusing to sign statement. (Change)",
     "ipc_title": "Refusing to sign statement",
     "status": "changed",
-    "row_index": 331
+    "row_index": 331,
+    "page_number": 14
   },
   {
     "bns_section": "216",
@@ -2653,7 +2984,8 @@
     "bns_title": "False statement on oath or affirmation to",
     "ipc_title": "False statement on oath or affirmation to public",
     "status": "unchanged",
-    "row_index": 332
+    "row_index": 332,
+    "page_number": 14
   },
   {
     "bns_section": "217",
@@ -2661,7 +2993,8 @@
     "bns_title": "False information, with intent to cause public",
     "ipc_title": "False information, with intent to cause public",
     "status": "changed",
-    "row_index": 333
+    "row_index": 333,
+    "page_number": 14
   },
   {
     "bns_section": "218",
@@ -2669,7 +3002,8 @@
     "bns_title": "Resistance to taking of property by lawful",
     "ipc_title": "Resistance to the taking of property by the",
     "status": "changed",
-    "row_index": 334
+    "row_index": 334,
+    "page_number": 14
   },
   {
     "bns_section": "219",
@@ -2677,7 +3011,8 @@
     "bns_title": "Obstructing sale of property offered for sale",
     "ipc_title": "Obstructing sale of property offered for sale by",
     "status": "changed",
-    "row_index": 335
+    "row_index": 335,
+    "page_number": 14
   },
   {
     "bns_section": "220",
@@ -2685,7 +3020,8 @@
     "bns_title": "Illegal purchase or bid for property offered for",
     "ipc_title": "Illegal purchase or bid for property offered for",
     "status": "unchanged",
-    "row_index": 336
+    "row_index": 336,
+    "page_number": 14
   },
   {
     "bns_section": "221",
@@ -2693,7 +3029,8 @@
     "bns_title": "Obstructing public servant in discharge of",
     "ipc_title": "Obstructing public servant in discharge of public",
     "status": "changed",
-    "row_index": 337
+    "row_index": 337,
+    "page_number": 14
   },
   {
     "bns_section": "222",
@@ -2701,7 +3038,8 @@
     "bns_title": "Omission to assist public servant when bound",
     "ipc_title": "Omission to assist public servant when bound by",
     "status": "deleted",
-    "row_index": 338
+    "row_index": 338,
+    "page_number": 14
   },
   {
     "bns_section": "223",
@@ -2709,7 +3047,8 @@
     "bns_title": "Disobedience to order duly promulgated by",
     "ipc_title": "Disobedience to order duly promulgated by",
     "status": "changed",
-    "row_index": 339
+    "row_index": 339,
+    "page_number": 14
   },
   {
     "bns_section": "224",
@@ -2717,7 +3056,8 @@
     "bns_title": "Threat of injury to public servant",
     "ipc_title": "Threat of injury to public servant",
     "status": "unchanged",
-    "row_index": 340
+    "row_index": 340,
+    "page_number": 14
   },
   {
     "bns_section": "225",
@@ -2725,7 +3065,8 @@
     "bns_title": "Threat of injury to induce person to refrain",
     "ipc_title": "Threat of injury to induce person to refrain from",
     "status": "unchanged",
-    "row_index": 341
+    "row_index": 341,
+    "page_number": 14
   },
   {
     "bns_section": "226",
@@ -2733,7 +3074,8 @@
     "bns_title": "Attempt to commit suicide to compel or",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 342
+    "row_index": 342,
+    "page_number": 14
   },
   {
     "bns_section": "227",
@@ -2741,7 +3083,8 @@
     "bns_title": "Giving false evidence",
     "ipc_title": "Giving false evidence",
     "status": "unchanged",
-    "row_index": 343
+    "row_index": 343,
+    "page_number": 14
   },
   {
     "bns_section": "228",
@@ -2749,7 +3092,8 @@
     "bns_title": "Fabricating false evidence",
     "ipc_title": "Fabricating false evidence",
     "status": "unchanged",
-    "row_index": 344
+    "row_index": 344,
+    "page_number": 14
   },
   {
     "bns_section": "229",
@@ -2757,7 +3101,8 @@
     "bns_title": "Punishment for false evidence. (Change)",
     "ipc_title": "Punishment for false evidence",
     "status": "changed",
-    "row_index": 345
+    "row_index": 345,
+    "page_number": 14
   },
   {
     "bns_section": "230",
@@ -2765,7 +3110,8 @@
     "bns_title": "Giving or fabricating false evidence with",
     "ipc_title": "Giving or fabricating false evidence with intent",
     "status": "unchanged",
-    "row_index": 346
+    "row_index": 346,
+    "page_number": 14
   },
   {
     "bns_section": "231",
@@ -2773,7 +3119,8 @@
     "bns_title": "Giving or fabricating false evidence with intent",
     "ipc_title": "Giving or fabricating false evidence with intent",
     "status": "unchanged",
-    "row_index": 347
+    "row_index": 347,
+    "page_number": 15
   },
   {
     "bns_section": "232",
@@ -2781,7 +3128,8 @@
     "bns_title": "Threatening any person to give false evidence",
     "ipc_title": "Threatening any person to give false evidence",
     "status": "unchanged",
-    "row_index": 348
+    "row_index": 348,
+    "page_number": 15
   },
   {
     "bns_section": "233",
@@ -2789,7 +3137,8 @@
     "bns_title": "Using evidence known to be false",
     "ipc_title": "Using evidence known to be false",
     "status": "unchanged",
-    "row_index": 349
+    "row_index": 349,
+    "page_number": 15
   },
   {
     "bns_section": "234",
@@ -2797,7 +3146,8 @@
     "bns_title": "Issuing or signing false certificate",
     "ipc_title": "Issuing or signing false certificate",
     "status": "unchanged",
-    "row_index": 350
+    "row_index": 350,
+    "page_number": 15
   },
   {
     "bns_section": "235",
@@ -2805,7 +3155,8 @@
     "bns_title": "Using as true a certificate known to be false",
     "ipc_title": "Using as true a certificate known to be false",
     "status": "unchanged",
-    "row_index": 351
+    "row_index": 351,
+    "page_number": 15
   },
   {
     "bns_section": "236",
@@ -2813,7 +3164,8 @@
     "bns_title": "False statement made in declaration which is",
     "ipc_title": "False statement made in declaration which is by",
     "status": "unchanged",
-    "row_index": 352
+    "row_index": 352,
+    "page_number": 15
   },
   {
     "bns_section": "237",
@@ -2821,7 +3173,8 @@
     "bns_title": "Using as true such declaration knowing it to be",
     "ipc_title": "Using as true such declaration knowing it to be",
     "status": "unchanged",
-    "row_index": 353
+    "row_index": 353,
+    "page_number": 15
   },
   {
     "bns_section": "238",
@@ -2829,7 +3182,8 @@
     "bns_title": "Causing disappearance of evidence of offence,",
     "ipc_title": "Causing disappearance of evidence of offence,",
     "status": "unchanged",
-    "row_index": 354
+    "row_index": 354,
+    "page_number": 15
   },
   {
     "bns_section": "239",
@@ -2837,7 +3191,8 @@
     "bns_title": "Intentional omission to give information of",
     "ipc_title": "Intentional omission to give information of",
     "status": "deleted",
-    "row_index": 355
+    "row_index": 355,
+    "page_number": 15
   },
   {
     "bns_section": "240",
@@ -2845,7 +3200,8 @@
     "bns_title": "Giving false information respecting an offence",
     "ipc_title": "Giving false information respecting an offence",
     "status": "unchanged",
-    "row_index": 356
+    "row_index": 356,
+    "page_number": 15
   },
   {
     "bns_section": "241",
@@ -2853,7 +3209,8 @@
     "bns_title": "Destruction of document or electronic record",
     "ipc_title": "Destruction of document to prevent its",
     "status": "changed",
-    "row_index": 357
+    "row_index": 357,
+    "page_number": 15
   },
   {
     "bns_section": "242",
@@ -2861,7 +3218,8 @@
     "bns_title": "False personation for purpose of act or",
     "ipc_title": "False personation for purpose of act or",
     "status": "unchanged",
-    "row_index": 358
+    "row_index": 358,
+    "page_number": 15
   },
   {
     "bns_section": "243",
@@ -2869,7 +3227,8 @@
     "bns_title": "Fraudulent removal or concealment of",
     "ipc_title": "Fraudulent removal or concealment of property",
     "status": "changed",
-    "row_index": 359
+    "row_index": 359,
+    "page_number": 15
   },
   {
     "bns_section": "244",
@@ -2877,7 +3236,8 @@
     "bns_title": "Fraudulent claim to property to prevent its",
     "ipc_title": "Fraudulent claim to property to prevent its",
     "status": "unchanged",
-    "row_index": 360
+    "row_index": 360,
+    "page_number": 15
   },
   {
     "bns_section": "245",
@@ -2885,7 +3245,8 @@
     "bns_title": "Fraudulently suffering decree for sum not due",
     "ipc_title": "Fraudulently suffering decree for sum not due",
     "status": "unchanged",
-    "row_index": 361
+    "row_index": 361,
+    "page_number": 15
   },
   {
     "bns_section": "246",
@@ -2893,7 +3254,8 @@
     "bns_title": "Dishonestly making false claim in Court",
     "ipc_title": "Dishonesty making false claim in Court",
     "status": "unchanged",
-    "row_index": 362
+    "row_index": 362,
+    "page_number": 15
   },
   {
     "bns_section": "247",
@@ -2901,7 +3263,8 @@
     "bns_title": "Fraudulently obtaining decree for sum not",
     "ipc_title": "Fraudulently obtaining decree for sum not due",
     "status": "unchanged",
-    "row_index": 363
+    "row_index": 363,
+    "page_number": 15
   },
   {
     "bns_section": "248",
@@ -2909,7 +3272,8 @@
     "bns_title": "False charge of offence made with intent to",
     "ipc_title": "False charge of offence made with intent to",
     "status": "changed",
-    "row_index": 364
+    "row_index": 364,
+    "page_number": 15
   },
   {
     "bns_section": "249",
@@ -2917,7 +3281,8 @@
     "bns_title": "Harbouring offender",
     "ipc_title": "Harbouring offender",
     "status": "unchanged",
-    "row_index": 365
+    "row_index": 365,
+    "page_number": 15
   },
   {
     "bns_section": "250",
@@ -2925,7 +3290,8 @@
     "bns_title": "Taking gift, etc., to screen an offender from",
     "ipc_title": "Taking gift, etc., to screen an offender from",
     "status": "unchanged",
-    "row_index": 366
+    "row_index": 366,
+    "page_number": 15
   },
   {
     "bns_section": "251",
@@ -2933,7 +3299,8 @@
     "bns_title": "Offering gift or restoration of property in",
     "ipc_title": "Offering gift or restoration of property in",
     "status": "unchanged",
-    "row_index": 367
+    "row_index": 367,
+    "page_number": 15
   },
   {
     "bns_section": "252",
@@ -2941,7 +3308,8 @@
     "bns_title": "Taking gift to help to recover stolen property,",
     "ipc_title": "Taking gift to help to recover stolen property,",
     "status": "unchanged",
-    "row_index": 368
+    "row_index": 368,
+    "page_number": 15
   },
   {
     "bns_section": "253",
@@ -2949,7 +3317,8 @@
     "bns_title": "Harbouring offender who has escaped from",
     "ipc_title": "Harbouring offender who has escaped from",
     "status": "unchanged",
-    "row_index": 369
+    "row_index": 369,
+    "page_number": 15
   },
   {
     "bns_section": "254",
@@ -2957,7 +3326,8 @@
     "bns_title": "Penalty for harbouring robbers or dacoits",
     "ipc_title": "Penalty for harbouring robbers or dacoits",
     "status": "unchanged",
-    "row_index": 370
+    "row_index": 370,
+    "page_number": 15
   },
   {
     "bns_section": "255",
@@ -2965,7 +3335,8 @@
     "bns_title": "Public servant disobeying direction of law with",
     "ipc_title": "Public servant disobeying direction of law with",
     "status": "unchanged",
-    "row_index": 371
+    "row_index": 371,
+    "page_number": 15
   },
   {
     "bns_section": "256",
@@ -2973,7 +3344,8 @@
     "bns_title": "Public servant framing incorrect record or",
     "ipc_title": "Public servant framing incorrect record or",
     "status": "unchanged",
-    "row_index": 372
+    "row_index": 372,
+    "page_number": 15
   },
   {
     "bns_section": "257",
@@ -2981,7 +3353,8 @@
     "bns_title": "Public servant in judicial proceeding corruptly",
     "ipc_title": "Public servant in judicial proceeding corruptly",
     "status": "unchanged",
-    "row_index": 373
+    "row_index": 373,
+    "page_number": 16
   },
   {
     "bns_section": "258",
@@ -2989,7 +3362,8 @@
     "bns_title": "Commitment for trial or confinement by",
     "ipc_title": "Commitment for trial or confinement by person",
     "status": "unchanged",
-    "row_index": 374
+    "row_index": 374,
+    "page_number": 16
   },
   {
     "bns_section": "259",
@@ -2997,7 +3371,8 @@
     "bns_title": "Intentional omission to apprehend on part of",
     "ipc_title": "Intentional omission to apprehend on the part",
     "status": "deleted",
-    "row_index": 375
+    "row_index": 375,
+    "page_number": 16
   },
   {
     "bns_section": "260",
@@ -3005,7 +3380,8 @@
     "bns_title": "Intentional omission to apprehend on the part",
     "ipc_title": "Intentional omission to apprehend on the part",
     "status": "deleted",
-    "row_index": 376
+    "row_index": 376,
+    "page_number": 16
   },
   {
     "bns_section": "261",
@@ -3013,7 +3389,8 @@
     "bns_title": "Escape from confinement or custody",
     "ipc_title": "Escape from confinement or custody negligently",
     "status": "unchanged",
-    "row_index": 377
+    "row_index": 377,
+    "page_number": 16
   },
   {
     "bns_section": "262",
@@ -3021,7 +3398,8 @@
     "bns_title": "Resistance or obstruction by a person to his",
     "ipc_title": "Resistance or obstruction by a person to his",
     "status": "unchanged",
-    "row_index": 378
+    "row_index": 378,
+    "page_number": 16
   },
   {
     "bns_section": "263",
@@ -3029,7 +3407,8 @@
     "bns_title": "Resistance or obstruction to lawful",
     "ipc_title": "Resistance or obstruction to lawful",
     "status": "unchanged",
-    "row_index": 379
+    "row_index": 379,
+    "page_number": 16
   },
   {
     "bns_section": "264",
@@ -3037,7 +3416,8 @@
     "bns_title": "Omission to apprehend, or sufferance of",
     "ipc_title": "Omission to apprehend, or sufferance of",
     "status": "deleted",
-    "row_index": 380
+    "row_index": 380,
+    "page_number": 16
   },
   {
     "bns_section": "265",
@@ -3045,7 +3425,8 @@
     "bns_title": "Resistance or obstruction to lawful",
     "ipc_title": "Resistance or obstruction to lawful",
     "status": "unchanged",
-    "row_index": 381
+    "row_index": 381,
+    "page_number": 16
   },
   {
     "bns_section": "266",
@@ -3053,7 +3434,8 @@
     "bns_title": "Violation of condition of remission of",
     "ipc_title": "Violation of condition of remission of",
     "status": "unchanged",
-    "row_index": 382
+    "row_index": 382,
+    "page_number": 16
   },
   {
     "bns_section": "267",
@@ -3061,7 +3443,8 @@
     "bns_title": "Intentional insult or interruption to public",
     "ipc_title": "Intentional insult or interruption to public",
     "status": "changed",
-    "row_index": 383
+    "row_index": 383,
+    "page_number": 16
   },
   {
     "bns_section": "268",
@@ -3069,7 +3452,8 @@
     "bns_title": "Personation of an assessor",
     "ipc_title": "Personation of a juror or assessor",
     "status": "unchanged",
-    "row_index": 384
+    "row_index": 384,
+    "page_number": 16
   },
   {
     "bns_section": "269",
@@ -3077,7 +3461,8 @@
     "bns_title": "Failure by person released on bail bond or",
     "ipc_title": "Failure by person released on bail or bond to",
     "status": "unchanged",
-    "row_index": 385
+    "row_index": 385,
+    "page_number": 16
   },
   {
     "bns_section": null,
@@ -3085,7 +3470,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Fraudulent use of false instrument for",
     "status": "deleted",
-    "row_index": 386
+    "row_index": 386,
+    "page_number": 16
   },
   {
     "bns_section": null,
@@ -3093,7 +3479,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Fraudulent use of false weight or measure",
     "status": "deleted",
-    "row_index": 387
+    "row_index": 387,
+    "page_number": 16
   },
   {
     "bns_section": null,
@@ -3101,7 +3488,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Being in possession of false weight or measure",
     "status": "deleted",
-    "row_index": 388
+    "row_index": 388,
+    "page_number": 16
   },
   {
     "bns_section": null,
@@ -3109,7 +3497,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Making or selling false weight or measure",
     "status": "deleted",
-    "row_index": 389
+    "row_index": 389,
+    "page_number": 16
   },
   {
     "bns_section": "270",
@@ -3117,7 +3506,8 @@
     "bns_title": "Public nuisance",
     "ipc_title": "Public nuisance",
     "status": "unchanged",
-    "row_index": 390
+    "row_index": 390,
+    "page_number": 16
   },
   {
     "bns_section": "271",
@@ -3125,7 +3515,8 @@
     "bns_title": "Negligent act likely to spread infection of",
     "ipc_title": "Negligent act likely to spread infection of",
     "status": "unchanged",
-    "row_index": 391
+    "row_index": 391,
+    "page_number": 16
   },
   {
     "bns_section": "272",
@@ -3133,7 +3524,8 @@
     "bns_title": "Malignant act likely to spread infection of",
     "ipc_title": "Malignant act likely to spread infection of",
     "status": "unchanged",
-    "row_index": 392
+    "row_index": 392,
+    "page_number": 16
   },
   {
     "bns_section": "273",
@@ -3141,7 +3533,8 @@
     "bns_title": "Disobedience to quarantine rule",
     "ipc_title": "Disobedience to quarantine rule",
     "status": "unchanged",
-    "row_index": 393
+    "row_index": 393,
+    "page_number": 16
   },
   {
     "bns_section": "274",
@@ -3149,7 +3542,8 @@
     "bns_title": "Adulteration of food or drink intended for",
     "ipc_title": "Adulteration of food or drink intended for sale",
     "status": "changed",
-    "row_index": 394
+    "row_index": 394,
+    "page_number": 16
   },
   {
     "bns_section": "275",
@@ -3157,7 +3551,8 @@
     "bns_title": "Sale of noxious food or drink. (Change)",
     "ipc_title": "Sale of noxious food or drink",
     "status": "changed",
-    "row_index": 395
+    "row_index": 395,
+    "page_number": 16
   },
   {
     "bns_section": "276",
@@ -3165,7 +3560,8 @@
     "bns_title": "Adulteration of drugs. (Change)",
     "ipc_title": "Adulteration of drugs",
     "status": "changed",
-    "row_index": 396
+    "row_index": 396,
+    "page_number": 16
   },
   {
     "bns_section": "277",
@@ -3173,7 +3569,8 @@
     "bns_title": "Sale of adulterated drugs. (Change)",
     "ipc_title": "Sale of adulterated drugs",
     "status": "changed",
-    "row_index": 397
+    "row_index": 397,
+    "page_number": 17
   },
   {
     "bns_section": "278",
@@ -3181,7 +3578,8 @@
     "bns_title": "Sale of drug as a different drug or",
     "ipc_title": "Sale of drug as a different drug or preparation",
     "status": "changed",
-    "row_index": 398
+    "row_index": 398,
+    "page_number": 17
   },
   {
     "bns_section": "279",
@@ -3189,7 +3587,8 @@
     "bns_title": "Fouling water of public spring or reservoir",
     "ipc_title": "Fouling water of public spring or reservoir",
     "status": "changed",
-    "row_index": 399
+    "row_index": 399,
+    "page_number": 17
   },
   {
     "bns_section": "280",
@@ -3197,7 +3596,8 @@
     "bns_title": "Making atmosphere noxious to health",
     "ipc_title": "Making atmosphere noxious to health",
     "status": "changed",
-    "row_index": 400
+    "row_index": 400,
+    "page_number": 17
   },
   {
     "bns_section": "281",
@@ -3205,7 +3605,8 @@
     "bns_title": "Rash driving or riding on a public way",
     "ipc_title": "Rash driving or riding on a public way",
     "status": "unchanged",
-    "row_index": 401
+    "row_index": 401,
+    "page_number": 17
   },
   {
     "bns_section": "282",
@@ -3213,7 +3614,8 @@
     "bns_title": "Rash navigation of vessel. (Change)",
     "ipc_title": "Rash navigation of vessel",
     "status": "changed",
-    "row_index": 402
+    "row_index": 402,
+    "page_number": 17
   },
   {
     "bns_section": "283",
@@ -3221,7 +3623,8 @@
     "bns_title": "Exhibition of false light, mark or buoy",
     "ipc_title": "Exhibition of false light, mark or buoy",
     "status": "changed",
-    "row_index": 403
+    "row_index": 403,
+    "page_number": 17
   },
   {
     "bns_section": "284",
@@ -3229,7 +3632,8 @@
     "bns_title": "Conveying person by water for hire in unsafe",
     "ipc_title": "Conveying person by water for hire in unsafe or",
     "status": "changed",
-    "row_index": 404
+    "row_index": 404,
+    "page_number": 17
   },
   {
     "bns_section": "285",
@@ -3237,7 +3641,8 @@
     "bns_title": "Danger or obstruction in public way or line of",
     "ipc_title": "Danger or obstruction in public way or line of",
     "status": "changed",
-    "row_index": 405
+    "row_index": 405,
+    "page_number": 17
   },
   {
     "bns_section": "286",
@@ -3245,7 +3650,8 @@
     "bns_title": "Negligent conduct with respect to poisonous",
     "ipc_title": "Negligent conduct with respect to poisonous",
     "status": "changed",
-    "row_index": 406
+    "row_index": 406,
+    "page_number": 17
   },
   {
     "bns_section": "287",
@@ -3253,7 +3659,8 @@
     "bns_title": "Negligent conduct with respect to fire or",
     "ipc_title": "Negligent conduct with respect to fire or",
     "status": "changed",
-    "row_index": 407
+    "row_index": 407,
+    "page_number": 17
   },
   {
     "bns_section": "288",
@@ -3261,7 +3668,8 @@
     "bns_title": "Negligent conduct with respect to explosive",
     "ipc_title": "Negligent conduct with respect to explosive",
     "status": "changed",
-    "row_index": 408
+    "row_index": 408,
+    "page_number": 17
   },
   {
     "bns_section": "289",
@@ -3269,7 +3677,8 @@
     "bns_title": "Negligent conduct with respect to machinery",
     "ipc_title": "Negligent conduct with respect to machinery",
     "status": "changed",
-    "row_index": 409
+    "row_index": 409,
+    "page_number": 17
   },
   {
     "bns_section": "290",
@@ -3277,7 +3686,8 @@
     "bns_title": "Negligent conduct with respect to pulling",
     "ipc_title": "Negligent conduct with respect to pulling down",
     "status": "changed",
-    "row_index": 410
+    "row_index": 410,
+    "page_number": 17
   },
   {
     "bns_section": "291",
@@ -3285,7 +3695,8 @@
     "bns_title": "Negligent conduct with respect to animal",
     "ipc_title": "Negligent conduct with respect to animal",
     "status": "changed",
-    "row_index": 411
+    "row_index": 411,
+    "page_number": 17
   },
   {
     "bns_section": "292",
@@ -3293,7 +3704,8 @@
     "bns_title": "Punishment for public nuisance in cases not",
     "ipc_title": "Punishment for public nuisance in cases not",
     "status": "changed",
-    "row_index": 412
+    "row_index": 412,
+    "page_number": 17
   },
   {
     "bns_section": "293",
@@ -3301,7 +3713,8 @@
     "bns_title": "Continuance of nuisance after injunction to",
     "ipc_title": "Continuance of nuisance after injunction to",
     "status": "changed",
-    "row_index": 413
+    "row_index": 413,
+    "page_number": 17
   },
   {
     "bns_section": "294",
@@ -3309,7 +3722,8 @@
     "bns_title": "Sale, etc., of obscene books, etc. (Change)",
     "ipc_title": "Sale, etc., of obscene books, etc",
     "status": "changed",
-    "row_index": 414
+    "row_index": 414,
+    "page_number": 17
   },
   {
     "bns_section": "295",
@@ -3317,7 +3731,8 @@
     "bns_title": "Sale, etc., of obscene objects to child",
     "ipc_title": "Sale, etc., of obscene objects to young person",
     "status": "unchanged",
-    "row_index": 415
+    "row_index": 415,
+    "page_number": 17
   },
   {
     "bns_section": "296",
@@ -3325,7 +3740,8 @@
     "bns_title": "Obscene acts and songs. (Change)",
     "ipc_title": "Obscene acts and songs",
     "status": "changed",
-    "row_index": 416
+    "row_index": 416,
+    "page_number": 17
   },
   {
     "bns_section": "297",
@@ -3333,7 +3749,8 @@
     "bns_title": "Keeping lottery office. (Change)",
     "ipc_title": "Keeping lottery office",
     "status": "changed",
-    "row_index": 417
+    "row_index": 417,
+    "page_number": 17
   },
   {
     "bns_section": "298",
@@ -3341,7 +3758,8 @@
     "bns_title": "Injuring or defiling place of worship with",
     "ipc_title": "Injuring or defiling place of worship, with intent",
     "status": "unchanged",
-    "row_index": 418
+    "row_index": 418,
+    "page_number": 17
   },
   {
     "bns_section": "299",
@@ -3349,7 +3767,8 @@
     "bns_title": "Deliberate and malicious acts, intended to",
     "ipc_title": "Deliberate and malicious acts, intended to",
     "status": "unchanged",
-    "row_index": 419
+    "row_index": 419,
+    "page_number": 17
   },
   {
     "bns_section": "300",
@@ -3357,7 +3776,8 @@
     "bns_title": "Disturbing religious assembly",
     "ipc_title": "Disturbing religious assembly",
     "status": "unchanged",
-    "row_index": 420
+    "row_index": 420,
+    "page_number": 17
   },
   {
     "bns_section": "301",
@@ -3365,7 +3785,8 @@
     "bns_title": "Trespassing on burial places, etc",
     "ipc_title": "Trespassing on burial places, etc",
     "status": "unchanged",
-    "row_index": 421
+    "row_index": 421,
+    "page_number": 17
   },
   {
     "bns_section": "302",
@@ -3373,7 +3794,8 @@
     "bns_title": "Uttering words, etc., with deliberate intent to",
     "ipc_title": "Uttering words, etc., with deliberate intent to",
     "status": "unchanged",
-    "row_index": 422
+    "row_index": 422,
+    "page_number": 17
   },
   {
     "bns_section": "303",
@@ -3381,7 +3803,8 @@
     "bns_title": "Theft. (Change)",
     "ipc_title": "Theft",
     "status": "changed",
-    "row_index": 423
+    "row_index": 423,
+    "page_number": 17
   },
   {
     "bns_section": "303",
@@ -3389,7 +3812,8 @@
     "bns_title": "(1)",
     "ipc_title": null,
     "status": "unchanged",
-    "row_index": 424
+    "row_index": 424,
+    "page_number": 18
   },
   {
     "bns_section": "303",
@@ -3397,7 +3821,8 @@
     "bns_title": "(2) (Change)",
     "ipc_title": "Punishment for theft",
     "status": "changed",
-    "row_index": 425
+    "row_index": 425,
+    "page_number": 18
   },
   {
     "bns_section": "304",
@@ -3405,7 +3830,8 @@
     "bns_title": "Snatching",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 426
+    "row_index": 426,
+    "page_number": 18
   },
   {
     "bns_section": "305",
@@ -3413,7 +3839,8 @@
     "bns_title": "Theft in a dwelling house, or means of",
     "ipc_title": "Theft in dwelling house, etc",
     "status": "changed",
-    "row_index": 427
+    "row_index": 427,
+    "page_number": 18
   },
   {
     "bns_section": "306",
@@ -3421,7 +3848,8 @@
     "bns_title": "Theft by clerk or servant of property in",
     "ipc_title": "Theft by clerk or servant of property in",
     "status": "unchanged",
-    "row_index": 428
+    "row_index": 428,
+    "page_number": 18
   },
   {
     "bns_section": "307",
@@ -3429,7 +3857,8 @@
     "bns_title": "Theft after preparation made for causing",
     "ipc_title": "Theft after preparation made for causing death,",
     "status": "unchanged",
-    "row_index": 429
+    "row_index": 429,
+    "page_number": 18
   },
   {
     "bns_section": "308",
@@ -3437,7 +3866,8 @@
     "bns_title": "Extortion",
     "ipc_title": "Extortion",
     "status": "unchanged",
-    "row_index": 430
+    "row_index": 430,
+    "page_number": 18
   },
   {
     "bns_section": "308",
@@ -3445,7 +3875,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for extortion",
     "status": "unchanged",
-    "row_index": 431
+    "row_index": 431,
+    "page_number": 18
   },
   {
     "bns_section": "308",
@@ -3453,7 +3884,8 @@
     "bns_title": "(3)",
     "ipc_title": "Putting person in fear of injury in order to",
     "status": "unchanged",
-    "row_index": 432
+    "row_index": 432,
+    "page_number": 18
   },
   {
     "bns_section": "308",
@@ -3461,7 +3893,8 @@
     "bns_title": "(4)",
     "ipc_title": "Putting person in fear of death or of grievous",
     "status": "unchanged",
-    "row_index": 433
+    "row_index": 433,
+    "page_number": 18
   },
   {
     "bns_section": "308",
@@ -3469,7 +3902,8 @@
     "bns_title": "(5)",
     "ipc_title": "Extortion by putting a person in fear of death or",
     "status": "unchanged",
-    "row_index": 434
+    "row_index": 434,
+    "page_number": 18
   },
   {
     "bns_section": "308",
@@ -3477,7 +3911,8 @@
     "bns_title": "(6)",
     "ipc_title": "Putting person in fear or accusation of offence,",
     "status": "unchanged",
-    "row_index": 435
+    "row_index": 435,
+    "page_number": 18
   },
   {
     "bns_section": "308",
@@ -3485,7 +3920,8 @@
     "bns_title": "(7)",
     "ipc_title": "Extortion by threat of accusation of an offence",
     "status": "unchanged",
-    "row_index": 436
+    "row_index": 436,
+    "page_number": 18
   },
   {
     "bns_section": "309",
@@ -3493,7 +3929,8 @@
     "bns_title": "Robbery",
     "ipc_title": "Robbery",
     "status": "unchanged",
-    "row_index": 437
+    "row_index": 437,
+    "page_number": 18
   },
   {
     "bns_section": "309",
@@ -3501,7 +3938,8 @@
     "bns_title": "(4)",
     "ipc_title": "Punishment for robbery",
     "status": "unchanged",
-    "row_index": 438
+    "row_index": 438,
+    "page_number": 18
   },
   {
     "bns_section": "309(5)",
@@ -3509,7 +3947,8 @@
     "bns_title": null,
     "ipc_title": "Attempt to commit robbery",
     "status": "unchanged",
-    "row_index": 439
+    "row_index": 439,
+    "page_number": 18
   },
   {
     "bns_section": "309(6)",
@@ -3517,7 +3956,8 @@
     "bns_title": null,
     "ipc_title": "Voluntarily causing hurt in committing robbery",
     "status": "unchanged",
-    "row_index": 440
+    "row_index": 440,
+    "page_number": 18
   },
   {
     "bns_section": "310",
@@ -3525,7 +3965,8 @@
     "bns_title": "Dacoity (Change)",
     "ipc_title": "Dacoity",
     "status": "changed",
-    "row_index": 441
+    "row_index": 441,
+    "page_number": 18
   },
   {
     "bns_section": "310",
@@ -3533,7 +3974,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for dacoity",
     "status": "unchanged",
-    "row_index": 442
+    "row_index": 442,
+    "page_number": 18
   },
   {
     "bns_section": "310",
@@ -3541,7 +3983,8 @@
     "bns_title": "(3)",
     "ipc_title": "Dacoity with murder",
     "status": "unchanged",
-    "row_index": 443
+    "row_index": 443,
+    "page_number": 18
   },
   {
     "bns_section": "310",
@@ -3549,7 +3992,8 @@
     "bns_title": "(4)",
     "ipc_title": "Making preparation to commit dacoity",
     "status": "unchanged",
-    "row_index": 444
+    "row_index": 444,
+    "page_number": 18
   },
   {
     "bns_section": "310",
@@ -3557,7 +4001,8 @@
     "bns_title": "(5)",
     "ipc_title": "Assembling for purpose of committing dacoity",
     "status": "unchanged",
-    "row_index": 445
+    "row_index": 445,
+    "page_number": 18
   },
   {
     "bns_section": "310",
@@ -3565,7 +4010,8 @@
     "bns_title": "(6)",
     "ipc_title": "Punishment for belonging to gang of dacoits",
     "status": "unchanged",
-    "row_index": 446
+    "row_index": 446,
+    "page_number": 18
   },
   {
     "bns_section": "311",
@@ -3573,7 +4019,8 @@
     "bns_title": "Robbery, or dacoity, with attempt to cause",
     "ipc_title": "Robbery, or dacoity, with attempt to cause",
     "status": "unchanged",
-    "row_index": 447
+    "row_index": 447,
+    "page_number": 18
   },
   {
     "bns_section": "312",
@@ -3581,7 +4028,8 @@
     "bns_title": "Attempt to commit robbery or dacoity when",
     "ipc_title": "Attempt to commit robbery or dacoity when",
     "status": "unchanged",
-    "row_index": 448
+    "row_index": 448,
+    "page_number": 18
   },
   {
     "bns_section": "313",
@@ -3589,7 +4037,8 @@
     "bns_title": "Punishment for belonging to gang of robbers,",
     "ipc_title": "Punishment for belonging to gang of thieves",
     "status": "unchanged",
-    "row_index": 449
+    "row_index": 449,
+    "page_number": 18
   },
   {
     "bns_section": "314",
@@ -3597,7 +4046,8 @@
     "bns_title": "Dishonest misappropriation of property",
     "ipc_title": "Dishonest misappropriation of property",
     "status": "changed",
-    "row_index": 450
+    "row_index": 450,
+    "page_number": 18
   },
   {
     "bns_section": "315",
@@ -3605,7 +4055,8 @@
     "bns_title": "Dishonest misappropriation of property",
     "ipc_title": "Dishonest misappropriation of property",
     "status": "unchanged",
-    "row_index": 451
+    "row_index": 451,
+    "page_number": 18
   },
   {
     "bns_section": "316",
@@ -3613,7 +4064,8 @@
     "bns_title": "Criminal breach of trust. (Change)",
     "ipc_title": "Criminal breach of trust",
     "status": "changed",
-    "row_index": 452
+    "row_index": 452,
+    "page_number": 19
   },
   {
     "bns_section": "316",
@@ -3621,7 +4073,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for criminal breach of trust",
     "status": "unchanged",
-    "row_index": 453
+    "row_index": 453,
+    "page_number": 19
   },
   {
     "bns_section": "316",
@@ -3629,7 +4082,8 @@
     "bns_title": "(3)",
     "ipc_title": "Criminal breach of trust by carrier, etc",
     "status": "unchanged",
-    "row_index": 454
+    "row_index": 454,
+    "page_number": 19
   },
   {
     "bns_section": "316",
@@ -3637,7 +4091,8 @@
     "bns_title": "(4)",
     "ipc_title": "Criminal breach of trust by clerk or servant",
     "status": "unchanged",
-    "row_index": 455
+    "row_index": 455,
+    "page_number": 19
   },
   {
     "bns_section": "316",
@@ -3645,7 +4100,8 @@
     "bns_title": "(5)",
     "ipc_title": "Criminal breach of trust by public servant, or by",
     "status": "unchanged",
-    "row_index": 456
+    "row_index": 456,
+    "page_number": 19
   },
   {
     "bns_section": "317",
@@ -3653,7 +4109,8 @@
     "bns_title": "Stolen property",
     "ipc_title": "Stolen property",
     "status": "unchanged",
-    "row_index": 457
+    "row_index": 457,
+    "page_number": 19
   },
   {
     "bns_section": "317",
@@ -3661,7 +4118,8 @@
     "bns_title": "(2)",
     "ipc_title": "Dishonestly receiving stolen property",
     "status": "unchanged",
-    "row_index": 458
+    "row_index": 458,
+    "page_number": 19
   },
   {
     "bns_section": "317",
@@ -3669,7 +4127,8 @@
     "bns_title": "(3)",
     "ipc_title": "Dishonestly receiving property stolen in the",
     "status": "unchanged",
-    "row_index": 459
+    "row_index": 459,
+    "page_number": 19
   },
   {
     "bns_section": "317",
@@ -3677,7 +4136,8 @@
     "bns_title": "(4)",
     "ipc_title": "Habitually dealing in stolen property",
     "status": "unchanged",
-    "row_index": 460
+    "row_index": 460,
+    "page_number": 19
   },
   {
     "bns_section": "317",
@@ -3685,7 +4145,8 @@
     "bns_title": "(5)",
     "ipc_title": "Assisting in concealment of stolen property",
     "status": "unchanged",
-    "row_index": 461
+    "row_index": 461,
+    "page_number": 19
   },
   {
     "bns_section": "318",
@@ -3693,7 +4154,8 @@
     "bns_title": "Cheating. (Change)",
     "ipc_title": "Cheating",
     "status": "changed",
-    "row_index": 462
+    "row_index": 462,
+    "page_number": 19
   },
   {
     "bns_section": "318",
@@ -3701,7 +4163,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for cheating",
     "status": "unchanged",
-    "row_index": 463
+    "row_index": 463,
+    "page_number": 19
   },
   {
     "bns_section": "318",
@@ -3709,7 +4172,8 @@
     "bns_title": "(3)",
     "ipc_title": "Cheating with knowledge that wrongful loss may",
     "status": "unchanged",
-    "row_index": 464
+    "row_index": 464,
+    "page_number": 19
   },
   {
     "bns_section": "318",
@@ -3717,7 +4181,8 @@
     "bns_title": "(4)",
     "ipc_title": "Cheating and dishonestly inducing delivery of",
     "status": "unchanged",
-    "row_index": 465
+    "row_index": 465,
+    "page_number": 19
   },
   {
     "bns_section": "319(1)",
@@ -3725,7 +4190,8 @@
     "bns_title": null,
     "ipc_title": "Cheating by personation",
     "status": "unchanged",
-    "row_index": 466
+    "row_index": 466,
+    "page_number": 19
   },
   {
     "bns_section": "319(2)",
@@ -3733,7 +4199,8 @@
     "bns_title": null,
     "ipc_title": "Punishment of cheating by personation",
     "status": "unchanged",
-    "row_index": 467
+    "row_index": 467,
+    "page_number": 19
   },
   {
     "bns_section": "320",
@@ -3741,7 +4208,8 @@
     "bns_title": "Dishonest or fraudulent removal or",
     "ipc_title": "Dishonest or fraudulent removal or",
     "status": "changed",
-    "row_index": 468
+    "row_index": 468,
+    "page_number": 19
   },
   {
     "bns_section": "321",
@@ -3749,7 +4217,8 @@
     "bns_title": "Dishonestly or fraudulently preventing debt",
     "ipc_title": "Dishonestly or fraudulently preventing debt",
     "status": "unchanged",
-    "row_index": 469
+    "row_index": 469,
+    "page_number": 19
   },
   {
     "bns_section": "322",
@@ -3757,7 +4226,8 @@
     "bns_title": "Dishonest or fraudulent execution of deed of",
     "ipc_title": "Dishonest or fraudulent execution of deed of",
     "status": "changed",
-    "row_index": 470
+    "row_index": 470,
+    "page_number": 19
   },
   {
     "bns_section": "323",
@@ -3765,7 +4235,8 @@
     "bns_title": "Dishonest or fraudulent removal or",
     "ipc_title": "Dishonest or fraudulent removal or",
     "status": "changed",
-    "row_index": 471
+    "row_index": 471,
+    "page_number": 19
   },
   {
     "bns_section": "324",
@@ -3773,7 +4244,8 @@
     "bns_title": "Mischief. (Change)",
     "ipc_title": "Mischief",
     "status": "changed",
-    "row_index": 472
+    "row_index": 472,
+    "page_number": 19
   },
   {
     "bns_section": "324",
@@ -3781,7 +4253,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for mischief",
     "status": "unchanged",
-    "row_index": 473
+    "row_index": 473,
+    "page_number": 19
   },
   {
     "bns_section": "324",
@@ -3789,7 +4262,8 @@
     "bns_title": "(3)",
     "ipc_title": "New Sub- Section",
     "status": "unchanged",
-    "row_index": 474
+    "row_index": 474,
+    "page_number": 19
   },
   {
     "bns_section": "324",
@@ -3797,7 +4271,8 @@
     "bns_title": "(4)",
     "ipc_title": "Mischief causing damage to the amount of fifty",
     "status": "unchanged",
-    "row_index": 475
+    "row_index": 475,
+    "page_number": 19
   },
   {
     "bns_section": "324(5)",
@@ -3805,7 +4280,8 @@
     "bns_title": null,
     "ipc_title": "New Sub-Section",
     "status": "new",
-    "row_index": 476
+    "row_index": 476,
+    "page_number": 19
   },
   {
     "bns_section": "324",
@@ -3813,7 +4289,8 @@
     "bns_title": "(6)",
     "ipc_title": "Mischief committed after preparation made for",
     "status": "unchanged",
-    "row_index": 477
+    "row_index": 477,
+    "page_number": 19
   },
   {
     "bns_section": "325",
@@ -3821,7 +4298,8 @@
     "bns_title": "Mischief by killing or maiming animal",
     "ipc_title": "Mischief by killing or maiming animal of the",
     "status": "changed",
-    "row_index": 478
+    "row_index": 478,
+    "page_number": 19
   },
   {
     "bns_section": null,
@@ -3829,7 +4307,8 @@
     "bns_title": null,
     "ipc_title": "Mischief by killing or maiming cattle, etc., of any",
     "status": "unchanged",
-    "row_index": 479
+    "row_index": 479,
+    "page_number": 20
   },
   {
     "bns_section": "326",
@@ -3837,7 +4316,8 @@
     "bns_title": "Mischief by injury, inundation, fire or explosive",
     "ipc_title": "Mischief by injury to works of irrigation or by",
     "status": "unchanged",
-    "row_index": 480
+    "row_index": 480,
+    "page_number": 20
   },
   {
     "bns_section": "326",
@@ -3845,7 +4325,8 @@
     "bns_title": "(b)",
     "ipc_title": "Mischief by injury to public road, bridge, river or",
     "status": "unchanged",
-    "row_index": 481
+    "row_index": 481,
+    "page_number": 20
   },
   {
     "bns_section": "326",
@@ -3853,7 +4334,8 @@
     "bns_title": "(c)",
     "ipc_title": "Mischief by causing inundation or obstruction to",
     "status": "unchanged",
-    "row_index": 482
+    "row_index": 482,
+    "page_number": 20
   },
   {
     "bns_section": "326",
@@ -3861,7 +4343,8 @@
     "bns_title": "(d)",
     "ipc_title": "Mischief by destroying, moving or rendering less",
     "status": "unchanged",
-    "row_index": 483
+    "row_index": 483,
+    "page_number": 20
   },
   {
     "bns_section": "326",
@@ -3869,7 +4352,8 @@
     "bns_title": "(e)",
     "ipc_title": "Mischief by destroying or moving, etc., a land-",
     "status": "unchanged",
-    "row_index": 484
+    "row_index": 484,
+    "page_number": 20
   },
   {
     "bns_section": "326",
@@ -3877,7 +4361,8 @@
     "bns_title": "(f)",
     "ipc_title": "Mischief by fire or explosive substance with",
     "status": "unchanged",
-    "row_index": 485
+    "row_index": 485,
+    "page_number": 20
   },
   {
     "bns_section": "326",
@@ -3885,7 +4370,8 @@
     "bns_title": "(g)",
     "ipc_title": "Mischief by fire or explosive substance with",
     "status": "unchanged",
-    "row_index": 486
+    "row_index": 486,
+    "page_number": 20
   },
   {
     "bns_section": "327",
@@ -3893,7 +4379,8 @@
     "bns_title": "Mischief with intent to destroy or make unsafe",
     "ipc_title": "Mischief with intent to destroy or make unsafe a",
     "status": "unchanged",
-    "row_index": 487
+    "row_index": 487,
+    "page_number": 20
   },
   {
     "bns_section": "327",
@@ -3901,7 +4388,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for the mischief described in",
     "status": "unchanged",
-    "row_index": 488
+    "row_index": 488,
+    "page_number": 20
   },
   {
     "bns_section": "328",
@@ -3909,7 +4397,8 @@
     "bns_title": "Punishment for intentionally running vessel",
     "ipc_title": "Punishment for intentionally running vessel",
     "status": "unchanged",
-    "row_index": 489
+    "row_index": 489,
+    "page_number": 20
   },
   {
     "bns_section": "329",
@@ -3917,7 +4406,8 @@
     "bns_title": "Criminal trespass and house-trespass",
     "ipc_title": "Criminal trespass",
     "status": "changed",
-    "row_index": 490
+    "row_index": 490,
+    "page_number": 20
   },
   {
     "bns_section": "329",
@@ -3925,7 +4415,8 @@
     "bns_title": "(2)",
     "ipc_title": "House-trespass",
     "status": "unchanged",
-    "row_index": 491
+    "row_index": 491,
+    "page_number": 20
   },
   {
     "bns_section": "329",
@@ -3933,7 +4424,8 @@
     "bns_title": "(3)",
     "ipc_title": "Punishment for criminal trespass",
     "status": "unchanged",
-    "row_index": 492
+    "row_index": 492,
+    "page_number": 20
   },
   {
     "bns_section": "329",
@@ -3941,7 +4433,8 @@
     "bns_title": "(4)",
     "ipc_title": "Punishment for house-trespass",
     "status": "unchanged",
-    "row_index": 493
+    "row_index": 493,
+    "page_number": 20
   },
   {
     "bns_section": "330",
@@ -3949,7 +4442,8 @@
     "bns_title": "House-trespass and house-breaking",
     "ipc_title": "Lurking house-trespass",
     "status": "unchanged",
-    "row_index": 494
+    "row_index": 494,
+    "page_number": 20
   },
   {
     "bns_section": null,
@@ -3957,7 +4451,8 @@
     "bns_title": "Deleted",
     "ipc_title": "Lurking house-trespass by night",
     "status": "deleted",
-    "row_index": 495
+    "row_index": 495,
+    "page_number": 20
   },
   {
     "bns_section": "330(2)",
@@ -3965,7 +4460,8 @@
     "bns_title": null,
     "ipc_title": "House-breaking",
     "status": "unchanged",
-    "row_index": 496
+    "row_index": 496,
+    "page_number": 20
   },
   {
     "bns_section": null,
@@ -3973,7 +4469,8 @@
     "bns_title": "Deleted",
     "ipc_title": "House-breaking by night",
     "status": "deleted",
-    "row_index": 497
+    "row_index": 497,
+    "page_number": 20
   },
   {
     "bns_section": "331",
@@ -3981,7 +4478,8 @@
     "bns_title": "Punishment for house-trespass or house-",
     "ipc_title": "Punishment for lurking house-trespass or house-",
     "status": "unchanged",
-    "row_index": 498
+    "row_index": 498,
+    "page_number": 20
   },
   {
     "bns_section": "331(2)",
@@ -3989,7 +4487,8 @@
     "bns_title": null,
     "ipc_title": "Punishment for lurking house-trespass or house-",
     "status": "unchanged",
-    "row_index": 499
+    "row_index": 499,
+    "page_number": 20
   },
   {
     "bns_section": "331",
@@ -3997,7 +4496,8 @@
     "bns_title": "(3)",
     "ipc_title": "Lurking house-trespass or house-breaking in",
     "status": "unchanged",
-    "row_index": 500
+    "row_index": 500,
+    "page_number": 20
   },
   {
     "bns_section": "331",
@@ -4005,7 +4505,8 @@
     "bns_title": "(4)",
     "ipc_title": "Lurking house-trespass or house-breaking by",
     "status": "unchanged",
-    "row_index": 501
+    "row_index": 501,
+    "page_number": 20
   },
   {
     "bns_section": "331",
@@ -4013,7 +4514,8 @@
     "bns_title": "(5)",
     "ipc_title": "Lurking house-trespass or house-breaking after",
     "status": "unchanged",
-    "row_index": 502
+    "row_index": 502,
+    "page_number": 21
   },
   {
     "bns_section": "331",
@@ -4021,7 +4523,8 @@
     "bns_title": "(6)",
     "ipc_title": "Lurking house-trespass or house-breaking by",
     "status": "unchanged",
-    "row_index": 503
+    "row_index": 503,
+    "page_number": 21
   },
   {
     "bns_section": "331",
@@ -4029,7 +4532,8 @@
     "bns_title": "(7)",
     "ipc_title": "Grievous hurt caused whilst committing lurking",
     "status": "unchanged",
-    "row_index": 504
+    "row_index": 504,
+    "page_number": 21
   },
   {
     "bns_section": "331",
@@ -4037,7 +4541,8 @@
     "bns_title": "(8)",
     "ipc_title": "All persons jointly concerned in lurking house-",
     "status": "unchanged",
-    "row_index": 505
+    "row_index": 505,
+    "page_number": 21
   },
   {
     "bns_section": "332",
@@ -4045,7 +4550,8 @@
     "bns_title": "House-trespass in order to commit offence",
     "ipc_title": "House-trespass in order to commit offence",
     "status": "unchanged",
-    "row_index": 506
+    "row_index": 506,
+    "page_number": 21
   },
   {
     "bns_section": "332",
@@ -4053,7 +4559,8 @@
     "bns_title": "(b)",
     "ipc_title": "House-trespass in order to commit offence",
     "status": "unchanged",
-    "row_index": 507
+    "row_index": 507,
+    "page_number": 21
   },
   {
     "bns_section": "332",
@@ -4061,7 +4568,8 @@
     "bns_title": "(c)",
     "ipc_title": "House-trespass in order to commit offence",
     "status": "unchanged",
-    "row_index": 508
+    "row_index": 508,
+    "page_number": 21
   },
   {
     "bns_section": "333",
@@ -4069,7 +4577,8 @@
     "bns_title": "House-trespass after preparation for hurt,",
     "ipc_title": "House-trespass after preparation for hurt,",
     "status": "unchanged",
-    "row_index": 509
+    "row_index": 509,
+    "page_number": 21
   },
   {
     "bns_section": "334",
@@ -4077,7 +4586,8 @@
     "bns_title": "Dishonestly breaking open receptacle",
     "ipc_title": "Dishonestly breaking open receptacle containing",
     "status": "unchanged",
-    "row_index": 510
+    "row_index": 510,
+    "page_number": 21
   },
   {
     "bns_section": "334(2)",
@@ -4085,7 +4595,8 @@
     "bns_title": null,
     "ipc_title": "Punishment for same offence when committed",
     "status": "unchanged",
-    "row_index": 511
+    "row_index": 511,
+    "page_number": 21
   },
   {
     "bns_section": "335",
@@ -4093,7 +4604,8 @@
     "bns_title": "Making a false document",
     "ipc_title": "Making a false document",
     "status": "unchanged",
-    "row_index": 512
+    "row_index": 512,
+    "page_number": 21
   },
   {
     "bns_section": "336",
@@ -4101,7 +4613,8 @@
     "bns_title": "Forgery",
     "ipc_title": "Forgery",
     "status": "unchanged",
-    "row_index": 513
+    "row_index": 513,
+    "page_number": 21
   },
   {
     "bns_section": "336",
@@ -4109,7 +4622,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for forgery",
     "status": "unchanged",
-    "row_index": 514
+    "row_index": 514,
+    "page_number": 21
   },
   {
     "bns_section": "336",
@@ -4117,7 +4631,8 @@
     "bns_title": "(3)",
     "ipc_title": "Forgery for purpose of cheating",
     "status": "unchanged",
-    "row_index": 515
+    "row_index": 515,
+    "page_number": 21
   },
   {
     "bns_section": "336",
@@ -4125,7 +4640,8 @@
     "bns_title": "(4)",
     "ipc_title": "Forgery for purpose of harming reputation",
     "status": "unchanged",
-    "row_index": 516
+    "row_index": 516,
+    "page_number": 21
   },
   {
     "bns_section": "337",
@@ -4133,7 +4649,8 @@
     "bns_title": "Forgery of record of Court or of public register,",
     "ipc_title": "Forgery of record of Court or of public register,",
     "status": "unchanged",
-    "row_index": 517
+    "row_index": 517,
+    "page_number": 21
   },
   {
     "bns_section": "338",
@@ -4141,7 +4658,8 @@
     "bns_title": "Forgery of valuable security, will, etc",
     "ipc_title": "Forgery of valuable security, will, etc",
     "status": "unchanged",
-    "row_index": 518
+    "row_index": 518,
+    "page_number": 21
   },
   {
     "bns_section": "339",
@@ -4149,7 +4667,8 @@
     "bns_title": "Having possession of document described in",
     "ipc_title": "Having possession of document described in",
     "status": "unchanged",
-    "row_index": 519
+    "row_index": 519,
+    "page_number": 21
   },
   {
     "bns_section": "340",
@@ -4157,7 +4676,8 @@
     "bns_title": "Forged document or electronic record and",
     "ipc_title": "Forged document or electronic record",
     "status": "unchanged",
-    "row_index": 520
+    "row_index": 520,
+    "page_number": 21
   },
   {
     "bns_section": "340",
@@ -4165,7 +4685,8 @@
     "bns_title": "(2)",
     "ipc_title": "Using as genuine a forged document or",
     "status": "unchanged",
-    "row_index": 521
+    "row_index": 521,
+    "page_number": 21
   },
   {
     "bns_section": "341",
@@ -4173,7 +4694,8 @@
     "bns_title": "Making or possessing counterfeit seal, etc.,",
     "ipc_title": "Making or possessing counterfeit seal, etc., with",
     "status": "unchanged",
-    "row_index": 522
+    "row_index": 522,
+    "page_number": 21
   },
   {
     "bns_section": "341",
@@ -4181,7 +4703,8 @@
     "bns_title": "(2)",
     "ipc_title": "Making or possessing counterfeit seal, etc., with",
     "status": "unchanged",
-    "row_index": 523
+    "row_index": 523,
+    "page_number": 21
   },
   {
     "bns_section": "341",
@@ -4189,7 +4712,8 @@
     "bns_title": "(3)",
     "ipc_title": "New Sub-Section",
     "status": "new",
-    "row_index": 524
+    "row_index": 524,
+    "page_number": 21
   },
   {
     "bns_section": "342",
@@ -4197,7 +4721,8 @@
     "bns_title": "Counterfeiting device or mark used for",
     "ipc_title": "Counterfeiting device or mark used for",
     "status": "unchanged",
-    "row_index": 525
+    "row_index": 525,
+    "page_number": 22
   },
   {
     "bns_section": "342(2)",
@@ -4205,7 +4730,8 @@
     "bns_title": null,
     "ipc_title": "Counterfeiting device or mark used for",
     "status": "unchanged",
-    "row_index": 526
+    "row_index": 526,
+    "page_number": 22
   },
   {
     "bns_section": "343",
@@ -4213,7 +4739,8 @@
     "bns_title": "Fraudulent cancellation, destruction, etc., of",
     "ipc_title": "Fraudulent cancellation, destruction, etc., of",
     "status": "unchanged",
-    "row_index": 527
+    "row_index": 527,
+    "page_number": 22
   },
   {
     "bns_section": "344",
@@ -4221,7 +4748,8 @@
     "bns_title": "Falsification of accounts",
     "ipc_title": "Falsification of accounts",
     "status": "unchanged",
-    "row_index": 528
+    "row_index": 528,
+    "page_number": 22
   },
   {
     "bns_section": "345",
@@ -4229,7 +4757,8 @@
     "bns_title": "Property mark",
     "ipc_title": "Property mark",
     "status": "unchanged",
-    "row_index": 529
+    "row_index": 529,
+    "page_number": 22
   },
   {
     "bns_section": "345",
@@ -4237,7 +4766,8 @@
     "bns_title": "(2)",
     "ipc_title": "Using a false property mark",
     "status": "unchanged",
-    "row_index": 530
+    "row_index": 530,
+    "page_number": 22
   },
   {
     "bns_section": "345",
@@ -4245,7 +4775,8 @@
     "bns_title": "(3)",
     "ipc_title": "Punishment for using a false property mark",
     "status": "unchanged",
-    "row_index": 531
+    "row_index": 531,
+    "page_number": 22
   },
   {
     "bns_section": "346",
@@ -4253,7 +4784,8 @@
     "bns_title": "Tampering with property mark with intent to",
     "ipc_title": "Tampering with property mark with intent to",
     "status": "unchanged",
-    "row_index": 532
+    "row_index": 532,
+    "page_number": 22
   },
   {
     "bns_section": "347",
@@ -4261,7 +4793,8 @@
     "bns_title": "Counterfeiting a property mark",
     "ipc_title": "Counterfeiting a property mark used by another",
     "status": "unchanged",
-    "row_index": 533
+    "row_index": 533,
+    "page_number": 22
   },
   {
     "bns_section": "347",
@@ -4269,7 +4802,8 @@
     "bns_title": "(2)",
     "ipc_title": "Counterfeiting a mark used by a public servant",
     "status": "unchanged",
-    "row_index": 534
+    "row_index": 534,
+    "page_number": 22
   },
   {
     "bns_section": "348",
@@ -4277,7 +4811,8 @@
     "bns_title": "Making or possession of any instrument for",
     "ipc_title": "Making or possession of any instrument for",
     "status": "unchanged",
-    "row_index": 535
+    "row_index": 535,
+    "page_number": 22
   },
   {
     "bns_section": "349",
@@ -4285,7 +4820,8 @@
     "bns_title": "Selling goods marked with a counterfeit",
     "ipc_title": "Selling goods marked with a counterfeit",
     "status": "unchanged",
-    "row_index": 536
+    "row_index": 536,
+    "page_number": 22
   },
   {
     "bns_section": "350",
@@ -4293,7 +4829,8 @@
     "bns_title": "Making a false mark upon any receptacle",
     "ipc_title": "Making a false mark upon any receptacle",
     "status": "unchanged",
-    "row_index": 537
+    "row_index": 537,
+    "page_number": 22
   },
   {
     "bns_section": "350",
@@ -4301,7 +4838,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for making use of any such false",
     "status": "unchanged",
-    "row_index": 538
+    "row_index": 538,
+    "page_number": 22
   },
   {
     "bns_section": "351",
@@ -4309,7 +4847,8 @@
     "bns_title": "Criminal intimidation",
     "ipc_title": "Criminal intimidation",
     "status": "unchanged",
-    "row_index": 539
+    "row_index": 539,
+    "page_number": 22
   },
   {
     "bns_section": "351",
@@ -4317,7 +4856,8 @@
     "bns_title": "(2), 351 (3)",
     "ipc_title": "Punishment for criminal intimidation",
     "status": "unchanged",
-    "row_index": 540
+    "row_index": 540,
+    "page_number": 22
   },
   {
     "bns_section": "351",
@@ -4325,7 +4865,8 @@
     "bns_title": "(4)",
     "ipc_title": "Criminal intimidation by an anonymous",
     "status": "unchanged",
-    "row_index": 541
+    "row_index": 541,
+    "page_number": 22
   },
   {
     "bns_section": "352",
@@ -4333,7 +4874,8 @@
     "bns_title": "Intentional insult with intent to provoke",
     "ipc_title": "Intentional insult with intent to provoke breach",
     "status": "unchanged",
-    "row_index": 542
+    "row_index": 542,
+    "page_number": 22
   },
   {
     "bns_section": "353",
@@ -4341,7 +4883,8 @@
     "bns_title": "Statements conducing to public mischief",
     "ipc_title": "Statements conducing to public mischief",
     "status": "unchanged",
-    "row_index": 543
+    "row_index": 543,
+    "page_number": 22
   },
   {
     "bns_section": "354",
@@ -4349,7 +4892,8 @@
     "bns_title": "Act caused by inducing person to believe that",
     "ipc_title": "Act caused by inducing person to believe that he",
     "status": "unchanged",
-    "row_index": 544
+    "row_index": 544,
+    "page_number": 22
   },
   {
     "bns_section": "355",
@@ -4357,7 +4901,8 @@
     "bns_title": "Misconduct in public by a drunken person",
     "ipc_title": "Misconduct in public by a drunken person",
     "status": "changed",
-    "row_index": 545
+    "row_index": 545,
+    "page_number": 22
   },
   {
     "bns_section": "356",
@@ -4365,7 +4910,8 @@
     "bns_title": "Defamation. (Change)",
     "ipc_title": "Defamation",
     "status": "changed",
-    "row_index": 546
+    "row_index": 546,
+    "page_number": 22
   },
   {
     "bns_section": "356",
@@ -4373,7 +4919,8 @@
     "bns_title": "(2)",
     "ipc_title": "Punishment for defamation",
     "status": "unchanged",
-    "row_index": 547
+    "row_index": 547,
+    "page_number": 23
   },
   {
     "bns_section": "356",
@@ -4381,7 +4928,8 @@
     "bns_title": "(3)",
     "ipc_title": "Printing or engraving matter known to be",
     "status": "unchanged",
-    "row_index": 548
+    "row_index": 548,
+    "page_number": 23
   },
   {
     "bns_section": "356",
@@ -4389,7 +4937,8 @@
     "bns_title": "(4)",
     "ipc_title": "Sale of printed or engraved substance",
     "status": "unchanged",
-    "row_index": 549
+    "row_index": 549,
+    "page_number": 23
   },
   {
     "bns_section": "357",
@@ -4397,7 +4946,8 @@
     "bns_title": "Breach of contract to attend on and supply",
     "ipc_title": "Breach of contract to attend on and supply",
     "status": "unchanged",
-    "row_index": 550
+    "row_index": 550,
+    "page_number": 23
   },
   {
     "bns_section": "358",
@@ -4405,7 +4955,8 @@
     "bns_title": "Repeal and savings",
     "ipc_title": "New Section",
     "status": "new",
-    "row_index": 551
+    "row_index": 551,
+    "page_number": 23
   },
   {
     "bns_section": null,
@@ -4413,7 +4964,8 @@
     "bns_title": "Deleted",
     "ipc_title": "“Attempt to commit suicide”",
     "status": "deleted",
-    "row_index": 552
+    "row_index": 552,
+    "page_number": 23
   },
   {
     "bns_section": null,
@@ -4421,7 +4973,8 @@
     "bns_title": "Deleted",
     "ipc_title": "“Thug”",
     "status": "deleted",
-    "row_index": 553
+    "row_index": 553,
+    "page_number": 23
   },
   {
     "bns_section": null,
@@ -4429,6 +4982,7 @@
     "bns_title": "Deleted",
     "ipc_title": "“Punishment”",
     "status": "deleted",
-    "row_index": 554
+    "row_index": 554,
+    "page_number": 23
   }
 ]

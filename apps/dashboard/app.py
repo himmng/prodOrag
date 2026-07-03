@@ -157,6 +157,23 @@ def stream_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score,
                 except json.JSONDecodeError:
                     pass
 
+def _view_page(act: str, page) -> None:
+    if not (act and page):
+        return
+    try:
+        import requests
+        resp = requests.get(
+            f"{st.session_state.api_url}/documents/page-image",
+            params={"act": act, "page": page},
+            headers={"X-API-Key": st.session_state.api_key},
+            timeout=15,
+        )
+        if resp.status_code == 200:
+            st.image(resp.content, caption=f"{act} p.{page}", use_container_width=True)
+        else:
+            st.error(f"Preview failed: {resp.status_code}")
+    except Exception as e:
+        st.error(f"Preview error: {e}")
 
 def render_citations(citations: list, container) -> None:
     if not citations:
@@ -168,8 +185,10 @@ def render_citations(citations: list, container) -> None:
                 act   = c.get("act") or "—"
                 page = c.get("page_number")
                 sec   = c.get("section") or "?"
-                if act in ("IPC", "BNS") and page:
-                    if st.button(f"📄 View p.{page}", key=f"pg_{c['n']}_{act}_{page}"):
+                if act in ("IPC", "BNS", "CONCORDANCE") and page:
+                    label = "concordance" if act == "CONCORDANCE" else act
+                    if st.button(f"📄 View {label} p.{page}", key=f"pg_{c['n']}_{act}_{page}"):
+                        _view_page(act, page)
                         try:
                             import requests
                             resp = requests.get(
@@ -206,6 +225,31 @@ def render_citations(citations: list, container) -> None:
                 if xref:
                     st.caption(xref)
                 st.caption(f"📄 {fname} · p.{c.get('page_number', '?')}")
+
+def render_cross_reference(cross_ref: dict, container) -> None:
+    if not cross_ref:
+        return
+    with container.container():
+        row    = cross_ref.get("concordance_row")
+        ipc    = cross_ref.get("ipc_section")
+        bns    = cross_ref.get("bns_section")
+        status = cross_ref.get("status")
+        page   = cross_ref.get("page_number")
+        badge  = {"new":"🟢 new","changed":"🟡 changed","deleted":"🔴 deleted",
+                  "unchanged":"⚪ unchanged"}.get(status, status or "")
+        with st.expander("🔗 Cross-reference (authoritative mapping)", expanded=True):
+            st.markdown(f"**Concordance Row {row}** — IPC §{ipc} ↔ BNS §{bns}  ·  {badge}")
+            if page and st.button(f"📄 View concordance table (row {row})", key=f"xref_view_{row}"):
+                _view_page("CONCORDANCE", page)
+            for side, key in [("IPC","ipc_citation"), ("BNS","bns_citation")]:
+                cit = cross_ref.get(key)
+                if not cit:
+                    continue
+                st.markdown(f"**{side} §{cit.get('section')}** — `{cit.get('section_title','—')}`")
+                cpage = cit.get("page_number")
+                if cpage and st.button(f"📄 View {side} p.{cpage}", key=f"xref_{side}_{cpage}"):
+                    _view_page(side, cpage)
+
 # ── Sidebar — Summary, flow, settings ────────────────────────────────
 
 with st.sidebar:
@@ -217,147 +261,146 @@ with st.sidebar:
         "passing context to the LLM."
     )
 
-    with st.expander("🛠 Tech stack", expanded=False):
-        st.markdown(
-            """
-            | Layer | Tool |
-            |---|---|
-            | Parser | **Docling** (PDF → structured chunks) |
-            | Embeddings | **embeddinggemma** (Ollama, 768-d) |
-            | Vector store | **ChromaDB** |
-            | Sparse | **BM25** (rank-bm25) |
-            | Fusion | **RRF** (k=60) |
-            | Reranker | **BGE-reranker-base** (sentence-transformers) |
-            | LLM | **gemma-4-e4b** (Ollama) |
-            | API | **FastAPI** + SSE streaming |
-            | Auth | API-key + slowapi rate limit |
-            """
-        )
-
-    with st.expander("🔗 Pipeline flow", expanded=False):
-        st.markdown(
-            """
-            <div class="flow-container">
-              <span class="flow-stage">Query</span>
-              <span class="flow-arrow">→</span>
-              <span class="flow-stage">Embed</span>
-              <span class="flow-arrow">→</span>
-              <span class="flow-stage">Dense + BM25</span>
-              <span class="flow-arrow">→</span>
-              <span class="flow-stage">RRF Fusion</span>
-              <span class="flow-arrow">→</span>
-              <span class="flow-stage">Rerank</span>
-              <span class="flow-arrow">→</span>
-              <span class="flow-stage">LLM</span>
-              <span class="flow-arrow">→</span>
-              <span class="flow-stage">Answer + Cite</span>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        st.caption(
-            "Query → Ollama embedding (768-d) → ChromaDB cosine search + "
-            "BM25 keyword search → Reciprocal Rank Fusion → BGE cross-encoder "
-            "scoring → top-k chunks to LLM → streamed answer with citations."
-        )
-
-    st.divider()
-    st.markdown("### 🔌 Connection")
-    st.session_state.api_url = st.text_input("API URL", value=st.session_state.api_url)
-    st.session_state.api_key = st.text_input("API Key", value=st.session_state.api_key, type="password")
-
-    health = check_health(st.session_state.api_url)
-    status = health.get("status", "unknown")
-    badge  = {"healthy": "🟢", "degraded": "🟡", "unhealthy": "🔴"}.get(status, "⚫")
-    st.markdown(f"**Status:** {badge} `{status}`")
-    with st.expander("Components", expanded=False):
-        for k, v in health.get("components", {}).items():
-            icon = "✅" if v == "ok" else "❌"
-            st.markdown(f"{icon} **{k}**: `{v}`")
-
-    st.divider()
-    st.markdown("### 🔍 Retrieval (live tunable)")
-    st.session_state.collections = st.multiselect(
-        "Search in",
-        options=["IPC", "BNS"],
-        default=st.session_state.collections,
-        help=(
-            "**IPC (1860)**: original act, used for crimes pre-July 2024.\n\n"
-            "**BNS (2023)**: current law from 1 July 2024.\n\n"
-            "Select both for cross-references and complete answers."
-        ),
-    )
-    if not st.session_state.collections:
-        st.warning("Pick at least one act")
-        st.session_state.collections = ["IPC", "BNS"]
-    st.session_state.retriever = st.selectbox(
-        "Retriever strategy",
-        options=["hybrid_reranked", "dense", "bm25", "ensemble"],
-        index=["hybrid_reranked","dense","bm25","ensemble"].index(st.session_state.retriever),
-        help=(
-            "**hybrid_reranked** (prod): BM25 + dense + cross-encoder rerank. "
-            "Best recall + precision.\n\n"
-            "**dense**: vector-only — fast, semantic match.\n\n"
-            "**bm25**: keyword-only — best for legal section numbers.\n\n"
-            "**ensemble**: RRF fusion of dense + BM25, no rerank — fast hybrid."
-        ),
+with st.expander("🛠 Tech stack", expanded=False):
+    st.markdown(
+        """
+        | Layer | Tool |
+        |---|---|
+        | Parser | **Docling** (PDF → structured chunks) |
+        | Embeddings | **embeddinggemma** (Ollama, 768-d) |
+        | Vector store | **ChromaDB** |
+        | Sparse | **BM25** (rank-bm25) |
+        | Fusion | **RRF** (k=60) |
+        | Reranker | **BGE-reranker-base** (sentence-transformers) |
+        | LLM | **gemma-4-e4b** (Ollama) |
+        | API | **FastAPI** + SSE streaming |
+        | Auth | API-key + slowapi rate limit |
+        """
     )
 
-    st.session_state.fetch_k = st.slider(
-        "fetch_k (pre-rerank candidates)",
-        min_value=5, max_value=50, value=st.session_state.fetch_k, step=5,
-        help=(
-            "How many candidates to retrieve **before** reranking. "
-            "Higher → reranker sees more options, recall ↑, latency ↑. "
-            "Default 20."
-        ),
+with st.expander("🔗 Pipeline flow", expanded=False):
+    st.markdown(
+        """
+        <div class="flow-container">
+            <span class="flow-stage">Query</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-stage">Embed</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-stage">Dense + BM25</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-stage">RRF Fusion</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-stage">Rerank</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-stage">LLM</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-stage">Answer + Cite</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        "Query → Ollama embedding (768-d) → ChromaDB cosine search + "
+        "BM25 keyword search → Reciprocal Rank Fusion → BGE cross-encoder "
+        "scoring → top-k chunks to LLM → streamed answer with citations."
     )
 
-    st.session_state.top_k = st.slider(
-        "top_k (final context)",
-        min_value=1, max_value=20, value=st.session_state.top_k,
-        help=(
-            "How many top-scored chunks reach the LLM. "
-            "More → richer context, but bigger prompt → slower + may dilute focus. "
-            "5 is a strong default."
-        ),
-    )
+st.divider()
+st.markdown("### 🔌 Connection")
+st.session_state.api_url = st.text_input("API URL", value=st.session_state.api_url)
+st.session_state.api_key = st.text_input("API Key", value=st.session_state.api_key, type="password")
 
-    st.session_state.min_score = st.slider(
-        "min_score (reranker threshold)",
-        min_value=0.0, max_value=1.0, value=float(st.session_state.min_score), step=0.01,
-        help=(
-            "Drop chunks scoring below this. "
-            "Higher → stricter refusal of weak matches, recall ↓. "
-            "Calibrated default: 0.01 (F1-optimal on the 96-example eval set)."
-        ),
-    )
+health = check_health(st.session_state.api_url)
+status = health.get("status", "unknown")
+badge  = {"healthy": "🟢", "degraded": "🟡", "unhealthy": "🔴"}.get(status, "⚫")
+st.markdown(f"**Status:** {badge} `{status}`")
+with st.expander("Components", expanded=False):
+    for k, v in health.get("components", {}).items():
+        icon = "✅" if v == "ok" else "❌"
+        st.markdown(f"{icon} **{k}**: `{v}`")
 
-    st.session_state.use_streaming = st.toggle(
-        "Stream tokens (SSE)",
-        value=st.session_state.use_streaming,
-        help="Use /answer/stream. Citations land in ~1-2 s; tokens stream as LLM generates.",
-    )
+st.divider()
+st.markdown("### 🔍 Retrieval (live tunable)")
+st.session_state.collections = st.multiselect(
+    "Search in",
+    options=["IPC", "BNS"],
+    default=st.session_state.collections,
+    help=(
+        "**IPC (1860)**: original act, used for crimes pre-July 2024.\n\n"
+        "**BNS (2023)**: current law from 1 July 2024.\n\n"
+        "Select both for cross-references and complete answers."
+    ),
+)
+if not st.session_state.collections:
+    st.warning("Pick at least one act")
+    st.session_state.collections = ["IPC", "BNS"]
+st.session_state.retriever = st.selectbox(
+    "Retriever strategy",
+    options=["hybrid_reranked", "dense", "bm25", "ensemble"],
+    index=["hybrid_reranked","dense","bm25","ensemble"].index(st.session_state.retriever),
+    help=(
+        "**hybrid_reranked** (prod): BM25 + dense + cross-encoder rerank. "
+        "Best recall + precision.\n\n"
+        "**dense**: vector-only — fast, semantic match.\n\n"
+        "**bm25**: keyword-only — best for legal section numbers.\n\n"
+        "**ensemble**: RRF fusion of dense + BM25, no rerank — fast hybrid."
+    ),
+)
 
-    st.divider()
-    st.markdown("### 🛠 Server-side (read-only)")
-    st.caption("Set at startup — change via `.env` + restart.")
-    st.code(
-        "LLM:        gemma-4-e4b (Ollama)\n"
-        "Embeddings: embeddinggemma (768-d)\n"
-        "Reranker:   BAAI/bge-reranker-base\n"
-        "Vector DB:  ChromaDB (IPC_Corpus)\n"
-        "Chunks:     612 (size=800, overlap=120)",
-        language="yaml",
-    )
+st.session_state.fetch_k = st.slider(
+    "fetch_k (pre-rerank candidates)",
+    min_value=5, max_value=50, value=st.session_state.fetch_k, step=5,
+    help=(
+        "How many candidates to retrieve **before** reranking. "
+        "Higher → reranker sees more options, recall ↑, latency ↑. "
+        "Default 20."
+    ),
+)
 
-    if st.button("🗑 Clear chat + monitor", use_container_width=True):
-        st.session_state.messages = []
-        st.session_state.events = []
-        st.session_state.req_count = 0
-        st.session_state.total_tokens = 0
-        st.rerun()
+st.session_state.top_k = st.slider(
+    "top_k (final context)",
+    min_value=1, max_value=20, value=st.session_state.top_k,
+    help=(
+        "How many top-scored chunks reach the LLM. "
+        "More → richer context, but bigger prompt → slower + may dilute focus. "
+        "5 is a strong default."
+    ),
+)
 
+st.session_state.min_score = st.slider(
+    "min_score (reranker threshold)",
+    min_value=0.0, max_value=1.0, value=float(st.session_state.min_score), step=0.01,
+    help=(
+        "Drop chunks scoring below this. "
+        "Higher → stricter refusal of weak matches, recall ↓. "
+        "Calibrated default: 0.01 (F1-optimal on the 96-example eval set)."
+    ),
+)
+
+st.session_state.use_streaming = st.toggle(
+    "Stream tokens (SSE)",
+    value=st.session_state.use_streaming,
+    help="Use /answer/stream. Citations land in ~1-2 s; tokens stream as LLM generates.",
+)
+
+st.divider()
+st.markdown("### 🛠 Server-side (read-only)")
+st.caption("Set at startup — change via `.env` + restart.")
+st.code(
+    "LLM:        gemma-4-e4b (Ollama)\n"
+    "Embeddings: embeddinggemma (768-d)\n"
+    "Reranker:   BAAI/bge-reranker-base\n"
+    "Vector DB:  ChromaDB (IPC_Corpus)\n"
+    "Chunks:     612 (size=800, overlap=120)",
+    language="yaml",
+)
+
+if st.button("🗑 Clear chat + monitor", use_container_width=True):
+    st.session_state.messages = []
+    st.session_state.events = []
+    st.session_state.req_count = 0
+    st.session_state.total_tokens = 0
+    st.rerun()
 
 # ── Main area: chat (left wide) + monitor (right narrow) ─────────────
 
@@ -453,6 +496,7 @@ with chat_col:
 
         with st.chat_message("assistant"):
             answer_box    = st.empty()
+            xref_box = st.empty()
             citations_box = st.empty()
             metrics_box   = st.empty()
 
@@ -477,8 +521,9 @@ with chat_col:
                         ):
                             ev_t = evt.get("event")
                             data = evt.get("data", {})
-
-                            if ev_t == "citations":
+                            if ev_t == "cross_reference":
+                                render_cross_reference(data.get("cross_reference"), xref_box)
+                            elif ev_t == "citations":
                                 citations = data.get("citations", [])
                                 render_citations(citations, citations_box)
                                 log_event("citations", f"{len(citations)} chunks")

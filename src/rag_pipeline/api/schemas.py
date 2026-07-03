@@ -29,13 +29,22 @@ class Citation(BaseModel):
     corresponds_to: Optional[str]   = None    # cross-act mapping
     change_status: Optional[str]    = None    # "new"|"changed"|"deleted"|"unchanged"
 
+class CrossReference(BaseModel):
+    concordance_row: Optional[int] = None
+    ipc_section:     Optional[str] = None
+    bns_section:     Optional[str] = None
+    status:          Optional[str] = None
+    page_number:     Optional[int] = None
+    ipc_citation:    Optional[Citation] = None   # real IPC section text
+    bns_citation:    Optional[Citation] = None   # real BNS section text
 
 class AnswerResponse(BaseModel):
-    question:    str
-    answer:      str
-    citations:   list[Citation]
-    retriever:   str
-    latency_ms:  float
+    question:       str
+    answer:         str
+    citations:      list[Citation]
+    cross_reference: Optional[CrossReference] = None   # ← new
+    retriever:      str
+    latency_ms:     float
 
 
 class HealthResponse(BaseModel):

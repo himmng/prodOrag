@@ -35,7 +35,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, Depends, Request, Response
 from rag_pipeline.api.schemas import (
-    AnswerRequest, AnswerResponse, Citation, HealthResponse,
+    AnswerRequest, AnswerResponse, Citation, HealthResponse, CrossReference
 )
 from rag_pipeline.generation.context import build_context
 from rag_pipeline.config import cfg, log
@@ -133,7 +133,7 @@ def _concordance_citation(row, n: int) -> Citation:
     return Citation(
         n=n,
         source_path="IPC_BNS_concordance.pdf",
-        page_number=None,
+        page_number=row.page_number,
         section_title=(
             f"Concordance Row {row.row_index or '?'} · "
             f"BNS §{row.bns_section or '—'} ↔ IPC §{row.ipc_section or '—'}"
@@ -422,21 +422,41 @@ def answer_route(
         if d.metadata.get("chunk_id") not in seen_ids
     ]
     keep = priority + section_citations + semantic_citations[: max(0, req.top_k)]
-    citations = []
-    for i, c in enumerate(keep, start=1):
-        c.n = i
-        citations.append(c)
+    # Semantic citations ONLY — capped at top_k
+    citations = [
+        _enrich_citation(doc, score, i + 1)
+        for i, (doc, score) in enumerate(docs_with_scores[:req.top_k])
+    ]
+
+    # Cross-reference lives in its own field, not mixed into citations
+    cross_ref = None
+    if rows:
+        row = rows[0]
+        ipc_cit = bns_cit = None
+        for r in resolved:
+            hit = _fetch_section_chunk(r["act"], r["section"])
+            if hit:
+                cit = _enrich_citation(hit[0], hit[1], 0)
+                if r["act"] == "IPC": ipc_cit = cit
+                else:                 bns_cit = cit
+        cross_ref = CrossReference(
+            concordance_row=row.row_index,
+            ipc_section=row.ipc_section,
+            bns_section=row.bns_section,
+            page_number=row.page_number,
+            status=row.status,
+            ipc_citation=ipc_cit,
+            bns_citation=bns_cit,
+        )
 
     return AnswerResponse(
         question=req.query,
         answer=answer_text,
         citations=citations,
+        cross_reference=cross_ref,
         retriever=req.retriever,
         latency_ms=(time.perf_counter() - start) * 1000.0,
     )
-
-
-# ── /answer/stream (SSE) ─────────────────────────────────────────────
 
 # ── /answer/stream (SSE) ─────────────────────────────────────────────
 
@@ -453,10 +473,11 @@ def answer_stream_route(
     """Streaming variant of /answer. Returns text/event-stream.
 
     Events:
-      • citations  — concordance rows + section texts + semantic, after retrieval
-      • token      — one per LLM chunk
-      • done       — terminal frame with latency
-      • error      — terminal frame on failure
+      • cross_reference — concordance mapping + both section texts (if query names a section)
+      • citations       — semantic RAG results only, capped at top_k
+      • token           — one per LLM chunk
+      • done            — terminal frame with latency
+      • error           — terminal frame on failure
     """
     if req.retriever not in {"hybrid_reranked", "dense", "bm25", "ensemble"}:
         raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
@@ -480,11 +501,12 @@ def answer_stream_route(
             yield sse_event("error", {"stage": "retrieve", "message": str(e)})
             return
 
-        # 2. Cross-reference detection (may fire even if semantic retrieval is weak)
+        # 2. Cross-reference detection (fires even if semantic retrieval is weak)
         xref, resolved, rows = _concordance_context(req.query)
 
-        # 3. Empty-result refusal — only if BOTH semantic and concordance are empty
+        # 3. Refusal — only if BOTH semantic and concordance are empty
         if not docs_with_scores and not rows:
+            yield sse_event("cross_reference", {"cross_reference": None})
             yield sse_event("citations", {"citations": []})
             yield sse_event("token", {"text": "I don't have that information in the provided documents."})
             yield sse_event("done", {
@@ -499,30 +521,38 @@ def answer_stream_route(
         if xref:
             context = f"{xref}\n\n{context}"
 
-        # 5. Priority citations: concordance row(s) + real section texts
-        priority = []
-        n = 1
-        for row in rows:
-            priority.append(_concordance_citation(row, n)); n += 1
+        # 5. Cross-reference block (separate from citations)
+        cross_ref = None
+        if rows:
+            row = rows[0]
+            ipc_cit = bns_cit = None
+            for r in resolved:
+                hit = _fetch_section_chunk(r["act"], r["section"])
+                if hit:
+                    cit = _enrich_citation(hit[0], hit[1], 0)
+                    if r["act"] == "IPC":
+                        ipc_cit = cit
+                    else:
+                        bns_cit = cit
+            cross_ref = CrossReference(
+                concordance_row=row.row_index,
+                ipc_section=row.ipc_section,
+                bns_section=row.bns_section,
+                page_number=row.page_number,
+                status=row.status,
+                ipc_citation=ipc_cit,
+                bns_citation=bns_cit,
+            )
+        yield sse_event(
+            "cross_reference",
+            {"cross_reference": cross_ref.model_dump() if cross_ref else None},
+        )
 
-        priority_docs = []
-        for r in resolved:
-            hit = _fetch_section_chunk(r["act"], r["section"])
-            if hit:
-                priority_docs.append(hit)
-
-        seen_ids = {d.metadata.get("chunk_id") for d, _ in priority_docs}
-        section_citations = [_enrich_citation(d, s, 0) for d, s in priority_docs]
-        semantic_citations = [
-            _enrich_citation(d, s, 0) for d, s in docs_with_scores
-            if d.metadata.get("chunk_id") not in seen_ids
+        # 6. Semantic citations ONLY — capped at top_k
+        citations = [
+            _enrich_citation(doc, score, i + 1).model_dump()
+            for i, (doc, score) in enumerate(docs_with_scores[: req.top_k])
         ]
-        keep = priority + section_citations + semantic_citations[: max(0, req.top_k)]
-        for i, c in enumerate(keep, start=1):
-            c.n = i
-        citations = [c.model_dump() for c in keep]
-
-        # 6. Emit citations immediately
         yield sse_event("citations", {"citations": citations})
 
         # 7. Build prompt + stream LLM tokens
@@ -563,7 +593,6 @@ def answer_stream_route(
             "X-Accel-Buffering": "no",
         },
     )
-
 # ── /eval/* (point at IPC by default for now) ────────────────────────
 
 @app.post(
@@ -672,7 +701,7 @@ def list_documents() -> DocListResponse:
 
 @app.get("/documents/page-image", dependencies=[Depends(verify_api_key)])
 def page_image(
-    act: str = Query(..., pattern="^(IPC|BNS)$"),
+    act: str = Query(..., pattern="^(IPC|BNS|CONCORDANCE)$"),
     page: int = Query(..., ge=1),
 ):
     """Render one page of a corpus PDF to PNG for inline preview."""
@@ -681,6 +710,7 @@ def page_image(
     pdf_map = {
         "IPC": cfg.PROJECT_ROOT / "data" / "raw" / "IPC_1860.pdf",
         "BNS": cfg.PROJECT_ROOT / "data" / "raw" / "BNS_2023.pdf",
+        "CONCORDANCE": cfg.PROJECT_ROOT / "data" / "raw" / "IPC_BNS_concordance.pdf",   # ← new
     }
     pdf_path = pdf_map.get(act)
     if not pdf_path or not pdf_path.exists():
