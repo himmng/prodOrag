@@ -377,20 +377,16 @@ def answer_route(
             retriever=req.retriever,
             latency_ms=(time.perf_counter() - start) * 1000.0,
         )
-
-    context = build_context(docs_with_scores)
-
-    # Inject cross-reference mapping if the query mentions a section
-    xref = _concordance_context(req.query)
-    if xref:
-        context = f"{xref}\n\n{context}"
-
+    MAIN_CITATION_FLOOR = 0.55
+    docs_with_scores = [
+        (d, s) for d, s in docs_with_scores if s >= MAIN_CITATION_FLOOR
+    ]
     context = build_context(docs_with_scores)
 
     # Cross-reference detection
     xref, resolved, rows = _concordance_context(req.query)
     if xref:
-        context = f"{xref}\n\n{context}"
+        context = f"{xref}\n\n{context}" 
 
     # Priority citations: concordance row(s) + real section texts
     priority = []
@@ -500,7 +496,10 @@ def answer_stream_route(
         except Exception as e:
             yield sse_event("error", {"stage": "retrieve", "message": str(e)})
             return
-
+        MAIN_CITATION_FLOOR = 0.55
+        docs_with_scores = [
+            (d, s) for d, s in docs_with_scores if s >= MAIN_CITATION_FLOOR
+        ]
         # 2. Cross-reference detection (fires even if semantic retrieval is weak)
         xref, resolved, rows = _concordance_context(req.query)
 

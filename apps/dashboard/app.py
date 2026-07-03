@@ -81,7 +81,7 @@ DEFAULTS = {
     "fetch_k":        20,
     "min_score":      0.01,
     "use_streaming":  True,
-    "collections":    ["IPC", "BNS"],     # ← add this line
+    "collections":    ["IPC", "BNS"],
     "events":         [],
     "req_count":      0,
     "total_tokens":   0,
@@ -97,7 +97,6 @@ def log_event(kind: str, msg: str) -> None:
         "kind": kind,
         "msg":  msg,
     })
-    # Keep last 30
     st.session_state.events = st.session_state.events[-30:]
 
 
@@ -130,11 +129,12 @@ def call_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score, c
         raise RuntimeError(f"API {r.status_code}: {r.text[:200]}")
     return r.json()
 
+
 def stream_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score, collections):
     payload = {
         "query": query, "retriever": retriever, "top_k": top_k,
         "fetch_k": fetch_k, "min_score": min_score,
-        "collections": collections, 
+        "collections": collections,
     }
     with requests.post(
         f"{api_url}/answer/stream",
@@ -157,11 +157,14 @@ def stream_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score,
                 except json.JSONDecodeError:
                     pass
 
+
+# ── Rendering helpers ────────────────────────────────────────────────
+
 def _view_page(act: str, page) -> None:
+    """Fetch and display a PDF page image inline."""
     if not (act and page):
         return
     try:
-        import requests
         resp = requests.get(
             f"{st.session_state.api_url}/documents/page-image",
             params={"act": act, "page": page},
@@ -175,7 +178,8 @@ def _view_page(act: str, page) -> None:
     except Exception as e:
         st.error(f"Preview error: {e}")
 
-def render_citations(citations: list, container) -> None:
+
+def render_citations(citations: list, container, key_prefix: str = "live") -> None:
     if not citations:
         return
     with container.container():
@@ -183,30 +187,17 @@ def render_citations(citations: list, container) -> None:
             for c in citations:
                 fname = (c.get("source_path") or "").split("/")[-1]
                 act   = c.get("act") or "—"
-                page = c.get("page_number")
+                page  = c.get("page_number")
                 sec   = c.get("section") or "?"
+
                 if act in ("IPC", "BNS", "CONCORDANCE") and page:
                     label = "concordance" if act == "CONCORDANCE" else act
-                    if st.button(f"📄 View {label} p.{page}", key=f"pg_{c['n']}_{act}_{page}"):
+                    if st.button(f"📄 View {label} p.{page}", key=f"{key_prefix}_pg_{c['n']}_{act}_{page}"):
                         _view_page(act, page)
-                        try:
-                            import requests
-                            resp = requests.get(
-                                f"{st.session_state.api_url}/documents/page-image",
-                                params={"act": act, "page": page},
-                                headers={"X-API-Key": st.session_state.api_key},
-                                timeout=15,
-                            )
-                            if resp.status_code == 200:
-                                st.image(resp.content, caption=f"{act} p.{page}",
-                                         use_container_width=True)
-                            else:
-                                st.error(f"Preview failed: {resp.status_code}")
-                        except Exception as e:
-                            st.error(f"Preview error: {e}")
-                
 
-                # Build cross-reference badge
+                    
+
+                # Cross-reference badge
                 xref_parts = []
                 if c.get("corresponds_to"):
                     other_act = "BNS" if act == "IPC" else "IPC"
@@ -226,7 +217,8 @@ def render_citations(citations: list, container) -> None:
                     st.caption(xref)
                 st.caption(f"📄 {fname} · p.{c.get('page_number', '?')}")
 
-def render_cross_reference(cross_ref: dict, container) -> None:
+
+def render_cross_reference(cross_ref: dict, container, key_prefix: str = "live") -> None:
     if not cross_ref:
         return
     with container.container():
@@ -235,172 +227,173 @@ def render_cross_reference(cross_ref: dict, container) -> None:
         bns    = cross_ref.get("bns_section")
         status = cross_ref.get("status")
         page   = cross_ref.get("page_number")
-        badge  = {"new":"🟢 new","changed":"🟡 changed","deleted":"🔴 deleted",
-                  "unchanged":"⚪ unchanged"}.get(status, status or "")
-        with st.expander("🔗 Cross-reference (authoritative mapping)", expanded=True):
+        badge  = {"new": "🟢 new", "changed": "🟡 changed", "deleted": "🔴 deleted",
+                  "unchanged": "⚪ unchanged"}.get(status, status or "")
+        with st.expander("🔗 Related — corresponding sections (concordance)", expanded=True):
             st.markdown(f"**Concordance Row {row}** — IPC §{ipc} ↔ BNS §{bns}  ·  {badge}")
-            if page and st.button(f"📄 View concordance table (row {row})", key=f"xref_view_{row}"):
+            if page and st.button(f"📄 View concordance table (row {row})", key=f"{key_prefix}_xref_view_{row}"):
                 _view_page("CONCORDANCE", page)
-            for side, key in [("IPC","ipc_citation"), ("BNS","bns_citation")]:
+            for side, key in [("IPC", "ipc_citation"), ("BNS", "bns_citation")]:
                 cit = cross_ref.get(key)
                 if not cit:
                     continue
-                st.markdown(f"**{side} §{cit.get('section')}** — `{cit.get('section_title','—')}`")
+                st.markdown(f"**{side} §{cit.get('section')}** — `{cit.get('section_title', '—')}`")
                 cpage = cit.get("page_number")
-                if cpage and st.button(f"📄 View {side} p.{cpage}", key=f"xref_{side}_{cpage}"):
+                if cpage and st.button(f"📄 View {side} p.{cpage}", key=f"{key_prefix}_xref_{side}_{cpage}"):
                     _view_page(side, cpage)
+
 
 # ── Sidebar — Summary, flow, settings ────────────────────────────────
 
 with st.sidebar:
     st.markdown("### ⚖️ IPC Legal RAG")
     st.markdown(
-        "Retrieval-augmented Q&A over the **Indian Penal Code** corpus "
-        "(74 PDFs → 612 chunks). Hybrid retrieval combines dense vector "
-        "search with BM25, then re-ranks with a cross-encoder before "
-        "passing context to the LLM."
+        "Retrieval-augmented Q&A over the **Indian Penal Code (1860)** and "
+        "**Bharatiya Nyaya Sanhita (2023)**. Hybrid retrieval combines dense "
+        "vector search with BM25, then re-ranks with a cross-encoder before "
+        "passing context to the LLM. Cross-references between acts come from "
+        "the official concordance table."
     )
 
-with st.expander("🛠 Tech stack", expanded=False):
-    st.markdown(
-        """
-        | Layer | Tool |
-        |---|---|
-        | Parser | **Docling** (PDF → structured chunks) |
-        | Embeddings | **embeddinggemma** (Ollama, 768-d) |
-        | Vector store | **ChromaDB** |
-        | Sparse | **BM25** (rank-bm25) |
-        | Fusion | **RRF** (k=60) |
-        | Reranker | **BGE-reranker-base** (sentence-transformers) |
-        | LLM | **gemma-4-e4b** (Ollama) |
-        | API | **FastAPI** + SSE streaming |
-        | Auth | API-key + slowapi rate limit |
-        """
+    with st.expander("🛠 Tech stack", expanded=False):
+        st.markdown(
+            """
+            | Layer | Tool |
+            |---|---|
+            | Parser | **Docling** + **pdfplumber** |
+            | Embeddings | **embeddinggemma** (Ollama, 768-d) |
+            | Vector store | **ChromaDB** (IPC + BNS) |
+            | Sparse | **BM25** (rank-bm25) |
+            | Fusion | **RRF** (k=60) |
+            | Reranker | **BGE-reranker-base** |
+            | LLM | **gemma-4-e4b** (Ollama) |
+            | API | **FastAPI** + SSE streaming |
+            | Auth | API-key + slowapi rate limit |
+            """
+        )
+
+    with st.expander("🔗 Pipeline flow", expanded=False):
+        st.markdown(
+            """
+            <div class="flow-container">
+                <span class="flow-stage">Query</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-stage">Embed</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-stage">Dense + BM25</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-stage">RRF Fusion</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-stage">Rerank</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-stage">LLM</span>
+                <span class="flow-arrow">→</span>
+                <span class="flow-stage">Answer + Cite</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+        st.caption(
+            "Query → Ollama embedding (768-d) → ChromaDB cosine search + "
+            "BM25 keyword search → Reciprocal Rank Fusion → BGE cross-encoder "
+            "scoring → top-k chunks to LLM → streamed answer with citations."
+        )
+
+    st.divider()
+    st.markdown("### 🔌 Connection")
+    st.session_state.api_url = st.text_input("API URL", value=st.session_state.api_url)
+    st.session_state.api_key = st.text_input("API Key", value=st.session_state.api_key, type="password")
+
+    health = check_health(st.session_state.api_url)
+    status = health.get("status", "unknown")
+    badge  = {"healthy": "🟢", "degraded": "🟡", "unhealthy": "🔴"}.get(status, "⚫")
+    st.markdown(f"**Status:** {badge} `{status}`")
+    with st.expander("Components", expanded=False):
+        for k, v in health.get("components", {}).items():
+            icon = "✅" if v == "ok" else "❌"
+            st.markdown(f"{icon} **{k}**: `{v}`")
+
+    st.divider()
+    st.markdown("### 🔍 Retrieval (live tunable)")
+    st.session_state.collections = st.multiselect(
+        "Search in",
+        options=["IPC", "BNS"],
+        default=st.session_state.collections,
+        help=(
+            "**IPC (1860)**: original act, used for crimes pre-July 2024.\n\n"
+            "**BNS (2023)**: current law from 1 July 2024.\n\n"
+            "Select both for cross-references and complete answers."
+        ),
+    )
+    if not st.session_state.collections:
+        st.warning("Pick at least one act")
+        st.session_state.collections = ["IPC", "BNS"]
+
+    st.session_state.retriever = st.selectbox(
+        "Retriever strategy",
+        options=["hybrid_reranked", "dense", "bm25", "ensemble"],
+        index=["hybrid_reranked", "dense", "bm25", "ensemble"].index(st.session_state.retriever),
+        help=(
+            "**hybrid_reranked** (prod): BM25 + dense + cross-encoder rerank. "
+            "Best recall + precision.\n\n"
+            "**dense**: vector-only — fast, semantic match.\n\n"
+            "**bm25**: keyword-only — best for legal section numbers.\n\n"
+            "**ensemble**: RRF fusion of dense + BM25, no rerank — fast hybrid."
+        ),
     )
 
-with st.expander("🔗 Pipeline flow", expanded=False):
-    st.markdown(
-        """
-        <div class="flow-container">
-            <span class="flow-stage">Query</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-stage">Embed</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-stage">Dense + BM25</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-stage">RRF Fusion</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-stage">Rerank</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-stage">LLM</span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-stage">Answer + Cite</span>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    st.caption(
-        "Query → Ollama embedding (768-d) → ChromaDB cosine search + "
-        "BM25 keyword search → Reciprocal Rank Fusion → BGE cross-encoder "
-        "scoring → top-k chunks to LLM → streamed answer with citations."
+    st.session_state.fetch_k = st.slider(
+        "fetch_k (pre-rerank candidates)",
+        min_value=5, max_value=50, value=st.session_state.fetch_k, step=5,
+        help=(
+            "How many candidates to retrieve **before** reranking. "
+            "Higher → reranker sees more options, recall ↑, latency ↑. Default 20."
+        ),
     )
 
-st.divider()
-st.markdown("### 🔌 Connection")
-st.session_state.api_url = st.text_input("API URL", value=st.session_state.api_url)
-st.session_state.api_key = st.text_input("API Key", value=st.session_state.api_key, type="password")
+    st.session_state.top_k = st.slider(
+        "top_k (final context)",
+        min_value=1, max_value=20, value=st.session_state.top_k,
+        help=(
+            "How many top-scored chunks reach the LLM. "
+            "More → richer context, but bigger prompt → slower. 5 is a strong default."
+        ),
+    )
 
-health = check_health(st.session_state.api_url)
-status = health.get("status", "unknown")
-badge  = {"healthy": "🟢", "degraded": "🟡", "unhealthy": "🔴"}.get(status, "⚫")
-st.markdown(f"**Status:** {badge} `{status}`")
-with st.expander("Components", expanded=False):
-    for k, v in health.get("components", {}).items():
-        icon = "✅" if v == "ok" else "❌"
-        st.markdown(f"{icon} **{k}**: `{v}`")
+    st.session_state.min_score = st.slider(
+        "min_score (reranker threshold)",
+        min_value=0.0, max_value=1.0, value=float(st.session_state.min_score), step=0.01,
+        help=(
+            "Drop chunks scoring below this. "
+            "Higher → stricter refusal of weak matches, recall ↓. Calibrated default: 0.01."
+        ),
+    )
 
-st.divider()
-st.markdown("### 🔍 Retrieval (live tunable)")
-st.session_state.collections = st.multiselect(
-    "Search in",
-    options=["IPC", "BNS"],
-    default=st.session_state.collections,
-    help=(
-        "**IPC (1860)**: original act, used for crimes pre-July 2024.\n\n"
-        "**BNS (2023)**: current law from 1 July 2024.\n\n"
-        "Select both for cross-references and complete answers."
-    ),
-)
-if not st.session_state.collections:
-    st.warning("Pick at least one act")
-    st.session_state.collections = ["IPC", "BNS"]
-st.session_state.retriever = st.selectbox(
-    "Retriever strategy",
-    options=["hybrid_reranked", "dense", "bm25", "ensemble"],
-    index=["hybrid_reranked","dense","bm25","ensemble"].index(st.session_state.retriever),
-    help=(
-        "**hybrid_reranked** (prod): BM25 + dense + cross-encoder rerank. "
-        "Best recall + precision.\n\n"
-        "**dense**: vector-only — fast, semantic match.\n\n"
-        "**bm25**: keyword-only — best for legal section numbers.\n\n"
-        "**ensemble**: RRF fusion of dense + BM25, no rerank — fast hybrid."
-    ),
-)
+    st.session_state.use_streaming = st.toggle(
+        "Stream tokens (SSE)",
+        value=st.session_state.use_streaming,
+        help="Use /answer/stream. Citations land in ~1-2 s; tokens stream as LLM generates.",
+    )
 
-st.session_state.fetch_k = st.slider(
-    "fetch_k (pre-rerank candidates)",
-    min_value=5, max_value=50, value=st.session_state.fetch_k, step=5,
-    help=(
-        "How many candidates to retrieve **before** reranking. "
-        "Higher → reranker sees more options, recall ↑, latency ↑. "
-        "Default 20."
-    ),
-)
+    st.divider()
+    st.markdown("### 🛠 Server-side (read-only)")
+    st.caption("Set at startup — change via `.env` + restart.")
+    st.code(
+        "LLM:        gemma-4-e4b (Ollama)\n"
+        "Embeddings: embeddinggemma (768-d)\n"
+        "Reranker:   BAAI/bge-reranker-base\n"
+        "Vector DB:  ChromaDB (IPC + BNS)\n"
+        "Concordance: 554 rows (IPC↔BNS)",
+        language="yaml",
+    )
 
-st.session_state.top_k = st.slider(
-    "top_k (final context)",
-    min_value=1, max_value=20, value=st.session_state.top_k,
-    help=(
-        "How many top-scored chunks reach the LLM. "
-        "More → richer context, but bigger prompt → slower + may dilute focus. "
-        "5 is a strong default."
-    ),
-)
-
-st.session_state.min_score = st.slider(
-    "min_score (reranker threshold)",
-    min_value=0.0, max_value=1.0, value=float(st.session_state.min_score), step=0.01,
-    help=(
-        "Drop chunks scoring below this. "
-        "Higher → stricter refusal of weak matches, recall ↓. "
-        "Calibrated default: 0.01 (F1-optimal on the 96-example eval set)."
-    ),
-)
-
-st.session_state.use_streaming = st.toggle(
-    "Stream tokens (SSE)",
-    value=st.session_state.use_streaming,
-    help="Use /answer/stream. Citations land in ~1-2 s; tokens stream as LLM generates.",
-)
-
-st.divider()
-st.markdown("### 🛠 Server-side (read-only)")
-st.caption("Set at startup — change via `.env` + restart.")
-st.code(
-    "LLM:        gemma-4-e4b (Ollama)\n"
-    "Embeddings: embeddinggemma (768-d)\n"
-    "Reranker:   BAAI/bge-reranker-base\n"
-    "Vector DB:  ChromaDB (IPC_Corpus)\n"
-    "Chunks:     612 (size=800, overlap=120)",
-    language="yaml",
-)
-
-if st.button("🗑 Clear chat + monitor", use_container_width=True):
-    st.session_state.messages = []
-    st.session_state.events = []
-    st.session_state.req_count = 0
-    st.session_state.total_tokens = 0
-    st.rerun()
+    if st.button("🗑 Clear chat + monitor", use_container_width=True):
+        st.session_state.messages = []
+        st.session_state.events = []
+        st.session_state.req_count = 0
+        st.session_state.total_tokens = 0
+        st.session_state.pop("_last_xref", None)
+        st.rerun()
 
 # ── Main area: chat (left wide) + monitor (right narrow) ─────────────
 
@@ -450,7 +443,7 @@ with chat_col:
     st.markdown(
         "<h2 style='text-align:center;margin-bottom:0;'>⚖️ IPC Legal RAG</h2>"
         "<p style='text-align:center;color:#6c757d;margin-top:0;'>"
-        "Hybrid retrieval over the Indian Penal Code"
+        "Hybrid retrieval over the Indian Penal Code + Bharatiya Nyaya Sanhita"
         "</p>",
         unsafe_allow_html=True,
     )
@@ -459,7 +452,7 @@ with chat_col:
         st.markdown("#### 💡 Try a question")
         samples = [
             "What is the punishment for theft under IPC?",
-            "Define cruelty by husband under Section 498A.",
+            "Which is the BNS correspondence section for IPC 420?",
             "What is the difference between murder and culpable homicide?",
             "Explain criminal conspiracy under Section 120B.",
         ]
@@ -472,11 +465,13 @@ with chat_col:
                     st.rerun()
                 st.markdown('</div>', unsafe_allow_html=True)
 
-    for msg in st.session_state.messages:
+    for i, msg in enumerate(st.session_state.messages):
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
+            if msg.get("cross_reference"):
+                render_cross_reference(msg["cross_reference"], st.empty(), key_prefix=f"hist{i}")
             if msg.get("citations"):
-                render_citations(msg["citations"], st.empty())
+                render_citations(msg["citations"], st.empty(), key_prefix=f"hist{i}")
             if msg.get("latency_ms"):
                 c1, c2, c3 = st.columns(3)
                 c1.metric("Retriever", msg.get("retriever", "—"))
@@ -484,7 +479,7 @@ with chat_col:
                 c3.metric("Citations", len(msg.get("citations", [])))
 
     pending = st.session_state.pop("_pending_query", None)
-    user_query = pending or st.chat_input("Ask an IPC legal question…")
+    user_query = pending or st.chat_input("Ask a legal question…")
 
     if user_query:
         st.session_state.messages.append({"role": "user", "content": user_query})
@@ -496,12 +491,13 @@ with chat_col:
 
         with st.chat_message("assistant"):
             answer_box    = st.empty()
-            xref_box = st.empty()
             citations_box = st.empty()
+            xref_box      = st.empty()
             metrics_box   = st.empty()
 
             full_answer    = ""
             citations      = []
+            cross_ref      = None
             retriever_used = ""
             latency_ms     = 0
             token_count    = 0
@@ -521,12 +517,13 @@ with chat_col:
                         ):
                             ev_t = evt.get("event")
                             data = evt.get("data", {})
-                            if ev_t == "cross_reference":
-                                render_cross_reference(data.get("cross_reference"), xref_box)
-                            elif ev_t == "citations":
+                            if ev_t == "citations":
                                 citations = data.get("citations", [])
-                                render_citations(citations, citations_box)
+                                render_citations(citations, citations_box, key_prefix="live")
                                 log_event("citations", f"{len(citations)} chunks")
+                            elif ev_t == "cross_reference":
+                                cross_ref = data.get("cross_reference")
+                                render_cross_reference(cross_ref, xref_box, key_prefix="live")
                             elif ev_t == "token":
                                 tok = data.get("text", "")
                                 full_answer += tok
@@ -554,11 +551,13 @@ with chat_col:
                         )
                     full_answer    = result.get("answer", "")
                     citations      = result.get("citations", [])
+                    cross_ref      = result.get("cross_reference")
                     retriever_used = result.get("retriever", "")
                     latency_ms     = result.get("latency_ms", 0)
-                    token_count    = len(full_answer.split())  # approx
+                    token_count    = len(full_answer.split())
                     answer_box.markdown(full_answer)
-                    render_citations(citations, citations_box)
+                    render_cross_reference(cross_ref, xref_box, key_prefix="live")
+                    render_citations(citations, citations_box, key_prefix="live")
                     log_event("done", f"~{token_count} words, {latency_ms/1000:.1f}s")
 
                 st.session_state.total_tokens += token_count
@@ -570,11 +569,12 @@ with chat_col:
                     c3.metric("Citations", len(citations))
 
                 st.session_state.messages.append({
-                    "role":       "assistant",
-                    "content":    full_answer,
-                    "citations":  citations,
-                    "retriever":  retriever_used or st.session_state.retriever,
-                    "latency_ms": latency_ms,
+                    "role":            "assistant",
+                    "content":         full_answer,
+                    "citations":       citations,
+                    "cross_reference": cross_ref,
+                    "retriever":       retriever_used or st.session_state.retriever,
+                    "latency_ms":      latency_ms,
                 })
 
             except requests.exceptions.ConnectionError:
