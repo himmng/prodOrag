@@ -140,6 +140,25 @@ def _upload(client, session, name="case.txt", body=b"Accused stole a phone under
     )
 
 
+def test_extract_section_refs_ignores_rs_amounts():
+    from rag_pipeline.api.documents import extract_section_refs as e
+    assert e("handed over gold worth Rs. 8,00,000") == []      # not a section
+    assert set(e("charged under section 420 and Sec. 406")) == {"420", "406"}
+
+
+def test_amendment_noise_filter():
+    from rag_pipeline.api.main import _is_amendment_noise as noise
+    assert noise({"section_title": "Subs"})
+    assert noise({"section_title": "Ins. by Act 21 of 2000"})
+    assert noise({"section_title": "The words 'British India' omitted"})
+    assert noise({"section_title": "Added by Act 4 of 1898"})
+    # real offence titles must survive
+    assert not noise({"section_title": "Cheating"})
+    assert not noise({"section_title": "Criminal breach of trust"})
+    assert not noise({"section_title": "Insult"})           # \b guard
+    assert not noise({"section_title": ""})
+
+
 def test_slugify_filename():
     from rag_pipeline.api.documents import slugify_filename as s
     assert s("State vs Kumar (2023).pdf") == "State_vs_Kumar_2023"

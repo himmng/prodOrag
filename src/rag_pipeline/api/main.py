@@ -241,6 +241,24 @@ def _answer_prompt(query: str, context: str, ctx_block: str) -> str:
     )
 
 
+# Footnote/amendment fragments the statute parser mis-tagged as sections. Their
+# section_title is an editorial marker ("Subs.", "Ins.", "The words '…' omitted",
+# …) rather than an offence name. \b guards keep real titles (Insult, Representation)
+# from matching. This is a serving-time guard; the real fix is a footnote-aware
+# re-ingest.
+_NOISE_TITLE = re.compile(
+    r"^\s*(subs\b|ins\b|rep\b|added by|omitted|certain words|clause\b|"
+    r"the words?\b|the brackets|the proviso|section\s+\d+\s+re-?numbered|"
+    r"explanation numbered|illustrations rep|the indian penal code has been extended)",
+    re.IGNORECASE,
+)
+
+
+def _is_amendment_noise(meta: dict) -> bool:
+    title = (meta.get("section_title") or "").strip()
+    return bool(_NOISE_TITLE.match(title))
+
+
 def _build_cross_reference(rows, resolved) -> Optional[CrossReference]:
     """Assemble the CrossReference response block using config act labels."""
     if not rows:
@@ -303,7 +321,8 @@ def _retrieve_across_collections(
         retriever_attr = "hybrid_r_nofilter"
 
     merged: list[tuple] = []
-    per_collection_k = top_k if len(acts) == 1 else max(top_k, 5)
+    # Fetch extra so dropping amendment-noise chunks still leaves enough real hits.
+    per_collection_k = max(top_k * 2, 10)
 
     for act in acts:
         setup = _state["by_act"].get(act)
@@ -314,6 +333,8 @@ def _retrieve_across_collections(
         results = retriever.retrieve(query, top_k=per_collection_k)
         merged.extend(results)
 
+    # Drop parser-noise chunks (footnote/amendment fragments mis-tagged as sections)
+    merged = [(d, s) for d, s in merged if not _is_amendment_noise(d.metadata)]
     merged.sort(key=lambda r: r[1], reverse=True)
     return merged[:top_k]
 
@@ -951,11 +972,22 @@ def answer_case_route(
         x_session_id, req.doc_id, req.question, top_k=req.case_k
     )
 
-    # 2. Retrieve relevant IPC/BNS statute sections (existing corpus pipeline)
+    # 2. Retrieve relevant corpus sections — driven by the QUESTION *and* the CASE
+    #    FACTS, not the question alone. A question like "which offences apply?" is
+    #    too abstract to retrieve the right sections; the facts ("induced him to
+    #    hand over gold… no intention of performing… absconded") are what map to
+    #    cheating / criminal breach of trust. We prepend the question (intent) to a
+    #    bounded slice of the retrieved case text (facts) and retrieve on that.
+    case_facts = " ".join(ex.text for ex in case_hits)
+    corpus_query = f"{req.question}\n{case_facts}".strip()[:1800]
+    # Use DENSE retrieval here, NOT the cross-encoder reranker: the reranker is
+    # tuned for short queries and mis-ranks this long case-facts query (it promotes
+    # surface matches over the actual offence sections). Dense semantic search maps
+    # the facts to the right sections (e.g. cheating, criminal breach of trust).
     docs_with_scores = _retrieve_across_collections(
-        query=req.question,
+        query=corpus_query,
         acts=_resolve_acts(req.collections),
-        retriever_kind="hybrid_reranked",
+        retriever_kind="dense",
         top_k=req.top_k,
         min_score=None,
     )
@@ -978,20 +1010,21 @@ def answer_case_route(
     xref_block = f"\n\nCROSS-REFERENCE:\n{xref}" if xref else ""
 
     prompt = (
-        "You are an assistant analysing a REAL case/document a user uploaded. "
-        f"Ground your answer ONLY in (a) the CASE EXCERPTS, (b) the STATUTORY "
-        f"EXCERPTS from {_corpus_display()}, (c) any CROSS-REFERENCE lines, and "
-        "(d) any LEGISLATIVE CONTEXT (commentary — background only, NOT binding "
-        "law). Explain WHICH sections apply, WHY they apply (tie the facts of the "
-        "case to the elements of each provision), and HOW to interpret the case, "
-        "drawing on the legislative context for intent where relevant. Cite "
-        "sources by [n]. Do NOT invent sections; if the excerpts do not support "
-        "a point, say so.\n\n"
-        f"CASE EXCERPTS:\n{case_context}\n\n"
-        f"STATUTORY EXCERPTS:\n{corpus_context or '(none retrieved)'}"
+        "You are a legal assistant. A user uploaded a REAL case and asked a question "
+        "about it. The CASE FACTS below are the document they uploaded — analyse them "
+        "directly (do not ask for a scenario; it is provided). Answer the QUESTION by "
+        f"tying the facts to the STATUTORY EXCERPTS from {_corpus_display()}: state "
+        "WHICH sections apply, WHY (map the facts to the elements of each offence), and "
+        "HOW to interpret the case. Use any CROSS-REFERENCE and LEGISLATIVE CONTEXT as "
+        "background (context is commentary, NOT binding law). Cite sources by [n]; do "
+        "not invent sections.\n\n"
+        f"CASE FACTS:\n{case_context}\n\n"
+        f"QUESTION: {req.question}\n\n"
+        f"STATUTORY EXCERPTS (reference for the sections above):\n"
+        f"{corpus_context or '(none retrieved)'}"
         f"{xref_block}"
         + (f"\n\n{ctx_block}" if ctx_block else "")
-        + f"\n\nQUESTION: {req.question}\n\nANSWER:"
+        + "\n\nANSWER:"
     )
     llm_resp = _state["llm"].invoke(prompt)
     answer_text = getattr(llm_resp, "content", None) or str(llm_resp)

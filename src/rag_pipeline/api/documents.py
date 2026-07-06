@@ -35,8 +35,9 @@ DEFAULT_TTL_SECONDS = 3600  # cases expire 1h after upload
 
 # Corpus-agnostic section reference patterns in uploaded documents:
 # "Section 302", "Sec. 376(2)", "§ 304B", "S.420"
+# The (?<![A-Za-z]) lookbehind stops false positives like the "s." in "Rs. 8,00,000".
 _SECTION_RE = re.compile(
-    r"(?:section|sec\.?|§|S\.)\s*(\d+[A-Z]*(?:\(\d+\))?)",
+    r"(?<![A-Za-z])(?:section|sec\.?|§|S\.)\s*(\d+[A-Z]*(?:\(\d+\))?)",
     re.IGNORECASE,
 )
 
