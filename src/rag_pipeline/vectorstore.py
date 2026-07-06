@@ -22,10 +22,11 @@ from rag_pipeline.providers import get_embeddings
 if TYPE_CHECKING:
     from langchain_core.vectorstores import VectorStore
 
-# On-disk layout under chroma_db/ is split so it is obvious which data is which:
-#   chroma_db/corpus/            → the persistent corpus (IPC/BNS/Context), one store
-#   chroma_db/cases/<name>/      → one ISOLATED store per uploaded case
-# Corpus and case data never share a directory or a sqlite file.
+# On-disk layout under chroma_db/ is fully human-readable — one named directory
+# per collection, so you can tell which data is which at a glance:
+#   chroma_db/corpus/<collection>/   → one dir per corpus collection (IPC_Corpus, …)
+#   chroma_db/cases/<name>/          → one ISOLATED dir per uploaded case
+# Nothing shares a directory or a sqlite file; names come from the corpus YAML.
 CORPUS_DIR = cfg.CHROMA_PERSIST_DIR / "corpus"
 CASES_DIR  = cfg.CHROMA_PERSIST_DIR / "cases"
 
@@ -34,9 +35,13 @@ def _case_dir(collection_name: str):
     return CASES_DIR / collection_name
 
 
-@lru_cache(maxsize=4)
+def corpus_collection_dir(collection_name: str):
+    return CORPUS_DIR / collection_name
+
+
+@lru_cache(maxsize=8)
 def get_vectorstore(collection_name: str = "rag_default") -> "VectorStore":
-    """ Return a persistent vectorstore for a CORPUS collection."""
+    """ Return a persistent vectorstore for a CORPUS collection (its own dir)."""
     # To do later:
     # cfg.vectorsotre_provider = "azure_ai_search" or "qdrant"
     provider = "chroma"
@@ -44,11 +49,12 @@ def get_vectorstore(collection_name: str = "rag_default") -> "VectorStore":
 
     if provider == "chroma":
         from langchain_chroma import Chroma
-        CORPUS_DIR.mkdir(parents=True, exist_ok=True)
+        coll_dir = corpus_collection_dir(collection_name)
+        coll_dir.mkdir(parents=True, exist_ok=True)
         return Chroma(
             collection_name=collection_name,
             embedding_function=get_embeddings(),
-            persist_directory=str(CORPUS_DIR),
+            persist_directory=str(coll_dir),
         )
     raise ValueError(f"Unknown VECTORSTORE_PROVIDER: {provider!r}")
 

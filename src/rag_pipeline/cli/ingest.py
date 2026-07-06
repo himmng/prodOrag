@@ -76,14 +76,12 @@ def _ingest_to_chroma(
     clean: bool = False,
 ) -> None:
     if clean:
-        import chromadb
-        from rag_pipeline.vectorstore import CORPUS_DIR
-        client = chromadb.PersistentClient(path=str(CORPUS_DIR))
-        try:
-            client.delete_collection(collection_name)
-            log.info(f"  Deleted existing collection: {collection_name}")
-        except Exception:
-            pass   # didn't exist, no-op
+        import shutil
+        from rag_pipeline.vectorstore import corpus_collection_dir
+        coll_dir = corpus_collection_dir(collection_name)
+        if coll_dir.exists():
+            shutil.rmtree(coll_dir, ignore_errors=True)
+            log.info(f"  Deleted existing collection dir: {coll_dir}")
     """Embed chunks and upsert into a ChromaDB collection.
 
     Uses content-hash chunk_id as the Chroma document ID, so repeated
@@ -148,17 +146,15 @@ def _ingest_context_sources(corpus, args) -> None:
 
     prose_parser = DoclingHybridParser()
 
-    # --clean wipes each distinct context collection ONCE (they may be shared)
+    # --clean wipes each distinct context collection dir ONCE (they may be shared)
     if args.clean and not args.dry_run:
-        import chromadb
-        from rag_pipeline.vectorstore import CORPUS_DIR
-        client = chromadb.PersistentClient(path=str(CORPUS_DIR))
+        import shutil
+        from rag_pipeline.vectorstore import corpus_collection_dir
         for coll in {c.collection for c in corpus.context_sources}:
-            try:
-                client.delete_collection(coll)
-                log.info(f"  Deleted existing context collection: {coll}")
-            except Exception:
-                pass
+            coll_dir = corpus_collection_dir(coll)
+            if coll_dir.exists():
+                shutil.rmtree(coll_dir, ignore_errors=True)
+                log.info(f"  Deleted existing context collection dir: {coll_dir}")
 
     for ctx in corpus.context_sources:
         log.info("-" * 60)
