@@ -91,7 +91,14 @@ class _FakeDocStore:
 
 class _FakeParser:
     def parse(self, path):
-        return []  # unused (we upload txt in tests)
+        # Guard the upload_document → Docling contract: parse() must receive a
+        # pathlib.Path (Docling calls path.suffix). Regression test for the
+        # 'str object has no attribute suffix' 500 on PDF upload.
+        from pathlib import Path
+        from rag_pipeline.schemas import RagChunk
+        assert isinstance(path, Path), f"parser.parse got {type(path)}, expected Path"
+        return [RagChunk(text="parsed pdf body", source_path=str(path),
+                         source_format="pdf")]
 
 
 class _FakeCorpus:
@@ -144,6 +151,17 @@ def test_upload_returns_docinfo(client):
     assert r.status_code == 200
     body = r.json()
     assert body["doc_id"] and body["filename"] == "case.txt"
+
+
+def test_upload_pdf_passes_path_to_parser(client):
+    """PDF branch must hand the parser a Path, not a str (regression)."""
+    r = client.post(
+        "/documents/upload",
+        files={"file": ("case.pdf", b"%PDF-1.4 fake", "application/pdf")},
+        headers={**H, "X-Session-Id": "sessPdf"},
+    )
+    assert r.status_code == 200
+    assert r.json()["filename"] == "case.pdf"
 
 
 def test_isolation_list_scoped_to_session(client):

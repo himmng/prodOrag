@@ -855,10 +855,11 @@ async def upload_document(
 
     raw = await file.read()
     if suffix == "pdf":
+        from pathlib import Path
         with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
             tmp.write(raw)
             tmp_path = tmp.name
-        chunks = _state["uploaded_parser"].parse(tmp_path)
+        chunks = _state["uploaded_parser"].parse(Path(tmp_path))
     else:
         text = raw.decode("utf-8", errors="replace")
         chunks = _text_to_chunks(text, file.filename)
