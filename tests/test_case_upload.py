@@ -94,6 +94,18 @@ class _FakeParser:
         return []  # unused (we upload txt in tests)
 
 
+class _FakeCorpus:
+    name = "test"
+    display_name = "Test Corpus"
+    acts = ["IPC", "BNS"]
+    has_concordance = False
+    concordance = None
+    context_collections: list[str] = []
+
+    def pdf_map(self):
+        return {}
+
+
 @pytest.fixture(scope="module")
 def client():
     mock = _MockRetriever()
@@ -101,6 +113,7 @@ def client():
            "hybrid_r": mock, "hybrid_r_nofilter": mock, "n_chunks": 0}
     _state.clear()
     _state.update({
+        "corpus": _FakeCorpus(),
         "by_act": {"IPC": dict(act), "BNS": dict(act)},
         "reranker": None, "llm": _MockLLM(), "concordance": None,
         "doc_store": _FakeDocStore(), "uploaded_parser": _FakeParser(),

@@ -123,7 +123,7 @@ class StatuteChunk(BaseModel):
     page_number:     int
 
     # Statute structure
-    act:             Literal["IPC", "BNS"]
+    act:             str                              # corpus-defined act label
     section:         str                              # "302", "302A", "498A"
     subsection:      Optional[str]    = None         # "(1)", "(2)(a)"
     parent_section:  Optional[str]    = None         # if subsection chunk, link to parent

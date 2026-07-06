@@ -32,8 +32,27 @@ class ConcordanceRow:
     bns_title:   Optional[str] = None
     ipc_title:   Optional[str] = None
     status:      str          = "unchanged"
-    row_index:   Optional[int] = None 
-    page_number: Optional[int] = None 
+    row_index:   Optional[int] = None
+    page_number: Optional[int] = None
+
+    # Generic side accessors — side "a" = historical/source act (IPC column),
+    # side "b" = new/target act (BNS column). The serving layer uses these with
+    # config-supplied act labels so it never hardcodes IPC/BNS.
+    @property
+    def section_a(self) -> Optional[str]:
+        return self.ipc_section
+
+    @property
+    def section_b(self) -> Optional[str]:
+        return self.bns_section
+
+    @property
+    def title_a(self) -> Optional[str]:
+        return self.ipc_title
+
+    @property
+    def title_b(self) -> Optional[str]:
+        return self.bns_title
 
 
 # Status keywords (case-insensitive) → enum
@@ -203,6 +222,13 @@ class Concordance:
 
     def lookup_bns(self, bns_section: str) -> Optional[ConcordanceRow]:
         return self._bns_to_ipc.get(bns_section)
+
+    # Generic, label-agnostic lookups (side "a"=source/IPC col, "b"=target/BNS col)
+    def lookup_a(self, section: str) -> Optional[ConcordanceRow]:
+        return self._ipc_to_bns.get(section)
+
+    def lookup_b(self, section: str) -> Optional[ConcordanceRow]:
+        return self._bns_to_ipc.get(section)
 
     @classmethod
     def from_json(cls, path: Path) -> "Concordance":

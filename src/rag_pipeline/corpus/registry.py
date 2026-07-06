@@ -16,7 +16,7 @@ from rag_pipeline.config import cfg
 
 
 class SourceConfig(BaseModel):
-    act:              Literal["IPC", "BNS"]
+    act:              str        # corpus-defined label, e.g. "IPC", "BNS", "Cth", ...
     pdf_path:         Path
     collection:       str
     chunks_output:    Path
@@ -38,6 +38,12 @@ class ContextSourceConfig(BaseModel):
 class ConcordanceConfig(BaseModel):
     pdf_path:    Path
     output_json: Path
+    # Act labels for the two sides of the mapping (drives prompts + response
+    # labels so the serving layer never hardcodes "IPC"/"BNS"). act_a is the
+    # historical/source act, act_b the new/target act.
+    act_a:       str = "IPC"
+    act_b:       str = "BNS"
+    pdf_label:   str = "CONCORDANCE"   # key used by the page-image endpoint
 
 
 class ParserConfig(BaseModel):
@@ -84,6 +90,37 @@ class CorpusConfig(BaseModel):
             v = getattr(self, attr)
             if v and not v.is_absolute():
                 setattr(self, attr, project_root / v)
+
+    # ── serving-layer accessors (keep the API corpus-agnostic) ───────────
+    @property
+    def acts(self) -> list[str]:
+        """Ordered act labels, e.g. ['IPC', 'BNS']."""
+        return [s.act for s in self.sources]
+
+    def collection_for(self, act: str) -> str | None:
+        for s in self.sources:
+            if s.act == act:
+                return s.collection
+        return None
+
+    @property
+    def context_collections(self) -> list[str]:
+        """Distinct collections holding interpretive commentary."""
+        seen: dict[str, None] = {}
+        for c in self.context_sources:
+            seen.setdefault(c.collection, None)
+        return list(seen.keys())
+
+    @property
+    def has_concordance(self) -> bool:
+        return self.concordance is not None
+
+    def pdf_map(self) -> dict[str, Path]:
+        """{act_label -> pdf_path} for the page-image endpoint, incl. concordance."""
+        m: dict[str, Path] = {s.act: s.pdf_path for s in self.sources}
+        if self.concordance:
+            m[self.concordance.pdf_label] = self.concordance.pdf_path
+        return m
 
 
 def load_corpus(name: str) -> CorpusConfig:

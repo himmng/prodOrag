@@ -82,7 +82,8 @@ DEFAULTS = {
     "fetch_k":        20,
     "min_score":      0.01,
     "use_streaming":  True,
-    "collections":    ["IPC", "BNS"],
+    "collections":    [],           # empty = search all corpus acts
+    "meta":           {},           # corpus metadata from /meta
     "events":         [],
     "req_count":      0,
     "total_tokens":   0,
@@ -106,6 +107,23 @@ def log_event(kind: str, msg: str) -> None:
 
 
 # ── API helpers ──────────────────────────────────────────────────────
+
+@st.cache_data(ttl=60, show_spinner=False)
+def fetch_meta(api_url: str) -> dict:
+    """Corpus metadata — drives the UI so nothing is hardcoded to IPC/BNS."""
+    try:
+        r = requests.get(f"{api_url}/meta", timeout=5)
+        if r.status_code == 200:
+            return r.json()
+    except requests.exceptions.RequestException:
+        pass
+    # Fallback so the dashboard still renders if the API is down
+    return {
+        "corpus": "unknown", "display_name": "Corpus",
+        "acts": ["IPC", "BNS"], "pdf_acts": [],
+        "context_enabled": False, "cross_reference": None,
+    }
+
 
 @st.cache_data(ttl=10, show_spinner=False)
 def check_health(api_url: str) -> dict:
@@ -287,10 +305,12 @@ def render_citations(citations: list, container, key_prefix: str = "live") -> No
 
                     
 
-                # Cross-reference badge
+                # Cross-reference badge — "other act" comes from corpus meta
                 xref_parts = []
                 if c.get("corresponds_to"):
-                    other_act = "BNS" if act == "IPC" else "IPC"
+                    xm = (st.session_state.get("meta") or {}).get("cross_reference") or {}
+                    a, b = xm.get("source_act"), xm.get("target_act")
+                    other_act = b if act == a else (a if act == b else "↔")
                     xref_parts.append(f"↔ {other_act} §{c['corresponds_to']}")
                 if c.get("change_status") and c["change_status"] != "unchanged":
                     badge = {"new": "🟢 new", "changed": "🟡 changed", "deleted": "🔴 deleted"}.get(
@@ -313,17 +333,21 @@ def render_cross_reference(cross_ref: dict, container, key_prefix: str = "live")
         return
     with container.container():
         row    = cross_ref.get("concordance_row")
-        ipc    = cross_ref.get("ipc_section")
-        bns    = cross_ref.get("bns_section")
+        src_act = cross_ref.get("source_act") or "A"
+        tgt_act = cross_ref.get("target_act") or "B"
+        src    = cross_ref.get("source_section")
+        tgt    = cross_ref.get("target_section")
         status = cross_ref.get("status")
         page   = cross_ref.get("page_number")
+        xmeta  = (st.session_state.get("meta") or {}).get("cross_reference") or {}
+        pdf_label = xmeta.get("pdf_label", "CONCORDANCE")
         badge  = {"new": "🟢 new", "changed": "🟡 changed", "deleted": "🔴 deleted",
                   "unchanged": "⚪ unchanged"}.get(status, status or "")
         with st.expander("🔗 Related — corresponding sections (concordance)", expanded=True):
-            st.markdown(f"**Concordance Row {row}** — IPC §{ipc} ↔ BNS §{bns}  ·  {badge}")
+            st.markdown(f"**Concordance Row {row}** — {src_act} §{src} ↔ {tgt_act} §{tgt}  ·  {badge}")
             if page and st.button(f"📄 View concordance table (row {row})", key=f"{key_prefix}_xref_view_{row}"):
-                _view_page("CONCORDANCE", page)
-            for side, key in [("IPC", "ipc_citation"), ("BNS", "bns_citation")]:
+                _view_page(pdf_label, page)
+            for side, key in [(src_act, "source_citation"), (tgt_act, "target_citation")]:
                 cit = cross_ref.get(key)
                 if not cit:
                     continue
@@ -336,13 +360,12 @@ def render_cross_reference(cross_ref: dict, container, key_prefix: str = "live")
 # ── Sidebar — Summary, flow, settings ────────────────────────────────
 
 with st.sidebar:
-    st.markdown("### ⚖️ IPC Legal RAG")
+    st.markdown("### ⚖️ Legal RAG")
     st.markdown(
-        "Retrieval-augmented Q&A over the **Indian Penal Code (1860)** and "
-        "**Bharatiya Nyaya Sanhita (2023)**. Hybrid retrieval combines dense "
+        "Corpus-agnostic retrieval-augmented Q&A. Hybrid retrieval combines dense "
         "vector search with BM25, then re-ranks with a cross-encoder before "
-        "passing context to the LLM. Cross-references between acts come from "
-        "the official concordance table."
+        "passing context to the LLM. When the active corpus provides a concordance, "
+        "cross-references between acts are surfaced from that table."
     )
 
     with st.expander("🛠 Tech stack", expanded=False):
@@ -395,9 +418,10 @@ with st.sidebar:
     st.session_state.api_key = st.text_input("API Key", value=st.session_state.api_key, type="password")
 
     health = check_health(st.session_state.api_url)
+    st.session_state.meta = fetch_meta(st.session_state.api_url)
     status = health.get("status", "unknown")
     badge  = {"healthy": "🟢", "degraded": "🟡", "unhealthy": "🔴"}.get(status, "⚫")
-    st.markdown(f"**Status:** {badge} `{status}`")
+    st.markdown(f"**Status:** {badge} `{status}`  ·  Corpus: `{st.session_state.meta.get('corpus','?')}`")
     with st.expander("Components", expanded=False):
         for k, v in health.get("components", {}).items():
             icon = "✅" if v == "ok" else "❌"
@@ -408,7 +432,7 @@ with st.sidebar:
     st.caption(
         "Upload a real case file (judgment / FIR / charge sheet). It is embedded "
         "into a **private, session-isolated** collection — never mixed with the "
-        "IPC/BNS corpus or other sessions."
+        "main corpus or other sessions."
     )
     st.caption(f"Session: `{st.session_state.session_id[:8]}…`")
 
@@ -453,19 +477,13 @@ with st.sidebar:
 
     st.divider()
     st.markdown("### 🔍 Retrieval (live tunable)")
+    _acts = st.session_state.meta.get("acts", [])
     st.session_state.collections = st.multiselect(
         "Search in",
-        options=["IPC", "BNS"],
-        default=st.session_state.collections,
-        help=(
-            "**IPC (1860)**: original act, used for crimes pre-July 2024.\n\n"
-            "**BNS (2023)**: current law from 1 July 2024.\n\n"
-            "Select both for cross-references and complete answers."
-        ),
+        options=_acts,
+        default=[a for a in st.session_state.collections if a in _acts],
+        help="Which corpus acts to search. Leave empty to search all acts.",
     )
-    if not st.session_state.collections:
-        st.warning("Pick at least one act")
-        st.session_state.collections = ["IPC", "BNS"]
 
     st.session_state.retriever = st.selectbox(
         "Retriever strategy",
@@ -515,8 +533,8 @@ with st.sidebar:
     st.session_state.include_context = st.toggle(
         "🏛️ Include legislative commentary",
         value=st.session_state.include_context,
-        help="Add non-binding interpretive background (BNS committee report + SOR) "
-             "to general answers. Case Q&A always includes it.",
+        help="Add non-binding interpretive background (e.g. committee reports / "
+             "statements of objects) to general answers. Case Q&A always includes it.",
     )
 
     st.divider()
@@ -526,8 +544,9 @@ with st.sidebar:
         "LLM:        gemma-4-e4b (Ollama)\n"
         "Embeddings: embeddinggemma (768-d)\n"
         "Reranker:   BAAI/bge-reranker-base\n"
-        "Vector DB:  ChromaDB (IPC + BNS)\n"
-        "Concordance: 554 rows (IPC↔BNS)",
+        "Vector DB:  ChromaDB\n"
+        f"Corpus:     {st.session_state.meta.get('corpus', '?')} "
+        f"(acts: {', '.join(st.session_state.meta.get('acts', []))})",
         language="yaml",
     )
 
@@ -584,10 +603,11 @@ with monitor_col:
 # ─── Left column: header, samples, chat ──────────────────────────────
 
 with chat_col:
+    _disp = st.session_state.meta.get("display_name", "Legal RAG")
     st.markdown(
-        "<h2 style='text-align:center;margin-bottom:0;'>⚖️ IPC Legal RAG</h2>"
+        f"<h2 style='text-align:center;margin-bottom:0;'>⚖️ {_disp}</h2>"
         "<p style='text-align:center;color:#6c757d;margin-top:0;'>"
-        "Hybrid retrieval over the Indian Penal Code + Bharatiya Nyaya Sanhita"
+        "Hybrid retrieval-augmented Q&A"
         "</p>",
         unsafe_allow_html=True,
     )
@@ -595,10 +615,10 @@ with chat_col:
     if not st.session_state.messages:
         st.markdown("#### 💡 Try a question")
         samples = [
-            "What is the punishment for theft under IPC?",
-            "Which is the BNS correspondence section for IPC 420?",
+            "What is the punishment for theft?",
+            "Explain criminal conspiracy.",
             "What is the difference between murder and culpable homicide?",
-            "Explain criminal conspiracy under Section 120B.",
+            "Which sections cover cheating and fraud?",
         ]
         cols = st.columns(2)
         for i, q in enumerate(samples):
@@ -667,7 +687,7 @@ with chat_col:
             try:
                 if case_active:
                     excerpts_box = st.empty()
-                    with st.spinner("Interpreting case against IPC/BNS…"):
+                    with st.spinner("Interpreting case against the corpus…"):
                         result = answer_case(
                             st.session_state.api_url,
                             st.session_state.active_case["doc_id"],

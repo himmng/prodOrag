@@ -33,16 +33,16 @@ if TYPE_CHECKING:
 DEFAULT_TTL_SECONDS = 3600  # cases expire 1h after upload
 
 
-# Common IPC/BNS section reference patterns in case files:
-# "Section 302", "Sec. 376(2)", "§ 304B", "S.420 IPC"
+# Corpus-agnostic section reference patterns in uploaded documents:
+# "Section 302", "Sec. 376(2)", "§ 304B", "S.420"
 _SECTION_RE = re.compile(
-    r"(?:section|sec\.?|§|S\.)\s*(\d+[A-Z]*(?:\(\d+\))?)\s*(?:of\s+)?(?:IPC|I\.P\.C\.)?",
+    r"(?:section|sec\.?|§|S\.)\s*(\d+[A-Z]*(?:\(\d+\))?)",
     re.IGNORECASE,
 )
 
 
 def extract_section_refs(text: str) -> list[str]:
-    """Pull unique IPC/BNS section references mentioned in the document text."""
+    """Pull unique statute section references mentioned in the document text."""
     seen: dict[str, None] = {}
     for m in _SECTION_RE.findall(text):
         key = m.upper().replace(" ", "")

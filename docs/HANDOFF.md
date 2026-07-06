@@ -20,7 +20,7 @@
 | Corpus rebuild (A–E) | Dual IPC/BNS collections, structural parse, concordance | ✅ done |
 | Concordance cross-reference feature | Query-time lookup, separate cross_reference block, page previews | ✅ done (this session) |
 | Case-file upload + Q&A | Upload real cases, ask IPC/BNS interpretation, ISOLATED | ✅ done — per-session isolated vector collections + /answer/case |
-| Corpus-agnostic refactor | Remove IPC/BNS hardcoding from API/serving layer | ⏳ planned, not started — see §5 |
+| Corpus-agnostic refactor | Remove IPC/BNS hardcoding from API/serving layer | ✅ done — RAG_CORPUS env, config-driven serving, /meta, config-gated concordance |
 | 6 | Cloud deploy (Azure models, managed vector store) | ⏳ future — fixes latency ceiling |
 | 7.5 | Contextual layer (committee report + SOR) | ✅ done — BNS_Context collection (904 vec), opt-in on /answer, default on /answer/case |
 
@@ -131,28 +131,36 @@ The eval set was built for the OLD IPC-only corpus. The IPC+BNS rebuild is
 
 ---
 
-## 5. Corpus-agnostic refactor — planned
+## 5. Corpus-agnostic refactor — DONE
 
-The INGEST layer is already generic (YAML corpus registry, `load_corpus`,
-`StatuteParser`/retrievers/ingest take config). The API/SERVING layer still hardcodes
-IPC/BNS. To remove (on branch `feature/corpus-agnostic`):
+Both the ingest AND the serving layer are now corpus-agnostic. Swap corpus =
+new YAML in `configs/corpora/` + PDFs + `RAG_CORPUS=<name>` + re-ingest. No code.
 
-| Hardcoded | Where | Fix |
-|---|---|---|
-| `[("IPC","IPC_Corpus"),("BNS","BNS_Corpus")]` | lifespan | iterate `corpus.sources` |
-| `collections: list[Literal["IPC","BNS"]]` | AnswerRequest schema | `list[str]`, validate at runtime |
-| `_concordance_context` IPC/BNS lookup | routes | generic optional "cross-reference map" per corpus |
-| Prompt "Indian Penal Code / BNS" | routes | from `corpus.display_name` / config |
-| `pdf_map={"IPC":..,"BNS":..,"CONCORDANCE":..}` | `/documents/page-image` | build from `corpus.sources` |
-| `CrossReference` ipc_section/bns_section fields | schema | generic source/target with act labels as data |
+What was done (all on `feature/case-upload`, to merge to main):
+- **`RAG_CORPUS` env** (`config.py`) selects the corpus; the API lifespan calls
+  `load_corpus(cfg.RAG_CORPUS)` and stores it in `_state["corpus"]`.
+- **Config-driven serving**: lifespan iterates `corpus.sources` for collections;
+  prompts use `corpus.display_name`; `/documents/page-image` builds its pdf_map
+  from `corpus.pdf_map()`; context layer loads from `corpus.context_collections`;
+  eval/health use the first act generically.
+- **Generic schemas**: `collections: list[str]` (validated at runtime via
+  `_resolve_acts`, empty = all acts); `StatuteChunk.act: str`; `CrossReference`
+  relabeled to `source_act/target_act/source_section/target_section/…` (act labels
+  are DATA, from `concordance.act_a/act_b`).
+- **Config-gated concordance**: cross-reference only active when the corpus declares
+  a `concordance:` block. `ConcordanceRow`/`Concordance` gained side-agnostic
+  accessors (`section_a/b`, `title_a/b`, `lookup_a/b`); the IPC/BNS parser remains
+  the one concrete impl (fine — corpora without a concordance just disable it).
+- **`GET /meta`** exposes corpus name, display_name, acts, pdf_acts, context_enabled,
+  and cross-reference labels. The **Streamlit dashboard is fully driven by `/meta`**
+  (title, collections multiselect, cross-ref labels, page-view buttons).
+- Registry helpers on `CorpusConfig`: `acts`, `collection_for`, `context_collections`,
+  `has_concordance`, `pdf_map()`.
 
-Open design questions to resolve first:
-- Is cross-reference/concordance a GENERAL feature (some corpora have mapping tables,
-  some don't → make it an optional per-corpus module) or IPC/BNS-only?
-- How many acts can a corpus have? (1? 2? N federal+state codes?) → design N-collection.
-- Sequence: developer leans "finish concordance + case-upload, THEN generalize."
-  Reasonable, but note we'll be generalizing code we just wrote. Do eval first if you
-  want to generalize measured code.
+Remaining (future, if ever needed): a corpus with a concordance must still be
+2-act IPC/BNS-shaped at the parser level (`corpus/concordance.py`). N-act or
+alternate table formats would need a pluggable concordance parser — not built,
+not needed for current corpora.
 
 ---
 
