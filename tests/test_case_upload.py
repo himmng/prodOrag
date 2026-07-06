@@ -140,6 +140,17 @@ def _upload(client, session, name="case.txt", body=b"Accused stole a phone under
     )
 
 
+def test_slugify_filename():
+    from rag_pipeline.api.documents import slugify_filename as s
+    assert s("State vs Kumar (2023).pdf") == "State_vs_Kumar_2023"
+    assert s("judgment.final.v2.md") == "judgment_final_v2"
+    assert s("   .pdf") == "file"                       # nothing survives → fallback
+    assert len(s("x" * 200)) <= 40                       # capped
+    # result is Chroma-safe: only [A-Za-z0-9_-]
+    import re
+    assert re.fullmatch(r"[A-Za-z0-9_-]+", s("weird/name*&^%.txt"))
+
+
 def test_upload_requires_session_header(client):
     r = client.post("/documents/upload",
                     files={"file": ("c.txt", b"hello world", "text/plain")}, headers=H)

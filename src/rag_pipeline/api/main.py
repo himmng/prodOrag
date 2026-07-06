@@ -442,6 +442,10 @@ async def lifespan(app: FastAPI):
         except Exception as e:
             log.warning(f"Context layer '{coll}' unavailable: {e}")
 
+    # Fresh in-memory case store → any case dirs on disk are stale orphans; clear them.
+    from rag_pipeline.vectorstore import clear_case_stores
+    clear_case_stores()
+
     _state.update({
         "corpus":            corpus,
         "by_act":            collection_setups,

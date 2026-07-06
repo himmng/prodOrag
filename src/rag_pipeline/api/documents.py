@@ -50,6 +50,21 @@ def extract_section_refs(text: str) -> list[str]:
     return list(seen.keys())
 
 
+def slugify_filename(filename: str, maxlen: int = 40) -> str:
+    """Filesystem/Chroma-safe slug from an upload filename (no extension).
+
+    Chroma collection names allow only [a-zA-Z0-9._-]; we reduce to that,
+    collapse runs, trim, and cap the length so `case_<slug>_<doc_id>` stays
+    within Chroma's 63-char limit. Falls back to 'file' if nothing survives.
+    """
+    stem = filename.rsplit("/", 1)[-1].rsplit("\\", 1)[-1]
+    if "." in stem:
+        stem = stem.rsplit(".", 1)[0]
+    stem = re.sub(r"[^A-Za-z0-9]+", "_", stem).strip("_")
+    stem = re.sub(r"_+", "_", stem)[:maxlen].strip("_")
+    return stem or "file"
+
+
 @dataclass
 class CaseExcerpt:
     """One retrieved chunk from a case's isolated collection."""
@@ -92,7 +107,9 @@ class DocumentStore:
         """Embed the case's chunks into a fresh isolated collection and register it."""
         now = datetime.now(timezone.utc)
         doc_id = uuid.uuid4().hex[:12]
-        collection_name = f"case_{session_id}_{doc_id}"
+        # Human-readable collection/dir name: case_<filename-slug>_<doc_id>.
+        # doc_id keeps it unique; session isolation is enforced by the store map.
+        collection_name = f"case_{slugify_filename(filename)}_{doc_id}"
         full_text = "\n\n".join(c.text for c in chunks)
 
         vs = make_case_vectorstore(collection_name)

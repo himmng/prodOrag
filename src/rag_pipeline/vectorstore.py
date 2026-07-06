@@ -83,6 +83,19 @@ def make_case_vectorstore(collection_name: str) -> "VectorStore":
     )
 
 
+def clear_case_stores() -> None:
+    """Remove ALL case directories. Safe to call on startup: the in-memory case
+    store is empty then, so every case dir on disk is an orphan from a prior run.
+    Prevents unbounded disk growth across restarts."""
+    import shutil
+    if CASES_DIR.exists():
+        n = sum(1 for _ in CASES_DIR.iterdir())
+        shutil.rmtree(CASES_DIR, ignore_errors=True)
+        if n:
+            log.info(f"cleared {n} orphaned case store(s) from {CASES_DIR}")
+    CASES_DIR.mkdir(parents=True, exist_ok=True)
+
+
 def drop_collection(collection_name: str) -> None:
     """Delete a case: remove its entire directory (physical, guaranteed cleanup)."""
     if collection_name in _RESERVED_COLLECTIONS:
