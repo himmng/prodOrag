@@ -1,46 +1,69 @@
-[![CI](https://github.com/himmng/protorag/actions/workflows/ci.yml/badge.svg)](https://github.com/protorag/actions/workflows/ci.yml)
+[![CI](https://github.com/himmng/protoRAG/actions/workflows/ci.yml/badge.svg)](https://github.com/himmng/protoRAG/actions/workflows/ci.yml)
 
 # protoRAG
 
-Hybrid + agentic retrieval-augmented generation (RAG) pipeline for legal corpora, with a focus on IPC case law.
+A **corpus-agnostic**, production-bound hybrid RAG pipeline for legal corpora. The
+reference corpus is Indian criminal law — the Indian Penal Code (IPC 1860) and the
+Bharatiya Nyaya Sanhita (BNS 2023) with an authoritative IPC↔BNS concordance — but
+nothing IPC/BNS-specific is hardcoded in the core. Swapping in a different corpus is
+a matter of dropping a new corpus config + PDFs, setting `RAG_CORPUS`, and
+re-ingesting — no code changes.
 
 ## What this project does
 
-`protoRAG` combines lexical, dense, and reranked retrieval strategies with LLM-driven answer generation to support:
+`protoRAG` combines lexical, dense, and reranked retrieval with LLM-driven answer
+generation to support:
 
-- multi-strategy retrieval over a legal corpus
-- citation-aware answer generation
-- streaming LLM responses via Server-Sent Events (SSE)
+- multi-strategy retrieval over any configured corpus
+- citation-aware answer generation, grounded in retrieved excerpts
+- an optional **cross-reference** layer (e.g. IPC↔BNS concordance) surfaced as a
+  separate, authoritative response field — config-gated per corpus
+- an optional **legislative-context** layer (committee reports / statements of
+  objects) retrieved as clearly-labeled, non-binding commentary
+- **session-isolated case upload + Q&A**: upload a real case file and ask which
+  sections apply, why, and how to interpret it — the upload is embedded into a
+  private, per-session vector collection, never mixed into the main corpus
+- streaming responses via Server-Sent Events (SSE)
 - retrieval evaluation and threshold calibration
-- in-memory ad-hoc document upload for temporary QA
+- a Streamlit dashboard driven entirely by the API's `/meta` endpoint
 
 ## Key features
 
-- `fastapi` service exposing `/answer`, `/answer/stream`, and evaluation endpoints
-- configurable retrievers: `bm25`, `dense`, `ensemble`, and `hybrid_reranked`
+- `fastapi` service exposing `/answer`, `/answer/stream`, `/answer/case`, `/meta`,
+  document, and evaluation endpoints
+- configurable retrievers: `bm25`, `dense`, `ensemble`, `hybrid_reranked`
+- corpus selected at startup via `RAG_CORPUS`; collections, prompts, cross-reference
+  labels, and PDF previews all derived from the corpus YAML
 - reusable startup singleton pipeline for low latency
-- vendor-agnostic model provider support: Ollama, Azure OpenAI, AWS Bedrock, GCP Vertex AI, OpenAI
-- auth guard with optional API key mode
-- reusable prompt and eval templates shipped with the package
+- vendor-agnostic model providers: Ollama, Azure OpenAI, AWS Bedrock, GCP Vertex AI,
+  OpenAI (switch via `MODEL_PROVIDER`)
+- auth guard with optional API-key mode; per-request rate limiting
 
 ## Getting started
 
 ### Install locally
 
-From the repository root:
-
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install --upgrade pip
-pip install -e .
+pip install -e .            # add '.[dev]' for tests
 ```
 
-Install development dependencies if you want to run tests:
+### Ingest a corpus
+
+Corpora live in `configs/corpora/<name>.yaml` (sources, parser regex, optional
+concordance, optional context sources). Build the collections + chunk caches:
 
 ```bash
-pip install -e '.[dev]'
+rag-ingest --corpus ipc_bns --clean          # full rebuild
+rag-ingest --corpus ipc_bns --only IPC        # a single act
+rag-ingest --corpus ipc_bns --only-context    # just the context layer
+rag-ingest --corpus ipc_bns --dry-run         # parse + write JSON, no ChromaDB
 ```
+
+Ingest runs offline and writes per-corpus chunk JSON to `data/processed/` and
+vectors to `chroma_db/`.
 
 ### Run the API
 
@@ -50,36 +73,32 @@ uvicorn rag_pipeline.api.main:app --host 0.0.0.0 --port 8000
 
 Then open:
 
-- `http://localhost:8000/docs` for the interactive OpenAPI docs
-- `http://localhost:8000/health` for a quick health check
+- `http://localhost:8000/docs` — interactive OpenAPI docs
+- `http://localhost:8000/health` — readiness check
+- `http://localhost:8000/meta` — active-corpus metadata
+
+### Run the dashboard
+
+```bash
+streamlit run apps/dashboard/app.py           # talks to the API at :8000
+```
 
 ### Run with Docker
 
-Build and start the service using Docker Compose:
-
 ```bash
-docker compose up --build
+docker compose up --build                     # API on :8000
 ```
-
-The service will be exposed on port `8000`.
-
-## Required data
-
-The API expects a preprocessed chunk cache at:
-
-- `data/processed/phase1_chunks.json`
-
-If this file is missing, the app will raise an error at startup. The repository contains notebooks under `notebooks/` for data preparation and ingestion.
 
 ## Configuration
 
-Runtime configuration is controlled by environment variables or a `.env` file in the project root.
+Runtime configuration is via environment variables or a `.env` file.
 
 Important variables:
 
-- `API_KEYS` — comma-separated keys for API auth; empty value disables auth for development
-- `MODEL_PROVIDER` — one of `ollama`, `azure`, `openai`, `gcp`, or `aws`
-- `OLLAMA_HOST`, `OLLAMA_PORT`, `OLLAMA_MODEL`, `OLLAMA_EMBEDDING_MODEL`
+- `RAG_CORPUS` — active corpus name (matches `configs/corpora/<name>.yaml`); default `ipc_bns`
+- `API_KEYS` — comma-separated keys for API auth; empty disables auth (dev mode)
+- `MODEL_PROVIDER` — one of `ollama`, `azure`, `openai`, `gcp`, `aws`
+- `OLLAMA_HOST`, `OLLAMA_MODEL`, `OLLAMA_EMBEDDING_MODEL`
 - `OPENAI_API_KEY`, `OPENAI_MODEL`, `OPENAI_EMBEDDING_MODEL`
 - `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_DEPLOYMENT`
 - `AWS_REGION`, `AWS_BEDROCK_MODEL_ID`, `AWS_BEDROCK_EMBEDDING_MODEL_ID`
@@ -89,6 +108,7 @@ Important variables:
 ### Example `.env`
 
 ```text
+RAG_CORPUS=ipc_bns
 MODEL_PROVIDER=ollama
 OLLAMA_HOST=http://localhost:11434
 OLLAMA_MODEL=gemma-4-e4b:latest
@@ -99,92 +119,88 @@ LOG_LEVEL=INFO
 
 ## API overview
 
-### Health check
+### Corpus metadata — `GET /meta`
 
-`GET /health`
+Returns the active corpus name, display name, acts, PDF-previewable acts, whether the
+context layer is enabled, and cross-reference labels. Clients (like the dashboard)
+render entirely from this — no hardcoded act names.
 
-Returns service readiness and component status.
+### Health — `GET /health`
 
-### Generate an answer
+Service readiness and component status.
 
-`POST /answer`
-
-Request body:
+### Answer — `POST /answer`
 
 ```json
 {
-  "query": "What is the standard for patent claim interpretation?",
+  "query": "What is the punishment for cheating?",
   "top_k": 5,
   "retriever": "hybrid_reranked",
-  "fetch_k": 20,
-  "min_score": 0.01
+  "collections": [],
+  "include_context": false
 }
 ```
 
-Response includes:
+`collections` is validated against the active corpus at runtime; empty = all acts.
+The response includes `question`, `answer`, `citations`, an optional
+`cross_reference` block (when the query names a section and the corpus has a
+concordance), an optional `context` list (interpretive commentary, when
+`include_context` is set), `retriever`, and `latency_ms`.
 
-- `question`
-- `answer`
-- `citations`
-- `retriever`
-- `latency_ms`
+### Streaming — `POST /answer/stream`
 
-### Streaming answer
+Server-Sent Events: `cross_reference`, `citations`, `context`, incremental `token`
+events, and a final `done` frame.
 
-`POST /answer/stream`
+### Case Q&A — `POST /answer/case`
 
-Returns Server-Sent Events with citations, incremental tokens, and a final completion event.
+Interpret a previously uploaded case against the corpus. Requires an `X-Session-Id`
+header and a `doc_id`. Retrieves the case's own isolated excerpts + relevant corpus
+sections + cross-references, and explains which sections apply, why, and how.
+Commentary is included by default here.
 
-### Retrieval evaluation
+### Documents — `POST /documents/upload`, `GET /documents`, `DELETE /documents/{doc_id}`
 
-`POST /eval/retrieval`
+Upload `pdf`, `txt`, or `md` case files. All document endpoints require an
+`X-Session-Id` header; uploads are keyed by that token, embedded into a private,
+per-session, TTL'd vector collection, and are never mixed into the main corpus or
+visible across sessions.
 
-Run retrieval metrics against the built-in eval set.
+### Page preview — `GET /documents/page-image`
 
-### Threshold calibration
+Render one page of a corpus PDF (or the concordance table) to PNG for inline preview.
+Valid `act` values come from the active corpus.
 
-`POST /eval/threshold-sweep`
+### Evaluation — `POST /eval/retrieval`, `POST /eval/threshold-sweep`
 
-Sweep confidence thresholds and return recommended values for the hybrid reranked retriever.
-
-### Ad-hoc document upload
-
-`POST /documents/upload`
-
-Upload `pdf`, `txt`, or `md` files for temporary query support. Uploaded documents are stored in memory only and are not persisted to the main ChromaDB corpus.
-
-`GET /documents`
-
-List uploaded documents.
-
-`DELETE /documents/{doc_id}`
-
-Remove a previously uploaded document.
+Run retrieval metrics and sweep confidence thresholds against the built-in eval set.
 
 ## Project layout
 
 - `src/rag_pipeline/` — core package
-  - `api/` — FastAPI app, routes, auth, logging, SSE
-  - `retrainers/` — retrieval implementations (`bm25`, `dense`, `ensemble`, `reranker`)
+  - `api/` — FastAPI app, routes, auth, logging, SSE, session-isolated doc store
+  - `corpus/` — corpus registry (YAML → config) + concordance parser/lookup
+  - `retrievers/` — retrieval implementations (`bm25`, `dense`, `ensemble`, `reranker`)
+  - `parsers/` — statute (section-aware) and prose (Docling) parsers
   - `generation/` — answer generation and streaming logic
   - `eval/` — retrieval evaluation, threshold sweep, RAGAS support
-  - `parsers/` — document parsing and chunking support
-  - `prompts/` — prompt templates shipped with package
+  - `prompts/` — prompt templates shipped with the package
+  - `cli/` — `rag-ingest` ingestion command
+- `apps/dashboard/` — Streamlit dashboard
+- `configs/corpora/` — corpus configuration YAMLs
 - `data/` — raw and processed corpus artifacts
-- `chroma_db/` — persisted Chroma collection data
-- `configs/` — corpus-specific configuration
-- `notebooks/` — ingestion and evaluation experimentation
+- `chroma_db/` — persisted Chroma collections
 - `tests/` — pytest coverage for API, parsing, and evaluation
 
 ## Development notes
 
-- The FastAPI app uses a startup lifespan handler to load heavy objects once and reuse them across requests.
-- The default hybrid retriever is a two-stage semantic + reranked pipeline calibrated for legal retrieval.
-- The service is designed for local experimentation with switchable model providers.
+- The FastAPI app uses a startup lifespan handler to load heavy objects (reranker,
+  retrievers, LLM) once and reuse them across requests.
+- The default hybrid retriever is a two-stage semantic + reranked pipeline.
+- The serving layer is corpus-agnostic; the concordance/cross-reference feature is
+  optional and activated only when a corpus declares a `concordance:` block.
 
 ## Testing
-
-Run tests with:
 
 ```bash
 pytest
@@ -192,4 +208,5 @@ pytest
 
 ## Contribution
 
-This repository is in alpha stage. Please open issues for bug reports, feature requests, or questions about legal retrieval pipelines.
+This repository is in alpha. Please open issues for bug reports, feature requests, or
+questions about the retrieval pipeline.

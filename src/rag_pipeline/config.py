@@ -48,6 +48,9 @@ class Config(BaseSettings):
 
     #
     API_KEYS: str = "" # comma-separated; empty= auth disabled (dev mode)
+    # active corpus — selects configs/corpora/<RAG_CORPUS>.yaml at API startup.
+    # The serving layer is corpus-agnostic: swap corpus by changing this + re-ingesting.
+    RAG_CORPUS: str = "ipc_bns"
     # provider switch
     MODEL_PROVIDER: Literal["ollama", "azure", "openai", "gcp", "aws"] = "ollama"
 

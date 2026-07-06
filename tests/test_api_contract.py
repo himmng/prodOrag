@@ -54,6 +54,19 @@ class _MockLLM:
             yield AIMessageChunk(content=tok)
 
 
+class _FakeCorpus:
+    """Minimal corpus stand-in for the serving layer (no YAML/PDFs needed)."""
+    name = "test"
+    display_name = "Test Corpus"
+    acts = ["IPC", "BNS"]
+    has_concordance = False
+    concordance = None
+    context_collections: list[str] = []
+
+    def pdf_map(self):
+        return {}
+
+
 # ── Fixtures ───────────────────────────────────────────────────────────
 @pytest.fixture(scope="module")
 def client():
@@ -73,6 +86,7 @@ def client():
 
     _state.clear()
     _state.update({
+        "corpus":      _FakeCorpus(),
         "by_act": {
             "IPC": dict(act_setup),
             "BNS": dict(act_setup),
@@ -84,13 +98,37 @@ def client():
     })
     return TestClient(app)
 
-# ── Health ─────────────────────────────────────────────────────────────
+# ── Health / meta ──────────────────────────────────────────────────────
 
 def test_health_is_open(client):
     """/health requires no auth — important for orchestration probes."""
     resp = client.get("/health")
     assert resp.status_code == 200
     assert "status" in resp.json()
+
+
+def test_meta_exposes_corpus(client):
+    """/meta drives corpus-agnostic clients — must report acts + display name."""
+    body = client.get("/meta").json()
+    assert body["acts"] == ["IPC", "BNS"]
+    assert body["display_name"] == "Test Corpus"
+    assert body["cross_reference"] is None  # fake corpus has no concordance
+
+
+def test_answer_rejects_unknown_act(client):
+    """collections is validated against the active corpus at runtime."""
+    resp = client.post("/answer",
+                       json={"query": "x", "collections": ["ZZZ"]},
+                       headers={"X-API-Key": "test-key-1"})
+    assert resp.status_code == 422
+
+
+def test_answer_empty_collections_searches_all(client):
+    """Empty collections → all corpus acts (no 422)."""
+    resp = client.post("/answer",
+                       json={"query": "theft", "collections": []},
+                       headers={"X-API-Key": "test-key-1"})
+    assert resp.status_code == 200
 
 
 # ── Auth ───────────────────────────────────────────────────────────────

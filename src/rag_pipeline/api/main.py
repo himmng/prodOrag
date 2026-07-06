@@ -6,6 +6,7 @@ startup, reused for every request. Avoids per-request reranker reload
 """
 import os
 import re
+from functools import lru_cache
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "FALSE")
 import json
 import json as _json
@@ -26,8 +27,12 @@ from fastapi import UploadFile, File
 from rag_pipeline.api.documents import DocumentStore, UploadedDoc
 from rag_pipeline.api.schemas import (
     DocInfo, DocListResponse, DeleteResponse,
+    CaseAnswerRequest, CaseAnswerResponse, CaseExcerptOut,
+    ContextSnippet,
 )
 from rag_pipeline.parsers.docling import DoclingHybridParser
+from rag_pipeline.schemas import RagChunk
+from fastapi import Header
 from fastapi.responses import StreamingResponse
 from rag_pipeline.api.sse import sse_event
 from rag_pipeline.generation import answer_stream
@@ -35,7 +40,8 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException, Depends, Request, Response
 from rag_pipeline.api.schemas import (
-    AnswerRequest, AnswerResponse, Citation, HealthResponse, CrossReference
+    AnswerRequest, AnswerResponse, Citation, HealthResponse, CrossReference,
+    MetaResponse, CrossRefMeta,
 )
 from rag_pipeline.generation.context import build_context
 from rag_pipeline.config import cfg, log
@@ -66,16 +72,21 @@ _state: dict = {}
 # Call once at module import — before app = FastAPI(...)
 install_json_logging(level="INFO")
 
-_SECTION_MENTION = re.compile(
-    r"(?:(IPC|BNS)\s*)?"
-    r"(?:section|sec\.?|s\.?|§)?\s*"
-    r"(\d+[A-Z]?)"
-    r"(?:\s*(IPC|BNS))?",
-    re.IGNORECASE,
-)
+@lru_cache(maxsize=8)
+def _section_mention_re(act_a: str, act_b: str) -> "re.Pattern":
+    """Build a section-mention regex from the corpus's two concordance act labels."""
+    alt = f"{re.escape(act_a)}|{re.escape(act_b)}"
+    return re.compile(
+        rf"(?:({alt})\s*)?"
+        r"(?:section|sec\.?|s\.?|§)?\s*"
+        r"(\d+[A-Z]?)"
+        rf"(?:\s*({alt}))?",
+        re.IGNORECASE,
+    )
+
 
 def _concordance_context(query: str) -> tuple[str, list[dict], list]:
-    """Detect section mentions, look up cross-references.
+    """Detect section mentions, look up cross-references (config-driven labels).
 
     Returns (prompt_text, resolved, rows):
       - prompt_text: CROSS-REFERENCE lines for the LLM
@@ -83,41 +94,91 @@ def _concordance_context(query: str) -> tuple[str, list[dict], list]:
       - rows:        matched ConcordanceRow objects (for table-location citation)
     """
     concordance = _state.get("concordance")
-    if concordance is None:
+    corpus = _state.get("corpus")
+    if concordance is None or corpus is None or not corpus.has_concordance:
         return "", [], []
 
+    cc = corpus.concordance
+    act_a, act_b = cc.act_a, cc.act_b
+    rx = _section_mention_re(act_a, act_b)
+
     notes, resolved, rows = [], [], []
-    for m in _SECTION_MENTION.finditer(query):
+    for m in rx.finditer(query):
         act_before, section, act_after = m.group(1), m.group(2), m.group(3)
         act = (act_before or act_after or "").upper()
         if not section:
             continue
 
-        if act == "IPC":
-            row = concordance.lookup_ipc(section)
-        elif act == "BNS":
-            row = concordance.lookup_bns(section)
+        if act == act_a.upper():
+            row = concordance.lookup_a(section)
+        elif act == act_b.upper():
+            row = concordance.lookup_b(section)
         else:
-            row = concordance.lookup_ipc(section) or concordance.lookup_bns(section)
+            row = concordance.lookup_a(section) or concordance.lookup_b(section)
 
         if row:
             note = (
-                f"CROSS-REFERENCE: IPC Section {row.ipc_section or '—'} "
-                f"corresponds to BNS Section {row.bns_section or '—'} "
+                f"CROSS-REFERENCE: {act_a} Section {row.section_a or '—'} "
+                f"corresponds to {act_b} Section {row.section_b or '—'} "
                 f"(status: {row.status})."
             )
-            if row.ipc_title:
-                note += f" IPC title: {row.ipc_title}."
-            if row.bns_title:
-                note += f" BNS title: {row.bns_title}."
+            if row.title_a:
+                note += f" {act_a} title: {row.title_a}."
+            if row.title_b:
+                note += f" {act_b} title: {row.title_b}."
             notes.append(note)
             rows.append(row)
-            if row.ipc_section:
-                resolved.append({"act": "IPC", "section": row.ipc_section})
-            if row.bns_section:
-                resolved.append({"act": "BNS", "section": row.bns_section})
+            if row.section_a:
+                resolved.append({"act": act_a, "section": row.section_a})
+            if row.section_b:
+                resolved.append({"act": act_b, "section": row.section_b})
 
     return "\n".join(notes), resolved, rows
+
+
+# Prose commentary similarity tops out ~0.3 with embeddinggemma → low floor.
+CONTEXT_FLOOR = 0.15
+
+
+def _retrieve_context(query: str, top_k: int = 3) -> list:
+    """Retrieve interpretive commentary (committee report / SOR). Empty if disabled."""
+    ctx = _state.get("context_retriever")
+    if ctx is None:
+        return []
+    hits = ctx.retrieve(query, top_k=top_k)
+    return [(d, s) for d, s in hits if s >= CONTEXT_FLOOR]
+
+
+def _context_block(hits: list) -> str:
+    """Format commentary hits as a labeled, clearly-non-authoritative prompt block."""
+    if not hits:
+        return ""
+    lines = []
+    for i, (d, s) in enumerate(hits, 1):
+        src = d.metadata.get("display_name") or d.metadata.get("doc_type", "commentary")
+        page = d.metadata.get("page_number")
+        loc = f", p.{page}" if page and page != -1 else ""
+        lines.append(f"[C{i}] ({src}{loc}) {d.page_content}")
+    return (
+        "LEGISLATIVE CONTEXT / COMMITTEE COMMENTARY (interpretive background — "
+        "NOT statute; do not cite as binding law, use only to explain intent):\n"
+        + "\n\n".join(lines)
+    )
+
+
+def _context_snippets(hits: list) -> list["ContextSnippet"]:
+    out = []
+    for d, s in hits:
+        page = d.metadata.get("page_number")
+        out.append(ContextSnippet(
+            text=d.page_content,
+            doc_type=d.metadata.get("doc_type", "commentary"),
+            source=d.metadata.get("display_name") or d.metadata.get("doc_type", "commentary"),
+            page_number=page if page not in (None, -1) else None,
+            score=s,
+        ))
+    return out
+
 
 def _fetch_section_chunk(act: str, section: str):
     """Return (Document, score) for an exact act+section, or None. Vectorstore-agnostic."""
@@ -130,20 +191,87 @@ def _fetch_section_chunk(act: str, section: str):
 
 def _concordance_citation(row, n: int) -> Citation:
     """Turn a ConcordanceRow into a citation showing its table location."""
+    corpus = _state.get("corpus")
+    cc = corpus.concordance if (corpus and corpus.has_concordance) else None
+    act_a = cc.act_a if cc else "A"
+    act_b = cc.act_b if cc else "B"
+    label = cc.pdf_label if cc else "CONCORDANCE"
+    src = cc.pdf_path.name if cc else "concordance.pdf"
     return Citation(
         n=n,
-        source_path="IPC_BNS_concordance.pdf",
+        source_path=src,
         page_number=row.page_number,
         section_title=(
             f"Concordance Row {row.row_index or '?'} · "
-            f"BNS §{row.bns_section or '—'} ↔ IPC §{row.ipc_section or '—'}"
+            f"{act_b} §{row.section_b or '—'} ↔ {act_a} §{row.section_a or '—'}"
         ),
         score=1.0,
-        act="CONCORDANCE",
+        act=label,
         section=f"row {row.row_index or '?'}",
-        corresponds_to=(row.bns_section if row.ipc_section else row.ipc_section),
+        corresponds_to=(row.section_b if row.section_a else row.section_a),
         change_status=row.status,
     )
+def _corpus_display() -> str:
+    corpus = _state.get("corpus")
+    return corpus.display_name if corpus else "the provided corpus"
+
+
+def _resolve_acts(requested: list[str]) -> list[str]:
+    """Empty request → all corpus acts; otherwise validate against the corpus."""
+    corpus = _state.get("corpus")
+    all_acts = corpus.acts if corpus else []
+    if not requested:
+        return list(all_acts)
+    unknown = [a for a in requested if a not in all_acts]
+    if unknown:
+        raise HTTPException(422, detail=f"Unknown act(s) {unknown}; available: {all_acts}")
+    return requested
+
+
+def _answer_prompt(query: str, context: str, ctx_block: str) -> str:
+    """Grounded-QA prompt, corpus name pulled from config (no IPC/BNS hardcoding)."""
+    return (
+        f"You are an assistant grounded ONLY in the {_corpus_display()} excerpts "
+        f"below. Use any CROSS-REFERENCE lines to answer questions about section "
+        f"correspondences. Cite sources by [n]. Treat any LEGISLATIVE CONTEXT as "
+        f"non-binding background only. If the answer is not in the excerpts, say so.\n\n"
+        f"CONTEXT:\n{context}"
+        + (f"\n\n{ctx_block}" if ctx_block else "")
+        + f"\n\nQUESTION: {query}\n\nANSWER:"
+    )
+
+
+def _build_cross_reference(rows, resolved) -> Optional[CrossReference]:
+    """Assemble the CrossReference response block using config act labels."""
+    if not rows:
+        return None
+    corpus = _state.get("corpus")
+    cc = corpus.concordance if (corpus and corpus.has_concordance) else None
+    act_a = cc.act_a if cc else None
+    act_b = cc.act_b if cc else None
+    row = rows[0]
+    src_cit = tgt_cit = None
+    for r in resolved:
+        hit = _fetch_section_chunk(r["act"], r["section"])
+        if hit:
+            cit = _enrich_citation(hit[0], hit[1], 0)
+            if r["act"] == act_a:
+                src_cit = cit
+            elif r["act"] == act_b:
+                tgt_cit = cit
+    return CrossReference(
+        concordance_row=row.row_index,
+        source_act=act_a,
+        target_act=act_b,
+        source_section=row.section_a,
+        target_section=row.section_b,
+        page_number=row.page_number,
+        status=row.status,
+        source_citation=src_cit,
+        target_citation=tgt_cit,
+    )
+
+
 def _retrieve_across_collections(
     query: str,
     acts: list[str],
@@ -249,22 +377,31 @@ def _build_retriever_for_request(req: AnswerRequest):
 async def lifespan(app: FastAPI):
     log.info("API starting up — loading pipeline...")
 
+    # 0. Load the active corpus config — the single source of truth for the
+    #    serving layer. Everything below is driven by it (no IPC/BNS hardcoding).
+    from rag_pipeline.corpus import load_corpus
+    corpus = load_corpus(cfg.RAG_CORPUS)
+    log.info(f"Active corpus: {corpus.name} — {corpus.display_name} (acts: {corpus.acts})")
+
     # 1. Shared reranker FIRST (used by all collections)
     shared_reranker = Reranker()
 
-    # 2. Per-collection retrievers
+    # 2. Per-collection retrievers — one per corpus source
+    from rag_pipeline.schemas import StatuteChunk
     collection_setups = {}
-    for act, collection in [("IPC", "IPC_Corpus"), ("BNS", "BNS_Corpus")]:
+    for source in corpus.sources:
+        act, collection = source.act, source.collection
         log.info(f"Loading {act} retrievers ({collection})...")
-        
-        chunks_path = cfg.PROJECT_ROOT / "data" / "processed" / f"{act.lower()}_chunks.json"
+
+        chunks_path = source.chunks_output
         if not chunks_path.exists():
-            raise RuntimeError(f"Chunks file missing: {chunks_path}. Run `rag-ingest --corpus ipc_bns`.")
-        
+            raise RuntimeError(
+                f"Chunks file missing: {chunks_path}. Run `rag-ingest --corpus {corpus.name}`."
+            )
+
         import json
         with open(chunks_path) as f:
             raw_chunks = json.load(f)
-        from rag_pipeline.schemas import StatuteChunk
         chunks = [StatuteChunk(**c) for c in raw_chunks]
         section_index = _state.setdefault("section_index", {})
         for c in chunks:
@@ -272,7 +409,7 @@ async def lifespan(app: FastAPI):
         dense = DenseRetriever(collection_name=collection)
         bm25  = BM25Retriever(chunks)
         ensemble = EnsembleRetriever([dense, bm25], fetch_k=20)
-        
+
         collection_setups[act] = {
             "dense":             dense,
             "bm25":              bm25,
@@ -283,18 +420,37 @@ async def lifespan(app: FastAPI):
         }
         log.info(f"  {act}: {len(chunks)} chunks loaded")
 
-    # 3. Concordance
-    from rag_pipeline.corpus.concordance import Concordance
-    conc_path = cfg.PROJECT_ROOT / "data" / "processed" / "concordance.json"
-    concordance = Concordance.from_json(conc_path) if conc_path.exists() else None
-    if concordance:
-        log.info("Loaded concordance for cross-references")
+    # 3. Concordance / cross-reference — optional, only if the corpus declares it
+    concordance = None
+    if corpus.has_concordance:
+        from rag_pipeline.corpus.concordance import Concordance
+        conc_path = corpus.concordance.output_json
+        concordance = Concordance.from_json(conc_path) if conc_path.exists() else None
+        if concordance:
+            log.info(f"Loaded concordance for cross-references "
+                     f"({corpus.concordance.act_a}↔{corpus.concordance.act_b})")
+
+    # 4. Interpretive context layer — optional, from corpus.context_sources
+    context_retriever = None
+    for coll in corpus.context_collections:
+        try:
+            ctx = DenseRetriever(collection_name=coll)
+            if ctx.vectorstore._collection.count() > 0:
+                context_retriever = ctx
+                log.info(f"Loaded context layer: {coll} ({ctx.vectorstore._collection.count()} vectors)")
+                break
+        except Exception as e:
+            log.warning(f"Context layer '{coll}' unavailable: {e}")
 
     _state.update({
-        "by_act":      collection_setups,
-        "reranker":    shared_reranker,
-        "llm":         get_llm(),
-        "concordance": concordance,
+        "corpus":            corpus,
+        "by_act":            collection_setups,
+        "reranker":          shared_reranker,
+        "llm":               get_llm(),
+        "concordance":       concordance,
+        "doc_store":         DocumentStore(),        # session-scoped case uploads (isolated)
+        "uploaded_parser":   DoclingHybridParser(),  # parses uploaded case files
+        "context_retriever": context_retriever,      # commentary (non-authoritative)
     })
 
     # 4. Eval set (optional, may not exist for fresh corpus)
@@ -310,7 +466,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="RAG Pipeline API",
-    description="Hybrid retrieval-augmented generation over the IPC corpus",
+    description="Corpus-agnostic hybrid retrieval-augmented generation API",
     version="0.1.0",
     lifespan=lifespan,
 )
@@ -324,9 +480,11 @@ app.add_middleware(RequestLoggingMiddleware)
 
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
+    by_act = _state.get("by_act", {})
+    any_retriever = any(s.get("hybrid_r") for s in by_act.values())
     components = {
-        "chunks":    "ok" if _state.get("by_act") else "missing",
-        "retriever": "ok" if (_state.get("by_act", {}).get("IPC", {}).get("hybrid_r")) else "missing",
+        "chunks":    "ok" if by_act else "missing",
+        "retriever": "ok" if any_retriever else "missing",
         "llm":       "ok" if _state.get("llm") else "missing",
     }
     # Ollama reachability check — OLLAMA_HOST already includes host:port
@@ -342,6 +500,26 @@ def health() -> HealthResponse:
     return HealthResponse(
         status="healthy" if all_ok else "degraded",
         components=components,
+    )
+
+
+@app.get("/meta", response_model=MetaResponse)
+def meta() -> MetaResponse:
+    """Active-corpus metadata so clients render without hardcoding act labels."""
+    corpus = _state.get("corpus")
+    if corpus is None:
+        raise HTTPException(503, detail="Corpus not loaded")
+    xref = None
+    if corpus.has_concordance:
+        cc = corpus.concordance
+        xref = CrossRefMeta(source_act=cc.act_a, target_act=cc.act_b, pdf_label=cc.pdf_label)
+    return MetaResponse(
+        corpus=corpus.name,
+        display_name=corpus.display_name,
+        acts=corpus.acts,
+        pdf_acts=list(corpus.pdf_map().keys()),
+        context_enabled=_state.get("context_retriever") is not None,
+        cross_reference=xref,
     )
 
 
@@ -363,7 +541,7 @@ def answer_route(
 
     docs_with_scores = _retrieve_across_collections(
         query=req.query,
-        acts=req.collections,
+        acts=_resolve_acts(req.collections),
         retriever_kind=req.retriever,
         top_k=req.top_k,
         min_score=req.min_score,
@@ -386,7 +564,11 @@ def answer_route(
     # Cross-reference detection
     xref, resolved, rows = _concordance_context(req.query)
     if xref:
-        context = f"{xref}\n\n{context}" 
+        context = f"{xref}\n\n{context}"
+
+    # Interpretive commentary (opt-in for general /answer)
+    ctx_hits = _retrieve_context(req.query) if req.include_context else []
+    ctx_block = _context_block(ctx_hits)
 
     # Priority citations: concordance row(s) + real section texts
     priority = []
@@ -400,13 +582,7 @@ def answer_route(
         if hit:
             priority_docs.append(hit)
 
-    prompt = (
-        f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
-        f"Bharatiya Nyaya Sanhita excerpts below. Use the CROSS-REFERENCE lines "
-        f"to answer questions about section correspondences. Cite sources by [n]. "
-        f"If the answer is not in the excerpts, say so.\n\n"
-        f"CONTEXT:\n{context}\n\nQUESTION: {req.query}\n\nANSWER:"
-    )
+    prompt = _answer_prompt(req.query, context, ctx_block)
     llm_resp = _state["llm"].invoke(prompt)
     answer_text = getattr(llm_resp, "content", None) or str(llm_resp)
 
@@ -425,31 +601,14 @@ def answer_route(
     ]
 
     # Cross-reference lives in its own field, not mixed into citations
-    cross_ref = None
-    if rows:
-        row = rows[0]
-        ipc_cit = bns_cit = None
-        for r in resolved:
-            hit = _fetch_section_chunk(r["act"], r["section"])
-            if hit:
-                cit = _enrich_citation(hit[0], hit[1], 0)
-                if r["act"] == "IPC": ipc_cit = cit
-                else:                 bns_cit = cit
-        cross_ref = CrossReference(
-            concordance_row=row.row_index,
-            ipc_section=row.ipc_section,
-            bns_section=row.bns_section,
-            page_number=row.page_number,
-            status=row.status,
-            ipc_citation=ipc_cit,
-            bns_citation=bns_cit,
-        )
+    cross_ref = _build_cross_reference(rows, resolved)
 
     return AnswerResponse(
         question=req.query,
         answer=answer_text,
         citations=citations,
         cross_reference=cross_ref,
+        context=_context_snippets(ctx_hits),
         retriever=req.retriever,
         latency_ms=(time.perf_counter() - start) * 1000.0,
     )
@@ -485,7 +644,7 @@ def answer_stream_route(
         try:
             docs_with_scores = _retrieve_across_collections(
                 query=req.query,
-                acts=req.collections,
+                acts=_resolve_acts(req.collections),
                 retriever_kind=req.retriever,
                 top_k=req.top_k,
                 min_score=req.min_score,
@@ -520,28 +679,12 @@ def answer_stream_route(
         if xref:
             context = f"{xref}\n\n{context}"
 
+        # 4b. Interpretive commentary (opt-in)
+        ctx_hits = _retrieve_context(req.query) if req.include_context else []
+        ctx_block = _context_block(ctx_hits)
+
         # 5. Cross-reference block (separate from citations)
-        cross_ref = None
-        if rows:
-            row = rows[0]
-            ipc_cit = bns_cit = None
-            for r in resolved:
-                hit = _fetch_section_chunk(r["act"], r["section"])
-                if hit:
-                    cit = _enrich_citation(hit[0], hit[1], 0)
-                    if r["act"] == "IPC":
-                        ipc_cit = cit
-                    else:
-                        bns_cit = cit
-            cross_ref = CrossReference(
-                concordance_row=row.row_index,
-                ipc_section=row.ipc_section,
-                bns_section=row.bns_section,
-                page_number=row.page_number,
-                status=row.status,
-                ipc_citation=ipc_cit,
-                bns_citation=bns_cit,
-            )
+        cross_ref = _build_cross_reference(rows, resolved)
         yield sse_event(
             "cross_reference",
             {"cross_reference": cross_ref.model_dump() if cross_ref else None},
@@ -554,14 +697,14 @@ def answer_stream_route(
         ]
         yield sse_event("citations", {"citations": citations})
 
-        # 7. Build prompt + stream LLM tokens
-        prompt = (
-            f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
-            f"Bharatiya Nyaya Sanhita excerpts below. Use the CROSS-REFERENCE lines "
-            f"to answer questions about section correspondences. Cite sources by [n]. "
-            f"If the answer is not in the excerpts, say so.\n\n"
-            f"CONTEXT:\n{context}\n\nQUESTION: {req.query}\n\nANSWER:"
+        # 6b. Interpretive commentary as its own event
+        yield sse_event(
+            "context",
+            {"context": [s.model_dump() for s in _context_snippets(ctx_hits)]},
         )
+
+        # 7. Build prompt + stream LLM tokens
+        prompt = _answer_prompt(req.query, context, ctx_block)
         try:
             for chunk in _state["llm"].stream(prompt):
                 if isinstance(chunk, str):
@@ -592,7 +735,16 @@ def answer_stream_route(
             "X-Accel-Buffering": "no",
         },
     )
-# ── /eval/* (point at IPC by default for now) ────────────────────────
+# ── /eval/* (evaluate against the corpus's first act by default) ─────────
+
+def _default_eval_setup():
+    """The retriever setup to evaluate against — first act of the active corpus."""
+    by_act = _state.get("by_act", {})
+    if not by_act:
+        raise HTTPException(503, detail="No corpus collections loaded.")
+    return next(iter(by_act.values()))
+
+
 
 @app.post(
     "/eval/retrieval",
@@ -608,8 +760,8 @@ def eval_retrieval_route(
     if "eval_set" not in _state:
         raise HTTPException(503, detail="Eval set not loaded. Run Stage E eval rebuild first.")
 
-    # Eval against IPC for now; Stage E rebuilds a combined eval set
-    setup = _state["by_act"].get("IPC")
+    # Eval against the corpus's first act; Stage E rebuilds a combined eval set
+    setup = _default_eval_setup()
     retriever_attr = {
         "hybrid_reranked": "hybrid_r_nofilter",
         "dense":           "dense",
@@ -648,7 +800,7 @@ def threshold_sweep_route(
 
     start = time.perf_counter()
     rows = threshold_sweep(
-        _state["by_act"]["IPC"]["hybrid_r_nofilter"],
+        _default_eval_setup()["hybrid_r_nofilter"],
         _state["eval_set"],
         thresholds=req.thresholds,
         top_k=req.top_k,
@@ -662,10 +814,38 @@ def threshold_sweep_route(
     )
 
 
-# ── /documents/* (uploaded case files — unchanged) ───────────────────
+# ── /documents/* (uploaded case files — session-scoped, isolated vectors) ──
+#
+# Every op requires an X-Session-Id token. Uploads are keyed by that token and
+# embedded into a PER-CASE isolated Chroma collection (case_{session}_{doc});
+# they never touch IPC_Corpus/BNS_Corpus and are invisible across sessions.
+
+def _text_to_chunks(text: str, filename: str, window: int = 800) -> list[RagChunk]:
+    """Naive paragraph-aware chunker for txt/md uploads (~`window` chars each)."""
+    chunks, buf = [], ""
+    for para in re.split(r"\n\s*\n", text):
+        para = para.strip()
+        if not para:
+            continue
+        if len(buf) + len(para) + 2 > window and buf:
+            chunks.append(buf)
+            buf = para
+        else:
+            buf = f"{buf}\n\n{para}" if buf else para
+    if buf:
+        chunks.append(buf)
+    return [
+        RagChunk(text=t, source_path=filename, source_format="txt",
+                 element_type="text-window")
+        for t in chunks
+    ]
+
 
 @app.post("/documents/upload", response_model=DocInfo)
-async def upload_document(file: UploadFile = File(...)) -> DocInfo:
+async def upload_document(
+    file: UploadFile = File(...),
+    x_session_id: str = Header(..., description="Per-client session token"),
+) -> DocInfo:
     if not file.filename:
         raise HTTPException(422, detail="filename required")
 
@@ -679,20 +859,24 @@ async def upload_document(file: UploadFile = File(...)) -> DocInfo:
             tmp.write(raw)
             tmp_path = tmp.name
         chunks = _state["uploaded_parser"].parse(tmp_path)
-        text = "\n\n".join(c.text for c in chunks)
     else:
         text = raw.decode("utf-8", errors="replace")
+        chunks = _text_to_chunks(text, file.filename)
 
-    if not text.strip():
+    if not chunks or not any(c.text.strip() for c in chunks):
         raise HTTPException(422, detail="Document had no extractable text")
 
-    doc = _state["doc_store"].add(filename=file.filename, text=text)
+    doc = _state["doc_store"].add(
+        session_id=x_session_id, filename=file.filename, chunks=chunks
+    )
     return _to_doc_info(doc)
 
 
 @app.get("/documents", response_model=DocListResponse)
-def list_documents() -> DocListResponse:
-    docs = _state["doc_store"].list_all()
+def list_documents(
+    x_session_id: str = Header(..., description="Per-client session token"),
+) -> DocListResponse:
+    docs = _state["doc_store"].list_all(x_session_id)
     return DocListResponse(
         documents=[_to_doc_info(d) for d in docs],
         total=len(docs),
@@ -700,20 +884,17 @@ def list_documents() -> DocListResponse:
 
 @app.get("/documents/page-image", dependencies=[Depends(verify_api_key)])
 def page_image(
-    act: str = Query(..., pattern="^(IPC|BNS|CONCORDANCE)$"),
+    act: str = Query(..., description="Act label or concordance label from the active corpus"),
     page: int = Query(..., ge=1),
 ):
     """Render one page of a corpus PDF to PNG for inline preview."""
     import pdfplumber, io
 
-    pdf_map = {
-        "IPC": cfg.PROJECT_ROOT / "data" / "raw" / "IPC_1860.pdf",
-        "BNS": cfg.PROJECT_ROOT / "data" / "raw" / "BNS_2023.pdf",
-        "CONCORDANCE": cfg.PROJECT_ROOT / "data" / "raw" / "IPC_BNS_concordance.pdf",   # ← new
-    }
+    corpus = _state.get("corpus")
+    pdf_map = corpus.pdf_map() if corpus else {}
     pdf_path = pdf_map.get(act)
     if not pdf_path or not pdf_path.exists():
-        raise HTTPException(404, detail=f"PDF not found for act {act}")
+        raise HTTPException(404, detail=f"PDF not found for '{act}'; available: {list(pdf_map)}")
 
     with pdfplumber.open(pdf_path) as pdf:
         if page > len(pdf.pages):
@@ -724,7 +905,113 @@ def page_image(
         return FastAPIResponse(content=buf.getvalue(), media_type="image/png")
 
 @app.delete("/documents/{doc_id}", response_model=DeleteResponse)
-def delete_document(doc_id: str) -> DeleteResponse:
-    if not _state["doc_store"].delete(doc_id):
+def delete_document(
+    doc_id: str,
+    x_session_id: str = Header(..., description="Per-client session token"),
+) -> DeleteResponse:
+    if not _state["doc_store"].delete(x_session_id, doc_id):
         raise HTTPException(404, detail=f"Document not found: {doc_id}")
     return DeleteResponse(doc_id=doc_id, deleted=True)
+
+
+# ── /answer/case — interpret an uploaded case against IPC/BNS ──────────────
+
+@app.post(
+    "/answer/case",
+    response_model=CaseAnswerResponse,
+    dependencies=[Depends(verify_api_key)],
+)
+@limiter.limit("30/minute")
+def answer_case_route(
+    request: Request,
+    response: Response,
+    req: CaseAnswerRequest,
+    x_session_id: str = Header(..., description="Per-client session token"),
+) -> CaseAnswerResponse:
+    """Interpret an uploaded case: which IPC/BNS sections apply, why, and how.
+
+    The case text is CONTEXT only — it lives in its own isolated collection and
+    is never mixed into the corpus. We retrieve (a) the most relevant case
+    excerpts, (b) relevant IPC/BNS statutory sections, (c) any IPC↔BNS
+    cross-references implied by the question or sections named in the case.
+    """
+    start = time.perf_counter()
+
+    doc = _state["doc_store"].get(x_session_id, req.doc_id)
+    if doc is None:
+        raise HTTPException(404, detail=f"Case not found for this session: {req.doc_id}")
+
+    # 1. Retrieve from the case's OWN isolated collection
+    case_hits = _state["doc_store"].search_case(
+        x_session_id, req.doc_id, req.question, top_k=req.case_k
+    )
+
+    # 2. Retrieve relevant IPC/BNS statute sections (existing corpus pipeline)
+    docs_with_scores = _retrieve_across_collections(
+        query=req.question,
+        acts=_resolve_acts(req.collections),
+        retriever_kind="hybrid_reranked",
+        top_k=req.top_k,
+        min_score=None,
+    )
+    MAIN_CITATION_FLOOR = 0.55
+    docs_with_scores = [(d, s) for d, s in docs_with_scores if s >= MAIN_CITATION_FLOOR]
+    corpus_context = build_context(docs_with_scores) if docs_with_scores else ""
+
+    # 3. Cross-reference: sections named in the question OR in the case text
+    xref_query = f"{req.question} " + " ".join(doc.section_refs)
+    xref, resolved, rows = _concordance_context(xref_query)
+
+    # 3b. Interpretive commentary (committee report / SOR) — on by default here
+    ctx_hits = _retrieve_context(req.question) if req.include_context else []
+    ctx_block = _context_block(ctx_hits)
+
+    # 4. Build the interpretation prompt
+    case_context = "\n\n".join(
+        f"[CASE {i + 1}] {ex.text}" for i, ex in enumerate(case_hits)
+    ) or "(no case excerpts retrieved)"
+    xref_block = f"\n\nCROSS-REFERENCE:\n{xref}" if xref else ""
+
+    prompt = (
+        "You are an assistant analysing a REAL case/document a user uploaded. "
+        f"Ground your answer ONLY in (a) the CASE EXCERPTS, (b) the STATUTORY "
+        f"EXCERPTS from {_corpus_display()}, (c) any CROSS-REFERENCE lines, and "
+        "(d) any LEGISLATIVE CONTEXT (commentary — background only, NOT binding "
+        "law). Explain WHICH sections apply, WHY they apply (tie the facts of the "
+        "case to the elements of each provision), and HOW to interpret the case, "
+        "drawing on the legislative context for intent where relevant. Cite "
+        "sources by [n]. Do NOT invent sections; if the excerpts do not support "
+        "a point, say so.\n\n"
+        f"CASE EXCERPTS:\n{case_context}\n\n"
+        f"STATUTORY EXCERPTS:\n{corpus_context or '(none retrieved)'}"
+        f"{xref_block}"
+        + (f"\n\n{ctx_block}" if ctx_block else "")
+        + f"\n\nQUESTION: {req.question}\n\nANSWER:"
+    )
+    llm_resp = _state["llm"].invoke(prompt)
+    answer_text = getattr(llm_resp, "content", None) or str(llm_resp)
+
+    # 5. Assemble response
+    citations = [
+        _enrich_citation(d, s, i + 1)
+        for i, (d, s) in enumerate(docs_with_scores[: req.top_k])
+    ]
+    case_excerpts = [
+        CaseExcerptOut(
+            text=ex.text, score=ex.score,
+            page_number=ex.page_number, section_title=ex.section_title,
+        )
+        for ex in case_hits
+    ]
+
+    cross_ref = _build_cross_reference(rows, resolved)
+
+    return CaseAnswerResponse(
+        question=req.question,
+        answer=answer_text,
+        citations=citations,
+        case_excerpts=case_excerpts,
+        cross_reference=cross_ref,
+        context=_context_snippets(ctx_hits),
+        latency_ms=(time.perf_counter() - start) * 1000.0,
+    )

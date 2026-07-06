@@ -14,7 +14,20 @@ class AnswerRequest(BaseModel):
     retriever: Literal["hybrid_reranked", "dense", "bm25", "ensemble"] = "hybrid_reranked"
     fetch_k:   Optional[int]   = Field(default=None, ge=5, le=50)
     min_score: Optional[float] = Field(default=None, ge=0.0, le=1.0)
-    collections: list[Literal["IPC", "BNS"]] = Field(default=["IPC", "BNS"])
+    # Empty = all corpus acts; validated at runtime against the loaded corpus.
+    collections: list[str] = Field(default_factory=list)
+    # Opt-in interpretive commentary (committee report / SOR). Off by default so
+    # general statute Q&A stays authoritative.
+    include_context: bool = False
+
+
+class ContextSnippet(BaseModel):
+    """A retrieved chunk of NON-authoritative interpretive commentary."""
+    text:         str
+    doc_type:     str                     # "committee_report" | "sor"
+    source:       str                     # human-readable display name
+    page_number:  Optional[int] = None
+    score:        float
 
 
 class Citation(BaseModel):
@@ -30,19 +43,24 @@ class Citation(BaseModel):
     change_status: Optional[str]    = None    # "new"|"changed"|"deleted"|"unchanged"
 
 class CrossReference(BaseModel):
+    """A cross-reference mapping between two corpus acts. Act labels are DATA
+    (source_act/target_act), supplied by the corpus config — not hardcoded."""
     concordance_row: Optional[int] = None
-    ipc_section:     Optional[str] = None
-    bns_section:     Optional[str] = None
+    source_act:      Optional[str] = None        # e.g. "IPC"
+    target_act:      Optional[str] = None        # e.g. "BNS"
+    source_section:  Optional[str] = None
+    target_section:  Optional[str] = None
     status:          Optional[str] = None
     page_number:     Optional[int] = None
-    ipc_citation:    Optional[Citation] = None   # real IPC section text
-    bns_citation:    Optional[Citation] = None   # real BNS section text
+    source_citation: Optional[Citation] = None   # real source-act section text
+    target_citation: Optional[Citation] = None   # real target-act section text
 
 class AnswerResponse(BaseModel):
     question:       str
     answer:         str
     citations:      list[Citation]
     cross_reference: Optional[CrossReference] = None   # ← new
+    context:        list["ContextSnippet"] = []        # interpretive commentary
     retriever:      str
     latency_ms:     float
 
@@ -50,6 +68,22 @@ class AnswerResponse(BaseModel):
 class HealthResponse(BaseModel):
     status:     Literal["healthy", "degraded", "unhealthy"]
     components: dict[str, str]
+
+
+class CrossRefMeta(BaseModel):
+    source_act: str
+    target_act: str
+    pdf_label:  str
+
+
+class MetaResponse(BaseModel):
+    """Corpus metadata so clients (dashboard) render without hardcoding IPC/BNS."""
+    corpus:          str
+    display_name:    str
+    acts:            list[str]
+    pdf_acts:        list[str]              # acts renderable via /documents/page-image
+    context_enabled: bool
+    cross_reference: Optional[CrossRefMeta] = None
 
 
 class DocInfo(BaseModel):
@@ -68,6 +102,34 @@ class DocListResponse(BaseModel):
 class DeleteResponse(BaseModel):
     doc_id:  str
     deleted: bool
+
+
+class CaseExcerptOut(BaseModel):
+    text:          str
+    score:         float
+    page_number:   Optional[int] = None
+    section_title: Optional[str] = None
+
+
+class CaseAnswerRequest(BaseModel):
+    doc_id:   str = Field(..., min_length=1)
+    question: str = Field(..., min_length=1, max_length=2000)
+    top_k:    int = Field(default=5, ge=1, le=20)
+    case_k:   int = Field(default=5, ge=1, le=20)   # case excerpts to inject
+    # Empty = all corpus acts; validated at runtime against the loaded corpus.
+    collections: list[str] = Field(default_factory=list)
+    # Interpretation is the whole point of case Q&A → commentary ON by default.
+    include_context: bool = True
+
+
+class CaseAnswerResponse(BaseModel):
+    question:        str
+    answer:          str
+    citations:       list[Citation]            # IPC/BNS statutory citations
+    case_excerpts:   list[CaseExcerptOut]      # from the uploaded case (isolated)
+    cross_reference: Optional[CrossReference] = None
+    context:         list["ContextSnippet"] = []   # interpretive commentary
+    latency_ms:      float
 
 class EvalRetrievalRequest(BaseModel):
     retriever: Literal["hybrid_reranked", "dense", "bm25", "ensemble"] = "hybrid_reranked"
