@@ -40,7 +40,9 @@ class _MockRetriever:
                         "change_status":  "unchanged",    # ← add
                     },
                 ),
-                0.5,
+                # Above MAIN_CITATION_FLOOR (0.55) so citations survive the filter —
+                # mirrors a realistic "relevant" reranker score (~0.7).
+                0.72,
             ),
         ]
 class _MockLLM:
