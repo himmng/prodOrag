@@ -24,6 +24,9 @@ htmlcov/
 
 # Project data (regenerable / large / sensitive)
 eval/results/
+# Vector store + processed chunks are regenerable via `rag-ingest` — never commit.
+chroma_db/
+data/processed/
 
 # IDE
 .vscode/

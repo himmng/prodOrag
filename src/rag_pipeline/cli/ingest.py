@@ -77,7 +77,8 @@ def _ingest_to_chroma(
 ) -> None:
     if clean:
         import chromadb
-        client = chromadb.PersistentClient(path=str(cfg.PROJECT_ROOT / "chroma_db"))
+        from rag_pipeline.vectorstore import CORPUS_DIR
+        client = chromadb.PersistentClient(path=str(CORPUS_DIR))
         try:
             client.delete_collection(collection_name)
             log.info(f"  Deleted existing collection: {collection_name}")
@@ -150,7 +151,8 @@ def _ingest_context_sources(corpus, args) -> None:
     # --clean wipes each distinct context collection ONCE (they may be shared)
     if args.clean and not args.dry_run:
         import chromadb
-        client = chromadb.PersistentClient(path=str(cfg.PROJECT_ROOT / "chroma_db"))
+        from rag_pipeline.vectorstore import CORPUS_DIR
+        client = chromadb.PersistentClient(path=str(CORPUS_DIR))
         for coll in {c.collection for c in corpus.context_sources}:
             try:
                 client.delete_collection(coll)
