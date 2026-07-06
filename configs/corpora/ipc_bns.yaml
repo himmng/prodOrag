@@ -18,6 +18,22 @@ sources:
     chunks_output:    data/processed/bns_chunks.json
     body_start_page:  16          # ← TOC ends at page 15
 
+# Interpretive / legislative-context documents (NOT statute).
+# Parsed with the prose parser and stored in a SEPARATE collection, retrieved
+# as labeled commentary to explain intent / how to interpret — never cited as law.
+context_sources:
+  - doc_type:      committee_report
+    display_name:  BNS Standing Committee Report
+    pdf_path:      data/raw/_deferred/BNS_standing_committee_report.pdf
+    collection:    BNS_Context
+    chunks_output: data/processed/context_committee_report.json
+
+  - doc_type:      sor
+    display_name:  BNS Bill — Statement of Objects & Reasons
+    pdf_path:      data/raw/_deferred/BNS_bill_gazette_with_SOR.pdf
+    collection:    BNS_Context
+    chunks_output: data/processed/context_sor.json
+
 # Cross-reference table — parsed once, joined into chunks at ingest
 concordance:
   pdf_path:    data/raw/IPC_BNS_concordance.pdf

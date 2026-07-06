@@ -5,6 +5,9 @@ __pycache__/
 .ipynb_checkpoints/
 !data/raw/.gitkeep
 
+# claude
+CLAUDE.md
+docs/HANDOFF.md
 
 # Python
 __pycache__/

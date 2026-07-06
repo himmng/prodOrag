@@ -19,10 +19,10 @@
 | 5.5 | Streamlit dashboard | ✅ done |
 | Corpus rebuild (A–E) | Dual IPC/BNS collections, structural parse, concordance | ✅ done |
 | Concordance cross-reference feature | Query-time lookup, separate cross_reference block, page previews | ✅ done (this session) |
-| Case-file upload + Q&A | Upload real cases, ask IPC/BNS interpretation, ISOLATED | 🚧 IN PROGRESS — see §3 |
+| Case-file upload + Q&A | Upload real cases, ask IPC/BNS interpretation, ISOLATED | ✅ done — per-session isolated vector collections + /answer/case |
 | Corpus-agnostic refactor | Remove IPC/BNS hardcoding from API/serving layer | ⏳ planned, not started — see §5 |
 | 6 | Cloud deploy (Azure models, managed vector store) | ⏳ future — fixes latency ceiling |
-| 7.5 | Contextual layer (committee report + SOR) | ⏳ deferred — PDFs banked in data/raw/_deferred/ |
+| 7.5 | Contextual layer (committee report + SOR) | ✅ done — BNS_Context collection (904 vec), opt-in on /answer, default on /answer/case |
 
 ---
 

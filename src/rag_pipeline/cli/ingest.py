@@ -24,8 +24,9 @@ from rag_pipeline.corpus.concordance import (
     Concordance, ConcordanceParser, save_rows,
 )
 from rag_pipeline.parsers.statute import StatuteParser
+from rag_pipeline.parsers.docling import DoclingHybridParser
 from rag_pipeline.providers import get_embeddings
-from rag_pipeline.schemas import StatuteChunk
+from rag_pipeline.schemas import StatuteChunk, RagChunk
 from rag_pipeline.vectorstore import get_vectorstore
 
 
@@ -110,6 +111,75 @@ def _ingest_to_chroma(
     log.info(f"  Collection '{collection_name}' now has {final_count} vectors")
 
 
+def _save_ragchunks_json(chunks: list[RagChunk], path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w") as f:
+        json.dump([c.model_dump() for c in chunks], f, indent=2,
+                  ensure_ascii=False, default=str)
+    log.info(f"Wrote {len(chunks)} context chunks → {path}")
+
+
+def _ingest_ragchunks_to_chroma(
+    chunks: list[RagChunk],
+    collection_name: str,
+    extra_meta: dict,
+    batch_size: int = 32,
+) -> None:
+    """Embed prose (context) chunks into a collection, tagged with extra_meta."""
+    log.info(f"Embedding + upserting {len(chunks)} context chunks → {collection_name}")
+    vs = get_vectorstore(collection_name)
+    n = len(chunks)
+    for i in range(0, n, batch_size):
+        batch = chunks[i:i + batch_size]
+        ids       = [c.chunk_id for c in batch]
+        documents = [c.text for c in batch]
+        metadatas = [{**c.to_langchain_metadata(), **extra_meta} for c in batch]
+        vs.add_texts(texts=documents, metadatas=metadatas, ids=ids)
+        log.info(f"  Batch {i // batch_size + 1}/{(n + batch_size - 1) // batch_size}: +{len(batch)}")
+    log.info(f"  Collection '{collection_name}' now has {vs._collection.count()} vectors")
+
+
+def _ingest_context_sources(corpus, args) -> None:
+    """Parse + embed the interpretive context documents (committee report, SOR)."""
+    if not corpus.context_sources:
+        log.info("No context_sources in corpus — skipping context layer")
+        return
+
+    prose_parser = DoclingHybridParser()
+
+    # --clean wipes each distinct context collection ONCE (they may be shared)
+    if args.clean and not args.dry_run:
+        import chromadb
+        client = chromadb.PersistentClient(path=str(cfg.PROJECT_ROOT / "chroma_db"))
+        for coll in {c.collection for c in corpus.context_sources}:
+            try:
+                client.delete_collection(coll)
+                log.info(f"  Deleted existing context collection: {coll}")
+            except Exception:
+                pass
+
+    for ctx in corpus.context_sources:
+        log.info("-" * 60)
+        log.info(f"Context source: {ctx.doc_type}  ({ctx.pdf_path.name})")
+        log.info("-" * 60)
+        if not ctx.pdf_path.exists():
+            log.warning(f"  Missing PDF, skipping: {ctx.pdf_path}")
+            continue
+
+        chunks = prose_parser.parse(ctx.pdf_path)
+        log.info(f"  Parsed {len(chunks)} prose chunks")
+        _save_ragchunks_json(chunks, ctx.chunks_output)
+
+        if args.dry_run:
+            log.info("  Dry run — skipping ChromaDB write")
+        else:
+            _ingest_ragchunks_to_chroma(
+                chunks, ctx.collection,
+                extra_meta={"doc_type": ctx.doc_type, "display_name": ctx.display_name},
+                batch_size=args.batch_size,
+            )
+
+
 # ── Main ──────────────────────────────────────────────────────────────
 
 def main(argv: list[str] | None = None) -> int:
@@ -141,6 +211,14 @@ def main(argv: list[str] | None = None) -> int:
         "--clean", action="store_true",
         help="Delete target collections before ingest (idempotent rebuild)",
     )
+    parser.add_argument(
+        "--skip-context", action="store_true",
+        help="Skip the interpretive context sources (committee report, SOR)",
+    )
+    parser.add_argument(
+        "--only-context", action="store_true",
+        help="Ingest ONLY the context sources (skip statutes + concordance)",
+    )
     args = parser.parse_args(argv)
 
     t0 = time.time()
@@ -154,6 +232,14 @@ def main(argv: list[str] | None = None) -> int:
 
     corpus = load_corpus(args.corpus)
     log.info(f"Loaded corpus: {corpus.display_name}")
+
+    # ── Context-only fast path ───────────────────────────────────────
+    if args.only_context:
+        _ingest_context_sources(corpus, args)
+        log.info("=" * 60)
+        log.info(f"Context-only ingest complete in {time.time() - t0:.1f}s")
+        log.info("=" * 60)
+        return 0
 
     # ── Step 1: parse / load concordance ─────────────────────────────
     concordance: Concordance | None = None
@@ -197,6 +283,10 @@ def main(argv: list[str] | None = None) -> int:
             log.info("  Dry run — skipping ChromaDB write")
         else:
             _ingest_to_chroma(chunks, source.collection, args.batch_size, clean=args.clean)
+
+    # ── Step 3: interpretive context layer ───────────────────────────
+    if not args.skip_context:
+        _ingest_context_sources(corpus, args)
 
     elapsed = time.time() - t0
     log.info("=" * 60)

@@ -26,8 +26,12 @@ from fastapi import UploadFile, File
 from rag_pipeline.api.documents import DocumentStore, UploadedDoc
 from rag_pipeline.api.schemas import (
     DocInfo, DocListResponse, DeleteResponse,
+    CaseAnswerRequest, CaseAnswerResponse, CaseExcerptOut,
+    ContextSnippet,
 )
 from rag_pipeline.parsers.docling import DoclingHybridParser
+from rag_pipeline.schemas import RagChunk
+from fastapi import Header
 from fastapi.responses import StreamingResponse
 from rag_pipeline.api.sse import sse_event
 from rag_pipeline.generation import answer_stream
@@ -118,6 +122,51 @@ def _concordance_context(query: str) -> tuple[str, list[dict], list]:
                 resolved.append({"act": "BNS", "section": row.bns_section})
 
     return "\n".join(notes), resolved, rows
+
+
+# Prose commentary similarity tops out ~0.3 with embeddinggemma → low floor.
+CONTEXT_FLOOR = 0.15
+
+
+def _retrieve_context(query: str, top_k: int = 3) -> list:
+    """Retrieve interpretive commentary (committee report / SOR). Empty if disabled."""
+    ctx = _state.get("context_retriever")
+    if ctx is None:
+        return []
+    hits = ctx.retrieve(query, top_k=top_k)
+    return [(d, s) for d, s in hits if s >= CONTEXT_FLOOR]
+
+
+def _context_block(hits: list) -> str:
+    """Format commentary hits as a labeled, clearly-non-authoritative prompt block."""
+    if not hits:
+        return ""
+    lines = []
+    for i, (d, s) in enumerate(hits, 1):
+        src = d.metadata.get("display_name") or d.metadata.get("doc_type", "commentary")
+        page = d.metadata.get("page_number")
+        loc = f", p.{page}" if page and page != -1 else ""
+        lines.append(f"[C{i}] ({src}{loc}) {d.page_content}")
+    return (
+        "LEGISLATIVE CONTEXT / COMMITTEE COMMENTARY (interpretive background — "
+        "NOT statute; do not cite as binding law, use only to explain intent):\n"
+        + "\n\n".join(lines)
+    )
+
+
+def _context_snippets(hits: list) -> list["ContextSnippet"]:
+    out = []
+    for d, s in hits:
+        page = d.metadata.get("page_number")
+        out.append(ContextSnippet(
+            text=d.page_content,
+            doc_type=d.metadata.get("doc_type", "commentary"),
+            source=d.metadata.get("display_name") or d.metadata.get("doc_type", "commentary"),
+            page_number=page if page not in (None, -1) else None,
+            score=s,
+        ))
+    return out
+
 
 def _fetch_section_chunk(act: str, section: str):
     """Return (Document, score) for an exact act+section, or None. Vectorstore-agnostic."""
@@ -290,11 +339,24 @@ async def lifespan(app: FastAPI):
     if concordance:
         log.info("Loaded concordance for cross-references")
 
+    # Interpretive context layer (committee report + SOR) — optional
+    context_retriever = None
+    try:
+        ctx = DenseRetriever(collection_name="BNS_Context")
+        if ctx.vectorstore._collection.count() > 0:
+            context_retriever = ctx
+            log.info(f"Loaded context layer: BNS_Context ({ctx.vectorstore._collection.count()} vectors)")
+    except Exception as e:
+        log.warning(f"Context layer unavailable: {e}")
+
     _state.update({
-        "by_act":      collection_setups,
-        "reranker":    shared_reranker,
-        "llm":         get_llm(),
-        "concordance": concordance,
+        "by_act":            collection_setups,
+        "reranker":          shared_reranker,
+        "llm":               get_llm(),
+        "concordance":       concordance,
+        "doc_store":         DocumentStore(),        # session-scoped case uploads (isolated)
+        "uploaded_parser":   DoclingHybridParser(),  # parses uploaded case files
+        "context_retriever": context_retriever,      # legislative commentary (non-authoritative)
     })
 
     # 4. Eval set (optional, may not exist for fresh corpus)
@@ -386,7 +448,11 @@ def answer_route(
     # Cross-reference detection
     xref, resolved, rows = _concordance_context(req.query)
     if xref:
-        context = f"{xref}\n\n{context}" 
+        context = f"{xref}\n\n{context}"
+
+    # Interpretive commentary (opt-in for general /answer)
+    ctx_hits = _retrieve_context(req.query) if req.include_context else []
+    ctx_block = _context_block(ctx_hits)
 
     # Priority citations: concordance row(s) + real section texts
     priority = []
@@ -403,9 +469,12 @@ def answer_route(
     prompt = (
         f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
         f"Bharatiya Nyaya Sanhita excerpts below. Use the CROSS-REFERENCE lines "
-        f"to answer questions about section correspondences. Cite sources by [n]. "
+        f"to answer questions about section correspondences. Cite statute sources "
+        f"by [n]. Treat any LEGISLATIVE CONTEXT as non-binding background only. "
         f"If the answer is not in the excerpts, say so.\n\n"
-        f"CONTEXT:\n{context}\n\nQUESTION: {req.query}\n\nANSWER:"
+        f"CONTEXT:\n{context}"
+        + (f"\n\n{ctx_block}" if ctx_block else "")
+        + f"\n\nQUESTION: {req.query}\n\nANSWER:"
     )
     llm_resp = _state["llm"].invoke(prompt)
     answer_text = getattr(llm_resp, "content", None) or str(llm_resp)
@@ -450,6 +519,7 @@ def answer_route(
         answer=answer_text,
         citations=citations,
         cross_reference=cross_ref,
+        context=_context_snippets(ctx_hits),
         retriever=req.retriever,
         latency_ms=(time.perf_counter() - start) * 1000.0,
     )
@@ -520,6 +590,10 @@ def answer_stream_route(
         if xref:
             context = f"{xref}\n\n{context}"
 
+        # 4b. Interpretive commentary (opt-in)
+        ctx_hits = _retrieve_context(req.query) if req.include_context else []
+        ctx_block = _context_block(ctx_hits)
+
         # 5. Cross-reference block (separate from citations)
         cross_ref = None
         if rows:
@@ -554,13 +628,22 @@ def answer_stream_route(
         ]
         yield sse_event("citations", {"citations": citations})
 
+        # 6b. Interpretive commentary as its own event
+        yield sse_event(
+            "context",
+            {"context": [s.model_dump() for s in _context_snippets(ctx_hits)]},
+        )
+
         # 7. Build prompt + stream LLM tokens
         prompt = (
             f"You are a legal assistant grounded ONLY in the Indian Penal Code / "
             f"Bharatiya Nyaya Sanhita excerpts below. Use the CROSS-REFERENCE lines "
-            f"to answer questions about section correspondences. Cite sources by [n]. "
+            f"to answer questions about section correspondences. Cite statute sources "
+            f"by [n]. Treat any LEGISLATIVE CONTEXT as non-binding background only. "
             f"If the answer is not in the excerpts, say so.\n\n"
-            f"CONTEXT:\n{context}\n\nQUESTION: {req.query}\n\nANSWER:"
+            f"CONTEXT:\n{context}"
+            + (f"\n\n{ctx_block}" if ctx_block else "")
+            + f"\n\nQUESTION: {req.query}\n\nANSWER:"
         )
         try:
             for chunk in _state["llm"].stream(prompt):
@@ -662,10 +745,38 @@ def threshold_sweep_route(
     )
 
 
-# ── /documents/* (uploaded case files — unchanged) ───────────────────
+# ── /documents/* (uploaded case files — session-scoped, isolated vectors) ──
+#
+# Every op requires an X-Session-Id token. Uploads are keyed by that token and
+# embedded into a PER-CASE isolated Chroma collection (case_{session}_{doc});
+# they never touch IPC_Corpus/BNS_Corpus and are invisible across sessions.
+
+def _text_to_chunks(text: str, filename: str, window: int = 800) -> list[RagChunk]:
+    """Naive paragraph-aware chunker for txt/md uploads (~`window` chars each)."""
+    chunks, buf = [], ""
+    for para in re.split(r"\n\s*\n", text):
+        para = para.strip()
+        if not para:
+            continue
+        if len(buf) + len(para) + 2 > window and buf:
+            chunks.append(buf)
+            buf = para
+        else:
+            buf = f"{buf}\n\n{para}" if buf else para
+    if buf:
+        chunks.append(buf)
+    return [
+        RagChunk(text=t, source_path=filename, source_format="txt",
+                 element_type="text-window")
+        for t in chunks
+    ]
+
 
 @app.post("/documents/upload", response_model=DocInfo)
-async def upload_document(file: UploadFile = File(...)) -> DocInfo:
+async def upload_document(
+    file: UploadFile = File(...),
+    x_session_id: str = Header(..., description="Per-client session token"),
+) -> DocInfo:
     if not file.filename:
         raise HTTPException(422, detail="filename required")
 
@@ -679,20 +790,24 @@ async def upload_document(file: UploadFile = File(...)) -> DocInfo:
             tmp.write(raw)
             tmp_path = tmp.name
         chunks = _state["uploaded_parser"].parse(tmp_path)
-        text = "\n\n".join(c.text for c in chunks)
     else:
         text = raw.decode("utf-8", errors="replace")
+        chunks = _text_to_chunks(text, file.filename)
 
-    if not text.strip():
+    if not chunks or not any(c.text.strip() for c in chunks):
         raise HTTPException(422, detail="Document had no extractable text")
 
-    doc = _state["doc_store"].add(filename=file.filename, text=text)
+    doc = _state["doc_store"].add(
+        session_id=x_session_id, filename=file.filename, chunks=chunks
+    )
     return _to_doc_info(doc)
 
 
 @app.get("/documents", response_model=DocListResponse)
-def list_documents() -> DocListResponse:
-    docs = _state["doc_store"].list_all()
+def list_documents(
+    x_session_id: str = Header(..., description="Per-client session token"),
+) -> DocListResponse:
+    docs = _state["doc_store"].list_all(x_session_id)
     return DocListResponse(
         documents=[_to_doc_info(d) for d in docs],
         total=len(docs),
@@ -724,7 +839,134 @@ def page_image(
         return FastAPIResponse(content=buf.getvalue(), media_type="image/png")
 
 @app.delete("/documents/{doc_id}", response_model=DeleteResponse)
-def delete_document(doc_id: str) -> DeleteResponse:
-    if not _state["doc_store"].delete(doc_id):
+def delete_document(
+    doc_id: str,
+    x_session_id: str = Header(..., description="Per-client session token"),
+) -> DeleteResponse:
+    if not _state["doc_store"].delete(x_session_id, doc_id):
         raise HTTPException(404, detail=f"Document not found: {doc_id}")
     return DeleteResponse(doc_id=doc_id, deleted=True)
+
+
+# ── /answer/case — interpret an uploaded case against IPC/BNS ──────────────
+
+@app.post(
+    "/answer/case",
+    response_model=CaseAnswerResponse,
+    dependencies=[Depends(verify_api_key)],
+)
+@limiter.limit("30/minute")
+def answer_case_route(
+    request: Request,
+    response: Response,
+    req: CaseAnswerRequest,
+    x_session_id: str = Header(..., description="Per-client session token"),
+) -> CaseAnswerResponse:
+    """Interpret an uploaded case: which IPC/BNS sections apply, why, and how.
+
+    The case text is CONTEXT only — it lives in its own isolated collection and
+    is never mixed into the corpus. We retrieve (a) the most relevant case
+    excerpts, (b) relevant IPC/BNS statutory sections, (c) any IPC↔BNS
+    cross-references implied by the question or sections named in the case.
+    """
+    start = time.perf_counter()
+
+    doc = _state["doc_store"].get(x_session_id, req.doc_id)
+    if doc is None:
+        raise HTTPException(404, detail=f"Case not found for this session: {req.doc_id}")
+
+    # 1. Retrieve from the case's OWN isolated collection
+    case_hits = _state["doc_store"].search_case(
+        x_session_id, req.doc_id, req.question, top_k=req.case_k
+    )
+
+    # 2. Retrieve relevant IPC/BNS statute sections (existing corpus pipeline)
+    docs_with_scores = _retrieve_across_collections(
+        query=req.question,
+        acts=req.collections,
+        retriever_kind="hybrid_reranked",
+        top_k=req.top_k,
+        min_score=None,
+    )
+    MAIN_CITATION_FLOOR = 0.55
+    docs_with_scores = [(d, s) for d, s in docs_with_scores if s >= MAIN_CITATION_FLOOR]
+    corpus_context = build_context(docs_with_scores) if docs_with_scores else ""
+
+    # 3. Cross-reference: sections named in the question OR in the case text
+    xref_query = f"{req.question} " + " ".join(doc.section_refs)
+    xref, resolved, rows = _concordance_context(xref_query)
+
+    # 3b. Interpretive commentary (committee report / SOR) — on by default here
+    ctx_hits = _retrieve_context(req.question) if req.include_context else []
+    ctx_block = _context_block(ctx_hits)
+
+    # 4. Build the interpretation prompt
+    case_context = "\n\n".join(
+        f"[CASE {i + 1}] {ex.text}" for i, ex in enumerate(case_hits)
+    ) or "(no case excerpts retrieved)"
+    xref_block = f"\n\nCROSS-REFERENCE (IPC↔BNS):\n{xref}" if xref else ""
+
+    prompt = (
+        "You are a legal assistant analysing a REAL case file a user uploaded. "
+        "Ground your answer ONLY in (a) the CASE EXCERPTS, (b) the STATUTORY "
+        "EXCERPTS from the Indian Penal Code / Bharatiya Nyaya Sanhita, "
+        "(c) the CROSS-REFERENCE lines, and (d) any LEGISLATIVE CONTEXT "
+        "(committee/SOR commentary — background only, NOT binding law). Explain "
+        "WHICH IPC and BNS sections apply, WHY they apply (tie the facts of the "
+        "case to the elements of each offence), and HOW to interpret the case, "
+        "drawing on the legislative context for intent where relevant. Cite "
+        "statutory sources by [n]. Do NOT invent sections; if the excerpts do "
+        "not support a point, say so.\n\n"
+        f"CASE EXCERPTS:\n{case_context}\n\n"
+        f"STATUTORY EXCERPTS:\n{corpus_context or '(none retrieved)'}"
+        f"{xref_block}"
+        + (f"\n\n{ctx_block}" if ctx_block else "")
+        + f"\n\nQUESTION: {req.question}\n\nANSWER:"
+    )
+    llm_resp = _state["llm"].invoke(prompt)
+    answer_text = getattr(llm_resp, "content", None) or str(llm_resp)
+
+    # 5. Assemble response
+    citations = [
+        _enrich_citation(d, s, i + 1)
+        for i, (d, s) in enumerate(docs_with_scores[: req.top_k])
+    ]
+    case_excerpts = [
+        CaseExcerptOut(
+            text=ex.text, score=ex.score,
+            page_number=ex.page_number, section_title=ex.section_title,
+        )
+        for ex in case_hits
+    ]
+
+    cross_ref = None
+    if rows:
+        row = rows[0]
+        ipc_cit = bns_cit = None
+        for r in resolved:
+            hit = _fetch_section_chunk(r["act"], r["section"])
+            if hit:
+                cit = _enrich_citation(hit[0], hit[1], 0)
+                if r["act"] == "IPC":
+                    ipc_cit = cit
+                else:
+                    bns_cit = cit
+        cross_ref = CrossReference(
+            concordance_row=row.row_index,
+            ipc_section=row.ipc_section,
+            bns_section=row.bns_section,
+            page_number=row.page_number,
+            status=row.status,
+            ipc_citation=ipc_cit,
+            bns_citation=bns_cit,
+        )
+
+    return CaseAnswerResponse(
+        question=req.question,
+        answer=answer_text,
+        citations=citations,
+        case_excerpts=case_excerpts,
+        cross_reference=cross_ref,
+        context=_context_snippets(ctx_hits),
+        latency_ms=(time.perf_counter() - start) * 1000.0,
+    )

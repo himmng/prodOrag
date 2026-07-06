@@ -6,6 +6,7 @@ Run:
 import os
 import json
 import time
+import uuid
 from typing import Iterator
 
 import requests
@@ -85,6 +86,10 @@ DEFAULTS = {
     "events":         [],
     "req_count":      0,
     "total_tokens":   0,
+    "session_id":     uuid.uuid4().hex,   # per-browser-session isolation token
+    "active_case":    None,               # {"doc_id", "filename"} of selected case
+    "case_mode":      False,              # route chat to /answer/case when True
+    "include_context": False,             # opt-in legislative commentary on /answer
 }
 for k, v in DEFAULTS.items():
     st.session_state.setdefault(k, v)
@@ -113,11 +118,12 @@ def check_health(api_url: str) -> dict:
         return {"status": "unhealthy", "components": {"error": str(e)[:80]}}
 
 
-def call_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score, collections):
+def call_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score, collections,
+                include_context=False):
     payload = {
         "query": query, "retriever": retriever, "top_k": top_k,
         "fetch_k": fetch_k, "min_score": min_score,
-        "collections": collections,
+        "collections": collections, "include_context": include_context,
     }
     r = requests.post(
         f"{api_url}/answer",
@@ -130,11 +136,12 @@ def call_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score, c
     return r.json()
 
 
-def stream_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score, collections):
+def stream_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score, collections,
+                  include_context=False):
     payload = {
         "query": query, "retriever": retriever, "top_k": top_k,
         "fetch_k": fetch_k, "min_score": min_score,
-        "collections": collections,
+        "collections": collections, "include_context": include_context,
     }
     with requests.post(
         f"{api_url}/answer/stream",
@@ -158,7 +165,90 @@ def stream_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score,
                     pass
 
 
+# ── Case-file API helpers (session-isolated) ─────────────────────────
+
+def _case_headers() -> dict:
+    return {
+        "X-API-Key":    st.session_state.api_key,
+        "X-Session-Id": st.session_state.session_id,
+    }
+
+
+def upload_case(api_url, file) -> dict:
+    r = requests.post(
+        f"{api_url}/documents/upload",
+        files={"file": (file.name, file.getvalue())},
+        headers=_case_headers(),
+        timeout=None,
+    )
+    if r.status_code != 200:
+        raise RuntimeError(f"API {r.status_code}: {r.text[:200]}")
+    return r.json()
+
+
+def list_cases(api_url) -> list:
+    r = requests.get(f"{api_url}/documents", headers=_case_headers(), timeout=None)
+    return r.json().get("documents", []) if r.status_code == 200 else []
+
+
+def delete_case(api_url, doc_id) -> None:
+    requests.delete(f"{api_url}/documents/{doc_id}", headers=_case_headers(), timeout=None)
+
+
+def answer_case(api_url, doc_id, question, top_k, collections) -> dict:
+    r = requests.post(
+        f"{api_url}/answer/case",
+        json={"doc_id": doc_id, "question": question,
+              "top_k": top_k, "collections": collections},
+        headers={**_case_headers(), "Content-Type": "application/json"},
+        timeout=None,
+    )
+    if r.status_code != 200:
+        raise RuntimeError(f"API {r.status_code}: {r.text[:200]}")
+    return r.json()
+
+
 # ── Rendering helpers ────────────────────────────────────────────────
+
+_DOC_TYPE_LABEL = {
+    "committee_report": "Standing Committee Report",
+    "sor":              "Statement of Objects & Reasons",
+}
+
+
+def render_context(context: list, container, key_prefix: str = "live") -> None:
+    """Render interpretive commentary — clearly marked non-authoritative."""
+    if not context:
+        return
+    with container.container():
+        with st.expander(f"🏛️ {len(context)} legislative-context notes (commentary, not law)", expanded=False):
+            st.caption("Interpretive background from parliamentary materials — NOT binding statute.")
+            for i, c in enumerate(context):
+                label = _DOC_TYPE_LABEL.get(c.get("doc_type"), c.get("source", "commentary"))
+                page  = c.get("page_number")
+                st.markdown(
+                    f"**[{label}]**"
+                    + (f" · p.{page}" if page else "")
+                    + f"  &nbsp;·&nbsp; score `{c.get('score', 0):.3f}`"
+                )
+                txt = c.get("text", "")
+                st.caption(txt[:400] + ("…" if len(txt) > 400 else ""))
+
+
+def render_case_excerpts(excerpts: list, container, key_prefix: str = "live") -> None:
+    if not excerpts:
+        return
+    with container.container():
+        with st.expander(f"📎 {len(excerpts)} case excerpts (your uploaded file)", expanded=False):
+            for i, ex in enumerate(excerpts):
+                title = ex.get("section_title") or "—"
+                page  = ex.get("page_number")
+                st.markdown(
+                    f"**[C{i+1}]** `{title}`  &nbsp;·&nbsp; score `{ex.get('score', 0):.4f}`"
+                    + (f"  &nbsp;·&nbsp; p.{page}" if page else "")
+                )
+                st.caption(ex.get("text", "")[:400] + ("…" if len(ex.get("text", "")) > 400 else ""))
+
 
 def _view_page(act: str, page) -> None:
     """Fetch and display a PDF page image inline."""
@@ -314,6 +404,54 @@ with st.sidebar:
             st.markdown(f"{icon} **{k}**: `{v}`")
 
     st.divider()
+    st.markdown("### 📎 Case files (isolated)")
+    st.caption(
+        "Upload a real case file (judgment / FIR / charge sheet). It is embedded "
+        "into a **private, session-isolated** collection — never mixed with the "
+        "IPC/BNS corpus or other sessions."
+    )
+    st.caption(f"Session: `{st.session_state.session_id[:8]}…`")
+
+    up = st.file_uploader(
+        "Upload case (pdf / txt / md)", type=["pdf", "txt", "md"],
+        key="case_uploader",
+    )
+    if up is not None and st.button("⬆️ Upload & index", use_container_width=True):
+        try:
+            with st.spinner("Parsing + embedding case…"):
+                info = upload_case(st.session_state.api_url, up)
+            st.session_state.active_case = {"doc_id": info["doc_id"], "filename": info["filename"]}
+            st.session_state.case_mode = True
+            log_event("case", f"uploaded {info['filename']} → {info['doc_id']}")
+            st.success(f"Indexed `{info['filename']}` ({info.get('char_count', 0)} chars)")
+            st.rerun()
+        except Exception as e:
+            st.error(f"Upload failed: {e}")
+
+    cases = list_cases(st.session_state.api_url)
+    if cases:
+        labels = {f"{c['filename']} · {c['doc_id'][:6]}": c for c in cases}
+        active_did = (st.session_state.active_case or {}).get("doc_id")
+        idx = next((i for i, c in enumerate(cases) if c["doc_id"] == active_did), 0)
+        pick = st.selectbox("Active case", options=list(labels.keys()), index=idx)
+        chosen = labels[pick]
+        st.session_state.active_case = {"doc_id": chosen["doc_id"], "filename": chosen["filename"]}
+        if chosen.get("section_refs"):
+            st.caption("Sections named in case: " + ", ".join(chosen["section_refs"][:12]))
+        st.session_state.case_mode = st.toggle(
+            "🔎 Ask about this case", value=st.session_state.case_mode,
+            help="When on, your chat question is interpreted against the uploaded case.",
+        )
+        if st.button("🗑️ Delete active case", use_container_width=True):
+            delete_case(st.session_state.api_url, chosen["doc_id"])
+            st.session_state.active_case = None
+            st.session_state.case_mode = False
+            log_event("case", f"deleted {chosen['doc_id']}")
+            st.rerun()
+    else:
+        st.session_state.case_mode = False
+
+    st.divider()
     st.markdown("### 🔍 Retrieval (live tunable)")
     st.session_state.collections = st.multiselect(
         "Search in",
@@ -373,6 +511,12 @@ with st.sidebar:
         "Stream tokens (SSE)",
         value=st.session_state.use_streaming,
         help="Use /answer/stream. Citations land in ~1-2 s; tokens stream as LLM generates.",
+    )
+    st.session_state.include_context = st.toggle(
+        "🏛️ Include legislative commentary",
+        value=st.session_state.include_context,
+        help="Add non-binding interpretive background (BNS committee report + SOR) "
+             "to general answers. Case Q&A always includes it.",
     )
 
     st.divider()
@@ -468,6 +612,10 @@ with chat_col:
     for i, msg in enumerate(st.session_state.messages):
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
+            if msg.get("case_excerpts"):
+                render_case_excerpts(msg["case_excerpts"], st.empty(), key_prefix=f"hist{i}")
+            if msg.get("context"):
+                render_context(msg["context"], st.empty(), key_prefix=f"hist{i}")
             if msg.get("cross_reference"):
                 render_cross_reference(msg["cross_reference"], st.empty(), key_prefix=f"hist{i}")
             if msg.get("citations"):
@@ -478,8 +626,19 @@ with chat_col:
                 c2.metric("Latency",   f"{msg['latency_ms']/1000:.1f} s")
                 c3.metric("Citations", len(msg.get("citations", [])))
 
+    case_active = st.session_state.case_mode and st.session_state.active_case
+    if case_active:
+        st.info(
+            f"🔎 **Case mode** — answering against uploaded case "
+            f"`{st.session_state.active_case['filename']}` (isolated). "
+            f"Toggle off in the sidebar for general corpus Q&A."
+        )
+
     pending = st.session_state.pop("_pending_query", None)
-    user_query = pending or st.chat_input("Ask a legal question…")
+    placeholder = (
+        "Ask about the uploaded case…" if case_active else "Ask a legal question…"
+    )
+    user_query = pending or st.chat_input(placeholder)
 
     if user_query:
         st.session_state.messages.append({"role": "user", "content": user_query})
@@ -493,17 +652,44 @@ with chat_col:
             answer_box    = st.empty()
             citations_box = st.empty()
             xref_box      = st.empty()
+            context_box   = st.empty()
             metrics_box   = st.empty()
 
             full_answer    = ""
             citations      = []
             cross_ref      = None
+            case_excerpts  = []
+            context        = []
             retriever_used = ""
             latency_ms     = 0
             token_count    = 0
 
             try:
-                if st.session_state.use_streaming:
+                if case_active:
+                    excerpts_box = st.empty()
+                    with st.spinner("Interpreting case against IPC/BNS…"):
+                        result = answer_case(
+                            st.session_state.api_url,
+                            st.session_state.active_case["doc_id"],
+                            user_query,
+                            st.session_state.top_k,
+                            st.session_state.collections,
+                        )
+                    full_answer   = result.get("answer", "")
+                    citations     = result.get("citations", [])
+                    cross_ref     = result.get("cross_reference")
+                    case_excerpts = result.get("case_excerpts", [])
+                    context       = result.get("context", [])
+                    latency_ms    = result.get("latency_ms", 0)
+                    retriever_used = "case"
+                    token_count   = len(full_answer.split())
+                    answer_box.markdown(full_answer)
+                    render_case_excerpts(case_excerpts, excerpts_box, key_prefix="live")
+                    render_cross_reference(cross_ref, xref_box, key_prefix="live")
+                    render_context(context, context_box, key_prefix="live")
+                    render_citations(citations, citations_box, key_prefix="live")
+                    log_event("case", f"answered in {latency_ms/1000:.1f}s")
+                elif st.session_state.use_streaming:
                     with st.spinner("Streaming…"):
                         for evt in stream_answer(
                             st.session_state.api_url,
@@ -514,6 +700,7 @@ with chat_col:
                             st.session_state.fetch_k,
                             st.session_state.min_score,
                             st.session_state.collections,
+                            st.session_state.include_context,
                         ):
                             ev_t = evt.get("event")
                             data = evt.get("data", {})
@@ -521,6 +708,9 @@ with chat_col:
                                 citations = data.get("citations", [])
                                 render_citations(citations, citations_box, key_prefix="live")
                                 log_event("citations", f"{len(citations)} chunks")
+                            elif ev_t == "context":
+                                context = data.get("context", [])
+                                render_context(context, context_box, key_prefix="live")
                             elif ev_t == "cross_reference":
                                 cross_ref = data.get("cross_reference")
                                 render_cross_reference(cross_ref, xref_box, key_prefix="live")
@@ -548,15 +738,18 @@ with chat_col:
                             st.session_state.fetch_k,
                             st.session_state.min_score,
                             st.session_state.collections,
+                            st.session_state.include_context,
                         )
                     full_answer    = result.get("answer", "")
                     citations      = result.get("citations", [])
                     cross_ref      = result.get("cross_reference")
+                    context        = result.get("context", [])
                     retriever_used = result.get("retriever", "")
                     latency_ms     = result.get("latency_ms", 0)
                     token_count    = len(full_answer.split())
                     answer_box.markdown(full_answer)
                     render_cross_reference(cross_ref, xref_box, key_prefix="live")
+                    render_context(context, context_box, key_prefix="live")
                     render_citations(citations, citations_box, key_prefix="live")
                     log_event("done", f"~{token_count} words, {latency_ms/1000:.1f}s")
 
@@ -572,6 +765,8 @@ with chat_col:
                     "role":            "assistant",
                     "content":         full_answer,
                     "citations":       citations,
+                    "case_excerpts":   case_excerpts,
+                    "context":         context,
                     "cross_reference": cross_ref,
                     "retriever":       retriever_used or st.session_state.retriever,
                     "latency_ms":      latency_ms,

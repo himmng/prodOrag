@@ -22,6 +22,19 @@ class SourceConfig(BaseModel):
     chunks_output:    Path
     body_start_page:  int = 1   # ← new field, default 1 = no skip
 
+class ContextSourceConfig(BaseModel):
+    """A non-statute, interpretive document (committee report, SOR, etc.).
+
+    Parsed with the PROSE parser (not the statute section parser) and stored
+    in its own collection, retrieved as labeled commentary — never as statute.
+    """
+    doc_type:      str            # "committee_report" | "sor" | ...
+    pdf_path:      Path
+    collection:    str
+    chunks_output: Path
+    display_name:  str = ""
+
+
 class ConcordanceConfig(BaseModel):
     pdf_path:    Path
     output_json: Path
@@ -38,6 +51,7 @@ class CorpusConfig(BaseModel):
     name:            str
     display_name:    str
     sources:         list[SourceConfig]
+    context_sources: list[ContextSourceConfig] = Field(default_factory=list)
     concordance:     ConcordanceConfig | None = None
     parser:          ParserConfig
     eval_set_path:   Path | None = None
@@ -56,6 +70,11 @@ class CorpusConfig(BaseModel):
                 src.pdf_path = project_root / src.pdf_path
             if not src.chunks_output.is_absolute():
                 src.chunks_output = project_root / src.chunks_output
+        for ctx in self.context_sources:
+            if not ctx.pdf_path.is_absolute():
+                ctx.pdf_path = project_root / ctx.pdf_path
+            if not ctx.chunks_output.is_absolute():
+                ctx.chunks_output = project_root / ctx.chunks_output
         if self.concordance:
             if not self.concordance.pdf_path.is_absolute():
                 self.concordance.pdf_path = project_root / self.concordance.pdf_path
