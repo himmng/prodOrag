@@ -1,0 +1,5 @@
+[
+  {"question":"What is the punishment for theft under IPC?","category":"ipc_substantive","difficulty":"easy","gold_sections":[{"act":"IPC","section":"379"}]},
+  {"question":"What does BNS say about the punishment for murder?","category":"bns_substantive","difficulty":"easy","gold_sections":[{"act":"BNS","section":"103"}]},
+  {"question":"Which BNS section corresponds to IPC 420?","category":"cross_reference","difficulty":"easy","gold_sections":[{"act":"IPC","section":"420"},{"act":"BNS","section":"318"}]}
+]

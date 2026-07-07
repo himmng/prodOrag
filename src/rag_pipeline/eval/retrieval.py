@@ -78,6 +78,39 @@ def snippet_hit_at_k(example: EvalExample, retrieved_texts: list[str]) -> int:
         for text in retrieved_texts
     ))
 
+def _retrieved_sections(results) -> list[tuple]:
+    """Extract (act, section) from retrieved docs."""
+    out = []
+    for doc, _ in results:
+        m = doc.metadata or {}
+        if m.get("act") and m.get("section"):
+            out.append((m["act"], str(m["section"])))
+    return out
+
+
+def section_hit_at_k(example, retrieved_sections) -> int:
+    if not example.gold_sections:
+        return 0
+    gold = {(g["act"], str(g["section"])) for g in example.gold_sections}
+    return int(bool(gold & set(retrieved_sections)))
+
+
+def section_recall_at_k(example, retrieved_sections) -> float:
+    if not example.gold_sections:
+        return 0.0
+    gold = {(g["act"], str(g["section"])) for g in example.gold_sections}
+    hits = len(gold & set(retrieved_sections))
+    return hits / len(gold)
+
+
+def section_reciprocal_rank(example, retrieved_sections) -> float:
+    if not example.gold_sections:
+        return 0.0
+    gold = {(g["act"], str(g["section"])) for g in example.gold_sections}
+    for i, sec in enumerate(retrieved_sections, 1):
+        if sec in gold:
+            return 1.0 / i
+    return 0.0
 
 # ── Top-level evaluator ─────────────────────────────────────────────────
 
@@ -105,13 +138,22 @@ def evaluate_retriever(
         results = retriever.retrieve(ex.question, top_k=top_k)
         paths = [doc.metadata.get("source_path", "") for doc, _ in results]
         texts = [doc.page_content for doc, _ in results]
+        secs  = _retrieved_sections(results)
 
-        scores = {
-            "hit":     hit_at_k(ex, paths),
-            "recall":  recall_at_k(ex, paths),
-            "mrr":     reciprocal_rank(ex, paths),
-            "snippet": snippet_hit_at_k(ex, texts),
-        }
+        if ex.gold_sections:
+            scores = {
+                "hit":     section_hit_at_k(ex, secs),
+                "recall":  section_recall_at_k(ex, secs),
+                "mrr":     section_reciprocal_rank(ex, secs),
+                "snippet": snippet_hit_at_k(ex, texts),
+            }
+        else:
+            scores = {
+                "hit":     hit_at_k(ex, paths),
+                "recall":  recall_at_k(ex, paths),
+                "mrr":     reciprocal_rank(ex, paths),
+                "snippet": snippet_hit_at_k(ex, texts),
+            }
         for k, v in scores.items():
             sums[k] += v
             per_diff[ex.difficulty][k] += v

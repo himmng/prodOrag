@@ -32,12 +32,14 @@ class EvalExample(BaseModel):
     question:          str
     gold_source_paths: list[str] = Field(default_factory=list)
     gold_snippets:     list[str] = Field(default_factory=list)
+    gold_sections:     list[dict] = Field(default_factory=list)
     reference_answer:  Optional[str] = None
     difficulty:        Difficulty   = "medium"
     notes:             Optional[str] = None
+    category:          Optional[str] = None  
 
     def is_negative(self) -> bool:
-        return not self.gold_source_paths
+        return not self.gold_source_paths and not self.gold_sections
 
 
 # ── YAML-backed loaders ────────────────────────────────────────────────

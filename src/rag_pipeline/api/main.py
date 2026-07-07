@@ -479,7 +479,7 @@ async def lifespan(app: FastAPI):
     })
 
     # 4. Eval set (optional, may not exist for fresh corpus)
-    eval_path = cfg.PROJECT_ROOT / "eval" / "eval_set.json"
+    eval_path = cfg.PROJECT_ROOT / "eval" / "eval_smoke.json"
     if eval_path.exists():
         _state["eval_set"] = load_eval_set(eval_path)
         log.info(f"Loaded {len(_state['eval_set'])} eval examples")
@@ -769,7 +769,23 @@ def _default_eval_setup():
         raise HTTPException(503, detail="No corpus collections loaded.")
     return next(iter(by_act.values()))
 
+class _MultiCollectionRetriever:
+    """Adapter: lets evaluate_retriever span multiple collections via
+    _retrieve_across_collections. evaluate_retriever only needs .retrieve()."""
 
+    def __init__(self, acts: list[str], retriever_kind: str, min_score=None):
+        self.acts = acts
+        self.retriever_kind = retriever_kind
+        self.min_score = min_score
+
+    def retrieve(self, query: str, top_k: int = 5):
+        return _retrieve_across_collections(
+            query=query,
+            acts=self.acts,
+            retriever_kind=self.retriever_kind,
+            top_k=top_k,
+            min_score=self.min_score,
+        )
 
 @app.post(
     "/eval/retrieval",
@@ -786,16 +802,16 @@ def eval_retrieval_route(
         raise HTTPException(503, detail="Eval set not loaded. Run Stage E eval rebuild first.")
 
     # Eval against the corpus's first act; Stage E rebuilds a combined eval set
-    setup = _default_eval_setup()
-    retriever_attr = {
-        "hybrid_reranked": "hybrid_r_nofilter",
-        "dense":           "dense",
-        "bm25":            "bm25",
-        "ensemble":        "ensemble",
-    }.get(req.retriever)
-    if retriever_attr is None:
+    if req.retriever not in {"hybrid_reranked", "dense", "bm25", "ensemble"}:
         raise HTTPException(422, detail=f"Unknown retriever: {req.retriever}")
-    retriever = setup[retriever_attr]
+
+    # Span all acts in the loaded corpus so IPC and BNS questions are both scored.
+    # min_score=None → measure RAW retrieval, unfiltered (eval wants true recall).
+    retriever = _MultiCollectionRetriever(
+        acts=list(_state["by_act"].keys()),
+        retriever_kind=req.retriever,
+        min_score=None,
+    )
 
     start = time.perf_counter()
     result = evaluate_retriever(retriever, _state["eval_set"], top_k=req.top_k)
