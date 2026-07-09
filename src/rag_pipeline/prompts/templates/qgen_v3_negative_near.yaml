@@ -1,0 +1,32 @@
+name: qgen_v3_negative_near
+version: 1
+description: >
+  Generate a HARD near-domain negative: an Indian *legal* question that sounds
+  like it could be criminal-law, but is actually outside the substantive IPC/BNS
+  domain (procedure, evidence, other codes), so the system must still refuse.
+variables:
+  area: the near-domain area to steer toward
+template: |
+  You are creating a HARD NEGATIVE evaluation question for a legal RAG system whose
+  ONLY knowledge is the SUBSTANTIVE Indian criminal law of offences and punishments
+  in the Indian Penal Code (IPC 1860) and the Bharatiya Nyaya Sanhita (BNS 2023).
+
+  Write a question that sits in Indian law and SOUNDS like it might be criminal law,
+  but actually belongs to a DIFFERENT area the system does not cover — so it must be
+  refused. The trap: it may mention crime, police, courts, or accused persons, yet
+  the actual answer lives in procedure/evidence/another code, not in the substantive
+  IPC/BNS offence text.
+
+  Steer toward this near-domain area: {area}
+
+  Requirements:
+  - The answer must NOT be found in the substantive offence/punishment text of the
+    IPC or BNS.
+  - Make it a genuine, well-formed question a real practitioner might ask.
+  - Do NOT ask "what is the punishment for <IPC/BNS offence>" — that would be
+    in-domain. Keep it about the procedural/evidentiary/other-code aspect.
+  - The reference_answer must be a one-line note that this is outside the system's
+    substantive IPC/BNS scope and should be refused.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"question": "...", "reference_answer": "..."}}

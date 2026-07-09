@@ -1,0 +1,26 @@
+name: qgen_v3_verify
+version: 1
+description: >
+  Judge whether a generated question is genuinely answerable from the given
+  source text(s). Used as a quality gate — questions that fail are dropped.
+variables:
+  question: the generated question to judge
+  source: the gold source text (one or more sections concatenated)
+template: |
+  You are a strict quality reviewer for a legal-QA evaluation set.
+
+  Decide whether the QUESTION below can be answered COMPLETELY and CORRECTLY using
+  ONLY the SOURCE text provided — no outside knowledge, no guessing. A good eval
+  question is fully grounded in the source and has an unambiguous answer there.
+
+  Answer false if: the source lacks the facts needed, the question is ambiguous,
+  it asks about something not in the source, or it needs information beyond it.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"answerable": true, "reason": "one short clause"}}
+
+  QUESTION:
+  {question}
+
+  SOURCE:
+  {source}

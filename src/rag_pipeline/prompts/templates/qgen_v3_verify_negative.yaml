@@ -1,0 +1,24 @@
+name: qgen_v3_verify_negative
+version: 1
+description: >
+  Judge whether a NEGATIVE question is genuinely OUT of the Indian-criminal-law
+  domain. A good negative must NOT be answerable from the IPC or BNS.
+variables:
+  question: the generated negative question to judge
+template: |
+  You are a strict quality reviewer for a legal-QA evaluation set whose ONLY
+  in-domain knowledge is Indian criminal law: the Indian Penal Code (IPC 1860)
+  and the Bharatiya Nyaya Sanhita (BNS 2023) — substantive criminal offences and
+  their punishments.
+
+  A NEGATIVE test question must fall OUTSIDE that domain, so the system should
+  refuse it. Decide: could this QUESTION be answered from the substantive text of
+  the IPC or the BNS?
+
+  Return STRICT JSON only, no markdown fences. Set out_of_domain=true if it is NOT
+  answerable from the IPC/BNS (a good negative), false if it actually is IPC/BNS
+  criminal-law content (a bad negative that should be dropped):
+  {{"out_of_domain": true, "reason": "one short clause"}}
+
+  QUESTION:
+  {question}
