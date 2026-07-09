@@ -1,0 +1,35 @@
+name: qgen_v3_verify_xref
+version: 1
+description: >
+  Judge a CROSS-REFERENCE question. Unlike substantive verify, the correspondence
+  between the two acts is authoritative context (from the concordance), NOT
+  something that must be derivable from the provision texts themselves.
+variables:
+  question: the generated cross-reference question to judge
+  act_a: first act label
+  act_b: second act label
+  source: the two corresponding provision texts, concatenated
+template: |
+  You are a strict quality reviewer for a legal-QA evaluation set.
+
+  FACT (authoritative): the two provisions in SOURCE below are the officially
+  CORRESPONDING sections between the {act_a} and the {act_b} — treat that mapping
+  as given, established by the official concordance. You do NOT need the mapping to
+  be derivable from the texts; it is a known fact.
+
+  Given that mapping AND the two provision texts, decide whether the QUESTION is a
+  sensible, answerable correspondence/comparison question — i.e. it asks about the
+  equivalence between the two acts or a substantive comparison of the two texts, and
+  the two texts contain what is needed to answer the comparison part.
+
+  Answer false only if the question is off-topic, ambiguous, factually confused, or
+  asks for something neither the mapping nor the two texts can support.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"answerable": true, "reason": "one short clause"}}
+
+  QUESTION:
+  {question}
+
+  SOURCE:
+  {source}

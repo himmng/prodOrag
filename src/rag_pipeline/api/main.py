@@ -1035,7 +1035,7 @@ def answer_case_route(
     docs_with_scores = [(d, s) for d, s in docs_with_scores if s >= MAIN_CITATION_FLOOR]
     context = build_context(docs_with_scores)
 
-    xref, resolved, rows = _concordance_context(req.query)
+    xref, resolved, rows = _concordance_context(req.question)
 
     # Feed the resolved cross-reference SECTION TEXTS into the LLM context,
     # not just the mapping line. For meta-queries the main retrieval is filtered
