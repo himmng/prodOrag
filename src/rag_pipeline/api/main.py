@@ -231,15 +231,19 @@ def _resolve_acts(requested: list[str]) -> list[str]:
 def _answer_prompt(query: str, context: str, ctx_block: str) -> str:
     """Grounded-QA prompt, corpus name pulled from config (no IPC/BNS hardcoding)."""
     return (
-        f"You are an assistant grounded ONLY in the {_corpus_display()} excerpts "
-        f"below. Use any CROSS-REFERENCE lines to answer questions about section "
-        f"correspondences. Cite sources by [n]. Treat any LEGISLATIVE CONTEXT as "
-        f"non-binding background only. If the answer is not in the excerpts, say so.\n\n"
+        f"You are a legal assistant answering questions about {_corpus_display()}. "
+        f"The CONTEXT below contains the FULL TEXT of the relevant statute sections "
+        f"(each block starts with a [n] marker, then the section's complete text). "
+        f"Treat this text as the authoritative source and answer the question directly "
+        f"from it — summarize, compare, and explain the sections as needed. "
+        f"Use any CROSS-REFERENCE lines for section correspondences. "
+        f"Treat LEGISLATIVE CONTEXT as non-binding background. "
+        f"Cite sources by their [n] marker. Only say information is unavailable if the "
+        f"CONTEXT genuinely does not contain it.\n\n"
         f"CONTEXT:\n{context}"
         + (f"\n\n{ctx_block}" if ctx_block else "")
         + f"\n\nQUESTION: {query}\n\nANSWER:"
     )
-
 
 # Footnote/amendment fragments the statute parser mis-tagged as sections. Their
 # section_title is an editorial marker ("Subs.", "Ins.", "The words '…' omitted",
@@ -585,9 +589,19 @@ def answer_route(
         (d, s) for d, s in docs_with_scores if s >= MAIN_CITATION_FLOOR
     ]
     context = build_context(docs_with_scores)
-
+    
     # Cross-reference detection
     xref, resolved, rows = _concordance_context(req.query)
+
+    resolved_context_docs = []
+    for r in resolved:
+        hit = _fetch_section_chunk(r["act"], r["section"])
+        if hit:
+            resolved_context_docs.append(hit)
+    if resolved_context_docs:
+        resolved_context = build_context(resolved_context_docs)
+        context = f"{resolved_context}\n\n{context}"
+    # log.info(f"DEBUG resolved_docs={len(resolved_context_docs)} context_len={len(context)} context_head={context[:200]!r}")
     if xref:
         context = f"{xref}\n\n{context}"
 
@@ -608,6 +622,7 @@ def answer_route(
             priority_docs.append(hit)
 
     prompt = _answer_prompt(req.query, context, ctx_block)
+    # log.info(f"DEBUG prompt_len={len(prompt)} contains_whoever={'Whoever' in prompt} prompt_head={prompt[:300]!r}")
     llm_resp = _state["llm"].invoke(prompt)
     answer_text = getattr(llm_resp, "content", None) or str(llm_resp)
 
@@ -701,6 +716,15 @@ def answer_stream_route(
 
         # 4. Build context
         context = build_context(docs_with_scores) if docs_with_scores else ""
+
+        resolved_context_docs = []
+        for r in resolved:
+            hit = _fetch_section_chunk(r["act"], r["section"])
+            if hit:
+                resolved_context_docs.append(hit)
+        if resolved_context_docs:
+            context = f"{build_context(resolved_context_docs)}\n\n{context}"
+
         if xref:
             context = f"{xref}\n\n{context}"
 
@@ -1009,11 +1033,24 @@ def answer_case_route(
     )
     MAIN_CITATION_FLOOR = 0.55
     docs_with_scores = [(d, s) for d, s in docs_with_scores if s >= MAIN_CITATION_FLOOR]
-    corpus_context = build_context(docs_with_scores) if docs_with_scores else ""
+    context = build_context(docs_with_scores)
 
-    # 3. Cross-reference: sections named in the question OR in the case text
-    xref_query = f"{req.question} " + " ".join(doc.section_refs)
-    xref, resolved, rows = _concordance_context(xref_query)
+    xref, resolved, rows = _concordance_context(req.query)
+
+    # Feed the resolved cross-reference SECTION TEXTS into the LLM context,
+    # not just the mapping line. For meta-queries the main retrieval is filtered
+    # out (~0.50), so without this the LLM has no statute text to work with.
+    resolved_context_docs = []
+    for r in resolved:
+        hit = _fetch_section_chunk(r["act"], r["section"])
+        if hit:
+            resolved_context_docs.append(hit)
+    if resolved_context_docs:
+        resolved_context = build_context(resolved_context_docs)
+        context = f"{resolved_context}\n\n{context}"
+
+    if xref:
+        context = f"{xref}\n\n{context}"
 
     # 3b. Interpretive commentary (committee report / SOR) — on by default here
     ctx_hits = _retrieve_context(req.question) if req.include_context else []
@@ -1037,7 +1074,7 @@ def answer_case_route(
         f"CASE FACTS:\n{case_context}\n\n"
         f"QUESTION: {req.question}\n\n"
         f"STATUTORY EXCERPTS (reference for the sections above):\n"
-        f"{corpus_context or '(none retrieved)'}"
+        f"{context or '(none retrieved)'}"
         f"{xref_block}"
         + (f"\n\n{ctx_block}" if ctx_block else "")
         + "\n\nANSWER:"

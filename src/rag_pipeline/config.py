@@ -10,7 +10,7 @@ import logging # for logging
 from pathlib import Path # for filesystem paths
 from typing import ClassVar, Literal, Optional # for class variables in dataclasses
 from pydantic_settings import BaseSettings, SettingsConfigDict # for configuration management with environment variable support
-
+from pydantic import model_validator
 def _find_project_root(marker: str = "pyproject.toml") -> Path:
     # 1. Explicit env override (containers, deployed environments)
     env_root = os.environ.get("PROJECT_ROOT")
@@ -29,15 +29,13 @@ def _find_project_root(marker: str = "pyproject.toml") -> Path:
 PROJECT_ROOT = _find_project_root()
 
 class Config(BaseSettings):
-    """Project configuration. Override any field via .env or environment variable."""
-
     model_config = SettingsConfigDict(
         env_file=PROJECT_ROOT / ".env",
         env_file_encoding="utf-8",
-        extra="allow", # allow extra fields in .env without erroring
+        extra="allow",
     )
 
-    # Paths (ClassVar -> not user-overrideable, derived from PROJECT_ROOT)
+    # Paths (unchanged)
     PROJECT_ROOT: ClassVar[Path] = PROJECT_ROOT
     DATA_RAW_DIR: ClassVar[Path] = PROJECT_ROOT / "data" / "raw"
     DATA_PROCESSED_DIR: ClassVar[Path] = PROJECT_ROOT / "data" / "processed"
@@ -46,58 +44,94 @@ class Config(BaseSettings):
     EVAL_SET_PATH: ClassVar[Path] = EVAL_DIR / "eval_set.json"
     EVAL_RESULTS_DIR: ClassVar[Path] = EVAL_DIR / "results"
 
-    #
-    API_KEYS: str = "" # comma-separated; empty= auth disabled (dev mode)
-    # active corpus — selects configs/corpora/<RAG_CORPUS>.yaml at API startup.
-    # The serving layer is corpus-agnostic: swap corpus by changing this + re-ingesting.
+    API_KEYS: str = ""
     RAG_CORPUS: str = "ipc_bns"
-    # provider switch
-    MODEL_PROVIDER: Literal["ollama", "azure", "openai", "gcp", "aws"] = "ollama"
 
-    # ollama (env-overrideable)
-    OLLAMA_HOST: str = "http://localhost:11434"
-    OLLAMA_MODEL: str = "gemma-4-e4b:latest"
+    # Provider switches — independent LLM and embedding providers.
+    LLM_PROVIDER:       Literal["ollama", "azure", "openai", "gcp", "aws"] = "ollama"
+    EMBEDDING_PROVIDER: Literal["ollama", "azure", "openai", "gcp", "aws"] = "ollama"
+
+    # Ollama
+    OLLAMA_HOST:            str = "http://localhost:11434"
+    OLLAMA_MODEL:           str = "gemma-4-e4b:latest"
     OLLAMA_EMBEDDING_MODEL: str = "embeddinggemma:latest"
 
-    # azure openai
+    # Azure OpenAI
     AZURE_OPENAI_ENDPOINT:             Optional[str] = None
     AZURE_OPENAI_API_KEY:              Optional[str] = None
     AZURE_OPENAI_API_VERSION:          str = "2024-10-21"
-    AZURE_OPENAI_DEPLOYMENT:           Optional[str] = None   # chat deployment name
-    AZURE_OPENAI_EMBEDDING_DEPLOYMENT: Optional[str] = None   # embeddings deployment name
+    AZURE_OPENAI_DEPLOYMENT:           Optional[str] = None
+    AZURE_OPENAI_EMBEDDING_DEPLOYMENT: Optional[str] = None
 
-    # ── AWS Bedrock ──────────────────────────────────────────────────────
-    AWS_REGION:                    str = "us-east-1"
-    AWS_BEDROCK_MODEL_ID:           Optional[str] = None      # e.g. anthropic.claude-3-5-sonnet-20241022-v2:0
-    AWS_BEDROCK_EMBEDDING_MODEL_ID: Optional[str] = None      # e.g. amazon.titan-embed-text-v2:0
+    # AWS Bedrock
+    AWS_REGION:                     str = "us-east-1"
+    AWS_BEDROCK_MODEL_ID:           Optional[str] = None
+    AWS_BEDROCK_EMBEDDING_MODEL_ID: Optional[str] = None
 
-    # ── GCP Vertex AI ────────────────────────────────────────────────────
-    GCP_PROJECT_ID:              Optional[str] = None
-    GCP_REGION:                  str = "us-central1"
-    GCP_VERTEX_MODEL:            Optional[str] = None         # e.g. gemini-2.0-pro
-    GCP_VERTEX_EMBEDDING_MODEL:  Optional[str] = None         # e.g. text-embedding-005
+    # GCP Vertex
+    GCP_PROJECT_ID:             Optional[str] = None
+    GCP_REGION:                 str = "us-central1"
+    GCP_VERTEX_MODEL:           Optional[str] = None
+    GCP_VERTEX_EMBEDDING_MODEL: Optional[str] = None
 
-    # ── OpenAI (direct, optional) ────────────────────────────────────────
+    # OpenAI direct
     OPENAI_API_KEY:         Optional[str] = None
     OPENAI_MODEL:           str = "gpt-4o-mini"
     OPENAI_EMBEDDING_MODEL: str = "text-embedding-3-small"
 
-    # chunking
+    # Chunking / retrieval / logging
     CHUNK_SIZE: int = 800
     CHUNK_OVERLAP: int = 120
-
-    # retrieval
     TOP_K: int = 5
-
-    # logging
     LOG_LEVEL: str = "INFO"
 
-    def ensure_dirs(self) -> None:
-        """Create output directories if they don't exist."""
-        for p in [self.DATA_RAW_DIR, self.DATA_PROCESSED_DIR, self.CHROMA_PERSIST_DIR, self.EVAL_DIR, self.EVAL_RESULTS_DIR]:
-            p.mkdir(parents=True, exist_ok=True)
+    # ── Resolved model names (computed from the active provider) ──────────
+    @property
+    def MODEL(self) -> Optional[str]:
+        return {
+            "ollama": self.OLLAMA_MODEL,
+            "azure":  self.AZURE_OPENAI_DEPLOYMENT,
+            "openai": self.OPENAI_MODEL,
+            "gcp":    self.GCP_VERTEX_MODEL,
+            "aws":    self.AWS_BEDROCK_MODEL_ID,
+        }[self.LLM_PROVIDER]
 
-# Singletons
+    @property
+    def EMBEDDING_MODEL(self) -> Optional[str]:
+        return {
+            "ollama": self.OLLAMA_EMBEDDING_MODEL,
+            "azure":  self.AZURE_OPENAI_EMBEDDING_DEPLOYMENT,
+            "openai": self.OPENAI_EMBEDDING_MODEL,
+            "gcp":    self.GCP_VERTEX_EMBEDDING_MODEL,
+            "aws":    self.AWS_BEDROCK_EMBEDDING_MODEL_ID,
+        }[self.EMBEDDING_PROVIDER]
+
+    @property
+    def llm_provider(self) -> str:
+        return self.LLM_PROVIDER
+
+    @property
+    def embedding_provider(self) -> str:
+        return self.EMBEDDING_PROVIDER
+
+    @model_validator(mode="after")
+    def _validate_active_provider_config(self):
+        """Fail fast if the selected provider is missing required creds."""
+        if self.LLM_PROVIDER == "azure":
+            missing = [n for n, v in [
+                ("AZURE_OPENAI_ENDPOINT", self.AZURE_OPENAI_ENDPOINT),
+                ("AZURE_OPENAI_API_KEY", self.AZURE_OPENAI_API_KEY),
+                ("AZURE_OPENAI_DEPLOYMENT", self.AZURE_OPENAI_DEPLOYMENT),
+            ] if not v]
+            if missing:
+                raise ValueError(f"LLM_PROVIDER=azure requires: {', '.join(missing)}")
+        # (add similar blocks for openai/gcp/aws if you want strict validation)
+        return self
+
+    def ensure_dirs(self) -> None:
+        for p in [self.DATA_RAW_DIR, self.DATA_PROCESSED_DIR,
+                  self.CHROMA_PERSIST_DIR, self.EVAL_DIR, self.EVAL_RESULTS_DIR]:
+            p.mkdir(parents=True, exist_ok=True)
 
 cfg = Config()
 cfg.ensure_dirs()
@@ -116,4 +150,4 @@ def setup_logging(level: str | None = None) -> logging.Logger:
 
 log = setup_logging()
 log.info(f"Project root: {cfg.PROJECT_ROOT}")
-log.info(f"Ollama: {cfg.OLLAMA_HOST}, LLM model: {cfg.OLLAMA_MODEL} | Embedding model: {cfg.OLLAMA_EMBEDDING_MODEL}")
+log.info(f"MODEL PROVIDER: {cfg.LLM_PROVIDER}, LLM model: {cfg.MODEL} | Embedding model: {cfg.EMBEDDING_MODEL}")

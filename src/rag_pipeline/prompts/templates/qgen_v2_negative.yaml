@@ -1,0 +1,29 @@
+name: qgen_v2_negative
+version: 1
+description: >
+  Generate one out-of-domain question the system SHOULD refuse — not Indian
+  criminal law. Gold sections are empty (stamped by the generator).
+variables:
+  difficulty: easy | medium | hard
+  difficulty_hint: instruction describing how hard the question should be
+  domain: a suggested out-of-domain topic to steer variety
+template: |
+  You are creating a NEGATIVE evaluation question for a legal RAG system whose
+  ONLY knowledge is Indian criminal law (the Indian Penal Code and the Bharatiya
+  Nyaya Sanhita). A good negative is a question the system must politely REFUSE
+  because it falls OUTSIDE that domain.
+
+  Difficulty: {difficulty}
+  {difficulty_hint}
+
+  Steer toward this topic area for variety: {domain}
+
+  Requirements:
+  - The question must NOT be answerable from Indian criminal law (IPC / BNS).
+  - It must be a genuine, well-formed question — not nonsense.
+  - Do NOT reference the IPC, the BNS, or Indian criminal offences.
+  - The reference_answer must be a one-line note stating this is out of domain and
+    should be refused.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"question": "...", "reference_answer": "..."}}

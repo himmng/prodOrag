@@ -1,0 +1,45 @@
+name: qgen_v2_cross_reference
+version: 1
+description: >
+  Generate one cross-reference / correspondence question about how a provision
+  maps between the two acts. Gold sections come from the concordance row, NOT the model.
+variables:
+  act_a: first act label (e.g. IPC)
+  act_b: second act label (e.g. BNS)
+  difficulty: easy | medium | hard
+  difficulty_hint: instruction describing how hard the question should be
+  title_a: section title in act_a
+  title_b: section title in act_b
+  passage_a: section text in act_a
+  passage_b: section text in act_b
+template: |
+  You are creating an evaluation question for a legal RAG system covering Indian
+  criminal law. The system knows an authoritative concordance mapping provisions
+  between the {act_a} and the {act_b}. The two passages below are the corresponding
+  provisions in each act.
+
+  Difficulty: {difficulty}
+  {difficulty_hint}
+
+  Requirements:
+  - The question must be about the CORRESPONDENCE or COMPARISON between how the two
+    acts treat this subject (e.g. "what is the equivalent provision", "how did the
+    treatment of X change between the old and new law").
+  - Write a STANDALONE question the way a real user would actually ask it. You MAY
+    name the two acts by name, but do NOT state the section numbers — those are the
+    answer we stamp separately.
+  - Do NOT refer to "the passage(s)", "the provision(s) below", "the text", "this
+    system", "the RAG system", "as per", or "according to" — the reader cannot see
+    any source. Ask about the real-world subject directly.
+  - The reference_answer must be a short, factual answer describing the mapping or
+    the substantive difference.
+  - DO NOT include section numbers in your output.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"question": "...", "reference_answer": "..."}}
+
+  {act_a} PROVISION — {title_a}:
+  {passage_a}
+
+  {act_b} PROVISION — {title_b}:
+  {passage_b}

@@ -1,0 +1,2887 @@
+[
+  {
+    "question": "What is the maximum term of imprisonment for kidnapping a minor or obtaining custody of a minor (not being the lawful guardian) for the purpose of begging?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "363"
+      }
+    ],
+    "reference_answer": "Up to ten years’ imprisonment.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 779461f5d478bb76",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "In what situation does the right of private defence of the body extend to causing death, specifically regarding an assault with the intention of committing rape?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "100"
+      }
+    ],
+    "reference_answer": "When the offence is an assault with the intention of committing rape.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 9b0def6f956b0cb7",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the definition of “movable property” in terms of what it includes and excludes?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "5"
+      }
+    ],
+    "reference_answer": "It includes corporeal property of every description, except land and things attached to the earth or permanently fastened to anything attached to the earth.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 829a29b699e4288d",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment mentioned for criminal breach of trust by a clerk or servant?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "408"
+      }
+    ],
+    "reference_answer": "Up to seven years.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 73e377b0d58c1348",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If a person legally bound to give notice or furnish information to a public servant intentionally omits to do so in the manner and at the time required by law, what is the maximum term of simple imprisonment they may be punished with?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "176"
+      }
+    ],
+    "reference_answer": "Up to one month.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 99becf71cdd98ec2",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If a public servant, who is legally bound not to engage in trade, unlawfully engages in trade, what is the maximum term of simple imprisonment they can be punished with?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "168"
+      }
+    ],
+    "reference_answer": "Up to one year.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 6f21cc22083f2165",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If rioting is committed as a result of such provocation, what is the maximum term of imprisonment mentioned?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "153"
+      }
+    ],
+    "reference_answer": "Imprisonment of either description for a term which may extend to one year.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 7b9a68648953b11b",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If a person would be liable to be punished as an abettor but is present when the act or offence (for which he would be punishable due to the abetment) is committed, what is he deemed to have committed?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "114"
+      }
+    ],
+    "reference_answer": "He shall be deemed to have committed such act or offence.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 930d52cad51e2191",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment mentioned for criminal breach of trust?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "406"
+      }
+    ],
+    "reference_answer": "Up to three years.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 354a7fa7d2426561",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the example given of a person who is entitled to the benefit of the exception—specifically, what is the smith compelled to do?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "94"
+      }
+    ],
+    "reference_answer": "He is compelled to take his tools and force the door of a house for the dacoits to enter and plunder it.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 54fbb76f666c319a",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the minimum term of rigorous imprisonment prescribed for a person who attempts to commit snatching?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "379A"
+      }
+    ],
+    "reference_answer": "Not less than five years.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 1880df05a728e6d9",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the minimum term of rigorous imprisonment prescribed for sexual harassment by a relative under the described conduct?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "509A"
+      }
+    ],
+    "reference_answer": "Not less than one year.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 4661474b01e726f3",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment mentioned for removing, destroying, defacing, or adding to a property mark with intent or knowledge that it may cause injury to any person?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "489"
+      }
+    ],
+    "reference_answer": "Up to one year.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 80030e7bfce68140",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the first kind of hurt that is designated as 'grievous'—what is it called?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "320"
+      }
+    ],
+    "reference_answer": "Emasculation.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 152d1beec1aeec7b",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "When an act requires a particular knowledge or intent, what knowledge is a person who was intoxicated treated as having, for the purpose of liability?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "86"
+      }
+    ],
+    "reference_answer": "They are treated as having the same knowledge they would have had if they had not been intoxicated.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk d39cc0d54c243938",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment that can be imposed for wrongfully confining any person?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "342"
+      }
+    ],
+    "reference_answer": "Up to one year.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 59a437357d093d65",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment mentioned for a person who delivers an altered coin as genuine without knowing at the time of possession that it was altered?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "254"
+      }
+    ],
+    "reference_answer": "Imprisonment for a term which may extend to two years.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 7197ddae6ccab209",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If two people agree to murder someone by giving small doses of poison at different times, and the victim dies from those doses, what does the passage say about the guilt of both people?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "37"
+      }
+    ],
+    "reference_answer": "Both A and B are guilty of the offence of murder, even though their acts are separate.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk e15333f499aaa543",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If a person intentionally causes another person’s death partly by beating them and partly by illegally failing to provide them food, will the law treat this as the same offence as if the death were caused by an act alone?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "36"
+      }
+    ],
+    "reference_answer": "Yes. Where causing (or attempting to cause) an effect is an offence, causing it partly by an act and partly by an omission is treated as the same offence; in the example, the person has committed murder.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk a5e5809d341f116f",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A surgeon, acting in good faith for a child’s benefit without the child’s consent, performs an operation knowing it is likely to cause the child’s death, but the surgeon does not intend to cause death. The operation is done for the purpose of curing the child. Would the surgeon be liable for an offence for the harm caused by the operation?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "89"
+      }
+    ],
+    "reference_answer": "No. If done in good faith for the child’s benefit and for curing the child, it is not an offence even though the surgeon knows death is likely, provided it is not intended to cause death and is for curing (not for any other purpose).",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 86e8574b3b2fe021",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If someone hires, engages, employs, promotes, or even connives at hiring a person to join an unlawful assembly, what criminal liability does that person face for offences committed by the hired person in connection with joining the unlawful assembly?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "150"
+      }
+    ],
+    "reference_answer": "They are punishable as a member of the unlawful assembly, and for any offence committed by the hired person as a member of that unlawful assembly in pursuance of the hiring/engagement/employment, they are punished in the same manner as if they had been a member themselves or had committed the offence.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 4df9493026c98d6f",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If someone is hired to assist in an unlawful assembly or riot, what punishment applies if they (a) are hired to take part, and (b) while so engaged they go armed with a deadly weapon or something likely to cause death?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "158"
+      }
+    ],
+    "reference_answer": "(a) Imprisonment up to six months, or fine, or both. (b) Imprisonment up to two years, or fine, or both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk b58145eb3548f705",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A person deliberately makes insulting remarks about another person’s religion while the other person is present and can hear the remarks. What punishment can the offender face under the rule for deliberately wounding religious feelings?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "298"
+      }
+    ],
+    "reference_answer": "Imprisonment up to one year (either description), or fine, or both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 421218ba6578a793",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A person is wrongfully kept in a room for two days. The captor says the person must confess to something and also demands that a valuable item be returned. The captor’s aim is to obtain a confession/information that could help detect an offence and to compel restoration of property. What punishment can the captor face under these circumstances?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "348"
+      }
+    ],
+    "reference_answer": "The captor can be punished with imprisonment (either description) up to three years and is also liable to fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 1819a25a5724a044",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If a criminal act is carried out by multiple people acting together toward a shared common intention, how is liability determined for each person involved? Also, if someone fails to do something they were legally required to do, does that count as an “act” for purposes of interpreting conduct under the code?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "32"
+      }
+    ],
+    "reference_answer": "Each person who participates in doing the criminal act in furtherance of the common intention is liable for that act as if it had been done by them alone. Also, words referring to acts include illegal omissions, unless the context shows a contrary intention.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk df29e7343b926554",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If someone voluntarily causes hurt to another person with the aim of getting property or a valuable security from the victim (or from someone who is interested in the victim), or to force the victim (or someone interested in the victim) to do something illegal or that helps commit an offence, what punishment can they face?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "327"
+      }
+    ],
+    "reference_answer": "They can be punished with imprisonment (either description) up to ten years and also be liable to a fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 6fb2a75ae9652b0a",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A civilian wears a uniform that looks like the uniform used by an Indian soldier and carries an identity token resembling that used by the armed forces, intending people to believe he is a soldier. What punishment can he face under the rule for this conduct?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "140"
+      }
+    ],
+    "reference_answer": "He can be punished with imprisonment up to three months, or a fine up to five hundred rupees, or both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 51e4f1ceefd39d45",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What punishment can be imposed on a person who commits dacoity, and can a fine also be imposed?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "395"
+      }
+    ],
+    "reference_answer": "The person can be punished with imprisonment for life, or with rigorous imprisonment for up to ten years, and they are also liable to a fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 286042216a49df8e",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What punishment applies if someone kidnaps or abducts a person with the intention that the person may be subjected to grievous hurt or slavery (or is likely to be so subjected), and what additional liability is mentioned?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "367"
+      }
+    ],
+    "reference_answer": "Imprisonment of either description up to ten years, and the offender is also liable to fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk b559bdef6e10e513",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A threatens B that if B does not pay money, A will kill B. A’s purpose is to obtain money by extortion. What offence is A’s conduct covered by, and what punishment can A face?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "387"
+      }
+    ],
+    "reference_answer": "It is conduct of putting (or attempting to put) a person in fear of death or grievous hurt in order to commit extortion. The punishment is imprisonment (either description) up to seven years, and also liability to fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 481db4c36043c1f7",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A posts an online message accusing B of wrongdoing. A writes the message intending to harm B’s reputation. The message is meant to be read by others. Does this conduct amount to defamation under the rule described, and what mental element is required?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "499"
+      }
+    ],
+    "reference_answer": "Yes. Making or publishing an imputation about a person through words intended to be read (or signs/visible representations) amounts to defamation if the person intends to harm the person’s reputation (or knows/had reason to believe the imputation will harm that reputation), subject to exceptions not covered here.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 183eed28d8423645",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A person is found in possession of altered coin. He says he did not alter the coin himself, but he knew when he took possession that the coin had already been involved in an earlier offence of alteration. If he possessed the coin fraudulently or with intent that fraud may be committed, what punishment can he face?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "252"
+      }
+    ],
+    "reference_answer": "He can be punished with imprisonment (either description) up to three years and also be liable to a fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk cc1ae14cb0fa39d6",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A person is part of a crowd of at least five people. The crowd is lawfully ordered to disperse, but the person knowingly stays and continues in the assembly, and the assembly is likely to cause a disturbance of public peace. What punishment can the person face, and is there any different consequence if the assembly is an unlawful assembly?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "151"
+      }
+    ],
+    "reference_answer": "The person can be punished with imprisonment up to six months, or a fine, or both. If the assembly is an unlawful assembly, the offender will be punishable under the provision for unlawful assembly.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk b933e2631f682f64",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A shopkeeper sells a weighing scale that he knows is inaccurate, intending customers to use it as if it were correct. What punishment can he face under the rule for making or selling false weights or measures?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "267"
+      }
+    ],
+    "reference_answer": "He can be punished with imprisonment up to one year, or with fine, or with both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 0c415c66668b375e",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A municipal officer legally requires a witness to take an oath to state the truth. The witness refuses to take the oath. Separately, during the same incident, the officer wrongfully restrains the witness for about a few hours without lawful authority. What are the maximum punishments the officer could face for each of these two acts?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "341"
+      },
+      {
+        "act": "IPC",
+        "section": "178"
+      }
+    ],
+    "reference_answer": "For wrongfully restraining a person, the maximum punishment is simple imprisonment up to one month, or a fine up to ₹500, or both. For refusing to take an oath/affirmation when legally required by a public servant, the maximum punishment is simple imprisonment up to six months, or a fine up to ₹1,000, or both.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 5bb7072831cbbf92, 3a1b88f0982a64cd",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A man breaks into a shop at night and hides his entry so that the owner, who has the right to remove him, does not notice him until later. Inside, he uses a forged stamp to make documents look genuine and also keeps some of the stamped/marked materials with him for further use. What two distinct criminal offences can he be charged with based on these facts?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "443"
+      },
+      {
+        "act": "IPC",
+        "section": "475"
+      }
+    ],
+    "reference_answer": "He can be charged with lurking house-trespass for entering a building with precautions to conceal the trespass from the person entitled to eject him, and with counterfeiting a device/mark used to authenticate documents (including possessing counterfeit marked material) with intent to make documents appear authentic.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks f5e0db2d14f0c8cc, d07f2f1976936512",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A citizen files a complaint alleging that another person has cheated them. The complainant wants to know what punishment the court can impose if the cheating is proved, and whether the law’s wording has undergone later amendments that could affect what the court applies.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "3"
+      },
+      {
+        "act": "IPC",
+        "section": "417"
+      }
+    ],
+    "reference_answer": "If cheating is proved, the court may impose imprisonment up to one year (either description), or a fine, or both. The wording of the relevant legal provision has been successively amended by later enactments/official orders (including Act 12 of 1891 and subsequent orders), so the court applies the amended wording currently in force.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks fce75ef092762399, d139c2b50cf1abc3",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A man threatens a married woman’s husband with serious harm unless the husband allows the man to have sexual intercourse with the wife. The husband is too frightened to refuse, and the man then has sexual intercourse with the wife, knowing she is married. The intercourse does not amount to rape. What criminal liability can the man face for his conduct, and what is the maximum imprisonment for each offence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "385"
+      },
+      {
+        "act": "IPC",
+        "section": "497"
+      }
+    ],
+    "reference_answer": "He can be liable for (1) putting the husband in fear of injury to commit extortion, punishable with imprisonment up to two years (or fine, or both), and (2) adultery for having sexual intercourse with a married woman without the consent/connivance of her husband (and not amounting to rape), punishable with imprisonment up to five years (or fine, or both).",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 185f7f8ce7cffe61, 683f01f9abc2b51d",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A man, with the intention to injure a rival, files a criminal case against the rival on a completely false allegation. During the same period, he also fraudulently destroys and defaces a document that is a will, with the intent to cause damage to the rival and to the public. If both acts are prosecuted, what are the maximum punishments the court can impose for (i) the false criminal case and (ii) the fraudulent destruction/defacement of the will?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "211"
+      },
+      {
+        "act": "IPC",
+        "section": "477"
+      }
+    ],
+    "reference_answer": "For instituting/causing a false criminal proceeding with intent to injure, the maximum punishment is up to 2 years (or up to 7 years if the false charge was for an offence punishable with death/life or 7 years and above). For fraudulently destroying/defacing a will (a document), the maximum punishment is imprisonment for life.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 59a36aefb5a1249b, b26676bd1840959e",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A, B, and C form an unlawful assembly to attack a person. They agree on a common plan to cause serious harm, and they know that a killing is likely in carrying out that plan. During the attack, one member of the group actually kills the victim. A and B were present and were part of the assembly at the time of the killing, but they did not personally strike the fatal blow. Separately, it is also shown that A and B had earlier agreed together to carry out this plan. What criminal liability and punishment can A and B face for the killing, considering both their membership in the unlawful assembly and their earlier agreement to commit the offence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "120B"
+      },
+      {
+        "act": "IPC",
+        "section": "149"
+      }
+    ],
+    "reference_answer": "A and B can be held guilty of the killing because, as members of the unlawful assembly, they are liable for an offence committed in prosecution of the common object or that they knew was likely. If the earlier agreement amounts to a criminal conspiracy to commit an offence punishable with death or imprisonment for life (or rigorous imprisonment of two years or more), and no specific punishment is provided for that conspiracy, they are punishable in the same manner as if they had abetted the offence; otherwise, for conspiracies not in that category, the punishment is up to six months’ imprisonment or fine or both.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 1a83c14d0d73335b, 5ead350e1d3fa7e5",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A man files a lawsuit in a court of justice claiming that he is the rightful owner of a property. He knows the claim is false and has no ownership documents. To support his case, he also impersonates the real owner during the proceedings to obtain favorable orders. What criminal offences and maximum punishments could he face for (i) the impersonation used to cheat and (ii) the false claim made in court?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "419"
+      },
+      {
+        "act": "IPC",
+        "section": "209"
+      }
+    ],
+    "reference_answer": "He could be charged for cheating by personation, punishable with imprisonment up to three years (or fine, or both), and also for making a fraudulent/dishonest false claim in a court of justice knowing it to be false, punishable with imprisonment up to two years and also liable to fine.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 522184d305ffb990, b3770881d7835b26",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A shopkeeper intentionally makes a genuine Indian coin look like a different denomination to cheat customers. One customer later says they consented to being shown the coin because they wanted to buy it as a “collector’s item,” and they claim this consent should make the shopkeeper’s act lawful. Under Indian criminal law, can the shopkeeper rely on the customer’s consent to avoid liability for the coin-making conduct?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "232"
+      },
+      {
+        "act": "IPC",
+        "section": "91"
+      }
+    ],
+    "reference_answer": "No. Intentionally causing a genuine coin to appear like a different coin for the purpose of deception is punishable, and consent does not justify an act that is an offence independently of any harm it may cause or be intended to cause; therefore the customer’s consent cannot make the shopkeeper’s conduct lawful.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 63703ff78b18ed4b, 97f3049ec367eea5",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A district jail superintendent, who has legal authority to keep prisoners in custody, maliciously detains a person for trial despite knowing that the detention is contrary to law. Separately, the superintendent also accepts a bribe from the detainee’s relative in exchange for concealing the offence and ensuring the detainee is screened from legal punishment. Under Indian criminal law, what are the possible punishments for the superintendent for (i) the unlawful detention and (ii) the bribe taken to screen the offender, and do these punishments depend on the seriousness of the underlying offence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "220"
+      },
+      {
+        "act": "IPC",
+        "section": "213"
+      }
+    ],
+    "reference_answer": "(i) For corruptly or maliciously committing/keeping a person in confinement while knowing it is contrary to law, the superintendent can be punished with imprisonment up to seven years, or fine, or both. (ii) For accepting a gratification to conceal an offence or screen a person from legal punishment, the punishment depends on the maximum punishment for the underlying offence: if punishable with death, up to seven years’ imprisonment plus fine; if punishable with life or up to ten years, up to three years’ imprisonment plus fine; and if punishable with less than ten years, imprisonment up to one-fourth of the longest term for that offence, or fine, or both.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 382787c15e01eb86, 55f6cf736284b478",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "During an election campaign, A (a supporter) pays for printing and distributing pamphlets promoting Candidate C, but A has no written authorization from C. The pamphlets are published and distributed before C gives any written approval. After the expenses are incurred, C sends A a written approval within ten days of the date the expenses were incurred. Separately, during a dispute at the campaign venue, A pushes B so that B’s body is moved and comes into contact with a table, causing B to feel pain.\n\nFor the election-related conduct, will A be treated as having incurred the pamphlet expenses with the authority of C? For the dispute at the venue, does A’s act of pushing B so that B’s body is moved into contact with the table amount to using “force” against B?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "349"
+      },
+      {
+        "act": "IPC",
+        "section": "171H"
+      }
+    ],
+    "reference_answer": "Yes. If A’s election expenses (for pamphlets/advertisements) were not more than ten rupees and C gives written approval within ten days from when the expenses were incurred, A is deemed to have incurred them with C’s authority. Also yes: pushing B so that B’s motion changes and B’s body comes into contact with the table (affecting B’s sense of feeling) amounts to using force.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 8bcba848d47cca36, 40145925befd40a0",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A person unlawfully enters a neighbour’s home and stays inside without permission. During the entry, even a small part of the person’s body crosses the threshold. If the person is later convicted and sentenced to imprisonment that the law allows to be either rigorous or simple, can the sentencing court decide to impose a mix—some part rigorous and the rest simple—or must it choose only one type for the entire term?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "442"
+      },
+      {
+        "act": "IPC",
+        "section": "60"
+      }
+    ],
+    "reference_answer": "Yes. Entering or remaining in a building used as a human dwelling constitutes house-trespass, and even introduction of any part of the body is sufficient to count as “entering.” For sentencing, when imprisonment may be either description, the court may direct the imprisonment to be wholly rigorous, wholly simple, or partly rigorous and the rest simple.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 91b161bb4088236a, 70b8f1f6c5c368f6",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A group of five people secretly gathers at night in a house to plan and commit a robbery involving armed violence. At the same time, one of them sells packaged drinks to the people outside, knowing (or having reason to believe) the drinks are unfit for consumption. What criminal liabilities and maximum punishments can each of these acts attract under Indian criminal law?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "402"
+      },
+      {
+        "act": "IPC",
+        "section": "273"
+      }
+    ],
+    "reference_answer": "The gathering of five or more persons assembled for the purpose of committing dacoity can attract rigorous imprisonment up to seven years and a fine. Selling or offering for sale noxious or unfit food/drink with knowledge or reason to believe it is noxious can attract imprisonment up to six months, or a fine up to ₹1,000, or both.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 84092d503875b513, da802074f8e8405b",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A man sees a group attacking him with a deadly weapon and reasonably believes he will be killed. The attackers are mixed with several small children standing nearby. To protect himself, he fires at the attackers, and one of the children is fatally injured. The man claims he acted in self-defence. Separately, it is later found that the man’s act also caused the death of a pregnant woman who was standing close by and was not aware of the firing. Under Indian criminal law, can the man avoid liability for (i) the death of the pregnant woman and (ii) the fatal injury to the child on the ground of self-defence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "314"
+      },
+      {
+        "act": "IPC",
+        "section": "106"
+      }
+    ],
+    "reference_answer": "He cannot avoid liability for the pregnant woman’s death by self-defence unless the act was done with the required self-defence justification; the offence of causing death by an act intended to cause miscarriage applies even without proof that he knew the act would likely cause death, and lack of the woman’s consent aggravates it. For the child’s death, if he could not effectively exercise self-defence against a deadly assault without risking harm to innocent persons (including children), his right extends to taking that risk, and he commits no offence if he harms the children while acting in self-defence.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 97d888cbbf830de4, 0b3193e22a54e56f",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A prints and knowingly completes counterfeit coin dies for a local trader. While doing so, he claims he believed the counterfeit coins would likely cause harm, but he says he acted without any intention to cause harm because he wanted to prevent a larger harm—he says the trader would otherwise be unable to pay workers and would resort to violence. If the court finds that the harm he intended to avoid was imminent and serious, but that he still knowingly participated in the counterfeiting process, will he be guilty of the offence of counterfeiting coins, or can he rely on the “no offence if done in good faith to prevent other harm” defence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "231"
+      },
+      {
+        "act": "IPC",
+        "section": "81"
+      }
+    ],
+    "reference_answer": "He will be guilty of counterfeiting coins because knowingly performing any part of the counterfeiting process is punishable. The good-faith, no-criminal-intent defence applies to acts done to prevent other harm despite knowledge of likely harm, but it does not negate liability for knowingly participating in coin counterfeiting.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 76970666c6662841, 6ac59be510c27871",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A shopkeeper sees a police officer being attacked and is legally required to help. The shopkeeper intentionally does not assist, even after the officer demands help to prevent the offence. In the same incident, the shopkeeper also voluntarily strikes the attacker, causing hurt. What criminal liabilities and maximum punishments can apply to the shopkeeper for (i) the intentional failure to assist the police officer when bound by law, and (ii) voluntarily causing hurt?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "323"
+      },
+      {
+        "act": "IPC",
+        "section": "187"
+      }
+    ],
+    "reference_answer": "He can be punished for intentionally omitting to assist a public servant when bound by law, with maximum simple imprisonment up to one month (or up to six months if assistance was demanded for preventing an offence, suppressing a riot/affray, apprehending an offender, etc.), and/or fines. Separately, for voluntarily causing hurt, he can be punished with imprisonment up to one year and/or a fine up to one thousand rupees.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks c0472c42bf4b93e6, 68b7250a731b7230",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A man secretly records a woman while she is changing clothes in a room where she reasonably expects privacy. He then assaults her to stop her from noticing and to prevent her from taking back the phone he used to record her. After she is injured, he tries to steal the phone that is in her possession. What offences are likely to be made out, and what are the key punishment ranges for each on first conviction?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "356"
+      },
+      {
+        "act": "IPC",
+        "section": "354C"
+      }
+    ],
+    "reference_answer": "He can be charged with voyeurism for watching/capturing her private act in circumstances with an expectation of privacy, with first-conviction imprisonment up to 3 years (not less than 1 year) and fine. He can also be charged for assault/criminal force used while attempting to commit theft of property she is then carrying/wearing, with punishment up to 2 years (or fine, or both).",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 591de015c0b91085, 0014280a3b8bf429",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A police constable was legally required to keep a prisoner in custody after the prisoner was committed to jail. The constable intentionally let the prisoner escape. Later, the escaped prisoner, on encountering the person who had provoked him earlier, voluntarily inflicted grievous hurt on that provoker during a grave and sudden provocation, without intending or knowing that he was likely to cause grievous hurt to anyone other than the provoker. What are the applicable punishments for (i) the constable’s conduct and (ii) the escaped prisoner’s conduct?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "222"
+      },
+      {
+        "act": "IPC",
+        "section": "335"
+      }
+    ],
+    "reference_answer": "(i) The constable, being legally bound to apprehend/keep the prisoner in confinement and intentionally allowing escape, is punishable with imprisonment for life or up to 14 years (with or without fine), depending on the prisoner’s sentence status (death/ life/ 10 years or more/ less than 10 years). (ii) The escaped prisoner is punishable with imprisonment up to 4 years, or fine up to ₹2,000, or both, for voluntarily causing grievous hurt on grave and sudden provocation where he neither intended nor knew he was likely to cause grievous hurt to anyone other than the provoker.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 7d1dd7228481af1c, b8530cc1e53779cf",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A merchant ship’s master is responsible for a vessel that is carrying a person who has deserted from the armed forces. The master does not know the deserter is concealed on board, but the concealment is such that he could have discovered it if he had not been negligent in his duties and had maintained proper discipline on the ship. Separately, another crew member threatens a passenger with having the passenger accused of a serious offence that could lead to imprisonment for life unless the passenger pays money. Under Indian criminal law, what liabilities can arise for (i) the master in relation to the concealed deserter, and (ii) the crew member in relation to the threat-based demand?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "137"
+      },
+      {
+        "act": "IPC",
+        "section": "388"
+      }
+    ],
+    "reference_answer": "(i) The master/person in charge can be penalized if a deserter is concealed on the merchant vessel and the master, though ignorant, could have known of the concealment but for neglect of duty or want of discipline; the penalty may be up to ₹500. (ii) The crew member can be punished for extortion by threatening an accusation of an offence punishable with death or imprisonment for life (or up to 10 years), with imprisonment up to 10 years and fine; if the threatened offence falls under the specified category involving life imprisonment, punishment may extend to imprisonment for life.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 601e1c064feae695, d08ae35f2c8de313",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What punishment is prescribed for anyone who habitually imports, exports, removes, buys, sells, traffics, or deals in slaves?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "145"
+      }
+    ],
+    "reference_answer": "Imprisonment for life, or imprisonment of either description up to ten years, and also liability to a fine.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 5ef9f08e5185b0cc",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment for possessing a forged or counterfeit coin, Government stamp, currency-note, or bank-note with knowledge or reason to believe it is forged or counterfeit and intending to use it as genuine?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "180"
+      }
+    ],
+    "reference_answer": "Up to seven years.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk d2265a2f69391ccb",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the maximum imprisonment term for committing criminal trespass?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "329"
+      }
+    ],
+    "reference_answer": "Up to three months.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 5d2f899a7384907d",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What punishment may be imposed for a public servant who negligently allows a person in lawful custody to escape from confinement?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "261"
+      }
+    ],
+    "reference_answer": "Simple imprisonment for a term up to two years, or a fine, or both.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 1d5ea1dde81d4a95",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the minimum imprisonment term for pretending to hold an office as a public servant and doing or attempting to do an act under that assumed character?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "204"
+      }
+    ],
+    "reference_answer": "Not less than six months.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 35bf2a077a896760",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment for making or possessing an instrument for counterfeiting a property mark?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "348"
+      }
+    ],
+    "reference_answer": "Up to three years.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 40e82764aa274e3a",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the maximum imprisonment term for selling or offering for sale noxious or unfit food or drink, if the seller knows or has reason to believe it is noxious as food or drink?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "275"
+      }
+    ],
+    "reference_answer": "Up to six months.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 3a8cf92b861ff2f7",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What will not be considered interference with an electoral right: a declaration of public policy, a promise of public action, or the mere exercise of a legal right without intent to interfere?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "169"
+      }
+    ],
+    "reference_answer": "A declaration of public policy or a promise of public action, or the mere exercise of a legal right without intent to interfere with an electoral right, shall not be deemed interference.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 2672ffedadf3ef40",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What does the law say about acts done by a Judge when acting judicially in the exercise of powers given by law (or believed in good faith to be given)?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "15"
+      }
+    ],
+    "reference_answer": "Nothing is an offence which is done by a Judge when acting judicially in the exercise of any power which is, or which in good faith he believes to be, given to him by law.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk ea21ba020ad31fc8",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "If someone attempts to commit an offence punishable with imprisonment for life or imprisonment, and no specific punishment is provided for the attempt, what is the maximum term of imprisonment they can be punished with?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "62"
+      }
+    ],
+    "reference_answer": "Up to one-half of the imprisonment for life, or one-half of the longest term of imprisonment provided for that offence.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 6f84d6b0a7d2433c",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What punishment may be imposed for assault or use of criminal force on a person given grave and sudden provocation by that person?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "136"
+      }
+    ],
+    "reference_answer": "Simple imprisonment up to one month, or a fine up to one thousand rupees, or both.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 27ed5d4dc1b63011",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment for a parent or person having care of a child under twelve years who exposes or leaves the child with the intention of wholly abandoning it?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "93"
+      }
+    ],
+    "reference_answer": "Up to seven years’ imprisonment.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 7a257ecf2700e9ba",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment prescribed for destroying, damaging, or defiling a place of worship (or a sacred object) with the intention of insulting a religion of any class, or with knowledge it is likely to be considered an insult?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "298"
+      }
+    ],
+    "reference_answer": "Up to two years.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk c0c8ae0b8a8671f2",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the definition of abduction in terms of the means used to make a person go from one place to another?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "138"
+      }
+    ],
+    "reference_answer": "Abduction is when someone, by force or by deceitful means, compels or induces a person to go from any place.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 61f66405f5c1088e",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the age range of a child who is not considered to have committed an offence due to lack of sufficient maturity of understanding?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "21"
+      }
+    ],
+    "reference_answer": "A child above seven years of age and under twelve years of age.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk e8d66930e163feb2",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "If someone, knowing that dacoity is about to be committed at a particular place, falsely informs a Magistrate that it will be committed at a different place in order to mislead the Magistrate, and the dacoity is then committed at the original place, what is the maximum term of imprisonment mentioned for the person if the offence is committed?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "58"
+      }
+    ],
+    "reference_answer": "Up to seven years’ imprisonment of either description.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 5dd9ce449f9842e6",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What is the maximum term of imprisonment for theft committed by a clerk or servant of property in the possession of his master or employer?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "306"
+      }
+    ],
+    "reference_answer": "Up to seven years.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk a2efa9de4fe123a6",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "If a person intentionally omits to give assistance to a public servant when they are legally bound to do so, what is the maximum term of simple imprisonment they can be punished with under the first category of punishment?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "222"
+      }
+    ],
+    "reference_answer": "Up to one month of simple imprisonment.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 05b84261be00b9cc",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "If a person is legally required to maintain accounts of election expenses but does not keep those accounts, what punishment can they face?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "177"
+      }
+    ],
+    "reference_answer": "They can be punished with a fine up to five thousand rupees.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk c3b09ff43dd089e1",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "If a person encourages an officer or soldier in the Army, Navy, or Air Force of the Government of India to desert, what punishment can the person face under the rule for abetment of desertion?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "163"
+      }
+    ],
+    "reference_answer": "The person who abets the desertion of an officer, soldier, sailor, or airman in the Army, Navy, or Air Force can be punished with imprisonment up to two years, or with a fine, or with both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk ff0bcb12b519a146",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A municipal officer issues a lawful order directing that a religious procession must not pass down a particular street. A knowingly disobeys the order, and this disobedience creates danger of a riot. Under these circumstances, what punishment applies?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "223"
+      }
+    ],
+    "reference_answer": "He is punishable with imprisonment of either description up to one year, or with a fine up to five thousand rupees, or with both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk f9e4e777c86b214c",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What minimum imprisonment applies if, while committing robbery or dacoity, the offender either uses a deadly weapon, causes grievous hurt, or attempts to cause death or grievous hurt to any person?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "311"
+      }
+    ],
+    "reference_answer": "The offender’s imprisonment shall not be less than seven years.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 550af55bc413ccb6",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A person who is lawfully detained for an offence he has been charged with intentionally resists the police during his apprehension and also tries to escape from custody. What punishment can he face, and will it be separate from the punishment for the original offence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "262"
+      }
+    ],
+    "reference_answer": "He can be punished with imprisonment (either description) up to two years, or with fine, or with both. The punishment is in addition to whatever punishment he would be liable for the offence for which he was charged or convicted.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk a7813bd5655838b6",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A person posts on social media a false rumour that is likely to create hatred between different religious groups. The post is made while people are gathered inside a place of worship for a religious ceremony. What punishment applies, and is there any defence if the person had reasonable grounds to believe the rumour was true and posted it in good faith without any intent to cause the prohibited effects?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "353"
+      }
+    ],
+    "reference_answer": "The person can be punished with imprisonment up to five years and also be liable to fine because the false, alarming information is circulated with intent or likelihood to promote enmity/hatred between religious groups and it is done in a place of worship or during a religious assembly. There is an exception only if the person had reasonable grounds to believe the rumour was true, published it in good faith, and without any such intent to cause the prohibited effects.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 29ad328305aee923",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A person publishes online statements claiming that a particular religious group should be denied citizens’ rights, and the posts are shared during a religious ceremony at a place of worship. What punishment can the person face under these rules?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "196"
+      }
+    ],
+    "reference_answer": "They can be punished with imprisonment up to three years, or with fine, or with both; if the offence is committed in a place of worship or during a religious worship/ceremony assembly, imprisonment may extend to five years and they are also liable to fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 0053723f4357a5ff",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What punishment applies if someone, to annoy others, performs an obscene act in a public place or sings/recites obscene words near a public place?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "296"
+      }
+    ],
+    "reference_answer": "They can be punished with imprisonment up to three months, or a fine up to one thousand rupees, or both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 07d52621b1d23c3b",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "If a person buys or hires a child, knowing or intending that the child will be used for prostitution or illicit intercourse at any age, what punishment applies? Also, if the buyer is a person keeping or managing a brothel who buys a female under 18, what presumption is made about the intent?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "99"
+      }
+    ],
+    "reference_answer": "The person shall be punished with imprisonment of either description for not less than seven years, which may extend to fourteen years, and shall also be liable to fine. If the buyer is a prostitute or a person keeping or managing a brothel who buys a female under 18, it is presumed (until contrary is proved) that they obtained possession with the intent that she be used for prostitution.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 9789f7db50ba9cde",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "If someone assaults another person with the intention of dishonouring them, but the dishonour is not caused by any grave and sudden provocation given by the person being assaulted, what punishment can the offender face under the rule described?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "133"
+      }
+    ],
+    "reference_answer": "The offender can be punished with imprisonment up to two years, or with fine, or with both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk acd376d8ca7f9ed2",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "If a person commits an act that would not be an offence unless it is done with a particular intent or knowledge, but the person was intoxicated at the time, what knowledge or intent will the law treat them as having—and when would that treatment not apply?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "24"
+      }
+    ],
+    "reference_answer": "They will be dealt with as if they had the same knowledge/intent they would have had if they were not intoxicated. This does not apply if the intoxication was administered to them without their knowledge or against their will.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk a36691705f55890f",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A person manufactures a fake hologram used to authenticate documents, and intends to use it to make a forged document look genuine. The person is also found in possession of a material on which the hologram has been counterfeited. What punishment applies, and does it matter whether the hologram is meant for authenticating documents covered by the earlier category or other documents/electronic records?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "342"
+      }
+    ],
+    "reference_answer": "If the person counterfeits a device/mark used for authenticating documents (or possesses material bearing such counterfeited device/mark) with intent to make a forged document appear authentic, punishment is imprisonment for life, or imprisonment up to seven years, and also fine. If the device/mark is for authenticating documents or electronic records other than the earlier category, the punishment is imprisonment up to seven years (imprisonment of either description) and also fine.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 6f042fc06f29ac23",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A citizen of India commits murder while abroad and later is found in India. Under the rules in force, can he be tried and convicted in India for that murder, and does the punishment depend on whether the act was committed within India?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "1"
+      }
+    ],
+    "reference_answer": "Yes. Every person is liable to punishment under this code for acts or omissions contrary to its provisions committed within India, and it also applies to offences committed by Indian citizens in any place without and beyond India. The citizen can be tried and convicted in any place in India where he is found, and punishment is under this code rather than otherwise.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 1d4ee46345f21c2c",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "What punishment applies if someone intentionally insults or interrupts a public servant while the public servant is sitting in any stage of a judicial proceeding?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "267"
+      }
+    ],
+    "reference_answer": "Simple imprisonment up to six months, or a fine up to five thousand rupees, or both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 11d2ff750f6396fa",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A pharmacist mixes a drug with another substance so that its effectiveness is reduced, but the pharmacist intends to sell it for medical use as if it had not been altered. What punishment applies under the rule for adulterating drugs in this way?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "276"
+      }
+    ],
+    "reference_answer": "Imprisonment up to one year, or fine up to five thousand rupees, or both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk c56f4b6a00af216f",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A intends to kill Person X and does an act that he knows is likely to cause death. However, the act results in the death of Person Y, whom A neither intended to kill nor knew was likely to die from his act. Under these facts, how should the description of A’s culpable homicide be determined?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "102"
+      }
+    ],
+    "reference_answer": "It should be treated as the same description as if A had caused the death of the person whose death he intended or knew was likely to be caused (i.e., the intended/likely target), even though Person Y actually died.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 4fbba015ba1fe4d1",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A mint employee, who is lawfully authorized to produce coins of a specified weight and composition, intentionally tampers with the minting process so that coins issued from the mint will be of a different weight and composition than what the law fixes. Separately, the same person also participates in a government auction of property: he bids on behalf of a friend whom he knows is legally barred from purchasing that property at the auction. What criminal liabilities could arise from each conduct, and what are the maximum punishments for each?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "187"
+      },
+      {
+        "act": "BNS",
+        "section": "220"
+      }
+    ],
+    "reference_answer": "The mint employee’s intentional act to cause coins to be of a different weight or composition than fixed by law can lead to imprisonment up to seven years and a fine. The auction conduct—bidding for property on behalf of someone he knows is legally incapable of purchasing, or bidding without intending to perform the obligations—can lead to imprisonment up to one month, or a fine up to two hundred rupees, or both.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks af5399dc35235066, b450280212268bbd",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A man, heavily intoxicated, enters a restricted area without permission and starts shouting and behaving aggressively in a public place, causing annoyance to passers-by. During the incident, one person attacks him with the intention of wrongfully confining him, and the intoxicated man, fearing he will be unable to seek help from public authorities, uses force that results in the attacker’s death. Can the intoxicated man claim the right of private defence of his body to justify causing the attacker’s death, and what criminal liability for his drunken conduct in public may still arise?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "38"
+      },
+      {
+        "act": "BNS",
+        "section": "355"
+      }
+    ],
+    "reference_answer": "He can claim private defence of his body to the extent of voluntarily causing death only if the assault falls within the listed categories (including an assault intended to wrongfully confine him under circumstances causing apprehension he cannot seek public authorities for release). His drunken public misconduct—appearing in a public/restricted place while intoxicated and causing annoyance—can still attract punishment (simple imprisonment up to 24 hours, or fine up to ₹1,000, or both, or community service).",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 6d958946b56e827b, 4b8c3736a8c04543",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A businessman, facing multiple creditors, secretly transfers a valuable machine to a friend for no real payment to stop the creditors from getting their share. Later, to further frustrate recovery, he forges and destroys a document that purports to be a will under which the machine would have been distributed. What criminal liabilities can he face for these acts, and what are the maximum punishments mentioned for each type of conduct?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "320"
+      },
+      {
+        "act": "BNS",
+        "section": "343"
+      }
+    ],
+    "reference_answer": "He can be charged for dishonestly/fraudulently removing or transferring property without adequate consideration with the intention or knowledge that it will prevent distribution among creditors (punishment up to two years, or fine, or both). He can also be charged for fraudulently/dishonestly destroying or secreting a document which purports to be a will (punishment up to seven years, and also liable to fine).",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 21ddcf7f32ec0cfc, 3b06f9784cdde17d",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A police officer, while on duty, is in custody of a detained prisoner. The officer deliberately lets the prisoner escape from the place of confinement. During the escape, the officer also assaults a woman, causing her death. What are the possible punishments the officer can face for (i) enabling the prisoner’s escape and (ii) causing the woman’s death in the course of committing that offence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "66"
+      },
+      {
+        "act": "BNS",
+        "section": "156"
+      }
+    ],
+    "reference_answer": "For voluntarily allowing a State prisoner/prisoner of war to escape while having custody, the officer can be punished with imprisonment for life or imprisonment up to ten years (and also be liable to fine). For inflicting an injury in the course of that offence that causes the woman’s death, the officer can be punished with rigorous imprisonment for at least twenty years, which may extend to life imprisonment (remainder of natural life) or even death.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 120f0997424337c4, 424227465f025ee1",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A police constable who is legally required to keep a prisoner in custody intentionally lets the prisoner escape. The prisoner later assaults a superior officer while acting under the authority of the Army. The constable’s conduct is alleged to have encouraged the assault. What criminal liability can the constable face for (i) the escape and (ii) the assault, and what are the maximum punishments for each?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "260"
+      },
+      {
+        "act": "BNS",
+        "section": "161"
+      }
+    ],
+    "reference_answer": "For intentionally omitting to apprehend or intentionally allowing a person in lawful custody to escape, the constable can be punished with imprisonment up to seven years (or up to fourteen years if the person was under sentence of death), with or without fine. For abetting an assault by an Army officer/soldier on a superior officer in the execution of office, the constable can be punished with imprisonment up to three years and also be liable to fine.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 9c3254033ed9ac83, c0b4b2ba56dfb615",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "In an election-related case, A is served with a court proclamation requiring him to appear at a specified place and time. A does not appear, and later the court declares him a proclaimed offender. Separately, B offers A a sum of money to ensure A uses his vote in a particular way, and A accepts the money as a reward for exercising that electoral right. What are the maximum imprisonment terms (and whether fine is also applicable) for A for (i) failing to appear in response to the proclamation and (ii) the bribery conduct described?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "209"
+      },
+      {
+        "act": "BNS",
+        "section": "170"
+      }
+    ],
+    "reference_answer": "For failing to appear after the proclamation, A can be punished with imprisonment up to 3 years (or fine, or both), but if he is declared a proclaimed offender, the maximum imprisonment extends to 7 years and he is also liable to fine. For the bribery conduct, A (by accepting gratification as a reward for exercising an electoral right) commits bribery; the offence is punishable with imprisonment up to 7 years and fine (as bribery is treated as a distinct offence with imprisonment and fine liability).",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks ecf64a04398699bc, a407a5d6fe2d421a",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A person, while a foreign country is at peace with India, secretly gathers weapons and supplies intending to attack and loot property on that foreign country’s territory. Before any court process can be served on him in India for related proceedings, he deliberately hides to avoid being served with summons or an order from a competent public servant. What criminal liabilities and maximum punishments can he face in India for (i) the conduct relating to the foreign territory and (ii) the conduct of avoiding service of process?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "206"
+      },
+      {
+        "act": "BNS",
+        "section": "154"
+      }
+    ],
+    "reference_answer": "He can be punished for committing depredation (or making preparations to commit it) on the territory of a foreign State at peace with India, with imprisonment up to seven years, plus fine and forfeiture of property used or intended to be used (or acquired) in the depredation. Separately, he can be punished for absconding to avoid being served with a summons/notice/order from a competent public servant; the maximum is simple imprisonment up to one month (or fine up to ₹5,000, or both), and if the process required personal attendance or production of documents/electronic records in court, up to six months (or fine up to ₹10,000, or both).",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 7357c1a2fb4d1571, 6bc8e44a1f024805",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A municipal officer who manages a hospital’s outpatient ward invites a patient to a private room and, using his position, induces her to have sexual intercourse with him. Separately, the same officer arranges for the patient to be transported by a hired boat to another facility, but he knowingly allows the boat to depart while it is overloaded and unsafe, endangering the patient’s life. What criminal liabilities can arise from each conduct, and what are the key elements the prosecution must establish for each offence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "284"
+      },
+      {
+        "act": "BNS",
+        "section": "68"
+      }
+    ],
+    "reference_answer": "Liability can arise for (1) sexual intercourse induced or seduced by a person in authority/managerial position in a hospital using his authority over the woman, where the act does not amount to rape; punishment is rigorous imprisonment of not less than five years up to ten years and also fine. The prosecution must show the accused was in authority/fiduciary position (including hospital management/staff), abused that position to induce/seduce the woman in his custody/charge or present on the premises, and that the intercourse was not rape. (2) Conveying a person for hire by water in an unsafe or overloaded vessel when the vessel’s condition/loading endangers the person’s life; punishment is imprisonment up to six months or fine up to five thousand rupees or both. The prosecution must show the accused knowingly or negligently caused the hire conveyance by water, and that the vessel was in such a state or so loaded as to endanger the passenger’s life.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 4b5cf78b6bc620ea, b119b36d62938a58",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A group of five people enters a neighbour’s locked warehouse at night. They do not steal anything, but they are there to intimidate the owner and also to set up a plan to use the warehouse to store and assemble weapons for an intended attack on the Government of India. After entering, they remain inside unlawfully for several hours until police arrive. What criminal offences can they be charged with, and what is the key intent element that links their conduct to the more serious charge?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "441"
+      },
+      {
+        "act": "IPC",
+        "section": "122"
+      }
+    ],
+    "reference_answer": "They can be charged with criminal trespass because they entered and unlawfully remained on property in the possession of another with intent to intimidate/insult/annoy the person in possession. They can also be charged for collecting arms/ammunition or otherwise preparing to wage war against the Government of India, since their intent to assemble/store weapons for an intended war against the Government is the key element for the serious offence.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks f09ddde31e213d71, a3d7abff2da9e01e",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A man, while his wife is still alive, marries another woman. After the second marriage, he sends messages to his first wife threatening to harm her reputation and property unless she withdraws a complaint she has filed. The first wife is frightened and considers complying. Under Indian criminal law, what offences are likely attracted by (i) the second marriage and (ii) the threats used to influence her conduct?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "503"
+      },
+      {
+        "act": "IPC",
+        "section": "494"
+      }
+    ],
+    "reference_answer": "He is likely liable for the offence of marrying again during the lifetime of his husband or wife (bigamy). Separately, the threats to injure the first wife’s reputation and property, made with intent to cause alarm and to induce her to do an act she is not legally bound to do (or to omit an act she is legally entitled to do), are likely to constitute criminal intimidation.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 3c74003a8f7c5fb1, 9d6b82018ca62f4d",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "In a criminal investigation, a police officer legally requires a suspect to sign a written statement. The suspect refuses to sign it. Separately, the same suspect earlier caused another person’s death by an act done with the intention of causing death, or with the intention of causing bodily injury likely to cause death, or with knowledge that death is likely to result. What offences can the suspect be charged with for (i) the refusal to sign the statement and (ii) the earlier act causing death?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "100"
+      },
+      {
+        "act": "BNS",
+        "section": "215"
+      }
+    ],
+    "reference_answer": "For refusing to sign a statement when legally required by a competent public servant, the suspect can be charged with refusing to sign the statement. For the earlier act causing death with the required intention or knowledge (including cases where death is accelerated by injury to a person with a disorder/infirmity, or where death results despite proper treatment), the suspect can be charged with culpable homicide.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 5afcfa8a4a972a7c, 79dc9f512a847995",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A police officer is trying to disperse an unlawful assembly during a riot. During the process, a person threatens to assault the officer and attempts to obstruct him. Later, the same person is found to have acted before the birth of a child, with the intention of preventing the child from being born alive, and the child is in fact not born alive. What criminal liabilities and maximum punishments could apply to the person for (i) the conduct toward the police officer during the riot and (ii) the conduct affecting the unborn child, assuming the act was not done in good faith to save the mother’s life?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "195"
+      },
+      {
+        "act": "BNS",
+        "section": "91"
+      }
+    ],
+    "reference_answer": "For threatening to assault or attempting to obstruct a public servant while the officer is discharging duty in endeavouring to disperse an unlawful assembly or suppress a riot/affray, the person faces imprisonment up to one year, or fine, or both. For doing an act before birth intended to prevent the child from being born alive (and it results in the child not being born alive), not in good faith to save the mother’s life, the person faces imprisonment up to ten years, or fine, or both.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 86a33772f060a083, 2fd562ce4bbea4ec",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A police constable is in charge of a state prisoner at a lock-up. Due to the constable’s negligence, the prisoner escapes from the place of confinement. The constable argues that the matter should be treated only as a minor public nuisance and that the punishment should be limited to a small fine. What criminal liability and punishment is most appropriate for the constable’s conduct?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "292"
+      },
+      {
+        "act": "BNS",
+        "section": "157"
+      }
+    ],
+    "reference_answer": "The constable, being a public servant having custody of a state prisoner, who negligently allows the prisoner to escape from confinement, is punishable with simple imprisonment up to three years and is also liable to fine; it is not to be treated merely as a general public nuisance punishable only with a fine up to one thousand rupees.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 109f95f4669b9bb6, c4309de15bb5d5c1",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A person drives a car on a public road in a very rash manner, endangering pedestrians. When a police officer later issues a summons to appear in court, the driver intentionally removes the summons from the place where it was lawfully affixed and also prevents its lawful service on himself. What criminal liability can the driver face for (i) the road conduct and (ii) the interference with the summons, and how do the possible punishments differ between the two?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "207"
+      },
+      {
+        "act": "BNS",
+        "section": "281"
+      }
+    ],
+    "reference_answer": "For the rash driving on a public way endangering people, the driver can be punished with imprisonment up to six months, or fine up to ₹1,000, or both. For intentionally preventing lawful service/affixing or removing a summons issued by a competent public servant, the driver can be punished with simple imprisonment up to one month, or fine up to ₹5,000, or both; if the summons required personal appearance or production of a document/electronic record in court, the punishment can be simple imprisonment up to six months, or fine up to ₹10,000, or both.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks a66ec99a55d02368, af43d3def7ba6dab",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A convicted State prisoner is being lawfully held in a jail. While on parole within fixed limits in India, he leaves those limits and is later found hiding in a friend’s house. The friend knowingly helps him avoid recapture by concealing him. The intended offence for which the prisoner was originally confined is theft. What is the maximum punishment the friend can face for this conduct, and does the fact that the prisoner’s original intended offence was theft affect the punishment for the friend?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "332"
+      },
+      {
+        "act": "BNS",
+        "section": "158"
+      }
+    ],
+    "reference_answer": "The friend can be punished with imprisonment for life or imprisonment of either description up to ten years and also be liable to fine. The theft-related enhancement applies only to house-trespass committed to commit theft; it does not increase the punishment for knowingly aiding/harbouring a State prisoner who has escaped from lawful custody.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks e12cbe36c9d99dba, 047adbace1117cfe",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A is arrested after he secretly gathers rifles and ammunition and also recruits men, intending to use them to wage war against the Government of India. During the same operation, he fires at a police officer to prevent arrest, but the officer survives with injuries. What offences can A be charged with, and what are the maximum punishments for each, based on these facts?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "149"
+      },
+      {
+        "act": "BNS",
+        "section": "109"
+      }
+    ],
+    "reference_answer": "A can be charged for collecting men, arms or ammunition (or otherwise preparing) with the intention of waging war against the Government of India, punishable with imprisonment for life or imprisonment up to ten years and fine. He can also be charged with attempt to murder for firing with intention/knowledge that would make him guilty of murder if death had occurred; since hurt is caused, he is punishable with imprisonment for life or imprisonment up to ten years and fine (with the possibility of death only if he was already under a sentence of imprisonment for life).",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks da13ef2f335fe44e, bcb29a602bc20de7",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A private company sets up an office in a city to run an illegal lottery (not authorized by the State). The company also publishes advertisements offering prizes based on the outcome of the lottery tickets. During the same period, a disgruntled employee damages a passenger aircraft by using an explosive device, intending to make the aircraft unsafe.\n\nWhat criminal liabilities can be attracted against (i) the company for running and promoting the illegal lottery, and (ii) the employee for the act involving the aircraft?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "327"
+      },
+      {
+        "act": "BNS",
+        "section": "297"
+      }
+    ],
+    "reference_answer": "(i) The company can be punished for keeping an office/place to draw an unauthorized lottery, and for publishing proposals to pay/deliver goods or do/forbear based on the lottery ticket/number/figure. (ii) The employee can be punished for mischief to an aircraft intended to render it unsafe (or knowing it is likely to be rendered unsafe), and if done by fire or explosive, the punishment can extend up to life imprisonment or up to ten years with fine.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks e18d8c127740aa92, ee8e38f84b73846f",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A is a civilian who knows that B has committed a serious offence against a person. A helps B by hiding the evidence of the offence with the intention of preventing B from facing legal punishment. However, B is a member of the Indian Air Force and is subject to the Air Force Act. Can A be punished under the general criminal law for causing disappearance of evidence or giving false information to screen the offender? If yes, what is the maximum punishment A may face, considering the seriousness of the underlying offence?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "167"
+      },
+      {
+        "act": "BNS",
+        "section": "238"
+      }
+    ],
+    "reference_answer": "Yes. A can be punished under the general criminal law for screening the offender by causing disappearance of evidence or giving false information. The exemption for persons subject to the Air Force Act applies only to the Air Force personnel themselves from punishment under that criminal code for offences in that chapter, not to a civilian helper. Since the underlying offence is serious enough to be punishable with death, A may be punished with imprisonment up to seven years and also be liable to fine.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 3c0172001d3d808b, 713a508801020ba4",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A citizen, to stop a police officer from carrying out a lawful arrest, attempts suicide in front of the officer with the intention of forcing the officer to stop. Separately, the same citizen also forges an Aadhaar-related identity document and uses it to support a false claim before the court. What criminal liabilities can be attracted for (i) the suicide attempt and (ii) the forged identity document, and what are the maximum punishments for each?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "226"
+      },
+      {
+        "act": "BNS",
+        "section": "337"
+      }
+    ],
+    "reference_answer": "(i) Attempting suicide with the intent to compel or restrain a public servant from discharging official duty can attract punishment up to simple imprisonment for one year, or fine, or both. (ii) Forging an identity document issued by Government (including Aadhaar) can attract imprisonment up to seven years and also liability to fine.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 64f62d24a38bfdc4, b6cb8ebfad4155a2",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A and B run a group that repeatedly carries out fraud-based economic offences to obtain money. In one operation, they create a forged electronic record showing that a bank account belongs to a “legitimate” business, and they use this forged record to induce the bank to release funds. A is part of the group and directly helps in preparing and using the forged electronic record; B is not present during the actual use but later helps conceal the forged record and the proceeds so the group can continue its activities. Under Indian criminal law, what offences can A and B be held liable for, and what is the key legal basis for treating the group’s conduct as organised crime?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "111"
+      },
+      {
+        "act": "BNS",
+        "section": "340"
+      }
+    ],
+    "reference_answer": "A can be liable for organised crime because the group is a syndicate indulging in continuing unlawful economic offences for material/financial benefit, and A also commits/knowingly facilitates the organised crime by preparing and using a forged electronic record as genuine. A can also be punished for using a forged electronic record as genuine (treated as if he had forged it). B can be liable for organised crime as a member/for knowingly facilitating it, and additionally for harbouring/concealing the person or concealing the offence-related material/proceeds; B’s concealment supports liability under the organised-crime framework. The key basis is that the group of two or more persons acts in concert in continuing unlawful activity (including economic offences) to obtain direct or indirect financial benefit, and the forged electronic record is used fraudulently as genuine to further that continuing activity.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks f3aaab0971ab4f70, 86c64a72102fd3a9",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "A man, pretending to be the husband of a pregnant woman, visits a court and falsely claims that she has already miscarried, and on that basis gets a process issued in a criminal case. Later, the same man persuades the woman to take pills that cause her miscarriage, and he does not do so in good faith to save her life. What criminal liability can arise for the man from these two acts, and what are the maximum imprisonment terms for each?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "242"
+      },
+      {
+        "act": "BNS",
+        "section": "88"
+      }
+    ],
+    "reference_answer": "He can be punished for (1) falsely personating another and causing process to be issued in a criminal prosecution, with imprisonment up to three years (or fine, or both); and (2) voluntarily causing a miscarriage without good faith for saving the woman’s life, with imprisonment up to seven years if the woman was quick with child (and also liable to fine).",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 1cc77453cd28ee44, 8b261093b9f0d22a",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "In Indian criminal law, what is the corresponding provision in the Bharatiya Nyaya Sanhita for the IPC offence of abetment of an act of insubordination by a soldier, sailor, or airman? Also, how does the punishment differ between the two laws?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "138"
+      },
+      {
+        "act": "BNS",
+        "section": "166"
+      }
+    ],
+    "reference_answer": "The BNS has a corresponding offence for abetment of an act of insubordination by a soldier, sailor, or airman. The key difference is punishment: under the IPC it may extend to six months, while under the BNS it may extend to two years (with fine or both).",
+    "difficulty": "easy",
+    "notes": "auto-gen from concordance row 264",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In Indian criminal law, what is the corresponding provision in the Bharatiya Nyaya Sanhita for the offence of affray under the Indian Penal Code, and how does the Bharatiya Nyaya Sanhita treat it in terms of punishment?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "159"
+      },
+      {
+        "act": "BNS",
+        "section": "194"
+      }
+    ],
+    "reference_answer": "The Bharatiya Nyaya Sanhita has a corresponding provision for affray with the same basic definition (two or more persons fighting in a public place disturbing public peace). It also expressly provides punishment: imprisonment up to one month, or fine up to ₹1,000, or both.",
+    "difficulty": "easy",
+    "notes": "auto-gen from concordance row 309",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In the Indian Penal Code, what is the corresponding provision in the Bharatiya Nyaya Sanhita for the offence of knowingly joining or continuing in an assembly of five or more persons after it has been lawfully commanded to disperse?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "151"
+      },
+      {
+        "act": "BNS",
+        "section": "189"
+      }
+    ],
+    "reference_answer": "BNS has a corresponding offence under its provisions on unlawful assembly: knowingly joining or continuing in an assembly of five or more persons likely to disturb public peace after a lawful command to disperse is punishable (with imprisonment up to six months, or fine, or both).",
+    "difficulty": "easy",
+    "notes": "auto-gen from concordance row 297",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In Indian criminal law, what is the corresponding provision in the Bharatiya Nyaya Sanhita for the offence of continuing a public nuisance after being enjoined by a public servant to stop it under the Indian Penal Code?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "291"
+      },
+      {
+        "act": "BNS",
+        "section": "293"
+      }
+    ],
+    "reference_answer": "The Bharatiya Nyaya Sanhita has a corresponding offence for repeating or continuing a public nuisance after an injunction by a public servant with lawful authority; it prescribes simple imprisonment up to six months, or fine (up to ₹5,000), or both.",
+    "difficulty": "easy",
+    "notes": "auto-gen from concordance row 413",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code, what is the corresponding provision in the Bharatiya Nyaya Sanhita for punishing the owner/occupier (or a person claiming an interest) when a riot is committed for their benefit and they fail to take lawful steps to prevent or suppress it?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "155"
+      },
+      {
+        "act": "BNS",
+        "section": "193"
+      }
+    ],
+    "reference_answer": "The corresponding BNS provision is the one titled “Liability of owner, occupier, etc., of land on which an unlawful assembly or riot takes place,” which covers both (i) failure to give earliest notice and to use lawful means to prevent/suppress, and (ii) the specific case where a riot is committed for the benefit of such owner/occupier or interested person; it also separately provides liability for the agent/manager in the benefit-based scenario.",
+    "difficulty": "easy",
+    "notes": "auto-gen from concordance row 307",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In Indian criminal law, what is the corresponding provision in the Bharatiya Nyaya Sanhita for the offence of a negligent act likely to spread infection of a disease dangerous to life under the Indian Penal Code?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "269"
+      },
+      {
+        "act": "BNS",
+        "section": "271"
+      }
+    ],
+    "reference_answer": "The Bharatiya Nyaya Sanhita contains the same offence—negligent acts likely to spread infection of a disease dangerous to life—with the same punishment framework (imprisonment up to six months, or fine, or both).",
+    "difficulty": "easy",
+    "notes": "auto-gen from concordance row 391",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In Indian criminal law, what is the corresponding provision in the Bharatiya Nyaya Sanhita for the offence of a public servant voluntarily allowing a State prisoner or prisoner of war to escape under the Indian Penal Code?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "128"
+      },
+      {
+        "act": "BNS",
+        "section": "156"
+      }
+    ],
+    "reference_answer": "The Bharatiya Nyaya Sanhita has a corresponding offence for a public servant who, having custody of a State prisoner or prisoner of war, voluntarily allows the prisoner to escape; the punishment is imprisonment for life or imprisonment up to ten years, with liability to fine.",
+    "difficulty": "easy",
+    "notes": "auto-gen from concordance row 254",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In Indian criminal law, what is the corresponding provision in the Bharatiya Nyaya Sanhita for the offence of marrying again during the lifetime of a husband or wife under the Indian Penal Code, and what key difference (if any) does the new law add?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "494"
+      },
+      {
+        "act": "BNS",
+        "section": "82"
+      }
+    ],
+    "reference_answer": "The corresponding BNS provision is the one dealing with marrying again during the lifetime of a husband or wife. The BNS keeps the same core offence and punishment (up to seven years and fine) but adds an exception for cases where the earlier marriage has been declared void by a competent court, and also provides a seven-year continuous absence/“not heard of alive” exception with a requirement to inform the other party before the subsequent marriage; it also increases punishment (up to ten years and fine) where the fact of the former marriage is concealed from the person with whom the subsequent marriage is contracted.",
+    "difficulty": "easy",
+    "notes": "auto-gen from concordance row 152",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, what is the equivalent offence for causing death with intention or knowledge, and what notable change exists in how the Bharatiya Nyaya Sanhita treats causation (especially where death could have been prevented with proper treatment) compared to the IPC?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "299"
+      },
+      {
+        "act": "BNS",
+        "section": "100"
+      }
+    ],
+    "reference_answer": "Both laws define the same core offence: culpable homicide—causing death by intention to cause death, intention to cause bodily injury likely to cause death, or knowledge that the act is likely to cause death. A notable difference is that the BNS adds an explicit causation rule that the person causing bodily injury is deemed to have caused the death even if proper remedies and skilful treatment might have prevented it (IPC does not contain this additional explanation).",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 172",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In the Indian criminal law transition from the IPC to the BNS, what is the corresponding offence for rash driving or riding on a public way, and is there any notable change in how the punishment is framed between the two laws?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "279"
+      },
+      {
+        "act": "BNS",
+        "section": "281"
+      }
+    ],
+    "reference_answer": "The BNS keeps the same offence of rash driving or riding on a public way as in the IPC, with the punishment framed identically: imprisonment up to six months, or fine up to one thousand rupees, or both.",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 401",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In the Indian criminal law on private defence of property, what is the equivalent provision in the Bharatiya Nyaya Sanhita for the Indian Penal Code rule on when the right of private defence of property starts and how long it continues (especially for theft and robbery), and what notable additional categories does the Bharatiya Nyaya Sanhita explicitly cover that the Indian Penal Code does not in the same way?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "105"
+      },
+      {
+        "act": "BNS",
+        "section": "43"
+      }
+    ],
+    "reference_answer": "The Bharatiya Nyaya Sanhita corresponds to the IPC rule that the right of private defence of property begins with a reasonable apprehension of danger and continues against theft until the offender retreats with the property (or public assistance is obtained or the property is recovered), and against robbery as long as the offender causes/attempts death, hurt, or wrongful restraint or the fear of instant death/hurt/personal restraint continues. Notably, the BNS explicitly adds separate continuance rules for criminal trespass or mischief, and for house-breaking after sunset and before sunrise, which are not covered in the IPC provision in the same explicit categories.",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 109",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In the Indian criminal law framework, what is the equivalent provision in the Bharatiya Nyaya Sanhita for the IPC offence of punishment for culpable homicide not amounting to murder, and what notable change does the BNS make in the punishment structure compared to the IPC (especially regarding cases based on “knowledge” rather than “intention”)?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "304"
+      },
+      {
+        "act": "BNS",
+        "section": "105"
+      }
+    ],
+    "reference_answer": "The BNS equivalent is the offence of punishment for culpable homicide not amounting to murder. Compared to the IPC, the BNS keeps the life imprisonment/ten-year range for cases done with intention to cause death or such bodily injury as is likely to cause death, but it adds a separate punishment limb for cases done with knowledge that death is likely (without intention), prescribing imprisonment up to ten years along with fine; the IPC does not expressly provide this separate “knowledge” punishment category in the same way.",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 177",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, what is the equivalent offence for “public nuisance in cases not otherwise provided for,” and what notable change is made in the punishment amount between the two laws?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "290"
+      },
+      {
+        "act": "BNS",
+        "section": "292"
+      }
+    ],
+    "reference_answer": "The BNS corresponds to the IPC offence of public nuisance where no other punishment is specifically provided. The notable change is the maximum fine: IPC allows up to ₹200, while BNS increases it to up to ₹1,000.",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 412",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, what is the equivalent treatment for a person who is hired/engaged to take part in an unlawful assembly or riot, and what notable difference exists in how the newer law frames the offence (e.g., whether it is tied to “unlawful assembly” as a defined concept and includes additional categories like hiring/harbouring)?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "158"
+      },
+      {
+        "act": "BNS",
+        "section": "189"
+      }
+    ],
+    "reference_answer": "IPC treats “being hired/engaged to take part in an unlawful assembly or riot” as a punishable act, with a separate higher punishment if the person goes armed with a deadly weapon. BNS corresponds by making it part of the offence framework around “unlawful assembly” (defined by the common object) and explicitly includes broader related categories such as joining/continuing, armed membership, and also hiring/engaging/employing/promoting/conniving and harbouring/receiving persons to join the unlawful assembly, with the same basic structure of higher punishment when armed.",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 300",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In the Indian criminal law framework, what is the corresponding provision in the Bharatiya Nyaya Sanhita for the IPC offence of uttering words or making sounds/gestures with deliberate intent to wound religious feelings, and is there any notable difference in how the two laws frame the offence (for example, whether it is grouped under a different heading)?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "298"
+      },
+      {
+        "act": "BNS",
+        "section": "302"
+      }
+    ],
+    "reference_answer": "The BNS provision corresponds directly to the IPC offence of uttering words/making sounds/gestures/placing objects with deliberate intent to wound religious feelings, with the same core elements and punishment (up to one year, or fine, or both). A notable difference is that the IPC places it under the heading “Of offences affecting life,” whereas the BNS does not carry that same heading in the mapped text (it appears under a different classification).",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 422",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In Indian criminal law, what is the corresponding offence in the Bharatiya Nyaya Sanhita for the IPC offence relating to resistance or obstruction to lawful apprehension, or escape or rescue in cases not otherwise provided for, and what notable change (if any) is made in how the BNS frames the “not otherwise provided for” part?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "225B"
+      },
+      {
+        "act": "BNS",
+        "section": "265"
+      }
+    ],
+    "reference_answer": "The BNS offence corresponds to the IPC offence on resistance/obstruction to lawful apprehension and escape/rescue in cases not otherwise provided for. The notable change is that the BNS refers to different “otherwise provided for” sections (262 and 263) than the IPC’s references (224 and 225), while keeping the same core conduct and the same maximum punishment (up to six months’ imprisonment, or fine, or both).",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 381",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In Indian criminal law, what is the equivalent provision in the Bharatiya Nyaya Sanhita for the IPC rule on the scope of the right of private defence of the body when it extends to causing harm other than death, and what notable difference is there in how the restrictions are referenced between the two laws?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "101"
+      },
+      {
+        "act": "BNS",
+        "section": "39"
+      }
+    ],
+    "reference_answer": "The BNS equivalent is the rule that private defence of the body may extend to voluntarily causing harm other than death, but not voluntary death, when the offence is not among the specified categories. The notable difference is that the IPC refers to restrictions in its immediately preceding section (section 99), while the BNS refers to restrictions in a different specified section (section 37).",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 105",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, what is the corresponding offence for counterfeiting a property mark used by another person, and what notable change is made in the newer law regarding enhanced punishment for certain kinds of property marks (e.g., those connected with public servants)?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "483"
+      },
+      {
+        "act": "BNS",
+        "section": "347"
+      }
+    ],
+    "reference_answer": "The corresponding offence is counterfeiting a property mark used by another person. The BNS keeps the same basic punishment up to two years (with fine or both) for counterfeiting another person’s property mark, but adds an enhanced punishment up to three years and fine where the counterfeit mark is used by a public servant or relates to marks denoting manufacture/quality/office/exemption, or where such a mark is used as genuine knowing it is counterfeit.",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 533",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, what is the equivalent rule for punishing abetment of an offence punishable with imprisonment when the offence is not actually committed, and what notable difference (if any) exists in how the public-servant situation is treated?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "116"
+      },
+      {
+        "act": "BNS",
+        "section": "56"
+      }
+    ],
+    "reference_answer": "Both laws provide that if someone abets an offence punishable with imprisonment but the offence is not committed in consequence of the abetment (and no specific punishment is provided), the abettor is punished with imprisonment up to one-fourth of the longest term for that offence, or with the fine provided for that offence, or both. If the abettor or the person abetted is a public servant whose duty it is to prevent the commission of such offence, the abettor’s punishment is enhanced up to one-half of the longest term (with fine or both). The treatment is substantively the same; the main change is wording/terminology (Code vs Sanhita), not the rule itself.",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 122",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In comparing the Indian Penal Code and the Bharatiya Nyaya Sanhita on negligent conduct involving buildings, what substantive changes were made in the offence relating to negligently omitting safety measures during pulling down or repairing buildings—specifically regarding (i) whether “constructing” was added, and (ii) how the maximum fine amount changed? Also note any other wording differences that affect the scope of the conduct or the kind of omission required.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "288"
+      },
+      {
+        "act": "BNS",
+        "section": "290"
+      }
+    ],
+    "reference_answer": "The BNS expands the IPC offence by adding “constructing” to the acts covered (IPC covers pulling down or repairing; BNS covers pulling down, repairing, or constructing). The core requirement remains the same: knowingly or negligently omitting to take sufficient measures/orders to guard against probable danger to human life from the fall of the building or any part. The maximum imprisonment remains up to six months, but the maximum fine increases from Rs. 1,000 (IPC) to Rs. 5,000 (BNS).",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 410",
+    "category": "cross_reference"
+  },
+  {
+    "question": "How does the offence of “undue influence at elections” differ between the Indian Penal Code and the Bharatiya Nyaya Sanhita in terms of what conduct is expressly treated as interfering with the free exercise of an electoral right? Please compare the wording and identify what stayed the same and what was added or changed, especially regarding threats and inducing voters/candidates through religious or spiritual fear.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "171C"
+      },
+      {
+        "act": "BNS",
+        "section": "171"
+      }
+    ],
+    "reference_answer": "Both Acts define the offence similarly: voluntarily interfering with or attempting to interfere with the free exercise of an electoral right. The BNS adds an explicit deeming clause in sub-section (2) stating that interference includes (a) threatening any candidate or voter (or persons they are interested in) with injury of any kind, and (b) inducing or attempting to induce a candidate or voter to believe they or their interested person will face divine displeasure or spiritual censure. The IPC provision shown does not include these specific sub-clauses in the corresponding text.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 269",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the offence of enticing, taking away, or detaining a married woman with criminal intent differ in wording and scope? Specifically, compare the elements about the woman being taken from the husband (or from someone having care on the husband’s behalf) versus the BNS version, and state what stayed the same regarding knowledge/belief of the woman’s marital status and the intent relating to illicit intercourse, concealment, or detention.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "498"
+      },
+      {
+        "act": "BNS",
+        "section": "84"
+      }
+    ],
+    "reference_answer": "The IPC version includes an additional element that the accused takes/entices the woman “from that man, or from any person having the care of her on behalf of that man,” whereas the BNS version omits this “from”/care-of-husband phrasing and states more generally that the accused takes or entices away the married woman. Both versions keep the same core requirements: the accused knows or has reason to believe the woman is the wife of another man, and the intent is that she may have illicit intercourse with any person, or that the accused conceals or detains her with that intent; punishment remains up to two years’ imprisonment (either description) or fine or both.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 156",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the offence of rash navigation of a vessel compare between the two laws—specifically, what is the same in the definition and punishment, and what changed in the fine amount?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "280"
+      },
+      {
+        "act": "BNS",
+        "section": "282"
+      }
+    ],
+    "reference_answer": "Both laws define the offence identically: navigating any vessel rashly or negligently so as to endanger human life or likely to cause hurt/injury to any other person, with punishment of imprisonment up to six months (either description) and/or a fine. The only substantive change is the maximum fine: IPC allows up to ₹1,000, while BNS increases it to up to ₹10,000; imprisonment and the “imprisonment or fine or both” structure remain the same.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 402",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the offence of furnishing false information by a person legally bound to provide information to a public servant differ in punishment and scope? In particular, compare (i) the maximum fine amount for the basic case, (ii) whether the higher-punishment category (when the false information relates to commission/prevention of an offence or apprehension of an offender) changes in any way, and (iii) how the Explanation defining “offence” and “offender” for acts committed outside India is worded and which underlying offences are listed.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "177"
+      },
+      {
+        "act": "BNS",
+        "section": "212"
+      }
+    ],
+    "reference_answer": "Both laws criminalize furnishing false information to a public servant by a person legally bound to give it, with the same structure: basic punishment up to 6 months simple imprisonment and fine, and a higher category up to 2 years imprisonment of either description (with fine). The key change is the maximum fine in the basic case: IPC allows fine up to Rs 1,000, while BNS allows fine up to Rs 5,000. The higher category remains the same in terms of maximum imprisonment (2 years) and fine (no specific cap stated). The Explanation is substantively similar but updates the list of corresponding underlying offences and the cross-border coverage: IPC’s Explanation refers to a set of IPC sections (e.g., 302, 304, 382, 392, etc.), while BNS’s Explanation replaces them with the corresponding BNS section numbers (e.g., 103, 105, 307, 309(2)-(4), 310(2)-(5), 311, 312, 326(f)-(g), 331(4),(6)-(8), 332(a)-(b)).",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 328",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In comparing the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the offence of trespassing on burial places (including places of worship/sepulchre and disturbing funeral ceremonies) differ in wording or substance between the two laws? Please identify any changes in the elements, the scope of protected places or conduct, and the punishment, based on the actual statutory language.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "297"
+      },
+      {
+        "act": "BNS",
+        "section": "301"
+      }
+    ],
+    "reference_answer": "The BNS provision is substantively the same as the IPC one: it retains the same mental element (intention to wound feelings/insult religion, or knowledge that feelings/religion are likely to be wounded/insulted), the same acts (trespass in a place of worship or sepulchre, trespass in places for funeral rites or as a depository for the dead, offering indignity to a human corpse, and causing disturbance to persons assembled for funeral ceremonies), and the same punishment (imprisonment up to one year, or fine, or both). The only notable wording change is that IPC uses “place of sepulture” while BNS uses “place of sepulchre”; otherwise the text and structure match closely.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 421",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Compare how the Indian Penal Code and the Bharatiya Nyaya Sanhita deal with liability for being a member of an unlawful assembly. Specifically, explain what stays the same and what changes in the BNS compared to the IPC regarding: (i) the definition of an unlawful assembly (including the threshold number of persons and the listed common objects), (ii) how punishment applies to a person who joins/continues knowing the assembly is unlawful, (iii) the effect of the assembly being commanded to disperse, (iv) the enhanced liability where the person is armed with a deadly weapon, and (v) whether the BNS adds any additional categories of participants (e.g., those who hire/engage/promote/connive, harbour/receive, or are engaged/hired to do the acts).",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "143"
+      },
+      {
+        "act": "BNS",
+        "section": "189"
+      }
+    ],
+    "reference_answer": "IPC treats membership of an unlawful assembly with a single punishment provision (up to six months, fine, or both). BNS expands and restructures: it defines unlawful assembly as 5+ persons with specified common objects, includes an explanation that an assembly can become unlawful later, and then provides graded punishments—up to six months for intentionally joining/continuing when aware; up to two years if the person joins/continues after a lawful command to disperse; up to two years if the person is armed with a deadly weapon/weapon likely to cause death. BNS also adds separate liability for those who hire/engage/promote/connive, harbour/receive/assemble such persons, and for those engaged/hired (or attempting) to do the acts, with further enhancement if they go armed.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 294",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the law treat (i) making a false statement on oath/affirmation to a public servant or an authorised person, and (ii) separately, giving false information to a public servant with the intent to make the public servant use lawful power to the injury or annoyance of another person? Compare what is retained and what is changed between the two Acts in terms of the offence’s scope, elements, and punishment, including whether the second category of conduct still exists as a distinct offence.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "181"
+      },
+      {
+        "act": "BNS",
+        "section": "216"
+      }
+    ],
+    "reference_answer": "IPC keeps two related offences: (1) false statement on oath/affirmation to a public servant/authorised person (up to 3 years and fine), and (2) false information to a public servant intended/likely to cause the public servant to act/omit or use lawful power to injure or annoy another (up to 6 months or fine up to ₹1,000 or both). BNS retains only the first offence with the same core elements and punishment (up to 3 years and fine) and does not separately carry forward the second “false information to cause use of lawful power to injure/annoy” offence as a distinct provision.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 332",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In Indian criminal law, how does the offence of kidnapping/abducting/inducing a woman to compel her marriage (or to force/seduce her for illicit intercourse) differ between the Indian Penal Code and the Bharatiya Nyaya Sanhita? Please compare the wording on (a) the core acts and intents, (b) the punishment framework, and (c) the additional clause about inducing a woman to go from any place using criminal intimidation or abuse of authority—specifically what language changed or stayed the same.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "366"
+      },
+      {
+        "act": "BNS",
+        "section": "87"
+      }
+    ],
+    "reference_answer": "Both laws cover kidnapping/abducting a woman with intent or knowledge she may be compelled to marry against her will, or forced/seduced to illicit intercourse, punishable with imprisonment up to ten years and fine. The additional clause is substantively the same: inducing a woman to go from any place using criminal intimidation (defined in the respective code/sanhita) or abuse of authority or other compulsion, with intent/knowledge of being forced/seduced to illicit intercourse, is punishable similarly; the main change is only the reference wording for the definition of criminal intimidation (Code vs Sanhita) and removal of the bracketed/footnote formatting.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 159",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In comparing the Indian Penal Code’s scheme of punishments with the Bharatiya Nyaya Sanhita’s scheme of punishments, what substantive changes were made to the list of punishments available to courts? Specifically, identify what punishment(s) were added or removed, and whether the core categories like death, imprisonment for life, rigorous/simple imprisonment, forfeiture of property, and fine were retained in substance.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "53"
+      },
+      {
+        "act": "BNS",
+        "section": "4"
+      }
+    ],
+    "reference_answer": "The BNS retains the core punishment categories of death, imprisonment for life, rigorous/simple imprisonment, forfeiture of property, and fine. The substantive change is that the BNS adds “community service” as an additional punishment; the IPC’s detailed provisions on “transportation” are not carried forward as a punishment category in the BNS list.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 60",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In comparing the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the law on dealing with stolen property change in substance? Specifically, what differences exist between the IPC offence of “habitually dealing in stolen property” and the BNS treatment of stolen property—covering (i) the definition of “stolen property,” (ii) the scope of conduct covered (receiving/retaining/dealing vs assisting concealment/disposal), and (iii) the punishment for the “habitual” category (including whether the BNS keeps the same maximum term and whether it adds any new sentencing structure)?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "413"
+      },
+      {
+        "act": "BNS",
+        "section": "317"
+      }
+    ],
+    "reference_answer": "IPC’s “habitually dealing in stolen property” targets a person who habitually receives or deals in property he knows or has reason to believe is stolen, punishable with imprisonment for life or imprisonment up to ten years plus fine. BNS first expands and formalizes “stolen property” by defining it to include property transferred by theft/extortion/robbery/cheating and property criminally misappropriated or subject to criminal breach of trust, with an exception that it ceases to be stolen property if later comes into the possession of a person legally entitled to it. BNS also separates offences: it covers dishonestly receiving or retaining stolen property (up to three years/fine/both), a higher aggravated category for property stolen by dacoity or from a gang of dacoits (life or up to ten years plus fine), and it retains a specific “habitually receives or deals” offence with the same core elements and the same punishment range as IPC (life or imprisonment of either description up to ten years plus fine). Additionally, BNS expressly adds a separate offence for voluntarily assisting in concealing/disposal/making away with stolen property (up to three years/fine/both), which is not part of the IPC’s habitual-dealing clause itself.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 460",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the law describe the right of private defence against a deadly assault when exercising it would create a risk of harm to an innocent person? Compare the two provisions’ wording and explain what, if anything, changed between the IPC and BNS in terms of the rule and its illustration.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "106"
+      },
+      {
+        "act": "BNS",
+        "section": "44"
+      }
+    ],
+    "reference_answer": "Both IPC and BNS state the same rule: if, during private defence against an assault that reasonably causes apprehension of death, the defender cannot effectively exercise that right without risking harm to an innocent person, the right extends to taking that risk. The illustration is also substantively identical: firing at a mob to prevent murder is not an offence even if it harms young children mingled with the mob.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 110",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In comparing the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the offence of concealing the birth of a child by the secret disposal of the dead body differ (if at all) in its wording and elements—specifically regarding the actus reus (what conduct counts), the time window for the child’s death (before/after/during birth), and the mental element (intent to conceal), as well as the punishment?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "318"
+      },
+      {
+        "act": "BNS",
+        "section": "94"
+      }
+    ],
+    "reference_answer": "There is no substantive change: both laws define the same offence—secretly burying or otherwise disposing of the dead body of a child (whether the child died before, after, or during birth) with the intent to conceal or endeavour to conceal the birth—and prescribe the same punishment (imprisonment up to two years, or fine, or both).",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 166",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In comparing the Indian Penal Code and the Bharatiya Nyaya Sanhita on the right of private defence against an act done by a person of unsound mind (including cases involving youth, lack of maturity, intoxication, or misconception), what substantive changes were made in the wording and illustrations? Specifically, did the rule about the defender’s right being the same as if the act were the underlying offence remain identical, and were there any differences in how the illustrations are phrased or structured?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "98"
+      },
+      {
+        "act": "BNS",
+        "section": "36"
+      }
+    ],
+    "reference_answer": "The BNS provision is substantively the same as the IPC: it preserves the rule that when an act would otherwise be a certain offence but is not that offence due to youth, lack of maturity, unsoundness of mind, intoxication, or misconception, the person attacked has the same right of private defence as if the act were that offence. The illustrations are also materially identical, with only minor wording/formatting differences (e.g., “Illustrations” vs “Illustrations” and punctuation/spacing), and no change in the legal effect.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 102",
+    "category": "cross_reference"
+  },
+  {
+    "question": "In comparing the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the offence of selling a minor/child for purposes of prostitution or illicit intercourse change in wording and substance? Specifically, what differences (if any) exist in the description of the victim (minor vs child), the elements of the offence (intent/knowledge and the listed purposes), the maximum punishment, and the content of the explanations—especially the presumptions relating to a female under eighteen and the definition of “illicit intercourse” (including any wording changes like “quasi-marital relation”)?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "372"
+      },
+      {
+        "act": "BNS",
+        "section": "98"
+      }
+    ],
+    "reference_answer": "The BNS provision is substantively the same as the IPC one: it criminalises selling/letting for hire/otherwise disposing of a person with intent or knowledge that the person will be used for prostitution or illicit intercourse or for unlawful and immoral purposes, with the same maximum punishment (imprisonment up to ten years and fine). The main wording change is that the victim is described as a “child” in the BNS instead of “person under the age of eighteen years” in the IPC, while the explanations remain materially identical: the presumption for disposal of a female under eighteen to a prostitute or brothel-keeper/manager, and the definition of “illicit intercourse” as sexual intercourse between persons not united by marriage or a recognised union/tie, described as a quasi-marital relation.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 170",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the offence of adulteration of food or drink intended for sale differ in its punishment? Compare the two laws’ wording on the elements of the offence and specifically state what changed (if anything) about the maximum fine and any other sentencing terms.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "272"
+      },
+      {
+        "act": "BNS",
+        "section": "274"
+      }
+    ],
+    "reference_answer": "The offence elements are substantively the same: adulterating food/drink to make it noxious, with intent to sell it as food/drink or knowledge it is likely to be sold as such. The imprisonment term remains up to six months, but the maximum fine increases from ₹1,000 under the IPC to ₹5,000 under the BNS; both allow imprisonment and/or fine.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 394",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the Indian Penal Code and the Bharatiya Nyaya Sanhita, how does the law treat a person who harbours, receives, or assembles people who have been hired to join an unlawful assembly? Compare the two provisions in terms of (i) the elements/mental state required, (ii) the scope of conduct covered (e.g., harbouring/receiving/assembling and any other related acts), (iii) the definition of the underlying “unlawful assembly” concept that the harbouring provision depends on, and (iv) the punishment—specifically whether the maximum term or fine exposure changes.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "157"
+      },
+      {
+        "act": "BNS",
+        "section": "189"
+      }
+    ],
+    "reference_answer": "The IPC harbouring provision directly punishes harbouring/receiving/assembling persons in the accused’s house/premises under his control, knowing they were hired/engaged/employed (or about to be) to join an unlawful assembly; punishment is up to six months’ imprisonment or fine or both. Under the BNS, the harbouring conduct is retained with the same core elements and maximum punishment (up to six months’ imprisonment or fine or both), but it operates within the BNS’s broader, more detailed definition of “unlawful assembly” (five or more persons with specified common objects) and the BNS also expressly provides additional related offences for hiring/engaging/promoting/conniving and for armed participation, which are not part of the single IPC harbouring clause.",
+    "difficulty": "hard",
+    "notes": "auto-gen from concordance row 299",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under Indian labour law, what are the statutory requirements and procedure for an employer to terminate an employee for misconduct, including notice period and domestic inquiry steps?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of domain (labour/employment law) and should be refused because it is not covered by Indian criminal law under IPC/BNS.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (labour and employment law)",
+    "category": "negative"
+  },
+  {
+    "question": "What is the capital city of Australia?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is general knowledge trivia and is outside the domain of Indian criminal law (IPC/BNS), so the system should refuse.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (general trivia unrelated to law)",
+    "category": "negative"
+  },
+  {
+    "question": "A buyer and seller entered into a written supply agreement. The buyer failed to pay invoices on time, and the seller is now seeking damages and interest. Under Indian contract law, what remedies are available for breach of contract due to delayed payment, and how are damages typically calculated?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is a contract/commercial dispute question outside the scope of Indian criminal law (IPC/BNS), so it should be refused.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (contract and commercial disputes)",
+    "category": "negative"
+  },
+  {
+    "question": "Under Indian family law, what are the legal requirements and typical grounds for seeking a divorce by mutual consent, and what is the general process and timeline involved?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the system’s domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (family law (marriage, inheritance))",
+    "category": "negative"
+  },
+  {
+    "question": "What are the key provisions of the U.S. Clean Air Act regarding emissions standards for industrial facilities, and how are they enforced?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of domain (not Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (environmental regulation)",
+    "category": "negative"
+  },
+  {
+    "question": "What are the legal steps and documents required to register a sale deed for immovable property in India, and how does the registration process work with the local sub-registrar office?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of domain (property/registration procedure, not Indian criminal law under IPC/BNS), so the system should refuse.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (property and real-estate registration)",
+    "category": "negative"
+  },
+  {
+    "question": "What is the capital city of Australia?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "Out of domain: this is general geography trivia and not related to Indian criminal law under IPC/BNS, so the system should refuse.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (general trivia unrelated to law)",
+    "category": "negative"
+  },
+  {
+    "question": "Under Indian family law, what are the legal requirements and procedure for getting a divorce by mutual consent, and what documents are typically needed?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of domain (family law procedure) and should be refused because the system only covers Indian criminal law under IPC/BNS.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (family law (marriage, inheritance))",
+    "category": "negative"
+  },
+  {
+    "question": "How can I design a REST API endpoint in Python to handle pagination efficiently (using limit/offset or cursor-based pagination) and return consistent results under concurrent updates?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This question is about software engineering/API design and is out of the legal domain, so it should be refused.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (software engineering and programming)",
+    "category": "negative"
+  },
+  {
+    "question": "A buyer and seller entered into a supply agreement with a delivery deadline. The seller delivered late and the buyer wants to terminate and claim damages for breach of contract. Under Indian contract law, what are the buyer’s remedies and what factors determine whether termination and damages are justified?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is a contract/commercial dispute question and is out of the legal RAG system’s domain limited to Indian criminal law, so it should be refused.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (contract and commercial disputes)",
+    "category": "negative"
+  },
+  {
+    "question": "Under Indian family law, what are the legal requirements and procedure for getting a divorce by mutual consent, and what documents are typically needed?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of domain (family law procedure) and should be refused because the system only covers Indian criminal law under IPC/BNS.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (family law (marriage, inheritance))",
+    "category": "negative"
+  },
+  {
+    "question": "What are the current GST filing requirements for a registered business in India, including the due dates for GSTR-1, GSTR-3B, and annual returns?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of domain (GST/income tax compliance, not Indian criminal law under IPC/BNS), so the system should refuse.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (income tax and GST)",
+    "category": "negative"
+  },
+  {
+    "question": "Under India’s environmental regulatory framework, what are the legal requirements and procedural steps for obtaining prior environmental clearance for a new industrial project, including the role of the EIA notification, public consultation, and the timelines for decision-making by the competent authority?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (environmental regulation)",
+    "category": "negative"
+  },
+  {
+    "question": "In a software engineering context, what are the key legal considerations and typical contractual clauses when drafting a SaaS agreement for data ownership, data processing responsibilities, and liability allocation for third-party API usage? Please outline best practices for negotiating these terms.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (software engineering and programming)",
+    "category": "negative"
+  },
+  {
+    "question": "Under the Hindu Marriage Act, 1955, what are the legal grounds and procedure for seeking a decree of nullity (annulment) of a marriage, and what documents are typically required to file such a petition in family court?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (family law (marriage, inheritance))",
+    "category": "negative"
+  },
+  {
+    "question": "In India, what are the legal requirements and procedural steps to file and prosecute a patent infringement lawsuit, including how to establish infringement and what remedies (injunction, damages, account of profits) are typically available under the Patents Act?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (intellectual property (patents, trademarks))",
+    "category": "negative"
+  },
+  {
+    "question": "Under Indian company law, what are the legal requirements and procedural steps for a private limited company to approve and file an alteration of its share capital with the Registrar of Companies, including any board and shareholder approvals and the relevant statutory forms?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (Indian company / corporate law)",
+    "category": "negative"
+  },
+  {
+    "question": "In India, if a buyer discovers after purchase that the seller’s property title was incorrectly recorded in the land records, what is the correct legal process to seek rectification of the registration and update the title in the relevant land registry, and what documents are typically required?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (property and real-estate registration)",
+    "category": "negative"
+  },
+  {
+    "question": "Under India’s labour and employment framework, what are the legal requirements and timelines for an employer to conduct a disciplinary inquiry before terminating an employee for alleged misconduct, and what procedural safeguards must be followed to ensure the termination is not considered arbitrary or in violation of labour laws?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (labour and employment law)",
+    "category": "negative"
+  },
+  {
+    "question": "Under the U.S. Clean Water Act, what are the legal requirements and potential penalties for a facility that discharges pollutants into navigable waters without a National Pollutant Discharge Elimination System (NPDES) permit, and how do courts typically determine whether the discharge is “point source” and “from a point source” for liability purposes?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This question is about U.S. environmental regulatory law (Clean Water Act/NPDES) and is outside the domain of Indian criminal law under IPC/BNS, so it should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (environmental regulation)",
+    "category": "negative"
+  },
+  {
+    "question": "Under the U.S. Clean Water Act, what are the legal requirements and potential penalties for a facility that discharges pollutants into a navigable water without a National Pollutant Discharge Elimination System (NPDES) permit, and how does the enforcement process typically proceed?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This question is about U.S. environmental regulatory law (Clean Water Act/NPDES) and is outside the domain of Indian criminal law under IPC/BNS, so it should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (environmental regulation)",
+    "category": "negative"
+  },
+  {
+    "question": "Under India’s labour and employment framework, what are the legal requirements and timelines for an employer to conduct a disciplinary inquiry before terminating an employee for alleged misconduct, and what procedural safeguards must be followed to ensure the termination is not considered unlawful?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This question is about labour/employment procedural law and disciplinary termination requirements, which is outside the system’s domain limited to Indian criminal law (IPC/BNS), so it should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (labour and employment law)",
+    "category": "negative"
+  },
+  {
+    "question": "In India, if a buyer purchases an immovable property based on a registered sale deed, what are the legal steps and timelines for correcting an error in the property description in the registration records (e.g., survey number or plot area) through the Sub-Registrar—does it require a rectification deed, an amendment application, or a court order, and what documents are typically required?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (property and real-estate registration)",
+    "category": "negative"
+  },
+  {
+    "question": "Under the Indian Income-tax Act and GST law, how is the input tax credit (ITC) treated when a registered supplier issues a tax invoice but the underlying goods are returned before the recipient files the monthly GST return—can the recipient still claim ITC, and what are the relevant conditions or timelines for reversal or adjustment?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This question is about Income-tax/GST law, which is outside the system’s domain limited to Indian criminal law (IPC/BNS), so it should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (income tax and GST)",
+    "category": "negative"
+  },
+  {
+    "question": "In the context of Indian property transactions, if a seller executes a registered sale deed but the underlying title is later found to be defective due to an unregistered prior agreement affecting the property, what remedies are available to the buyer under the Registration Act and the Transfer of Property framework—specifically regarding cancellation/rectification of the registered instrument, the effect of registration on priority of interests, and the evidentiary value of the unregistered agreement against third parties? Please outline the applicable legal principles and the procedural steps typically followed before the appropriate civil forum.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This question is about civil property/registration law and remedies (Registration Act/Transfer of Property principles), which is outside the system’s domain limited to Indian criminal law under IPC/BNS; it should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (property and real-estate registration)",
+    "category": "negative"
+  },
+  {
+    "question": "Under the Hague-Visby Rules, how is the carrier’s liability for loss of or damage to cargo determined when the bill of lading contains a Himalaya clause extending protections to subcontractors, and what is the legal effect of the clause on the shipper’s ability to sue the stevedores directly? Please explain the governing principles and the typical outcome in such disputes.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This question is about international maritime carriage law (Hague-Visby Rules) and contract/tort principles, which is outside the provided domain of Indian criminal law under IPC/BNS, so it should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (general trivia unrelated to law)",
+    "category": "negative"
+  },
+  {
+    "question": "In the context of Indian property transactions, what are the legal consequences under the Registration Act, 1908 and the Transfer of Property Act, 1882 when a sale deed is executed but not registered within the prescribed time—specifically, whether the unregistered instrument can be admitted for collateral purposes, and how this affects the transferee’s title and enforceability against third parties? Please cite the relevant statutory provisions and leading judicial principles.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (property and real-estate registration)",
+    "category": "negative"
+  },
+  {
+    "question": "A private limited company in India wants to issue additional equity shares to an existing shareholder at a price below the fair market value. Under the Companies Act framework, what statutory approvals or compliance steps are required (e.g., board/shareholder resolutions, valuation requirements, and any restrictions on related-party transactions), and what are the potential consequences if the pricing is not properly justified?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (Indian company / corporate law)",
+    "category": "negative"
+  },
+  {
+    "question": "Under the Hindu Marriage Act and the Hindu Succession Act, what are the legal requirements and evidentiary standards for seeking a decree of nullity on the ground of fraud in relation to a marriage, and how does such a decree affect the devolution of property and inheritance rights of the parties and any children born before the decree? Please outline the relevant principles and procedural considerations.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of domain because it concerns family and succession law under civil statutes, not Indian criminal law under the IPC/BNS; the system should refuse.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (family law (marriage, inheritance))",
+    "category": "negative"
+  },
+  {
+    "question": "A pharmaceutical company files a patent application in India for a new polymorph of an existing active ingredient. After publication, a competitor begins commercial manufacture and sale of the polymorph in India, claiming it is not covered by the patent claims. The patentee seeks an urgent court order to stop sales and also wants to recover damages for infringement. Under Indian patent law, what are the key legal tests and procedural requirements for (i) obtaining an interim injunction in a patent infringement suit, and (ii) establishing infringement when the alleged product is said to fall outside the claim scope? Please outline the relevant standards and the typical evidence the court considers.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This request is about Indian patent law and infringement/injunction standards, which is outside the provided domain of Indian criminal law (IPC/BNS); it should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (intellectual property (patents, trademarks))",
+    "category": "negative"
+  },
+  {
+    "question": "Under Indian labour and employment law, what are the legal requirements and procedural steps for an employer to impose a disciplinary penalty for alleged misconduct during probation, including the standards for conducting a domestic inquiry, the employee’s right to be heard, and the circumstances in which the employer may dispense with a full inquiry? Please cite the relevant statutory provisions and explain how courts typically assess whether the inquiry was fair and non-arbitrary.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This request is outside the domain of Indian criminal law under IPC/BNS and should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (labour and employment law)",
+    "category": "negative"
+  },
+  {
+    "question": "A registered supplier under the GST law has issued a tax invoice for a supply of services but, due to a subsequent dispute with the recipient, has not received consideration within the prescribed time. The supplier wants to know whether it can claim input tax credit on related expenses and whether it must reverse or adjust output tax liability under the GST framework for non-payment/credit notes, including the relevant conditions and procedural steps. Please explain the applicable GST provisions and the correct compliance approach.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This request is about GST/income-tax compliance and provisions, which is outside the domain of Indian criminal law (IPC/BNS); the system should refuse.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (income tax and GST)",
+    "category": "negative"
+  },
+  {
+    "question": "Under the Environment (Protection) Act, 1986 and the Environment Impact Assessment (EIA) framework, what are the legal standards and procedural requirements for obtaining prior environmental clearance for a new thermal power project, including the scope of the public consultation process, the criteria for determining the EIA notification category, and the consequences of non-compliance with the clearance conditions?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is outside the domain of Indian criminal law under the IPC/BNS and should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (environmental regulation)",
+    "category": "negative"
+  },
+  {
+    "question": "A registered supplier under the GST regime has issued a tax invoice for a supply of services but, due to a subsequent dispute with the recipient, has not received consideration within the agreed credit period. The supplier wants to know whether it can claim input tax credit on related expenses and whether it must reverse or adjust output tax liability under GST for the unpaid consideration, including any implications for time of supply and valuation. Please explain the applicable GST provisions and the procedural steps for rectification/credit note or debit note in such a scenario.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This request is about GST/income-tax compliance and provisions, which is outside the domain of Indian criminal law (IPC/BNS), so the system should refuse.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (income tax and GST)",
+    "category": "negative"
+  },
+  {
+    "question": "Under Indian labour and employment law, what are the legal requirements and procedural steps for an employer to impose a major penalty dismissal following a domestic enquiry, including the standards for notice, opportunity of hearing, supply of documents, and the scope of judicial review by labour courts/industrial tribunals? Please also address how limitation periods and reinstatement/compensation principles typically operate when the enquiry is found procedurally defective.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is outside the domain of Indian criminal law under IPC/BNS and should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (labour and employment law)",
+    "category": "negative"
+  },
+  {
+    "question": "In a dispute between two software vendors over a breach of a SaaS subscription agreement, one party claims that the other’s deployment pipeline introduced a malicious dependency and caused data exfiltration. Under applicable contract and software supply-chain security principles, what are the typical elements and evidentiary requirements to establish (i) breach of the security obligations, (ii) causation between the alleged dependency compromise and the alleged data loss, and (iii) the scope of recoverable damages (including whether consequential damages are limited by standard limitation-of-liability clauses)? Please outline the legal tests and the kinds of technical logs/artifacts that courts generally expect to see.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "Out of domain: this is contract/software supply-chain security and damages analysis, not Indian criminal law under IPC/BNS, so the system should refuse.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (software engineering and programming)",
+    "category": "negative"
+  },
+  {
+    "question": "A private limited company in India wants to issue additional equity shares to an existing shareholder at a price below the fair market value. Under the Companies Act framework, what statutory approvals and procedural compliances are required (including any requirements relating to valuation, board/shareholder approvals, and disclosures), and what are the potential consequences for the company and its directors if the issuance is not conducted in accordance with the applicable rules?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of domain because it concerns Indian company/corporate law under the Companies Act, not IPC/BNS criminal law; the system should refuse.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (Indian company / corporate law)",
+    "category": "negative"
+  },
+  {
+    "question": "Under the Companies Act, 2013 and the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015, what are the legal requirements and procedural steps for a listed Indian company to undertake a related-party transaction through a shareholder approval route—specifically addressing (i) the scope of “related party” and “related party transaction,” (ii) the role and composition of the audit committee, (iii) the conditions for exemption from shareholder approval, and (iv) the consequences of non-compliance for the company and its directors?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (Indian company / corporate law)",
+    "category": "negative"
+  },
+  {
+    "question": "In the context of Indian property transactions, what are the legal consequences under the Registration Act, 1908 and the Transfer of Property framework when a sale deed is executed but not registered within the prescribed time—specifically, whether the unregistered instrument can be admitted for collateral purposes, and how this affects the transferee’s title and enforceability against third parties? Please cite the relevant statutory provisions and leading judicial principles.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of domain because it concerns civil property/registration law (Registration Act/Transfer of Property) rather than Indian criminal law under IPC/BNS, so the system should refuse.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (property and real-estate registration)",
+    "category": "negative"
+  },
+  {
+    "question": "Under Indian labour and employment law, what are the statutory grounds and procedural requirements for terminating an employee on the basis of alleged misconduct, including the need for a domestic inquiry, principles of natural justice, and the consequences if the employer fails to follow the prescribed procedure under the applicable standing orders/industrial relations framework? Please also address how courts typically assess whether the inquiry was fair and whether reinstatement or compensation is the appropriate remedy.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This request is outside the domain of Indian criminal law under IPC/BNS and should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (labour and employment law)",
+    "category": "negative"
+  },
+  {
+    "question": "In a commercial supply agreement governed by English law, the buyer alleges that the seller’s repeated late deliveries amount to a repudiatory breach and seeks to terminate the contract and claim damages. Under the doctrine of anticipatory breach and the principles governing termination for breach, what legal tests determine whether the breach is sufficiently serious to justify termination, and how do courts assess whether the buyer has affirmed the contract after learning of the breach? Please outline the relevant standards and the typical evidentiary factors considered.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This request is about English contract/commercial law doctrines and remedies, which is outside the system’s domain limited to Indian criminal law (IPC/BNS), so it should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (contract and commercial disputes)",
+    "category": "negative"
+  },
+  {
+    "question": "In a dispute between two software vendors over a breach of a SaaS subscription agreement, one party alleges that the other’s deployment pipeline introduced a vulnerability that caused unauthorized data access. Under general contract and software security principles, what are the key elements a claimant must establish to prove breach of the implied duty of good faith and reasonable security measures, and how do courts typically assess causation and damages when the alleged harm could have been caused by third-party dependencies (e.g., open-source libraries)?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is outside the domain of Indian criminal law under IPC/BNS and should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (software engineering and programming)",
+    "category": "negative"
+  },
+  {
+    "question": "Under Indian labour and employment law, what are the legal requirements and procedural steps an employer must follow to lawfully terminate a permanent employee for alleged misconduct—specifically regarding issuance of a charge-sheet, conducting a domestic inquiry, providing opportunity of hearing, and the circumstances under which termination without full inquiry may still be considered valid? Please cite the applicable statutory provisions and explain the consequences of non-compliance.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This request is outside the domain of Indian criminal law under IPC/BNS and should be refused.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (labour and employment law)",
+    "category": "negative"
+  },
+  {
+    "question": "A registered supplier under the GST law has issued a tax invoice for a supply in March 2024 but, due to a subsequent dispute with the recipient, has not received consideration and has not filed the corresponding outward supply details in the GSTR-1 for that month. The supplier now wants to know whether it can claim input tax credit reversal/rectification relief and issue a credit note in a later tax period to correct the mismatch, and what procedural timelines and conditions apply for such amendments under the GST return and credit note framework. Please also clarify how the treatment differs if the dispute is resolved after the due date for filing the relevant return.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This request is about GST/income-tax procedural rules and timelines, which are outside the domain of Indian criminal law (IPC/BNS); the system should refuse.",
+    "difficulty": "hard",
+    "notes": "auto-gen negative (income tax and GST)",
+    "category": "negative"
+  }
+]

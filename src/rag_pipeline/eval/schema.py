@@ -83,10 +83,14 @@ def save_eval_set(examples: list[EvalExample], path: Path) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     data = [e.model_dump(mode="json") for e in examples]
-    path.write_text(
+    # Atomic write: dump to a temp file in the same dir, then os.replace so a
+    # crash/interruption mid-write can never leave a truncated checkpoint.
+    tmp = path.with_name(f"{path.name}.tmp")
+    tmp.write_text(
         json.dumps(data, indent=2, ensure_ascii=False),
         encoding="utf-8",
     )
+    os.replace(tmp, path)
     log.info(f"Saved {len(examples)} eval examples → {path.name}")
 
 
