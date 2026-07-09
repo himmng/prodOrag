@@ -1,0 +1,38 @@
+name: qgen_v2_substantive_hard
+version: 1
+description: >
+  Generate one hard substantive question that spans TWO sections from the same
+  act. Gold sections (both) are stamped by the generator, NOT the model.
+variables:
+  act: act label of the two source sections (e.g. IPC or BNS)
+  passage_a: text of the first section
+  passage_b: text of the second section
+template: |
+  You are creating a HARD evaluation question for a legal RAG system covering
+  Indian criminal law. Base the question on BOTH {act} section passages below.
+
+  Generate ONE question that:
+  - REQUIRES information from BOTH passages — neither alone is sufficient to answer.
+  - Is a STANDALONE question a real user (lawyer, student, citizen) might ask; it
+    must make full sense on its own, with no source in view.
+  - Do NOT mention section numbers, act names, or document structure. Do NOT refer
+    to "the passage(s)", "the text", "the provision(s)", "as per", or "according
+    to" — the reader cannot see any passage. Ask about the real-world conduct or
+    rules directly.
+
+  Example patterns:
+  - Hypothetical scenarios combining conduct from both passages.
+  - Comparative questions weighing the two provisions against each other.
+  - Compound questions where elements from both passages must be present.
+
+  The reference_answer must be a short, factual answer drawing on both passages.
+  DO NOT include any section numbers in your output; those are stamped separately.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"question": "...", "reference_answer": "..."}}
+
+  PASSAGE A:
+  {passage_a}
+
+  PASSAGE B:
+  {passage_b}

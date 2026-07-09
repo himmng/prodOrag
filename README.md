@@ -65,6 +65,13 @@ rag-ingest --corpus ipc_bns --dry-run         # parse + write JSON, no ChromaDB
 Ingest runs offline and writes per-corpus chunk JSON to `data/processed/` and
 vectors to `chroma_db/`.
 
+### Generate Evalution set
+The evaluation sets need .yaml mentioning the way the document corpus is designed need to store it at `./config/corpora/*document*.yaml`
+```
+source .venv/bin/activate
+python -m rag_pipeline.eval.qgen_v2 --out eval/eval_set_v2.json      # resumes automatically if interrupted
+python -m rag_pipeline.eval.qgen_v2 --out eval/eval_set_v2.json --fresh   # ignore checkpoint, start over
+```
 ### Run the API
 
 ```bash

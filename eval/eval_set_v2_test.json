@@ -1,0 +1,158 @@
+[
+  {
+    "question": "What is the maximum term of imprisonment for kidnapping a minor or obtaining custody of a minor for the purpose of begging?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "363"
+      }
+    ],
+    "reference_answer": "Up to ten years.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 779461f5d478bb76",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "What punishment is prescribed for a person who habitually imports, exports, removes, buys, sells, traffics, or deals in slaves?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "145"
+      }
+    ],
+    "reference_answer": "Imprisonment for life, or imprisonment of either description for a term not exceeding ten years, and also liability to fine.",
+    "difficulty": "easy",
+    "notes": "auto-gen from chunk 5ef9f08e5185b0cc",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "In Indian criminal law, what is the corresponding provision in the Bharatiya Nyaya Sanhita for the IPC offence of abetment of an act of insubordination by a soldier, sailor, or airman? Also, how does the punishment differ between the two laws?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "138"
+      },
+      {
+        "act": "BNS",
+        "section": "166"
+      }
+    ],
+    "reference_answer": "The corresponding BNS provision is the offence of abetment of an act of insubordination by a soldier, sailor or airman. The punishment increases from up to 6 months under the IPC to up to 2 years under the BNS (with fine or both).",
+    "difficulty": "easy",
+    "notes": "auto-gen from concordance row 264",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under Indian labour law, what are the statutory requirements and procedure for terminating an employee for misconduct, including notice period and whether a domestic inquiry is mandatory?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the system’s domain (labour/employment law) and should be refused because it is not covered by Indian criminal law under IPC/BNS.",
+    "difficulty": "easy",
+    "notes": "auto-gen negative (labour and employment law)",
+    "category": "negative"
+  },
+  {
+    "question": "A person is attacked and, fearing for their safety, they use force that results in the attacker’s death. Under what kinds of assaults does the right of private defence of the body extend to voluntarily causing death or other harm to the assailant? Please list the specific assault situations described.",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "100"
+      }
+    ],
+    "reference_answer": "It extends to voluntarily causing death or other harm to the assailant only if the assault is: (1) one that may reasonably cause apprehension that death will otherwise be the consequence; (2) one that may reasonably cause apprehension that grievous hurt will otherwise be the consequence; (3) an assault intended to commit rape; (4) an assault intended to gratify unnatural lust; (5) an assault intended to kidnap or abduct; (6) an assault intended to wrongfully confine a person under circumstances that may reasonably cause apprehension the person will be unable to seek release from public authorities; or (7) an act of throwing/administering acid (or an attempt) that may reasonably cause apprehension of grievous hurt otherwise.",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk 9b0def6f956b0cb7",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "If someone is found in possession of forged or counterfeit currency notes, but they can show the notes came from a lawful source, will they be treated as having committed an offence for possessing those forged or counterfeit notes? Also, what mental element is required for liability when the lawful-source condition is not established?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "180"
+      }
+    ],
+    "reference_answer": "No. If the person establishes that the forged or counterfeit coin/stamp/currency-note/bank-note was obtained from a lawful source, it will not constitute an offence. Otherwise, liability requires that the person knew or had reason to believe the item was forged or counterfeit and intended to use it as genuine (or that it may be used as genuine).",
+    "difficulty": "medium",
+    "notes": "auto-gen from chunk d2265a2f69391ccb",
+    "category": "bns_substantive"
+  },
+  {
+    "question": "In Indian criminal law, what is the equivalent provision in the Bharatiya Nyaya Sanhita for the offence of affray under the Indian Penal Code, and what notable change is made in the Bharatiya Nyaya Sanhita regarding punishment compared to the Indian Penal Code?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "159"
+      },
+      {
+        "act": "BNS",
+        "section": "194"
+      }
+    ],
+    "reference_answer": "The Bharatiya Nyaya Sanhita’s affray provision corresponds to the IPC’s affray definition (fighting in a public place disturbing public peace). A notable change is that the BNS expressly adds a punishment clause for affray (up to one month imprisonment, or fine up to ₹1,000, or both), whereas the IPC statement is only the definition and does not include the punishment in that definition line.",
+    "difficulty": "medium",
+    "notes": "auto-gen from concordance row 309",
+    "category": "cross_reference"
+  },
+  {
+    "question": "Under the U.S. Federal Rules of Evidence, what is the difference between relevance and admissibility, and how does a court typically decide whether evidence is admissible under Rule 401 and Rule 403?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [],
+    "reference_answer": "This is out of the provided domain (Indian criminal law under IPC/BNS) and should be refused.",
+    "difficulty": "medium",
+    "notes": "auto-gen negative (general trivia unrelated to law)",
+    "category": "negative"
+  },
+  {
+    "question": "A university accounts clerk is entrusted with the university’s cash and is responsible for handling payments. He creates a fake payment voucher by altering the figures on a document and uses it to divert money for his own benefit. He does not have legal authority to use the money for himself. Based on these facts, can he be held criminally liable for criminal breach of trust, and how do the concepts of “dishonestly” and “wrongful gain/loss” support the intent element?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "IPC",
+        "section": "5"
+      },
+      {
+        "act": "IPC",
+        "section": "408"
+      }
+    ],
+    "reference_answer": "Yes. A clerk entrusted with property or dominion over property who commits criminal breach of trust in respect of that property is punishable. Here, diverting money using a fabricated voucher shows the clerk acted with intent to cause wrongful gain to himself and wrongful loss to the university, i.e., retaining or acquiring property by unlawful means to which he was not legally entitled, which satisfies “dishonestly.”",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 829a29b699e4288d, 73e377b0d58c1348",
+    "category": "ipc_substantive"
+  },
+  {
+    "question": "A police constable is legally responsible for keeping an arrested person in custody. Due to the constable’s negligence, the arrested person escapes. Separately, the same constable later enters a private house without permission and stays there with the intent to intimidate or annoy the occupants. What criminal offences are attracted for (i) the escape and (ii) the unauthorized entry and continued presence, and what are the maximum punishments for each?",
+    "gold_source_paths": [],
+    "gold_snippets": [],
+    "gold_sections": [
+      {
+        "act": "BNS",
+        "section": "329"
+      },
+      {
+        "act": "BNS",
+        "section": "261"
+      }
+    ],
+    "reference_answer": "(i) The constable’s negligent failure to prevent the escape attracts the offence of negligently suffering escape from confinement/custody by a public servant, punishable with simple imprisonment up to two years, or fine, or both. (ii) The unauthorized entry and unlawful remaining in a human dwelling with intent to intimidate/annoy attracts house-trespass, punishable with imprisonment up to one year, or fine up to ₹5,000, or both.",
+    "difficulty": "hard",
+    "notes": "auto-gen from chunks 5d2f899a7384907d, 1d5ea1dde81d4a95",
+    "category": "bns_substantive"
+  }
+]

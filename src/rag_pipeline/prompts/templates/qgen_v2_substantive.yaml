@@ -1,0 +1,33 @@
+name: qgen_v2_substantive
+version: 1
+description: >
+  Generate one substantive question answerable from a single statute section,
+  at a given difficulty. Gold sections are stamped by the generator, NOT the model.
+variables:
+  act: act label of the source section (e.g. IPC or BNS)
+  difficulty: easy | medium | hard
+  difficulty_hint: instruction describing how hard the question should be
+  passage: text of the section to base the question on
+template: |
+  You are creating an evaluation question for a legal RAG system covering Indian
+  criminal law. Base the question ONLY on the {act} section passage below.
+
+  Difficulty: {difficulty}
+  {difficulty_hint}
+
+  Requirements:
+  - The question must be fully answerable from THIS passage alone.
+  - Write a STANDALONE question the way a real user (lawyer, student, citizen)
+    would actually ask it. It must make sense on its own, with no source in view.
+  - Do NOT mention section numbers, act names, chapter numbers, or document
+    structure. Do NOT refer to "the passage", "the text", "the section", "the
+    provision", "this Act", "as per", or "according to" — the reader cannot see
+    any passage. Ask about the real-world conduct or rule directly.
+  - The reference_answer must be a short, factual answer grounded in the passage.
+  - DO NOT include any section numbers in your output; those are stamped separately.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"question": "...", "reference_answer": "..."}}
+
+  PASSAGE:
+  {passage}

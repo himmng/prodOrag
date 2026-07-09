@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 @lru_cache(maxsize=1)
 def get_llm() -> "BaseChatModel":
     """Return the chat LLM for the active provider."""
-    provider = cfg.MODEL_PROVIDER
+    provider = cfg.llm_provider
     log.info(f"Instantiating LLM for provider: {provider}")
     dispatch = {
         "ollama": _ollama_llm,
@@ -41,7 +41,7 @@ def get_llm() -> "BaseChatModel":
 @lru_cache(maxsize=1)
 def get_embeddings() -> "Embeddings":
     """Return the embedding model for the active provider."""
-    provider = cfg.MODEL_PROVIDER
+    provider = cfg.embedding_provider
     log.info(f"Instantiating embedding model for provider: {provider}")
     dispatch = {
         "ollama": _ollama_emb,
@@ -59,7 +59,7 @@ def get_embeddings() -> "Embeddings":
 def _require(value, name: str) -> None:
     if not value:
         raise ValueError(
-            f"{name} is required for provider {cfg.MODEL_PROVIDER}."
+            f"{name} is required for provider {cfg.LLM_PROVIDER}."
             f"Please set it via environment variable or in your .env file."
         )
     
@@ -81,28 +81,27 @@ def _ollama_emb():
 
 # azure openai
 def _azure_llm():
-    from langchain_azure_openai import AzureChatOpenAI
+    from langchain_openai import AzureChatOpenAI
     _require(cfg.AZURE_OPENAI_ENDPOINT, "AZURE_OPENAI_ENDPOINT")
     _require(cfg.AZURE_OPENAI_API_KEY, "AZURE_OPENAI_API_KEY")
     _require(cfg.AZURE_OPENAI_DEPLOYMENT, "AZURE_OPENAI_DEPLOYMENT")
     return AzureChatOpenAI(
         azure_endpoint=cfg.AZURE_OPENAI_ENDPOINT,
         azure_deployment=cfg.AZURE_OPENAI_DEPLOYMENT,
-        azure_api_version=cfg.AZURE_OPENAI_API_VERSION,
-        azure_api_key=cfg.AZURE_OPENAI_API_KEY,
+        api_version=cfg.AZURE_OPENAI_API_VERSION,     # was azure_api_version
+        api_key=cfg.AZURE_OPENAI_API_KEY,             # was azure_api_key
         temperature=0.0,
     )
-
 def _azure_emb():
-    from langchain_azure_openai import AzureOpenAIEmbeddings
+    from langchain_openai import AzureOpenAIEmbeddings
     _require(cfg.AZURE_OPENAI_ENDPOINT, "AZURE_OPENAI_ENDPOINT")
     _require(cfg.AZURE_OPENAI_API_KEY, "AZURE_OPENAI_API_KEY")
     _require(cfg.AZURE_OPENAI_EMBEDDING_DEPLOYMENT, "AZURE_OPENAI_EMBEDDING_DEPLOYMENT")
     return AzureOpenAIEmbeddings(
         azure_endpoint=cfg.AZURE_OPENAI_ENDPOINT,
         azure_deployment=cfg.AZURE_OPENAI_EMBEDDING_DEPLOYMENT,
-        azure_api_version=cfg.AZURE_OPENAI_API_VERSION,
-        azure_api_key=cfg.AZURE_OPENAI_API_KEY,
+        api_version=cfg.AZURE_OPENAI_API_VERSION,     # was azure_api_version
+        api_key=cfg.AZURE_OPENAI_API_KEY,             # was azure_api_key
     )
 
 # openai direct (optional)
