@@ -39,6 +39,82 @@ generation to support:
   OpenAI (switch via `MODEL_PROVIDER`)
 - auth guard with optional API-key mode; per-request rate limiting
 
+## Architecture
+
+The pipeline splits into an **offline ingest** path (run once per corpus change) and
+an **online serving** path (the FastAPI request loop). Everything is driven from the
+corpus YAML selected by `RAG_CORPUS`, so the core stays corpus-agnostic.
+
+```mermaid
+flowchart TB
+    subgraph Config["Corpus config"]
+        YAML["configs/corpora/&lt;name&gt;.yaml<br/>sources · parser regex<br/>concordance · context"]
+    end
+
+    subgraph Ingest["Offline ingest — rag-ingest"]
+        PDF["data/raw/*.pdf"]
+        SP["StatuteParser<br/>(section-aware chunking)"]
+        DP["DoclingHybridParser<br/>(prose / OCR)"]
+        CP["ConcordanceParser<br/>(pdfplumber table)"]
+        EMB1["get_embeddings()<br/>(provider-agnostic)"]
+        PDF --> SP --> EMB1
+        PDF --> DP --> EMB1
+        PDF --> CP
+    end
+
+    subgraph Stores["Persisted artifacts"]
+        CHROMA[("chroma_db/<br/>IPC_Corpus · BNS_Corpus")]
+        JSON["data/processed/*.json<br/>chunk caches"]
+        CONC["concordance.json<br/>(dict lookup)"]
+    end
+
+    EMB1 --> CHROMA
+    SP --> JSON
+    DP --> JSON
+    CP --> CONC
+
+    subgraph Serve["Online serving — FastAPI"]
+        API["api/main.py<br/>/answer · /answer/stream<br/>/answer/case · /meta"]
+        subgraph Retrieval["Per-act retrieval (by_act)"]
+            DENSE["DenseRetriever"]
+            BM25["BM25Retriever"]
+            ENS["EnsembleRetriever<br/>(RRF fusion)"]
+            RR["Reranker<br/>(BGE cross-encoder)"]
+            DENSE --> ENS
+            BM25 --> ENS
+            ENS --> RR
+        end
+        CTX["build_context<br/>+ concordance injection"]
+        LLM["get_llm()<br/>(Ollama / Azure / ...)"]
+        DOCS["DocumentStore<br/>(per-session case uploads)"]
+    end
+
+    YAML --> Ingest
+    YAML --> API
+    CHROMA --> DENSE
+    JSON --> BM25
+    CONC -->|exact-match lookup| CTX
+    RR --> CTX
+    DOCS --> CTX
+    CTX --> LLM
+
+    subgraph Clients["Clients"]
+        DASH["Streamlit dashboard"]
+        USER["API consumers / SSE"]
+    end
+
+    LLM -->|answer| API
+    API -->|"answer · citations<br/>cross_reference · context"| DASH
+    API -->|SSE token stream| USER
+    DASH -.->|upload case| DOCS
+```
+
+**Read the diagram as three lanes:** the corpus YAML (top) configures both paths;
+ingest turns PDFs into Chroma vectors + chunk caches + a concordance dict; serving
+retrieves per-act (dense + BM25 → RRF ensemble → BGE rerank), injects the
+deterministic concordance lookup into context, and grounds the LLM answer. Case
+uploads live in a separate per-session collection that never mixes into the corpus.
+
 ## Getting started
 
 ### Install locally
