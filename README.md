@@ -1,6 +1,6 @@
 [![CI](https://github.com/himmng/protoRAG/actions/workflows/ci.yml/badge.svg)](https://github.com/himmng/protoRAG/actions/workflows/ci.yml)
 
-# protoRAG
+# prodOrag
 
 A **corpus-agnostic**, production-bound hybrid RAG pipeline for legal corpora. The
 reference corpus is Indian criminal law — the Indian Penal Code (IPC 1860) and the
