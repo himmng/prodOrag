@@ -36,14 +36,13 @@ python-multipart
 jupyter==1.1.1
 ipykernel==6.29.5
 tqdm==4.67.1
-<<<<<<< HEAD
 
 # plotting
 matplotlib
 
-=======
+#=======
 pandas
->>>>>>> bb6abde (fix: update FlagEmbedding version and ensure pandas is listed in requirements)
+
 #
 slowapi>=0.1.9
 

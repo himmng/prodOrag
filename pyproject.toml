@@ -37,7 +37,7 @@ dependencies = [
     "pydantic-settings>=2.5",
     "python-dotenv>=1.0",
     "PyYAML>=6.0",
-    "transformers>=4.40,<4.45",
+    "transformers>=4.45",
 
     # LangChain stack
     "langchain>=0.3",
