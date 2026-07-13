@@ -147,13 +147,23 @@ The evaluation sets need .yaml mentioning the way the document corpus is designe
 source .venv/bin/activate
 python -m rag_pipeline.eval.qgen_v2 --out eval/eval_set_v2.json      # resumes automatically if interrupted
 python -m rag_pipeline.eval.qgen_v2 --out eval/eval_set_v2.json --fresh   # ignore checkpoint, start over
+
+python -m rag_pipeline.eval.qgen_v3 --out eval/eval_set_v3.json          # full 200, verified, resumable
+python -m rag_pipeline.eval.qgen_v3 --out eval/eval_set_v3.json --no-verify   # ~2x faster, no quality gate
+
 ```
 ### Run the API
 
 ```bash
 uvicorn rag_pipeline.api.main:app --host 0.0.0.0 --port 8000
 ```
-
+### Run Evaluations (Hit@K, Recall, MRR)
+set the eval path in the .env
+```bash
+curl -s -X POST http://localhost:8000/eval/retrieval \
+  -H "X-API-Key: dev-key-123" -H "Content-Type: application/json" \
+  -d '{"retriever":"hybrid_reranked","top_k":5}' | python -m json.tool
+```
 Then open:
 
 - `http://localhost:8000/docs` — interactive OpenAPI docs

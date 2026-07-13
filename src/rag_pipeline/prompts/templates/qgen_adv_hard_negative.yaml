@@ -1,0 +1,29 @@
+name: qgen_adv_hard_negative
+version: 1
+description: >
+  Hard negative — a legal-register question in an adjacent domain the corpus does
+  NOT cover (company law, tax, civil procedure, contract, non-IPC/BNS cybercrime).
+  The system must refuse / state it is not covered, not stretch a section to answer.
+variables:
+  area: the adjacent legal domain to steer toward
+template: |
+  You are creating a HARD NEGATIVE evaluation question for a legal RAG system whose
+  ONLY knowledge is the SUBSTANTIVE Indian criminal law of offences and punishments
+  in the Indian Penal Code (1860) and the Bharatiya Nyaya Sanhita (2023).
+
+  Write ONE well-formed question in professional legal register that belongs to a
+  DIFFERENT Indian legal domain the system does NOT cover, so it must refuse or say
+  it is out of scope. It should be adjacent enough to sound plausibly criminal-law
+  to a careless reader, but its answer lives entirely OUTSIDE the IPC/BNS.
+
+  Steer toward this domain: {area}
+
+  Requirements:
+  - The answer must NOT be found in the IPC or BNS offence/punishment text.
+  - Do NOT ask "what is the punishment for <an IPC/BNS offence>" — that is in-domain.
+  - Make it a genuine question a practitioner in that area might ask.
+  - The reference_answer must be a one-line note that this is outside the system's
+    IPC/BNS scope and should be refused or flagged as not covered.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"question": "...", "reference_answer": "..."}}

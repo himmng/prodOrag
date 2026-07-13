@@ -1,0 +1,37 @@
+name: qgen_adv_distractor
+version: 1
+description: >
+  Distractor / precision question. Two legally-distinct but semantically-adjacent
+  offences (e.g. theft vs extortion). The question must be UNAMBIGUOUSLY about the
+  TARGET offence while sharing vocabulary with the neighbour — to test whether
+  retrieval pulls the right section, not the look-alike.
+variables:
+  act: act label
+  target_title: title of the target section (the correct answer)
+  target_text: text of the target section
+  neighbour_title: title of the adjacent, legally-distinct section
+  neighbour_text: text of the adjacent section
+template: |
+  You are creating a PRECISION evaluation question for a legal RAG system covering
+  Indian criminal law. Below are TWO legally DISTINCT but related offences from the
+  {act}: a TARGET offence and an ADJACENT NEIGHBOUR that shares vocabulary with it.
+
+  Write ONE realistic question whose answer is UNAMBIGUOUSLY the TARGET offence —
+  the facts must clearly satisfy the target and clearly EXCLUDE the neighbour — yet
+  the wording should naturally use vocabulary common to both, so a careless system
+  might retrieve the neighbour instead.
+
+  Requirements:
+  - The scenario must decisively point to the TARGET, not the neighbour.
+  - Do NOT name section numbers or the offence labels outright; describe the conduct.
+  - The reference_answer must name the target offence and, in one clause, why it is
+    the target and not the neighbour.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"question": "...", "reference_answer": "..."}}
+
+  TARGET — {target_title}:
+  {target_text}
+
+  ADJACENT NEIGHBOUR (must be EXCLUDED) — {neighbour_title}:
+  {neighbour_text}

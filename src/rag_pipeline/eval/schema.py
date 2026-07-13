@@ -36,7 +36,15 @@ class EvalExample(BaseModel):
     reference_answer:  Optional[str] = None
     difficulty:        Difficulty   = "medium"
     notes:             Optional[str] = None
-    category:          Optional[str] = None  
+    category:          Optional[str] = None
+
+    # Behavioural ground truth (adversarial sets). When a question is scored on
+    # HOW the system responds rather than which sections it retrieves,
+    # `expected_behavior` states the required behaviour in plain language and
+    # `failure_modes` tags the production failure(s) the question is built to catch
+    # (e.g. "stale_law", "silent_act_selection", "failed_to_refuse", "overreach").
+    expected_behavior: Optional[str]  = None
+    failure_modes:     list[str]      = Field(default_factory=list)
 
     def is_negative(self) -> bool:
         return not self.gold_source_paths and not self.gold_sections
