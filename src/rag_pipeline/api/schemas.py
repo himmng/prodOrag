@@ -142,6 +142,9 @@ class EvalRetrievalResponse(BaseModel):
     top_k:        int
     metrics:      dict             # hit@k, recall@k, mrr, snippet@k
     by_difficulty: dict             # same metrics, sliced
+    by_category:   dict = {}
+    by_category_difficulty: dict = {}
+    negatives:     dict = {}
     latency_ms:   float
 
 

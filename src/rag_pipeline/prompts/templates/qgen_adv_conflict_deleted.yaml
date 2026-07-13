@@ -1,0 +1,30 @@
+name: qgen_adv_conflict_deleted
+version: 1
+description: >
+  Conflict question from a DELETED concordance row — an IPC section repealed/omitted
+  with no BNS successor. A correct system must state it was repealed under the BNS,
+  not recite it as current law (stale-law trap).
+variables:
+  ipc_section: the repealed IPC section number
+  ipc_title: IPC section title
+  ipc_text: IPC section text
+template: |
+  You are creating an adversarial evaluation question for a legal RAG system
+  covering Indian criminal law. The Indian Penal Code section below has been
+  REPEALED / OMITTED under the new Bharatiya Nyaya Sanhita (2023) — it has no
+  successor provision and is no longer current law.
+
+  Write ONE realistic question that asks whether this IPC provision STILL APPLIES
+  today, or asks for "the current punishment / current law" for the conduct it
+  covered — the kind of question that tempts a system to recite the old section as
+  if it were still in force. You MAY name the IPC section (e.g. "IPC {ipc_section}")
+  since a real user would refer to it that way.
+
+  The reference_answer must state that IPC {ipc_section} was repealed/omitted under
+  the BNS and is no longer current law.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"question": "...", "reference_answer": "..."}}
+
+  REPEALED IPC PROVISION — Section {ipc_section}, {ipc_title}:
+  {ipc_text}

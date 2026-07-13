@@ -40,9 +40,21 @@ class Config(BaseSettings):
     DATA_RAW_DIR: ClassVar[Path] = PROJECT_ROOT / "data" / "raw"
     DATA_PROCESSED_DIR: ClassVar[Path] = PROJECT_ROOT / "data" / "processed"
     CHROMA_PERSIST_DIR: ClassVar[Path] = PROJECT_ROOT / "chroma_db"
-    EVAL_DIR: ClassVar[Path] = PROJECT_ROOT / "eval"
-    EVAL_SET_PATH: ClassVar[Path] = EVAL_DIR / "eval_set.json"
-    EVAL_RESULTS_DIR: ClassVar[Path] = EVAL_DIR / "results"
+
+    EVAL_DIR:          ClassVar[Path] = PROJECT_ROOT / "eval"
+    EVAL_SETS_DIR:     ClassVar[Path] = PROJECT_ROOT / "eval" / "eval_sets"
+    EVAL_RESULTS_DIR:  ClassVar[Path] = PROJECT_ROOT / "eval" / "results"
+    EVAL_SET_FILE: str = "eval_set_v3.json"   # override in .env
+
+    # retrieval result subdirs
+    RETRIEVAL_SUMMARY_DIR:      ClassVar[Path] = EVAL_RESULTS_DIR / "retrieval" / "summary"
+    RETRIEVAL_PERQ_DIR:         ClassVar[Path] = EVAL_RESULTS_DIR / "retrieval" / "per_question"
+    RETRIEVAL_PLOTS_DIR:        ClassVar[Path] = EVAL_RESULTS_DIR / "retrieval" / "plots"
+
+    # ragas result subdirs
+    RAGAS_SUMMARY_DIR:  ClassVar[Path] = EVAL_RESULTS_DIR / "ragas" / "summary"
+    RAGAS_PERQ_DIR:     ClassVar[Path] = EVAL_RESULTS_DIR / "ragas" / "per_question"
+    RAGAS_PLOTS_DIR:    ClassVar[Path] = EVAL_RESULTS_DIR / "ragas" / "plots"
 
     API_KEYS: str = ""
     RAG_CORPUS: str = "ipc_bns"
@@ -84,6 +96,10 @@ class Config(BaseSettings):
     CHUNK_OVERLAP: int = 120
     TOP_K: int = 5
     LOG_LEVEL: str = "INFO"
+    
+    # act tie-breaker
+    PREFERRED_ACT: str = ""          # e.g. "BNS"; set per-corpus in .env
+    ACT_TIE_DELTA: float = 0.05
 
     # ── Resolved model names (computed from the active provider) ──────────
     @property
@@ -96,6 +112,10 @@ class Config(BaseSettings):
             "aws":    self.AWS_BEDROCK_MODEL_ID,
         }[self.LLM_PROVIDER]
 
+    @property
+    def EVAL_SET_PATH(self) -> Path:
+        return self.EVAL_SETS_DIR / self.EVAL_SET_FILE
+    
     @property
     def EMBEDDING_MODEL(self) -> Optional[str]:
         return {
@@ -129,8 +149,10 @@ class Config(BaseSettings):
         return self
 
     def ensure_dirs(self) -> None:
-        for p in [self.DATA_RAW_DIR, self.DATA_PROCESSED_DIR,
-                  self.CHROMA_PERSIST_DIR, self.EVAL_DIR, self.EVAL_RESULTS_DIR]:
+        for p in [self.DATA_RAW_DIR, self.DATA_PROCESSED_DIR, self.CHROMA_PERSIST_DIR,
+                  self.EVAL_DIR, self.EVAL_SETS_DIR, self.EVAL_RESULTS_DIR,
+                  self.RETRIEVAL_SUMMARY_DIR, self.RETRIEVAL_PERQ_DIR, self.RETRIEVAL_PLOTS_DIR,
+                  self.RAGAS_SUMMARY_DIR, self.RAGAS_PERQ_DIR, self.RAGAS_PLOTS_DIR]:
             p.mkdir(parents=True, exist_ok=True)
 
 cfg = Config()

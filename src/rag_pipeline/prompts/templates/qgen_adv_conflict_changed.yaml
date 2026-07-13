@@ -1,0 +1,33 @@
+name: qgen_adv_conflict_changed
+version: 1
+description: >
+  Conflict question from a CHANGED concordance row. The same conduct is treated
+  differently by the IPC and the BNS; a correct system must present BOTH and state
+  the difference, not silently pick one.
+variables:
+  ipc_title: IPC section title
+  bns_title: BNS section title
+  ipc_text: IPC section text
+  bns_text: BNS section text
+template: |
+  You are creating an adversarial evaluation question for a legal RAG system
+  covering Indian criminal law. The Indian Penal Code (old law) and the Bharatiya
+  Nyaya Sanhita (new law) BOTH address the conduct below, but treat it DIFFERENTLY
+  (e.g. different punishment, ingredients, or scope).
+
+  Write ONE realistic question a lawyer or citizen would ask about the PUNISHMENT
+  or DEFINITION of this conduct — phrased generally about the conduct itself, the
+  way someone unsure which law governs would ask. Do NOT state section numbers.
+  Do NOT reveal in the question that the two laws differ — the point is to see
+  whether the system surfaces both.
+
+  The reference_answer must briefly state how the two acts differ on this point.
+
+  Return STRICT JSON only, no markdown fences:
+  {{"question": "...", "reference_answer": "..."}}
+
+  OLD LAW (IPC) — {ipc_title}:
+  {ipc_text}
+
+  NEW LAW (BNS) — {bns_title}:
+  {bns_text}

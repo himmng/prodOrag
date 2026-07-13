@@ -6,10 +6,10 @@ startup, reused for every request. Avoids per-request reranker reload
 """
 import os
 import re
+import json as _json, csv as _csv
+from datetime import datetime, timezone
 from functools import lru_cache
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "FALSE")
-import json
-import json as _json
 from fastapi import Query
 from fastapi.responses import Response as FastAPIResponse
 from rag_pipeline.api.schemas import (
@@ -338,8 +338,25 @@ def _retrieve_across_collections(
         merged.extend(results)
 
     # Drop parser-noise chunks (footnote/amendment fragments mis-tagged as sections)
+    # Drop parser-noise chunks
     merged = [(d, s) for d, s in merged if not _is_amendment_noise(d.metadata)]
     merged.sort(key=lambda r: r[1], reverse=True)
+
+    # Preferred-act tie-break: if a preferred-act chunk scores within
+    # ACT_TIE_DELTA of the current top result, promote it above the others.
+    # Targets genuine near-ties (BNS vs IPC equivalents) without disturbing
+    # clear winners. No-op when PREFERRED_ACT is empty.
+    if cfg.PREFERRED_ACT and merged:
+        top_score = merged[0][1]
+        preferred, rest = [], []
+        for d, s in merged:
+            act = (d.metadata or {}).get("act")
+            if act == cfg.PREFERRED_ACT and (top_score - s) <= cfg.ACT_TIE_DELTA:
+                preferred.append((d, s))
+            else:
+                rest.append((d, s))
+        merged = preferred + rest
+
     return merged[:top_k]
 
 
@@ -483,7 +500,7 @@ async def lifespan(app: FastAPI):
     })
 
     # 4. Eval set (optional, may not exist for fresh corpus)
-    eval_path = cfg.PROJECT_ROOT / "eval" / "eval_smoke.json"
+    eval_path = cfg.EVAL_SET_PATH
     if eval_path.exists():
         _state["eval_set"] = load_eval_set(eval_path)
         log.info(f"Loaded {len(_state['eval_set'])} eval examples")
@@ -831,6 +848,8 @@ def eval_retrieval_route(
 
     # Span all acts in the loaded corpus so IPC and BNS questions are both scored.
     # min_score=None → measure RAW retrieval, unfiltered (eval wants true recall).
+
+    
     retriever = _MultiCollectionRetriever(
         acts=list(_state["by_act"].keys()),
         retriever_kind=req.retriever,
@@ -839,12 +858,60 @@ def eval_retrieval_route(
 
     start = time.perf_counter()
     result = evaluate_retriever(retriever, _state["eval_set"], top_k=req.top_k)
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    tag = f"{req.retriever}_{stamp}"
+
+    # 1. Summary (aggregates only — no per-question) → summary/
+    summary = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "eval_set": cfg.EVAL_SET_FILE,
+        "retriever": req.retriever,
+        "top_k": req.top_k,
+        "n_positive": result["n_positive"],
+        "overall": result["overall"],
+        "by_difficulty": result["by_difficulty"],
+        "by_category": result["by_category"],
+        "by_category_difficulty": result["by_category_difficulty"],
+        "counts": result["counts"],
+        "negatives": {k: v for k, v in result["negatives"].items() if k != "per_question"},
+    }
+    (cfg.RETRIEVAL_SUMMARY_DIR / f"summary_{tag}.json").write_text(_json.dumps(summary, indent=2))
+
+    # 2. Per-question → per_question/  (JSON + CSV)
+    perq = result["per_question"]
+    (cfg.RETRIEVAL_PERQ_DIR / f"perq_{tag}.json").write_text(_json.dumps(perq, indent=2))
+    if perq:
+        csv_path = cfg.RETRIEVAL_PERQ_DIR / f"perq_{tag}.csv"
+        with open(csv_path, "w", newline="") as f:
+            w = _csv.writer(f)
+            w.writerow(["category","difficulty","hit","recall","mrr","gold_sections","retrieved_sections","question"])
+            for r in perq:
+                w.writerow([r["category"], r["difficulty"], r["hit"], r["recall"], r["mrr"],
+                            ";".join(f"{a}:{s}" for a,s in r["gold_sections"]),
+                            ";".join(f"{a}:{s}" for a,s in r["retrieved_sections"]),
+                            r["question"]])
+
+    # 3. Negatives per-question → per_question/  (CSV)
+    negq = result["negatives"].get("per_question", [])
+    if negq:
+        ncsv = cfg.RETRIEVAL_PERQ_DIR / f"perq_negatives_{tag}.csv"
+        with open(ncsv, "w", newline="") as f:
+            w = _csv.writer(f)
+            w.writerow(["category","difficulty","top_score","correct_empty","question"])
+            for r in negq:
+                w.writerow([r["category"], r["difficulty"], round(r["top_score"],4),
+                            r["correct_empty"], r["question"]])
+
+    log.info(f"Eval saved → summary + per_question ({tag})")
     return EvalRetrievalResponse(
         retriever=req.retriever,
         n_examples=result["n_positive"],
         top_k=req.top_k,
         metrics=result["overall"],
         by_difficulty=result["by_difficulty"],
+        by_category=result["by_category"],
+        by_category_difficulty=result["by_category_difficulty"],
+        negatives=result["negatives"],
         latency_ms=(time.perf_counter() - start) * 1000.0,
     )
 

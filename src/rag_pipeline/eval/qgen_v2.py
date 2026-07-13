@@ -360,17 +360,225 @@ def _scaled_plan(limit: int) -> dict[tuple[str, str], int]:
     return plan
 
 
+# ═══════════════════════════════════════════════════════════════════════
+# ADVERSARIAL categories — conflict, hard_negative, distractor.
+# These test how the system FAILS in production, not just the happy path.
+# Ground truth (gold_sections / expected_behavior / failure_modes) is stamped
+# by construction from the concordance + curated offence families, never by
+# the model. Output goes to eval/eval_set_adversarial.json (separate set).
+# ═══════════════════════════════════════════════════════════════════════
+
+# Adjacent legal domains for hard negatives (legal register, NOT IPC/BNS).
+_HARD_NEG_AREAS = [
+    "Indian company / corporate law (Companies Act, SEBI regulations)",
+    "income tax and GST law",
+    "the Code of Civil Procedure — civil suits, decrees, execution",
+    "contract and commercial law (Indian Contract Act)",
+    "cybercrime / data offences under the IT Act not mirrored in the IPC/BNS",
+    "labour and industrial-dispute law",
+]
+
+# Distractor families: semantically-adjacent but legally-DISTINCT offences.
+# (section, offence-label); target and neighbour are drawn from DIFFERENT labels
+# so the pair always contrasts two real offences, never two chunks of one.
+_DISTRACTOR_FAMILIES: list[tuple[str, list[tuple[str, str]]]] = [
+    ("IPC", [("378", "theft"), ("383", "extortion"),
+             ("390", "robbery"), ("391", "dacoity")]),
+    ("IPC", [("420", "cheating"), ("406", "criminal breach of trust")]),
+    ("IPC", [("323", "hurt"), ("325", "grievous hurt")]),
+    ("BNS", [("303", "theft"), ("308", "extortion"), ("309", "robbery")]),
+]
+
+# Full-run adversarial plan (mode -> count). Total 100.
+ADV_PLAN: list[tuple[str, int]] = [
+    ("conflict_changed", 26),
+    ("conflict_deleted", 14),
+    ("hard_negative", 30),
+    ("distractor", 30),
+]
+
+
+def _build_conflict_changed(row, ipc_by, bns_by):
+    ic, bc = ipc_by[row["ipc_section"]], bns_by[row["bns_section"]]
+    prompt = render_prompt(
+        "qgen_adv_conflict_changed",
+        ipc_title=ic.get("section_title") or "", bns_title=bc.get("section_title") or "",
+        ipc_text=ic["text"], bns_text=bc["text"])
+    parsed = _invoke_json(llm=_LLM, prompt=prompt, tag="conflict_changed")
+    if not parsed:
+        return None
+    return EvalExample(
+        question=parsed["question"], category="conflict", difficulty="medium",
+        gold_sections=[{"act": "IPC", "section": row["ipc_section"]},
+                       {"act": "BNS", "section": row["bns_section"]}],
+        reference_answer=parsed["reference_answer"],
+        expected_behavior=("must present BOTH acts and state the difference; "
+                           "must not silently pick one"),
+        failure_modes=["silent_act_selection"],
+        notes=f"auto-gen conflict/changed from concordance row {row.get('row_index')}")
+
+
+def _build_conflict_deleted(row, ipc_by):
+    ic = ipc_by[row["ipc_section"]]
+    prompt = render_prompt(
+        "qgen_adv_conflict_deleted", ipc_section=row["ipc_section"],
+        ipc_title=ic.get("section_title") or "", ipc_text=ic["text"])
+    parsed = _invoke_json(llm=_LLM, prompt=prompt, tag="conflict_deleted")
+    if not parsed:
+        return None
+    return EvalExample(
+        question=parsed["question"], category="conflict", difficulty="hard",
+        gold_sections=[{"act": "IPC", "section": row["ipc_section"]}],
+        reference_answer=parsed["reference_answer"],
+        expected_behavior=("must state the section was repealed/omitted under the "
+                           "BNS; must not recite it as current law"),
+        failure_modes=["stale_law"],
+        notes=f"auto-gen conflict/deleted from concordance row {row.get('row_index')}")
+
+
+def _build_hard_negative_adv(rng):
+    area = rng.choice(_HARD_NEG_AREAS)
+    prompt = render_prompt("qgen_adv_hard_negative", area=area)
+    parsed = _invoke_json(llm=_LLM, prompt=prompt, tag="hard_negative")
+    if not parsed:
+        return None
+    return EvalExample(
+        question=parsed["question"], category="hard_negative", difficulty="hard",
+        gold_sections=[], reference_answer=parsed["reference_answer"],
+        expected_behavior=("must refuse / state not covered; must not stretch an "
+                           "unrelated section to answer"),
+        failure_modes=["failed_to_refuse", "overreach"],
+        notes=f"auto-gen hard_negative ({area})")
+
+
+def _build_distractor(rng, ipc_by, bns_by):
+    act, members = rng.choice(_DISTRACTOR_FAMILIES)
+    by = ipc_by if act == "IPC" else bns_by
+    avail = [(s, lbl) for s, lbl in members if s in by]
+    if len(avail) < 2:
+        return None
+    (t_sec, t_lbl), (n_sec, n_lbl) = rng.sample(avail, 2)
+    tc, nc = by[t_sec], by[n_sec]
+    prompt = render_prompt(
+        "qgen_adv_distractor", act=act,
+        target_title=tc.get("section_title") or "", target_text=tc["text"],
+        neighbour_title=nc.get("section_title") or "", neighbour_text=nc["text"])
+    parsed = _invoke_json(llm=_LLM, prompt=prompt, tag="distractor")
+    if not parsed:
+        return None
+    return EvalExample(
+        question=parsed["question"], category="distractor", difficulty="hard",
+        gold_sections=[{"act": act, "section": t_sec}],
+        reference_answer=parsed["reference_answer"],
+        expected_behavior=("retrieval must select the target offence, not the "
+                           f"semantically-adjacent neighbour ({n_lbl})"),
+        failure_modes=["distractor_confusion"],
+        notes=f"auto-gen distractor target {act} {t_sec} ({t_lbl}) vs "
+              f"neighbour {n_sec} ({n_lbl}); chunk {tc['chunk_id']}")
+
+
+def _adv_scaled_plan(limit: int) -> list[tuple[str, int]]:
+    """Small mixed adversarial batch: round-robin across all four modes."""
+    modes = [m for m, _ in ADV_PLAN]
+    counts = {m: 0 for m in modes}
+    i = 0
+    while sum(counts.values()) < limit:
+        counts[modes[i % len(modes)]] += 1
+        i += 1
+    return [(m, counts[m]) for m in modes]
+
+
+def generate_adversarial(out_path: Path, limit: int | None = None, seed: int = 42,
+                         save_every: int = 10, resume: bool = True):
+    """Generate the adversarial eval set (conflict / hard_negative / distractor)."""
+    global _LLM
+    _LLM = get_llm()
+    rng = random.Random(seed)
+
+    ipc = _load_chunks("ipc_chunks.json")
+    bns = _load_chunks("bns_chunks.json")
+    ipc_by = {c["section"]: c for c in ipc}
+    bns_by = {c["section"]: c for c in bns}
+
+    # Concordance rows carrying status (raw load — deleted rows have null BNS).
+    raw = json.loads((_PROCESSED / "concordance.json").read_text(encoding="utf-8"))
+    changed = [r for r in raw if r.get("status") == "changed"
+               and r.get("ipc_section") in ipc_by and r.get("bns_section") in bns_by]
+    deleted = [r for r in raw if r.get("status") == "deleted"
+               and r.get("ipc_section") in ipc_by]
+    rng.shuffle(changed); rng.shuffle(deleted)
+
+    plan = _adv_scaled_plan(limit) if limit is not None else list(ADV_PLAN)
+
+    # Resume: subtract completed per-mode counts + exclude used concordance rows.
+    examples: list[EvalExample] = []
+    used_rows: set[int] = set()
+    if resume and out_path.exists():
+        from collections import Counter
+        examples = load_eval_set(out_path)
+        done: Counter = Counter()
+        for e in examples:
+            note = e.notes or ""
+            for mode in ("conflict/changed", "conflict/deleted", "hard_negative", "distractor"):
+                if mode in note:
+                    done[mode.replace("/", "_")] += 1
+            m = re.search(r"concordance row (\d+)", note)
+            if m:
+                used_rows.add(int(m.group(1)))
+        plan = [(mode, max(0, cnt - done.get(mode, 0))) for mode, cnt in plan]
+        log.info(f"Resuming adversarial from {len(examples)} existing; "
+                 f"{sum(c for _, c in plan)} to go.")
+    changed = [r for r in changed if r.get("row_index") not in used_rows]
+    deleted = [r for r in deleted if r.get("row_index") not in used_rows]
+
+    target_new = sum(c for _, c in plan)
+
+    def maybe_save():
+        if len(examples) and len(examples) % save_every == 0:
+            save_eval_set(examples, out_path)
+
+    with tqdm(total=target_new, desc="qgen_adv") as bar:
+        for mode, count in plan:
+            for _ in range(count):
+                bar.update(1); bar.set_postfix_str(mode)
+                if mode == "conflict_changed":
+                    ex = _build_conflict_changed(changed.pop(), ipc_by, bns_by) if changed else None
+                elif mode == "conflict_deleted":
+                    ex = _build_conflict_deleted(deleted.pop(), ipc_by) if deleted else None
+                elif mode == "hard_negative":
+                    ex = _build_hard_negative_adv(rng)
+                elif mode == "distractor":
+                    ex = _build_distractor(rng, ipc_by, bns_by)
+                else:
+                    ex = None
+                if ex:
+                    examples.append(ex); maybe_save()
+
+    save_eval_set(examples, out_path)
+    log.info(f"Generated {len(examples)} adversarial eval examples "
+             f"(target {sum(c for _, c in ADV_PLAN)}) → {out_path}")
+    return examples
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Generate section-based eval set (v2).")
-    ap.add_argument("--out", type=Path, default=Path("eval/eval_set_v2.json"))
+    ap.add_argument("--out", type=Path, default=None)
     ap.add_argument("--limit", type=int, default=None,
                     help="Generate a small mixed test batch of N questions.")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--fresh", action="store_true",
                     help="Ignore any existing output file and start over "
                          "(default: resume from it).")
+    ap.add_argument("--adversarial", action="store_true",
+                    help="Generate the adversarial set (conflict / hard_negative / "
+                         "distractor) instead of the standard set.")
     args = ap.parse_args()
-    generate(args.out, limit=args.limit, seed=args.seed, resume=not args.fresh)
+    if args.adversarial:
+        out = args.out or Path("eval/eval_set_adversarial.json")
+        generate_adversarial(out, limit=args.limit, seed=args.seed, resume=not args.fresh)
+    else:
+        out = args.out or Path("eval/eval_set_v2.json")
+        generate(out, limit=args.limit, seed=args.seed, resume=not args.fresh)
 
 
 if __name__ == "__main__":

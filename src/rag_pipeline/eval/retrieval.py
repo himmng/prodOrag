@@ -118,28 +118,27 @@ def evaluate_retriever(
     retriever: "BaseRetriever",
     examples: list[EvalExample],
     top_k: int = 5,
+    refusal_floor: float = 0.55,
 ) -> dict:
     """Run all retrieval metrics over a (retriever, eval set) pair.
-
-    Returns:
-        {
-          "overall":       {hit, recall, mrr, snippet},
-          "by_difficulty": {easy/medium/hard: {hit, recall, mrr, snippet}},
-          "n_positive":    int,
-        }
+    Buckets by difficulty, by category, and by the category×difficulty grid.
+    Negatives (out-of-scope) are scored separately as a refusal proxy:
+    a negative is 'correct' if nothing retrieved scores >= refusal_floor.
     """
     positives = [e for e in examples if not e.is_negative()]
+    negatives = [e for e in examples if e.is_negative()]
 
-    sums: dict[str, float] = defaultdict(float)
-    per_diff: dict[str, dict[str, float]] = defaultdict(lambda: defaultdict(float))
-    per_diff_counts: dict[str, int] = defaultdict(int)
-
+    metrics = ("hit", "recall", "mrr", "snippet")
+    sums = defaultdict(float)
+    per_diff = defaultdict(lambda: defaultdict(float));  diff_n = defaultdict(int)
+    per_cat  = defaultdict(lambda: defaultdict(float));  cat_n  = defaultdict(int)
+    per_grid = defaultdict(lambda: defaultdict(float));  grid_n = defaultdict(int)
+    per_question = []
     for ex in positives:
         results = retriever.retrieve(ex.question, top_k=top_k)
         paths = [doc.metadata.get("source_path", "") for doc, _ in results]
         texts = [doc.page_content for doc, _ in results]
         secs  = _retrieved_sections(results)
-
         if ex.gold_sections:
             scores = {
                 "hit":     section_hit_at_k(ex, secs),
@@ -154,24 +153,80 @@ def evaluate_retriever(
                 "mrr":     reciprocal_rank(ex, paths),
                 "snippet": snippet_hit_at_k(ex, texts),
             }
+
+        
+        gold = [(g["act"], str(g["section"])) for g in ex.gold_sections] if ex.gold_sections else []
+        
+        per_question.append({
+            "question": ex.question,
+            "category": ex.category or "uncategorized",
+            "difficulty": ex.difficulty or "unknown",
+            "gold_sections": gold,
+            "retrieved_sections": secs[:top_k],
+            "hit": scores["hit"],
+            "recall": scores["recall"],
+            "mrr": scores["mrr"],
+        })
+
+        cat  = ex.category or "uncategorized"
+        diff = ex.difficulty or "unknown"
+        grid = f"{cat}|{diff}"
         for k, v in scores.items():
             sums[k] += v
-            per_diff[ex.difficulty][k] += v
-        per_diff_counts[ex.difficulty] += 1
+            per_diff[diff][k] += v
+            per_cat[cat][k]   += v
+            per_grid[grid][k] += v
+        diff_n[diff] += 1; cat_n[cat] += 1; grid_n[grid] += 1
 
     n = max(len(positives), 1)
-    overall = {k: sums[k] / n for k in ("hit", "recall", "mrr", "snippet")}
+    def avg_block(store, counts):
+        return {key: {k: store[key][k] / counts[key] for k in metrics}
+                for key in counts}
 
-    by_difficulty = {
-        diff: {k: per_diff[diff][k] / per_diff_counts[diff]
-               for k in ("hit", "recall", "mrr", "snippet")}
-        for diff in per_diff_counts
+    # Negatives: refusal proxy — correct if top retrieved score < floor
+    neg_by_diff = defaultdict(lambda: {"correct": 0, "total": 0})
+    neg_correct = 0
+    neg_per_question = []
+    for ex in negatives:
+        results = retriever.retrieve(ex.question, top_k=top_k)
+        top_score = max((s for _, s in results), default=0.0)
+        ok = 1 if top_score < refusal_floor else 0
+        neg_correct += ok
+        d = ex.difficulty or "unknown"
+        neg_by_diff[d]["correct"] += ok
+        neg_by_diff[d]["total"]   += 1
+        neg_per_question.append({
+            "question": ex.question,
+            "category": ex.category or "negative",
+            "difficulty": ex.difficulty or "unknown",
+            "top_score": top_score,
+            "correct_empty": bool(ok),
+        })
+
+    negatives_block = {
+        "refusal_floor": refusal_floor,
+        "correct_empty_rate": (neg_correct / len(negatives)) if negatives else None,
+        "n_negative": len(negatives),
+        "by_difficulty": {
+            d: {"correct_empty_rate": v["correct"] / v["total"], "n": v["total"]}
+            for d, v in neg_by_diff.items()
+        },
+        "per_question": neg_per_question,
     }
 
     return {
-        "overall":       overall,
-        "by_difficulty": by_difficulty,
+        "overall":       {k: sums[k] / n for k in metrics},
+        "by_difficulty": avg_block(per_diff, diff_n),
+        "by_category":   avg_block(per_cat, cat_n),
+        "by_category_difficulty": avg_block(per_grid, grid_n),
+        "counts": {
+            "by_difficulty": dict(diff_n),
+            "by_category":   dict(cat_n),
+            "by_category_difficulty": dict(grid_n),
+        },
+        "negatives":     negatives_block,
         "n_positive":    len(positives),
+        "per_question": per_question,
     }
 
 def threshold_sweep(
