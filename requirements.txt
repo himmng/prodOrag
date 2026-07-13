@@ -30,6 +30,7 @@ rank-bm25==0.2.2
 
 # reranker (phase 1)
 FlagEmbedding
+python-multipart
 
 # Notebook
 jupyter==1.1.1
