@@ -27,11 +27,22 @@ from rag_pipeline.schemas import StatuteChunk
 # ── Block-type detectors ──────────────────────────────────────────────
 # Order matters: more specific first. Each returns chunk_type or None.
 
+# NOTE: re.MULTILINE is essential — _split_subblocks scans the whole section
+# body with finditer, so `^` must anchor at every line start, not just pos 0.
+# Without it, mid-body markers are never found and sections never split
+# (this is what merged all of BNS:303 into one 6kb chunk).
 _BLOCK_PATTERNS: list[tuple[str, re.Pattern]] = [
-    ("illustration", re.compile(r"^\s*Illustration[s]?\b", re.IGNORECASE)),
-    ("explanation",  re.compile(r"^\s*Explanation\s*\d*\.?", re.IGNORECASE)),
-    ("exception",    re.compile(r"^\s*Exception[s]?\b",     re.IGNORECASE)),
-    ("proviso",      re.compile(r"^\s*Provided\s+that\b",   re.IGNORECASE)),
+    ("illustration", re.compile(r"^\s*Illustration[s]?\b", re.IGNORECASE | re.MULTILINE)),
+    ("explanation",  re.compile(r"^\s*Explanation\s*\d*\.?", re.IGNORECASE | re.MULTILINE)),
+    ("exception",    re.compile(r"^\s*Exception[s]?\b",     re.IGNORECASE | re.MULTILINE)),
+    ("proviso",      re.compile(r"^\s*Provided\s+that\b",   re.IGNORECASE | re.MULTILINE)),
+    # Punishment subsection cut: BNS fuses definition + punishment under one
+    # section (e.g. 303) with numbered subsections. Isolate the "( n ) Whoever
+    # ... shall be punished" clause so "punishment for X" retrieves a focused
+    # chunk instead of drowning in definition/illustration text.
+    ("punishment",   re.compile(
+        r"^\s*\(\s*\d+\s*\)\s*Whoever\b[^\n]*?shall\s+be\s+punished",
+        re.IGNORECASE | re.MULTILINE)),
 ]
 
 

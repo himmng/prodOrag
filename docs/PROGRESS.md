@@ -27,6 +27,33 @@
 
 ## Log
 
+### 2026-07-13 — Fix BNS under-chunking (merged sections → focused chunks)
+
+Branch `feature/bns-rechunk`. Per-question eval on `eval_set_v3` showed BNS
+substantive punishment questions failing — e.g. "max term for theft" (gold
+BNS:303) didn't even enter the candidate pool. Root cause: the BNS parser
+emitted oversized MERGED chunks (BNS:303 = one 6112-char chunk fusing theft
+definition + 5 explanations + illustrations + punishment), so punishment
+queries drowned in definition text. IPC avoided this only because it assigns
+definition (IPC:378) and punishment (IPC:379) to separate section numbers.
+
+**Fix** — one change in `parsers/statute.py`:
+1. Added `re.MULTILINE` to the four `_BLOCK_PATTERNS`. Real bug: `_split_subblocks`
+   scans the whole section body with `finditer`, so `^` must anchor at every line;
+   without it, mid-body Explanation/Illustration markers were never found and
+   sections never split. Latent in both acts; only BNS's fused structure exposed it.
+2. Added a `punishment` subsection cut (`^( n ) Whoever … shall be punished`) so
+   BNS's fused definition+punishment sections split the punishment clause off as
+   its own focused chunk.
+
+**BNS distribution** (IPC untouched): 368→782 chunks, avg 1041→489 char,
+over-2000 35→7 — now matches IPC (808 / 560 / 38). Re-embedded BNS_Corpus only
+with embeddinggemma (same model, IPC comparability preserved); 782 vectors.
+
+**Eval (eval_set_v3, 191 Q)**: bns_substantive hit@5 0.980 / recall 0.931 / mrr
+0.745; BNS:303 and BNS:318 now hit. ipc_substantive 0.959 (no regression —
+IPC never re-embedded). cross_reference 0.957. 1/51 BNS miss (342/341 forgery-die).
+
 ### 2026-07-09 — Eval-set v3 generator (section-based, production-grade)
 
 Branch `feature/eval-set-v2`. Built the second-generation eval-set generator on
