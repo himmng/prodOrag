@@ -858,8 +858,9 @@ def eval_retrieval_route(
 
     start = time.perf_counter()
     result = evaluate_retriever(retriever, _state["eval_set"], top_k=req.top_k)
-    stamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    tag = f"{req.retriever}_{stamp}"
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
+    evalset = cfg.EVAL_SET_FILE.replace(".json", "")
+    base = f"{evalset}__{req.retriever}__{stamp}"
 
     # 1. Summary (aggregates only — no per-question) → summary/
     summary = {
@@ -875,13 +876,13 @@ def eval_retrieval_route(
         "counts": result["counts"],
         "negatives": {k: v for k, v in result["negatives"].items() if k != "per_question"},
     }
-    (cfg.RETRIEVAL_SUMMARY_DIR / f"summary_{tag}.json").write_text(_json.dumps(summary, indent=2))
+    (cfg.RETRIEVAL_SUMMARY_DIR / f"{base}__summary.json").write_text(_json.dumps(summary, indent=2))
 
     # 2. Per-question → per_question/  (JSON + CSV)
     perq = result["per_question"]
-    (cfg.RETRIEVAL_PERQ_DIR / f"perq_{tag}.json").write_text(_json.dumps(perq, indent=2))
+    (cfg.RETRIEVAL_PERQ_DIR / f"{base}__perquestion.json").write_text(_json.dumps(perq, indent=2))
     if perq:
-        csv_path = cfg.RETRIEVAL_PERQ_DIR / f"perq_{tag}.csv"
+        csv_path = cfg.RETRIEVAL_PERQ_DIR / f"{base}__perquestion.csv"
         with open(csv_path, "w", newline="") as f:
             w = _csv.writer(f)
             w.writerow(["category","difficulty","hit","recall","mrr","gold_sections","retrieved_sections","question"])
@@ -894,15 +895,16 @@ def eval_retrieval_route(
     # 3. Negatives per-question → per_question/  (CSV)
     negq = result["negatives"].get("per_question", [])
     if negq:
-        ncsv = cfg.RETRIEVAL_PERQ_DIR / f"perq_negatives_{tag}.csv"
-        with open(ncsv, "w", newline="") as f:
+        ncsv_path = cfg.RETRIEVAL_PERQ_DIR / f"{base}__negatives.csv"
+        with open(ncsv_path, "w", newline="") as f:
             w = _csv.writer(f)
             w.writerow(["category","difficulty","top_score","correct_empty","question"])
             for r in negq:
                 w.writerow([r["category"], r["difficulty"], round(r["top_score"],4),
                             r["correct_empty"], r["question"]])
 
-    log.info(f"Eval saved → summary + per_question ({tag})")
+    log.info(f"Eval saved → summary + per_question ({base})")
+    
     return EvalRetrievalResponse(
         retriever=req.retriever,
         n_examples=result["n_positive"],

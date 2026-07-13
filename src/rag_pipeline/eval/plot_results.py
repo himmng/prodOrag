@@ -13,7 +13,7 @@ DIRS = {
 }
 
 def latest_summary(summary_dir):
-    files = sorted(glob.glob(f"{summary_dir}/summary_*.json"), key=os.path.getmtime)
+    files = sorted(glob.glob(f"{summary_dir}/*__summary.json"), key=os.path.getmtime)
     if not files:
         sys.exit(f"No summary files in {summary_dir}")
     return files[-1]
@@ -22,7 +22,7 @@ def main(eval_type="retrieval", path=None):
     summary_dir, plots_dir = DIRS[eval_type]
     path = path or latest_summary(summary_dir)
     d = json.load(open(path))
-    stamp = os.path.splitext(os.path.basename(path))[0].replace("summary_", "")
+    stamp = os.path.basename(path).replace("__summary.json", "")
     print("Plotting:", path)
 
     # ── Plot 1: category × difficulty grid (hit@k) ──
