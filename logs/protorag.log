@@ -1,0 +1,45 @@
+2026-07-14 23:59:52,076 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-14 23:59:52,076 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.4-nano | Embedding model: embeddinggemma:latest
+2026-07-14 23:59:52,076 - INFO    | rag - file logging test
+2026-07-15 00:00:33,990 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 00:00:33,990 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.4-nano | Embedding model: embeddinggemma:latest
+2026-07-15 00:09:23,565 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 00:09:23,566 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.4-nano | Embedding model: embeddinggemma:latest
+2026-07-15 00:09:28,915 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 00:09:28,915 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 00:09:29,835 - INFO    | rag - Generator deployment: gpt-5.4-nano · 24 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 00:09:29,835 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 00:09:38,895 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 00:09:39,814 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 00:09:40,054 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 00:09:40,094 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 00:12:56,309 - INFO    | rag - Cached RAGAS dataset (24 rows) → eval_set_v5__ragas__2026-07-14_1609__dataset.json
+2026-07-15 00:12:56,318 - INFO    | rag - Scoring with judge1 (deployment=gpt-5.6-luna)
+2026-07-15 00:12:56,318 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.6-luna)
+2026-07-15 00:12:56,590 - INFO    | rag - Scoring rows 1–5 of 24
+2026-07-15 00:21:10,690 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 00:21:10,691 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.4-nano | Embedding model: embeddinggemma:latest
+2026-07-15 00:21:41,682 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 00:21:41,685 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.4-nano | Embedding model: embeddinggemma:latest
+2026-07-15 00:21:48,161 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 00:21:48,161 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 00:21:49,099 - INFO    | rag - Generator deployment: gpt-5.4-nano · 24 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 00:21:49,099 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 00:21:58,030 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 00:21:58,939 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 00:21:59,088 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 00:21:59,126 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 00:23:15,229 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 00:23:15,229 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.4-nano | Embedding model: embeddinggemma:latest
+2026-07-15 00:23:22,547 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 00:23:22,548 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 00:23:24,076 - INFO    | rag - Generator deployment: gpt-5.4-nano · 24 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 00:23:24,080 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 00:23:33,591 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 00:23:34,615 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 00:23:34,906 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 00:23:34,947 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 00:27:12,769 - INFO    | rag - Cached RAGAS dataset (24 rows) → eval_set_v5__ragas__2026-07-14_1623__dataset.json
+2026-07-15 00:27:12,778 - INFO    | rag - Scoring with judge1 (deployment=gpt-5.6-luna)
+2026-07-15 00:27:12,779 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.6-luna)
+2026-07-15 00:27:13,174 - INFO    | rag - Scoring rows 1–5 of 24

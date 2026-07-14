@@ -81,7 +81,7 @@ def build_ragas_dataset(
         contexts = [d.page_content for d, _ in results]
 
         if results:
-            context_block, _ = build_context(results)
+            context_block = build_context(results)
             user_msg = f"CONTEXT:\n{context_block}\n\nQUESTION: {ex.question}\n\nANSWER:"
             resp = llm.invoke([
                 SystemMessage(content=system_prompt),

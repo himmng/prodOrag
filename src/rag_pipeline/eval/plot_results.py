@@ -18,6 +18,32 @@ def latest_summary(summary_dir):
         sys.exit(f"No summary files in {summary_dir}")
     return files[-1]
 
+def plot_ragas(summary_path):
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    import numpy as np, json, os
+    d = json.load(open(summary_path))
+    judges = d["judges"]
+    metrics = sorted({m for j in judges.values() for m in j["metrics_mean"]})
+    fig, ax = plt.subplots(figsize=(10, 6))
+    x = np.arange(len(metrics)); w = 0.8 / max(len(judges), 1)
+    for i, (jname, jd) in enumerate(judges.items()):
+        vals = [jd["metrics_mean"].get(m, 0) for m in metrics]
+        bars = ax.bar(x + i*w, vals, w, label=f"{jname} ({jd['deployment']})")
+        for b, v in zip(bars, vals):
+            ax.text(b.get_x()+b.get_width()/2, v+0.01, f"{v:.2f}", ha="center", fontsize=8)
+    ax.set_xticks(x + w*(len(judges)-1)/2)
+    ax.set_xticklabels([m.replace("_", "\n") for m in metrics])
+    ax.set_ylim(0, 1.1); ax.set_ylabel("score")
+    ax.set_title(f"RAGAS · {d['eval_set']} · gen={d['generator']} · n={d['n_questions']}")
+    ax.legend(); ax.grid(axis="y", alpha=0.3)
+    plt.tight_layout()
+    stamp = os.path.basename(summary_path).replace("__summary.json", "")
+    out = f"{cfg.RAGAS_PLOTS_DIR}/{stamp}__metrics.png"
+    plt.savefig(out, dpi=130); plt.close()
+    print("plot saved:", out)
+    
 def main(eval_type="retrieval", path=None):
     summary_dir, plots_dir = DIRS[eval_type]
     path = path or latest_summary(summary_dir)

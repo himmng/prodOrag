@@ -1,0 +1,151 @@
+{
+  "timestamp": "2026-07-14T14:09:26.444937+00:00",
+  "eval_set": "eval_set_v5.json",
+  "retriever": "hybrid_reranked",
+  "top_k": 5,
+  "n_positive": 132,
+  "overall": {
+    "hit": 0.9242424242424242,
+    "recall": 0.8787878787878788,
+    "mrr": 0.7803030303030302,
+    "snippet": 0.9772727272727273
+  },
+  "by_difficulty": {
+    "easy": {
+      "hit": 0.9565217391304348,
+      "recall": 0.9347826086956522,
+      "mrr": 0.7989130434782609,
+      "snippet": 1.0
+    },
+    "medium": {
+      "hit": 0.9545454545454546,
+      "recall": 0.9545454545454546,
+      "mrr": 0.8030303030303029,
+      "snippet": 0.9772727272727273
+    },
+    "hard": {
+      "hit": 0.8571428571428571,
+      "recall": 0.7380952380952381,
+      "mrr": 0.7361111111111112,
+      "snippet": 0.9523809523809523
+    }
+  },
+  "by_category": {
+    "ipc_substantive": {
+      "hit": 0.8695652173913043,
+      "recall": 0.8260869565217391,
+      "mrr": 0.7228260869565217,
+      "snippet": 0.9565217391304348
+    },
+    "bns_substantive": {
+      "hit": 0.975,
+      "recall": 0.925,
+      "mrr": 0.7812499999999999,
+      "snippet": 1.0
+    },
+    "cross_reference": {
+      "hit": 0.9347826086956522,
+      "recall": 0.8913043478260869,
+      "mrr": 0.8369565217391305,
+      "snippet": 0.9782608695652174
+    }
+  },
+  "by_category_difficulty": {
+    "ipc_substantive|easy": {
+      "hit": 1.0,
+      "recall": 1.0,
+      "mrr": 0.8101851851851852,
+      "snippet": 1.0
+    },
+    "ipc_substantive|medium": {
+      "hit": 0.9333333333333333,
+      "recall": 0.9333333333333333,
+      "mrr": 0.8555555555555555,
+      "snippet": 1.0
+    },
+    "ipc_substantive|hard": {
+      "hit": 0.6153846153846154,
+      "recall": 0.46153846153846156,
+      "mrr": 0.4487179487179488,
+      "snippet": 0.8461538461538461
+    },
+    "bns_substantive|easy": {
+      "hit": 1.0,
+      "recall": 1.0,
+      "mrr": 0.7916666666666666,
+      "snippet": 1.0
+    },
+    "bns_substantive|medium": {
+      "hit": 1.0,
+      "recall": 1.0,
+      "mrr": 0.8222222222222222,
+      "snippet": 1.0
+    },
+    "bns_substantive|hard": {
+      "hit": 0.8888888888888888,
+      "recall": 0.6666666666666666,
+      "mrr": 0.6944444444444444,
+      "snippet": 1.0
+    },
+    "cross_reference|easy": {
+      "hit": 0.8333333333333334,
+      "recall": 0.75,
+      "mrr": 0.7916666666666666,
+      "snippet": 1.0
+    },
+    "cross_reference|medium": {
+      "hit": 0.9285714285714286,
+      "recall": 0.9285714285714286,
+      "mrr": 0.7261904761904762,
+      "snippet": 0.9285714285714286
+    },
+    "cross_reference|hard": {
+      "hit": 1.0,
+      "recall": 0.95,
+      "mrr": 0.9416666666666667,
+      "snippet": 1.0
+    }
+  },
+  "counts": {
+    "by_difficulty": {
+      "easy": 46,
+      "medium": 44,
+      "hard": 42
+    },
+    "by_category": {
+      "ipc_substantive": 46,
+      "bns_substantive": 40,
+      "cross_reference": 46
+    },
+    "by_category_difficulty": {
+      "ipc_substantive|easy": 18,
+      "ipc_substantive|medium": 15,
+      "ipc_substantive|hard": 13,
+      "bns_substantive|easy": 16,
+      "bns_substantive|medium": 15,
+      "bns_substantive|hard": 9,
+      "cross_reference|easy": 12,
+      "cross_reference|medium": 14,
+      "cross_reference|hard": 20
+    }
+  },
+  "negatives": {
+    "refusal_floor": 0.55,
+    "correct_empty_rate": 0.9545454545454546,
+    "n_negative": 44,
+    "by_difficulty": {
+      "easy": {
+        "correct_empty_rate": 0.9166666666666666,
+        "n": 12
+      },
+      "medium": {
+        "correct_empty_rate": 0.9166666666666666,
+        "n": 12
+      },
+      "hard": {
+        "correct_empty_rate": 1.0,
+        "n": 20
+      }
+    }
+  }
+}

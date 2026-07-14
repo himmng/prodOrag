@@ -23,10 +23,11 @@ if TYPE_CHECKING:
 # Public API - call these, cached as singletons.
 
 @lru_cache(maxsize=1)
-def get_llm() -> "BaseChatModel":
-    """Return the chat LLM for the active provider."""
-    provider = cfg.llm_provider
-    log.info(f"Instantiating LLM for provider: {provider}")
+def get_llm(provider: str | None = None, deployment: str | None = None) -> "BaseChatModel":
+    """Return the chat LLM. Defaults to the active provider from config;
+    pass provider/deployment to override (for per-role models like RAGAS judges)."""
+    provider = provider or cfg.llm_provider
+    log.info(f"Instantiating LLM for provider: {provider}" + (f" (deployment={deployment})" if deployment else ""))
     dispatch = {
         "ollama": _ollama_llm,
         "azure": _azure_llm,
@@ -35,8 +36,8 @@ def get_llm() -> "BaseChatModel":
         "aws": _aws_llm,
     }
     if provider not in dispatch:
-        raise ValueError(f"Unsupported MODEL_PROVIDER: {provider}")
-    return dispatch[provider]()
+        raise ValueError(f"Unsupported provider: {provider}")
+    return dispatch[provider](deployment) if provider == "azure" else dispatch[provider]()
 
 @lru_cache(maxsize=1)
 def get_embeddings() -> "Embeddings":
@@ -68,8 +69,7 @@ def _ollama_llm():
     from langchain_ollama import ChatOllama
     return ChatOllama(
         model=cfg.OLLAMA_MODEL,
-        base_url=cfg.OLLAMA_HOST,
-        temperature=0.0,
+        base_url=cfg.OLLAMA_HOST
     )
 
 def _ollama_emb():
@@ -80,17 +80,17 @@ def _ollama_emb():
     )
 
 # azure openai
-def _azure_llm():
+def _azure_llm(deployment: str | None = None):
     from langchain_openai import AzureChatOpenAI
     _require(cfg.AZURE_OPENAI_ENDPOINT, "AZURE_OPENAI_ENDPOINT")
     _require(cfg.AZURE_OPENAI_API_KEY, "AZURE_OPENAI_API_KEY")
-    _require(cfg.AZURE_OPENAI_DEPLOYMENT, "AZURE_OPENAI_DEPLOYMENT")
+    dep = deployment or cfg.AZURE_OPENAI_DEPLOYMENT
+    _require(dep, "AZURE_OPENAI_DEPLOYMENT")
     return AzureChatOpenAI(
         azure_endpoint=cfg.AZURE_OPENAI_ENDPOINT,
-        azure_deployment=cfg.AZURE_OPENAI_DEPLOYMENT,
-        api_version=cfg.AZURE_OPENAI_API_VERSION,     # was azure_api_version
-        api_key=cfg.AZURE_OPENAI_API_KEY,             # was azure_api_key
-        temperature=0.0,
+        azure_deployment=dep,
+        api_version=cfg.AZURE_OPENAI_API_VERSION,
+        api_key=cfg.AZURE_OPENAI_API_KEY,
     )
 def _azure_emb():
     from langchain_openai import AzureOpenAIEmbeddings
@@ -111,7 +111,6 @@ def _openai_llm():
     return ChatOpenAI(
         model=cfg.OPENAI_MODEL,
         openai_api_key=cfg.OPENAI_API_KEY,
-        temperature=0.0,
     )
 
 def _openai_emb():
@@ -130,7 +129,6 @@ def _aws_llm():
     return ChatBedrock(
         model_id=cfg.AWS_BEDROCK_MODEL_ID,
         region_name=cfg.AWS_REGION,
-        model_kwargs={"temperature": 0.0},
     )
 
 def _aws_emb():
@@ -152,7 +150,6 @@ def _gcp_llm():
         model=cfg.GCP_VERTEX_MODEL,
         project=cfg.GCP_PROJECT_ID,
         location=cfg.GCP_REGION,
-        temperature=0.0,
     )
 
 def _gcp_emb():

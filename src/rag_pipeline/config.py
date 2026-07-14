@@ -37,6 +37,7 @@ class Config(BaseSettings):
 
     # Paths (unchanged)
     PROJECT_ROOT: ClassVar[Path] = PROJECT_ROOT
+    LOGS_DIR: ClassVar[Path] = PROJECT_ROOT / "logs"
     DATA_RAW_DIR: ClassVar[Path] = PROJECT_ROOT / "data" / "raw"
     DATA_PROCESSED_DIR: ClassVar[Path] = PROJECT_ROOT / "data" / "processed"
     CHROMA_PERSIST_DIR: ClassVar[Path] = PROJECT_ROOT / "chroma_db"
@@ -50,6 +51,11 @@ class Config(BaseSettings):
     RETRIEVAL_SUMMARY_DIR:      ClassVar[Path] = EVAL_RESULTS_DIR / "retrieval" / "summary"
     RETRIEVAL_PERQ_DIR:         ClassVar[Path] = EVAL_RESULTS_DIR / "retrieval" / "per_question"
     RETRIEVAL_PLOTS_DIR:        ClassVar[Path] = EVAL_RESULTS_DIR / "retrieval" / "plots"
+
+    # RAGAS role models (blank = fall back to the global azure deployment)
+    RAGAS_GEN_DEPLOYMENT:    str = ""      # generator (answers being judged)
+    RAGAS_JUDGE1_DEPLOYMENT: str = ""      # judge 1
+    RAGAS_JUDGE2_DEPLOYMENT: str = ""      # judge 2 (blank = skip)
 
     # ragas result subdirs
     RAGAS_SUMMARY_DIR:  ClassVar[Path] = EVAL_RESULTS_DIR / "ragas" / "summary"
@@ -155,22 +161,41 @@ class Config(BaseSettings):
         for p in [self.DATA_RAW_DIR, self.DATA_PROCESSED_DIR, self.CHROMA_PERSIST_DIR,
                   self.EVAL_DIR, self.EVAL_SETS_DIR, self.EVAL_RESULTS_DIR,
                   self.RETRIEVAL_SUMMARY_DIR, self.RETRIEVAL_PERQ_DIR, self.RETRIEVAL_PLOTS_DIR,
-                  self.RAGAS_SUMMARY_DIR, self.RAGAS_PERQ_DIR, self.RAGAS_PLOTS_DIR]:
+                  self.RAGAS_SUMMARY_DIR, self.RAGAS_PERQ_DIR, self.RAGAS_PLOTS_DIR,
+                  self.LOGS_DIR]:
             p.mkdir(parents=True, exist_ok=True)
 
 cfg = Config()
 cfg.ensure_dirs()
 
 def setup_logging(level: str | None = None) -> logging.Logger:
-    """Configure the project-wide 'rag' logger. Idempotent."""
+    """Configure the project-wide 'rag' logger. Console + rotating file. Idempotent."""
+    from logging.handlers import RotatingFileHandler
+
     log = logging.getLogger("rag")
     if log.handlers:
-        return log # already configured
+        return log  # already configured
     log.setLevel(level or cfg.LOG_LEVEL)
-    handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)-7s | %(name)s - %(message)s"))
-    log.addHandler(handler)
-    log.propagate = False # prevent double logging if root logger is also configured
+
+    fmt = logging.Formatter("%(asctime)s - %(levelname)-7s | %(name)s - %(message)s")
+
+    # Console
+    console = logging.StreamHandler()
+    console.setFormatter(fmt)
+    log.addHandler(console)
+
+    # Rotating file — every log line persists to logs/protorag.log
+    cfg.LOGS_DIR.mkdir(parents=True, exist_ok=True)
+    file_handler = RotatingFileHandler(
+        cfg.LOGS_DIR / "protorag.log",
+        maxBytes=10 * 1024 * 1024,   # 10 MB per file
+        backupCount=5,               # keep 5 rotations (~50 MB total)
+        encoding="utf-8",
+    )
+    file_handler.setFormatter(fmt)
+    log.addHandler(file_handler)
+
+    log.propagate = False
     return log
 
 log = setup_logging()
