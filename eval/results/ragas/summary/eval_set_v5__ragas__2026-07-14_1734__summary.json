@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-07-14T17:38:44.892375+00:00",
+  "eval_set": "eval_set_v5.json",
+  "n_questions": 24,
+  "generator": "gpt-5.4-nano",
+  "judges": {
+    "judge1": {
+      "deployment": "gpt-5.6-luna",
+      "metrics_mean": {
+        "faithfulness": 0.8714,
+        "answer_relevancy": 0.6793,
+        "semantic_similarity": 0.705
+      }
+    },
+    "judge2": {
+      "deployment": "gpt-5.4-nano",
+      "metrics_mean": {
+        "faithfulness": 0.7532,
+        "answer_relevancy": 0.7517,
+        "semantic_similarity": 0.705
+      }
+    }
+  }
+}

@@ -134,3 +134,25 @@
 2026-07-15 01:39:47,142 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
 2026-07-15 01:39:47,143 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
 2026-07-15 01:39:47,144 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:40:13,677 - INFO    | rag -   ✓ checkpoint saved (10/24)
+2026-07-15 01:40:13,678 - INFO    | rag - Scoring rows 11–15 of 24
+2026-07-15 01:41:06,700 - INFO    | rag -   ✓ checkpoint saved (15/24)
+2026-07-15 01:41:06,701 - INFO    | rag - Scoring rows 16–20 of 24
+2026-07-15 01:42:17,922 - INFO    | rag -   ✓ checkpoint saved (20/24)
+2026-07-15 01:42:17,924 - INFO    | rag - Scoring rows 21–24 of 24
+2026-07-15 01:43:45,840 - INFO    | rag -   ✓ checkpoint saved (24/24)
+2026-07-15 01:43:45,845 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-14_1734__judge1__perquestion.csv
+2026-07-15 01:43:45,887 - INFO    | rag - Scoring with judge2 (deployment=gpt-5.4-nano)
+2026-07-15 01:43:45,887 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 01:43:45,904 - INFO    | rag - Scoring rows 1–5 of 24
+2026-07-15 01:44:22,110 - INFO    | rag -   ✓ checkpoint saved (5/24)
+2026-07-15 01:44:22,111 - INFO    | rag - Scoring rows 6–10 of 24
+2026-07-15 01:45:05,047 - INFO    | rag -   ✓ checkpoint saved (10/24)
+2026-07-15 01:45:05,048 - INFO    | rag - Scoring rows 11–15 of 24
+2026-07-15 01:45:55,063 - INFO    | rag -   ✓ checkpoint saved (15/24)
+2026-07-15 01:45:55,065 - INFO    | rag - Scoring rows 16–20 of 24
+2026-07-15 01:47:06,254 - INFO    | rag -   ✓ checkpoint saved (20/24)
+2026-07-15 01:47:06,255 - INFO    | rag - Scoring rows 21–24 of 24
+2026-07-15 01:48:33,006 - INFO    | rag -   ✓ checkpoint saved (24/24)
+2026-07-15 01:48:33,013 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-14_1734__judge2__perquestion.csv
+2026-07-15 01:48:33,015 - INFO    | rag - Summary → eval_set_v5__ragas__2026-07-14_1734__summary.json
