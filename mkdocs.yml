@@ -1,7 +1,7 @@
-site_name: protoRAG
+site_name: prodOrag
 site_description: Corpus-agnostic hybrid RAG pipeline for legal corpora
-repo_url: https://github.com/himmng/protoRAG
-repo_name: himmng/protoRAG
+repo_url: https://github.com/himmng/prodOrag
+repo_name: himmng/prodOrag
 
 docs_dir: docs
 site_dir: site

@@ -1,6 +1,6 @@
-# protoRAG — Usage Guide
+# prodOrag — Usage Guide
 
-Full reference for configuring, running, and using every part of protoRAG. For a
+Full reference for configuring, running, and using every part of prodOrag. For a
 5-minute quickstart, see the [top-level README](../README.md) (or [index](index.md)
 if you're browsing this as a docs site).
 

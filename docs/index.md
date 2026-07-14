@@ -1,4 +1,4 @@
-# protoRAG
+# prodOrag
 
 A **corpus-agnostic**, production-bound hybrid RAG pipeline for legal corpora. The
 reference corpus is Indian criminal law — the Indian Penal Code (IPC 1860) and the
@@ -24,8 +24,8 @@ always accurate.
 ## Quickstart
 
 ```bash
-git clone https://github.com/himmng/protoRAG.git
-cd protoRAG
+git clone https://github.com/himmng/prodOrag.git
+cd prodOrag
 
 python -m venv .venv
 source .venv/bin/activate

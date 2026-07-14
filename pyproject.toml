@@ -98,8 +98,8 @@ eval = [
 ]
 
 [project.urls]
-Repository = "https://github.com/himmng/protoRAG"
-Issues     = "https://github.com/himmng/protoRAG/issues"
+Repository = "https://github.com/himmng/prodOrag"
+Issues     = "https://github.com/himmng/prodOrag/issues"
 
 [project.scripts]
 rag-ingest = "rag_pipeline.cli.ingest:main"

@@ -1,4 +1,4 @@
-# PROGRESS.md — protoRAG development log
+# PROGRESS.md — prodOrag development log
 
 > Append-only running log of what changed and why, newest first. Complements the
 > two standing docs: **CLAUDE.md** (how to work here) and **docs/HANDOFF.md**

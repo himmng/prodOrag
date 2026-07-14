@@ -1,4 +1,4 @@
-# HANDOFF.md — protoRAG session handoff
+# HANDOFF.md — prodOrag session handoff
 
 > Snapshot of project state at the point of moving from chat to Claude Code.
 > Pair with `CLAUDE.md` (standing instructions). This file = current state,
@@ -182,7 +182,7 @@ not needed for current corpora.
 ## 7. GitHub / workflow
 
 - Company repo: `Advantev/adv_policy_engine`, remote name `advantev`. Personal:
-  `himmng/protoRAG`, remote `origin`.
+  `himmng/prodOrag` (renamed from `protoRAG` 2026-07-14), remote `origin`.
 - Code was pushed to `advantev` `main` (merged the company's initial commit with
   `--allow-unrelated-histories`, then force-pushed the developer's version).
 - **Going forward: feature branches → PR → merge to main. No direct pushes to main.**

@@ -42,7 +42,7 @@ services:
       build:
         context: .
         dockerfile: Dockerfile.streamlit
-      container_name: protorag-dashboard
+      container_name: prodorag-dashboard
       ports:
         - "8501:8501"                      # ← your chosen Streamlit port
       environment:

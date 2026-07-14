@@ -1,6 +1,6 @@
-[![CI](https://github.com/himmng/protoRAG/actions/workflows/ci.yml/badge.svg)](https://github.com/himmng/protoRAG/actions/workflows/ci.yml)
+[![CI](https://github.com/himmng/prodOrag/actions/workflows/ci.yml/badge.svg)](https://github.com/himmng/prodOrag/actions/workflows/ci.yml)
 
-# protoRAG
+# prodOrag
 
 A **corpus-agnostic**, production-bound hybrid RAG pipeline for legal corpora. The
 reference corpus is Indian criminal law — the Indian Penal Code (IPC 1860) and the
@@ -25,8 +25,8 @@ endpoint and eval workflow. This README is just the fast path to a running insta
 ## Quickstart
 
 ```bash
-git clone https://github.com/himmng/protoRAG.git
-cd protoRAG
+git clone https://github.com/himmng/prodOrag.git
+cd prodOrag
 
 python -m venv .venv
 source .venv/bin/activate         # Windows: .venv\Scripts\activate
