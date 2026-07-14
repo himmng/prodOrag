@@ -1,4 +1,4 @@
-# protoRAG — flat, install-ready requirements file.
+# prodOrag — flat, install-ready requirements file.
 #
 # `pip install -r requirements.txt` installs every third-party dependency
 # needed to run the API, ingest a corpus, and use the Streamlit dashboard.
