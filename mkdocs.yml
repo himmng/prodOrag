@@ -1,0 +1,61 @@
+site_name: protoRAG
+site_description: Corpus-agnostic hybrid RAG pipeline for legal corpora
+repo_url: https://github.com/himmng/protoRAG
+repo_name: himmng/protoRAG
+
+docs_dir: docs
+site_dir: site
+
+nav:
+  - Home: index.md
+  - Usage Guide: USAGE.md
+  - API Reference: reference.md
+  - Development:
+      - Progress log: PROGRESS.md
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.snippets:
+      base_path:
+        - "."
+      check_paths: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_root_heading: true
+            show_source: false
+            docstring_style: google
+            merge_init_into_class: true
+            show_signature_annotations: true

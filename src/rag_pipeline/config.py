@@ -91,6 +91,9 @@ class Config(BaseSettings):
     OPENAI_MODEL:           str = "gpt-4o-mini"
     OPENAI_EMBEDDING_MODEL: str = "text-embedding-3-small"
 
+    # Reranker (cross-encoder, always local/HuggingFace regardless of LLM_PROVIDER)
+    RERANKER_MODEL: str = "BAAI/bge-reranker-base"
+
     # Chunking / retrieval / logging
     CHUNK_SIZE: int = 800
     CHUNK_OVERLAP: int = 120

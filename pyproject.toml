@@ -53,7 +53,8 @@ dependencies = [
     "langchain-text-splitters>=0.3",
 
     # Parsing
-    "docling>=2",
+    "docling>=2,<2.92",  # DocumentConverter API removed in 2.92 (see parsers/docling.py)
+    "pdfplumber>=0.11",   # concordance table parsing + PDF page-image preview
 
     # Data
     "pandas>=2.2",
@@ -79,10 +80,21 @@ cloud = [
     "langchain-google-vertexai>=2.0",
 ]
 
+# Docs site: `mkdocs serve` / `mkdocs build` (see mkdocs.yml)
+docs = [
+    "mkdocs>=1.6",
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.26",
+]
+
 # Eval/research-only deps (RAGAS A/B notebooks)
 eval = [
     "ragas>=0.2",
     "datasets>=3.0",
+    "matplotlib",          # eval/plot_results.py
+    # ragas 0.4.x unconditionally imports langchain_community.chat_models.vertexai,
+    # which langchain-community dropped in 0.4.2 — cap until ragas fixes this upstream.
+    "langchain-community<0.4.2",
 ]
 
 [project.urls]

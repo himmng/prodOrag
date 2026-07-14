@@ -41,7 +41,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Depends, Request, Response
 from rag_pipeline.api.schemas import (
     AnswerRequest, AnswerResponse, Citation, HealthResponse, CrossReference,
-    MetaResponse, CrossRefMeta,
+    MetaResponse, CrossRefMeta, ModelInfo,
 )
 from rag_pipeline.generation.context import build_context
 from rag_pipeline.config import cfg, log
@@ -426,7 +426,7 @@ async def lifespan(app: FastAPI):
     log.info(f"Active corpus: {corpus.name} — {corpus.display_name} (acts: {corpus.acts})")
 
     # 1. Shared reranker FIRST (used by all collections)
-    shared_reranker = Reranker()
+    shared_reranker = Reranker(model_name=cfg.RERANKER_MODEL)
 
     # 2. Per-collection retrievers — one per corpus source
     from rag_pipeline.schemas import StatuteChunk
@@ -566,6 +566,13 @@ def meta() -> MetaResponse:
         pdf_acts=list(corpus.pdf_map().keys()),
         context_enabled=_state.get("context_retriever") is not None,
         cross_reference=xref,
+        models=ModelInfo(
+            llm_provider=cfg.LLM_PROVIDER,
+            llm_model=cfg.MODEL,
+            embedding_provider=cfg.EMBEDDING_PROVIDER,
+            embedding_model=cfg.EMBEDDING_MODEL,
+            reranker_model=cfg.RERANKER_MODEL,
+        ),
     )
 
 

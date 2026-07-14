@@ -76,6 +76,16 @@ class CrossRefMeta(BaseModel):
     pdf_label:  str
 
 
+class ModelInfo(BaseModel):
+    """Active model config — sourced from .env, so clients never hardcode it."""
+    llm_provider:       str
+    llm_model:          Optional[str] = None
+    embedding_provider: str
+    embedding_model:    Optional[str] = None
+    reranker_model:     str
+    vector_store:       str = "chromadb"
+
+
 class MetaResponse(BaseModel):
     """Corpus metadata so clients (dashboard) render without hardcoding IPC/BNS."""
     corpus:          str
@@ -84,6 +94,7 @@ class MetaResponse(BaseModel):
     pdf_acts:        list[str]              # acts renderable via /documents/page-image
     context_enabled: bool
     cross_reference: Optional[CrossRefMeta] = None
+    models:          ModelInfo
 
 
 class DocInfo(BaseModel):

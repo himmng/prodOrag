@@ -1,6 +1,6 @@
 [![CI](https://github.com/himmng/protoRAG/actions/workflows/ci.yml/badge.svg)](https://github.com/himmng/protoRAG/actions/workflows/ci.yml)
 
-# prodOrag
+# protoRAG
 
 A **corpus-agnostic**, production-bound hybrid RAG pipeline for legal corpora. The
 reference corpus is Indian criminal law — the Indian Penal Code (IPC 1860) and the
@@ -9,289 +9,94 @@ nothing IPC/BNS-specific is hardcoded in the core. Swapping in a different corpu
 a matter of dropping a new corpus config + PDFs, setting `RAG_CORPUS`, and
 re-ingesting — no code changes.
 
-## What this project does
+Hybrid retrieval (BM25 + dense + cross-encoder rerank) → grounded, citation-aware
+LLM answers, served over FastAPI with SSE streaming, plus a Streamlit dashboard.
 
-`protoRAG` combines lexical, dense, and reranked retrieval with LLM-driven answer
-generation to support:
+**Looking for the full guide?** → [docs/USAGE.md](docs/USAGE.md) covers
+architecture, every config variable, the corpus format, and how to use each API
+endpoint and eval workflow. This README is just the fast path to a running instance.
 
-- multi-strategy retrieval over any configured corpus
-- citation-aware answer generation, grounded in retrieved excerpts
-- an optional **cross-reference** layer (e.g. IPC↔BNS concordance) surfaced as a
-  separate, authoritative response field — config-gated per corpus
-- an optional **legislative-context** layer (committee reports / statements of
-  objects) retrieved as clearly-labeled, non-binding commentary
-- **session-isolated case upload + Q&A**: upload a real case file and ask which
-  sections apply, why, and how to interpret it — the upload is embedded into a
-  private, per-session vector collection, never mixed into the main corpus
-- streaming responses via Server-Sent Events (SSE)
-- retrieval evaluation and threshold calibration
-- a Streamlit dashboard driven entirely by the API's `/meta` endpoint
+## Requirements
 
-## Key features
+- Python **>= 3.12**
+- An [Ollama](https://ollama.com) instance (default provider) *or* credentials for
+  Azure OpenAI / OpenAI / AWS Bedrock / GCP Vertex AI
 
-- `fastapi` service exposing `/answer`, `/answer/stream`, `/answer/case`, `/meta`,
-  document, and evaluation endpoints
-- configurable retrievers: `bm25`, `dense`, `ensemble`, `hybrid_reranked`
-- corpus selected at startup via `RAG_CORPUS`; collections, prompts, cross-reference
-  labels, and PDF previews all derived from the corpus YAML
-- reusable startup singleton pipeline for low latency
-- vendor-agnostic model providers: Ollama, Azure OpenAI, AWS Bedrock, GCP Vertex AI,
-  OpenAI (switch via `MODEL_PROVIDER`)
-- auth guard with optional API-key mode; per-request rate limiting
-
-## Architecture
-
-The pipeline splits into an **offline ingest** path (run once per corpus change) and
-an **online serving** path (the FastAPI request loop). Everything is driven from the
-corpus YAML selected by `RAG_CORPUS`, so the core stays corpus-agnostic.
-
-```mermaid
-flowchart TB
-    subgraph Config["Corpus config"]
-        YAML["configs/corpora/&lt;name&gt;.yaml<br/>sources · parser regex<br/>concordance · context"]
-    end
-
-    subgraph Ingest["Offline ingest — rag-ingest"]
-        PDF["data/raw/*.pdf"]
-        SP["StatuteParser<br/>(section-aware chunking)"]
-        DP["DoclingHybridParser<br/>(prose / OCR)"]
-        CP["ConcordanceParser<br/>(pdfplumber table)"]
-        EMB1["get_embeddings()<br/>(provider-agnostic)"]
-        PDF --> SP --> EMB1
-        PDF --> DP --> EMB1
-        PDF --> CP
-    end
-
-    subgraph Stores["Persisted artifacts"]
-        CHROMA[("chroma_db/<br/>IPC_Corpus · BNS_Corpus")]
-        JSON["data/processed/*.json<br/>chunk caches"]
-        CONC["concordance.json<br/>(dict lookup)"]
-    end
-
-    EMB1 --> CHROMA
-    SP --> JSON
-    DP --> JSON
-    CP --> CONC
-
-    subgraph Serve["Online serving — FastAPI"]
-        API["api/main.py<br/>/answer · /answer/stream<br/>/answer/case · /meta"]
-        subgraph Retrieval["Per-act retrieval (by_act)"]
-            DENSE["DenseRetriever"]
-            BM25["BM25Retriever"]
-            ENS["EnsembleRetriever<br/>(RRF fusion)"]
-            RR["Reranker<br/>(BGE cross-encoder)"]
-            DENSE --> ENS
-            BM25 --> ENS
-            ENS --> RR
-        end
-        CTX["build_context<br/>+ concordance injection"]
-        LLM["get_llm()<br/>(Ollama / Azure / ...)"]
-        DOCS["DocumentStore<br/>(per-session case uploads)"]
-    end
-
-    YAML --> Ingest
-    YAML --> API
-    CHROMA --> DENSE
-    JSON --> BM25
-    CONC -->|exact-match lookup| CTX
-    RR --> CTX
-    DOCS --> CTX
-    CTX --> LLM
-
-    subgraph Clients["Clients"]
-        DASH["Streamlit dashboard"]
-        USER["API consumers / SSE"]
-    end
-
-    LLM -->|answer| API
-    API -->|"answer · citations<br/>cross_reference · context"| DASH
-    API -->|SSE token stream| USER
-    DASH -.->|upload case| DOCS
-```
-
-**Read the diagram as three lanes:** the corpus YAML (top) configures both paths;
-ingest turns PDFs into Chroma vectors + chunk caches + a concordance dict; serving
-retrieves per-act (dense + BM25 → RRF ensemble → BGE rerank), injects the
-deterministic concordance lookup into context, and grounds the LLM answer. Case
-uploads live in a separate per-session collection that never mixes into the corpus.
-
-## Getting started
-
-### Install locally
+## Quickstart
 
 ```bash
+git clone https://github.com/himmng/protoRAG.git
+cd protoRAG
+
 python -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate         # Windows: .venv\Scripts\activate
 pip install --upgrade pip
-pip install -e .            # add '.[dev]' for tests
+
+# option A — editable install (recommended for development)
+pip install -e .
+
+# option B — flat requirements file (if you just want it running)
+pip install -r requirements.txt
+pip install -e . --no-deps
 ```
 
-### Ingest a corpus
-
-Corpora live in `configs/corpora/<name>.yaml` (sources, parser regex, optional
-concordance, optional context sources). Build the collections + chunk caches:
+Copy the example environment file and adjust it for your model provider:
 
 ```bash
-rag-ingest --corpus ipc_bns --clean          # full rebuild
-rag-ingest --corpus ipc_bns --only IPC        # a single act
-rag-ingest --corpus ipc_bns --only-context    # just the context layer
-rag-ingest --corpus ipc_bns --dry-run         # parse + write JSON, no ChromaDB
+cp .env.example .env
 ```
 
-Ingest runs offline and writes per-corpus chunk JSON to `data/processed/` and
-vectors to `chroma_db/`.
+By default the app expects Ollama running locally with `OLLAMA_MODEL` and
+`OLLAMA_EMBEDDING_MODEL` pulled. To use a hosted provider instead, set
+`LLM_PROVIDER` / `EMBEDDING_PROVIDER` and the matching credentials — see
+[docs/USAGE.md § Configuration](docs/USAGE.md#configuration) for the full list.
 
-### Generate Evalution set
-The evaluation sets need .yaml mentioning the way the document corpus is designed need to store it at `./config/corpora/*document*.yaml`
+### Ingest the reference corpus
+
+```bash
+rag-ingest --corpus ipc_bns --clean
 ```
-source .venv/bin/activate
-python -m rag_pipeline.eval.qgen_v2 --out eval/eval_set_v2.json      # resumes automatically if interrupted
-python -m rag_pipeline.eval.qgen_v2 --out eval/eval_set_v2.json --fresh   # ignore checkpoint, start over
 
-python -m rag_pipeline.eval.qgen_v3 --out eval/eval_set_v3.json          # full 200, verified, resumable
-python -m rag_pipeline.eval.qgen_v3 --out eval/eval_set_v3.json --no-verify   # ~2x faster, no quality gate
+This parses the PDFs in `data/raw/`, builds the Chroma vector collections, and
+writes chunk caches to `data/processed/`. See
+[docs/USAGE.md § Ingesting a corpus](docs/USAGE.md#ingesting-a-corpus) for options
+and how to add your own corpus.
 
-```
 ### Run the API
 
 ```bash
 uvicorn rag_pipeline.api.main:app --host 0.0.0.0 --port 8000
 ```
-### Run Evaluations (Hit@K, Recall, MRR)
-set the eval path in the .env
-```bash
-curl -s -X POST http://localhost:8000/eval/retrieval \
-  -H "X-API-Key: dev-key-123" -H "Content-Type: application/json" \
-  -d '{"retriever":"hybrid_reranked","top_k":5}' | python -m json.tool
-```
+
 Then open:
 
-- `http://localhost:8000/docs` — interactive OpenAPI docs
+- `http://localhost:8000/docs` — interactive Swagger UI (try every endpoint)
+- `http://localhost:8000/redoc` — ReDoc reference view
 - `http://localhost:8000/health` — readiness check
 - `http://localhost:8000/meta` — active-corpus metadata
 
 ### Run the dashboard
 
 ```bash
-streamlit run apps/dashboard/app.py           # talks to the API at :8000
+streamlit run apps/dashboard/app.py
 ```
+
+The dashboard talks to the API at `API_URL` (default `http://localhost:8000`) and
+authenticates with `DASHBOARD_API_KEY` — both read from `.env`.
 
 ### Run with Docker
 
 ```bash
-docker compose up --build                     # API on :8000
+docker compose up --build     # API on :8000
 ```
 
-## Configuration
+### Ask your first question
 
-Runtime configuration is via environment variables or a `.env` file.
-
-Important variables:
-
-- `RAG_CORPUS` — active corpus name (matches `configs/corpora/<name>.yaml`); default `ipc_bns`
-- `API_KEYS` — comma-separated keys for API auth; empty disables auth (dev mode)
-- `MODEL_PROVIDER` — one of `ollama`, `azure`, `openai`, `gcp`, `aws`
-- `OLLAMA_HOST`, `OLLAMA_MODEL`, `OLLAMA_EMBEDDING_MODEL`
-- `OPENAI_API_KEY`, `OPENAI_MODEL`, `OPENAI_EMBEDDING_MODEL`
-- `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_DEPLOYMENT`
-- `AWS_REGION`, `AWS_BEDROCK_MODEL_ID`, `AWS_BEDROCK_EMBEDDING_MODEL_ID`
-- `GCP_PROJECT_ID`, `GCP_REGION`, `GCP_VERTEX_MODEL`, `GCP_VERTEX_EMBEDDING_MODEL`
-- `CHUNK_SIZE`, `CHUNK_OVERLAP`, `TOP_K`
-
-### Example `.env`
-
-```text
-RAG_CORPUS=ipc_bns
-MODEL_PROVIDER=ollama
-OLLAMA_HOST=http://localhost:11434
-OLLAMA_MODEL=gemma-4-e4b:latest
-OLLAMA_EMBEDDING_MODEL=embeddinggemma:latest
-API_KEYS=dev-key-123
-LOG_LEVEL=INFO
+```bash
+curl -s -X POST http://localhost:8000/answer \
+  -H "X-API-Key: dev-key-123" -H "Content-Type: application/json" \
+  -d '{"query": "What is the punishment for theft?", "top_k": 5}' | python -m json.tool
 ```
-
-## API overview
-
-### Corpus metadata — `GET /meta`
-
-Returns the active corpus name, display name, acts, PDF-previewable acts, whether the
-context layer is enabled, and cross-reference labels. Clients (like the dashboard)
-render entirely from this — no hardcoded act names.
-
-### Health — `GET /health`
-
-Service readiness and component status.
-
-### Answer — `POST /answer`
-
-```json
-{
-  "query": "What is the punishment for cheating?",
-  "top_k": 5,
-  "retriever": "hybrid_reranked",
-  "collections": [],
-  "include_context": false
-}
-```
-
-`collections` is validated against the active corpus at runtime; empty = all acts.
-The response includes `question`, `answer`, `citations`, an optional
-`cross_reference` block (when the query names a section and the corpus has a
-concordance), an optional `context` list (interpretive commentary, when
-`include_context` is set), `retriever`, and `latency_ms`.
-
-### Streaming — `POST /answer/stream`
-
-Server-Sent Events: `cross_reference`, `citations`, `context`, incremental `token`
-events, and a final `done` frame.
-
-### Case Q&A — `POST /answer/case`
-
-Interpret a previously uploaded case against the corpus. Requires an `X-Session-Id`
-header and a `doc_id`. Retrieves the case's own isolated excerpts + relevant corpus
-sections + cross-references, and explains which sections apply, why, and how.
-Commentary is included by default here.
-
-### Documents — `POST /documents/upload`, `GET /documents`, `DELETE /documents/{doc_id}`
-
-Upload `pdf`, `txt`, or `md` case files. All document endpoints require an
-`X-Session-Id` header; uploads are keyed by that token, embedded into a private,
-per-session, TTL'd vector collection, and are never mixed into the main corpus or
-visible across sessions.
-
-### Page preview — `GET /documents/page-image`
-
-Render one page of a corpus PDF (or the concordance table) to PNG for inline preview.
-Valid `act` values come from the active corpus.
-
-### Evaluation — `POST /eval/retrieval`, `POST /eval/threshold-sweep`
-
-Run retrieval metrics and sweep confidence thresholds against the built-in eval set.
-
-## Project layout
-
-- `src/rag_pipeline/` — core package
-  - `api/` — FastAPI app, routes, auth, logging, SSE, session-isolated doc store
-  - `corpus/` — corpus registry (YAML → config) + concordance parser/lookup
-  - `retrievers/` — retrieval implementations (`bm25`, `dense`, `ensemble`, `reranker`)
-  - `parsers/` — statute (section-aware) and prose (Docling) parsers
-  - `generation/` — answer generation and streaming logic
-  - `eval/` — retrieval evaluation, threshold sweep, RAGAS support
-  - `prompts/` — prompt templates shipped with the package
-  - `cli/` — `rag-ingest` ingestion command
-- `apps/dashboard/` — Streamlit dashboard
-- `configs/corpora/` — corpus configuration YAMLs
-- `data/` — raw and processed corpus artifacts
-- `chroma_db/` — persisted Chroma collections
-- `tests/` — pytest coverage for API, parsing, and evaluation
-
-## Development notes
-
-- The FastAPI app uses a startup lifespan handler to load heavy objects (reranker,
-  retrievers, LLM) once and reuse them across requests.
-- The default hybrid retriever is a two-stage semantic + reranked pipeline.
-- The serving layer is corpus-agnostic; the concordance/cross-reference feature is
-  optional and activated only when a corpus declares a `concordance:` block.
 
 ## Testing
 
@@ -299,7 +104,28 @@ Run retrieval metrics and sweep confidence thresholds against the built-in eval 
 pytest
 ```
 
+## Docs site
+
+The usage guide and API reference (auto-generated from docstrings) also build into
+a browsable site via [MkDocs](https://www.mkdocs.org):
+
+```bash
+pip install -e ".[docs]"
+mkdocs serve      # http://127.0.0.1:8000 — live-reloads on edits
+mkdocs build      # static site in site/
+```
+
+## Project layout
+
+- `src/rag_pipeline/` — core package (API, retrievers, parsers, generation, eval, CLI)
+- `apps/dashboard/` — Streamlit dashboard
+- `configs/corpora/` — corpus configuration YAMLs
+- `data/` — raw and processed corpus artifacts
+- `chroma_db/` — persisted Chroma collections
+- `tests/` — pytest coverage
+- `docs/USAGE.md` — full usage guide, config reference, API workflows
+
 ## Contribution
 
-This repository is in alpha. Please open issues for bug reports, feature requests, or
-questions about the retrieval pipeline.
+This repository is in alpha. Please open issues for bug reports, feature requests,
+or questions about the retrieval pipeline.

@@ -7,10 +7,16 @@ import os
 import json
 import time
 import uuid
+from pathlib import Path
 from typing import Iterator
 
 import requests
 import streamlit as st
+from dotenv import load_dotenv
+
+# Streamlit doesn't auto-load .env like the FastAPI backend (pydantic-settings)
+# does — load it explicitly so API_URL / DASHBOARD_API_KEY are picked up.
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 # ── Page config ──────────────────────────────────────────────────────
 
@@ -76,7 +82,7 @@ st.markdown(
 DEFAULTS = {
     "messages":       [],
     "api_url": os.environ.get("API_URL", "http://localhost:8000"),
-    "api_key":        "dev-key-123",
+    "api_key":        os.environ.get("DASHBOARD_API_KEY", ""),
     "retriever":      "hybrid_reranked",
     "top_k":          5,
     "fetch_k":        20,
@@ -122,6 +128,11 @@ def fetch_meta(api_url: str) -> dict:
         "corpus": "unknown", "display_name": "Corpus",
         "acts": ["IPC", "BNS"], "pdf_acts": [],
         "context_enabled": False, "cross_reference": None,
+        "models": {
+            "llm_provider": "?", "llm_model": None,
+            "embedding_provider": "?", "embedding_model": None,
+            "reranker_model": "?", "vector_store": "chromadb",
+        },
     }
 
 
@@ -369,17 +380,24 @@ with st.sidebar:
     )
 
     with st.expander("🛠 Tech stack", expanded=False):
+        _models = st.session_state.meta.get("models", {})
+        _embed_model = _models.get("embedding_model") or "?"
+        _llm_model = _models.get("llm_model") or "?"
+        _llm_provider = _models.get("llm_provider") or "?"
+        _embed_provider = _models.get("embedding_provider") or "?"
+        _reranker = _models.get("reranker_model") or "?"
+        _vstore = _models.get("vector_store") or "chromadb"
         st.markdown(
-            """
+            f"""
             | Layer | Tool |
             |---|---|
             | Parser | **Docling** + **pdfplumber** |
-            | Embeddings | **embeddinggemma** (Ollama, 768-d) |
-            | Vector store | **ChromaDB** (IPC + BNS) |
+            | Embeddings | **{_embed_model}** ({_embed_provider}) |
+            | Vector store | **{_vstore}** |
             | Sparse | **BM25** (rank-bm25) |
             | Fusion | **RRF** (k=60) |
-            | Reranker | **BGE-reranker-base** |
-            | LLM | **gemma-4-e4b** (Ollama) |
+            | Reranker | **{_reranker}** |
+            | LLM | **{_llm_model}** ({_llm_provider}) |
             | API | **FastAPI** + SSE streaming |
             | Auth | API-key + slowapi rate limit |
             """
@@ -540,11 +558,12 @@ with st.sidebar:
     st.divider()
     st.markdown("### 🛠 Server-side (read-only)")
     st.caption("Set at startup — change via `.env` + restart.")
+    _models = st.session_state.meta.get("models", {})
     st.code(
-        "LLM:        gemma-4-e4b (Ollama)\n"
-        "Embeddings: embeddinggemma (768-d)\n"
-        "Reranker:   BAAI/bge-reranker-base\n"
-        "Vector DB:  ChromaDB\n"
+        f"LLM:        {_models.get('llm_model') or '?'} ({_models.get('llm_provider') or '?'})\n"
+        f"Embeddings: {_models.get('embedding_model') or '?'} ({_models.get('embedding_provider') or '?'})\n"
+        f"Reranker:   {_models.get('reranker_model') or '?'}\n"
+        f"Vector DB:  {_models.get('vector_store') or 'chromadb'}\n"
         f"Corpus:     {st.session_state.meta.get('corpus', '?')} "
         f"(acts: {', '.join(st.session_state.meta.get('acts', []))})",
         language="yaml",
