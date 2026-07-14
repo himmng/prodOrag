@@ -43,7 +43,7 @@ def get_ragas_judges(llm: "BaseChatModel", embeddings: "Embeddings"):
     """Wrap a LangChain LLM + embeddings as RAGAS-compatible judges."""
     from ragas.embeddings import LangchainEmbeddingsWrapper
     from ragas.llms import LangchainLLMWrapper
-    return LangchainLLMWrapper(llm), LangchainEmbeddingsWrapper(embeddings)
+    return LangchainLLMWrapper(llm, bypass_temperature=True), LangchainEmbeddingsWrapper(embeddings)
 
 
 def get_default_metrics(judge_llm, judge_emb) -> list:

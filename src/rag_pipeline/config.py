@@ -56,6 +56,9 @@ class Config(BaseSettings):
     RAGAS_GEN_DEPLOYMENT:    str = ""      # generator (answers being judged)
     RAGAS_JUDGE1_DEPLOYMENT: str = ""      # judge 1
     RAGAS_JUDGE2_DEPLOYMENT: str = ""      # judge 2 (blank = skip)
+    RAGAS_GEN_TEMPERATURE:         float = 1.0   # generator temperature
+    RAGAS_JUDGE1_TEMPERATURE:       float = 1.0   # judge
+    RAGAS_JUDGE2_TEMPERATURE:       float = 1.0   # judge 2 (blank = skip)
 
     # ragas result subdirs
     RAGAS_SUMMARY_DIR:  ClassVar[Path] = EVAL_RESULTS_DIR / "ragas" / "summary"
@@ -72,7 +75,9 @@ class Config(BaseSettings):
     # Ollama
     OLLAMA_HOST:            str = "http://localhost:11434"
     OLLAMA_MODEL:           str = "gemma-4-e4b:latest"
+    OLLAMA_MODEL_TEMPERATURE: float = 1.0
     OLLAMA_EMBEDDING_MODEL: str = "embeddinggemma:latest"
+    OLLAMA_EMBEDDING_TEMPERATURE: float = 1.0
 
     # Azure OpenAI
     AZURE_OPENAI_ENDPOINT:             Optional[str] = None
@@ -80,6 +85,7 @@ class Config(BaseSettings):
     AZURE_OPENAI_API_VERSION:          str = "2024-10-21"
     AZURE_OPENAI_DEPLOYMENT:           Optional[str] = None
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT: Optional[str] = None
+    AZURE_OPENAI_DEPLOYMENT_TEMPERATURE:      float = 1.0
 
     # AWS Bedrock
     AWS_REGION:                     str = "us-east-1"
@@ -151,6 +157,7 @@ class Config(BaseSettings):
                 ("AZURE_OPENAI_ENDPOINT", self.AZURE_OPENAI_ENDPOINT),
                 ("AZURE_OPENAI_API_KEY", self.AZURE_OPENAI_API_KEY),
                 ("AZURE_OPENAI_DEPLOYMENT", self.AZURE_OPENAI_DEPLOYMENT),
+                ("AZURE_OPENAI_DEPLOYMENT_TEMPERATURE", self.AZURE_OPENAI_DEPLOYMENT_TEMPERATURE),
             ] if not v]
             if missing:
                 raise ValueError(f"LLM_PROVIDER=azure requires: {', '.join(missing)}")

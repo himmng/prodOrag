@@ -43,3 +43,82 @@
 2026-07-15 00:27:12,778 - INFO    | rag - Scoring with judge1 (deployment=gpt-5.6-luna)
 2026-07-15 00:27:12,779 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.6-luna)
 2026-07-15 00:27:13,174 - INFO    | rag - Scoring rows 1–5 of 24
+2026-07-15 00:33:19,890 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 00:33:19,890 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 00:45:55,954 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 00:45:55,954 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 00:46:25,363 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 00:46:25,363 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 00:46:30,622 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 00:46:30,623 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 00:46:31,543 - INFO    | rag - Generator deployment: gpt-5.4-nano · 3 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 00:46:31,543 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 00:46:40,221 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 00:46:41,120 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 00:46:41,257 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 00:46:41,296 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 00:47:13,488 - INFO    | rag - Cached RAGAS dataset (3 rows) → eval_set_v5__ragas__2026-07-14_1646__dataset.json
+2026-07-15 00:47:13,499 - INFO    | rag - Scoring with judge1 (deployment=gpt-5.6-luna)
+2026-07-15 00:47:13,499 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.6-luna)
+2026-07-15 00:47:13,764 - INFO    | rag - Scoring rows 1–3 of 3
+2026-07-15 00:47:33,515 - INFO    | rag -   ✓ checkpoint saved (3/3)
+2026-07-15 00:47:33,517 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-14_1646__judge1__perquestion.csv
+2026-07-15 00:47:33,539 - INFO    | rag - Summary → eval_set_v5__ragas__2026-07-14_1646__summary.json
+2026-07-15 01:10:44,135 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:10:44,135 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:11:47,042 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:11:47,043 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:14:14,704 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:14:14,704 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:15:33,586 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:15:33,586 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:19:40,527 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:19:40,528 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:20:52,112 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:20:52,112 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:21:14,415 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:21:14,415 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:21:20,465 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 01:21:20,465 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 01:21:21,380 - INFO    | rag - Generator deployment: gpt-5.4-nano · 3 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 01:21:21,380 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 01:21:30,498 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 01:21:31,477 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 01:21:31,733 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 01:21:31,777 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 01:22:04,466 - INFO    | rag - Cached RAGAS dataset (3 rows) → eval_set_v5__ragas__2026-07-14_1721__dataset.json
+2026-07-15 01:22:04,479 - INFO    | rag - Scoring with judge1 (deployment=gpt-5.6-luna)
+2026-07-15 01:22:04,479 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.6-luna)
+2026-07-15 01:22:04,758 - INFO    | rag - Scoring rows 1–3 of 3
+2026-07-15 01:22:24,917 - INFO    | rag -   ✓ checkpoint saved (3/3)
+2026-07-15 01:22:24,918 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-14_1721__judge1__perquestion.csv
+2026-07-15 01:22:24,939 - INFO    | rag - Summary → eval_set_v5__ragas__2026-07-14_1721__summary.json
+2026-07-15 01:30:30,657 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:30:30,657 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:30:55,664 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:30:55,664 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:31:00,579 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 01:31:00,579 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 01:31:01,476 - INFO    | rag - Generator deployment: gpt-5.4-nano · 3 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 01:31:01,476 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 01:31:10,654 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 01:31:11,579 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 01:31:11,719 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 01:31:11,764 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 01:31:44,985 - INFO    | rag - Cached RAGAS dataset (3 rows) → eval_set_v5__ragas__2026-07-14_1731__dataset.json
+2026-07-15 01:31:44,999 - INFO    | rag - Scoring with judge1 (deployment=gpt-5.6-luna)
+2026-07-15 01:31:44,999 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.6-luna)
+2026-07-15 01:31:45,292 - INFO    | rag - Scoring rows 1–3 of 3
+2026-07-15 01:32:26,556 - INFO    | rag -   ✓ checkpoint saved (3/3)
+2026-07-15 01:32:26,558 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-14_1731__judge1__perquestion.csv
+2026-07-15 01:32:26,582 - INFO    | rag - Summary → eval_set_v5__ragas__2026-07-14_1731__summary.json
+2026-07-15 01:34:42,363 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:34:42,363 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:34:47,886 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 01:34:47,886 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 01:34:48,815 - INFO    | rag - Generator deployment: gpt-5.4-nano · 24 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 01:34:48,815 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 01:34:57,876 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 01:34:58,851 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 01:34:59,134 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 01:34:59,178 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates

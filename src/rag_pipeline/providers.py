@@ -69,7 +69,9 @@ def _ollama_llm():
     from langchain_ollama import ChatOllama
     return ChatOllama(
         model=cfg.OLLAMA_MODEL,
-        base_url=cfg.OLLAMA_HOST
+        base_url=cfg.OLLAMA_HOST,
+        temperature=cfg.OLLAMA_TEMPERATURE,
+
     )
 
 def _ollama_emb():
@@ -77,6 +79,7 @@ def _ollama_emb():
     return OllamaEmbeddings(
         model=cfg.OLLAMA_EMBEDDING_MODEL,
         base_url=cfg.OLLAMA_HOST,
+        temperature=cfg.OLLAMA_EMBEDDING_TEMPERATURE,
     )
 
 # azure openai
@@ -91,6 +94,7 @@ def _azure_llm(deployment: str | None = None):
         azure_deployment=dep,
         api_version=cfg.AZURE_OPENAI_API_VERSION,
         api_key=cfg.AZURE_OPENAI_API_KEY,
+        temperature=cfg.AZURE_OPENAI_DEPLOYMENT_TEMPERATURE,
     )
 def _azure_emb():
     from langchain_openai import AzureOpenAIEmbeddings
@@ -102,6 +106,7 @@ def _azure_emb():
         azure_deployment=cfg.AZURE_OPENAI_EMBEDDING_DEPLOYMENT,
         api_version=cfg.AZURE_OPENAI_API_VERSION,     # was azure_api_version
         api_key=cfg.AZURE_OPENAI_API_KEY,             # was azure_api_key
+        temperature=cfg.AZURE_OPENAI_EMBEDDING_TEMPERATURE,  # was azure_embedding_temperature
     )
 
 # openai direct (optional)
@@ -111,6 +116,7 @@ def _openai_llm():
     return ChatOpenAI(
         model=cfg.OPENAI_MODEL,
         openai_api_key=cfg.OPENAI_API_KEY,
+        temperature=cfg.OPENAI_TEMPERATURE,
     )
 
 def _openai_emb():
@@ -119,6 +125,7 @@ def _openai_emb():
     return OpenAIEmbeddings(
         model=cfg.OPENAI_EMBEDDING_MODEL,
         openai_api_key=cfg.OPENAI_API_KEY,
+        temperature=cfg.OPENAI_EMBEDDING_TEMPERATURE,
     )
 
 # AWS Bedrock
@@ -129,6 +136,7 @@ def _aws_llm():
     return ChatBedrock(
         model_id=cfg.AWS_BEDROCK_MODEL_ID,
         region_name=cfg.AWS_REGION,
+        temperature=cfg.AWS_BEDROCK_TEMPERATURE,
     )
 
 def _aws_emb():
@@ -137,6 +145,7 @@ def _aws_emb():
     return BedrockEmbeddings(
         model_id=cfg.AWS_BEDROCK_EMBEDDING_MODEL_ID,
         region_name=cfg.AWS_REGION,
+        temperature=cfg.AWS_BEDROCK_EMBEDDING_TEMPERATURE,
     )
 
 
@@ -150,6 +159,7 @@ def _gcp_llm():
         model=cfg.GCP_VERTEX_MODEL,
         project=cfg.GCP_PROJECT_ID,
         location=cfg.GCP_REGION,
+        temperature=cfg.GCP_VERTEX_TEMPERATURE,
     )
 
 def _gcp_emb():
@@ -160,4 +170,5 @@ def _gcp_emb():
         model=cfg.GCP_VERTEX_EMBEDDING_MODEL,
         project=cfg.GCP_PROJECT_ID,
         location=cfg.GCP_REGION,
+        temperature=cfg.GCP_VERTEX_EMBEDDING_TEMPERATURE,
     )
