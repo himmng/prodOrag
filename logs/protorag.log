@@ -122,3 +122,15 @@
 2026-07-15 01:34:58,851 - INFO    | rag - Instantiating embedding model for provider: ollama
 2026-07-15 01:34:59,134 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
 2026-07-15 01:34:59,178 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 01:38:44,878 - INFO    | rag - Cached RAGAS dataset (24 rows) → eval_set_v5__ragas__2026-07-14_1734__dataset.json
+2026-07-15 01:38:44,892 - INFO    | rag - Scoring with judge1 (deployment=gpt-5.6-luna)
+2026-07-15 01:38:44,892 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.6-luna)
+2026-07-15 01:38:45,198 - INFO    | rag - Scoring rows 1–5 of 24
+2026-07-15 01:39:29,537 - INFO    | rag -   ✓ checkpoint saved (5/24)
+2026-07-15 01:39:29,538 - INFO    | rag - Scoring rows 6–10 of 24
+2026-07-15 01:39:47,141 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:39:47,142 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:39:47,142 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:39:47,142 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 01:39:47,143 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 01:39:47,144 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
