@@ -61,7 +61,7 @@ def main(subset_n=24):
     )
 
     # 2. Score with every judge in RAGAS_JUDGE_DEPLOYMENTS (comma-separated)
-    judge_deps = [d.strip() for d in cfg.RAGAS_JUDGE_DEPLOYMENTS.split(",") if d.strip()]
+    judge_deps = [d.strip().strip('"').strip("'") for d in cfg.RAGAS_JUDGE_DEPLOYMENTS.split(",") if d.strip().strip('"').strip("'")]
     if not judge_deps:
         judge_deps = [cfg.RAGAS_GEN_DEPLOYMENT or "default"]   # fall back to self-judge
     log.info(f"Judges ({len(judge_deps)}): {judge_deps}")

@@ -162,3 +162,196 @@
 2026-07-15 10:46:13,379 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
 2026-07-15 10:46:13,379 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
 2026-07-15 10:46:13,379 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 11:56:19,492 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 11:56:19,493 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 11:56:25,915 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 11:56:25,916 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 11:56:26,861 - INFO    | rag - Generator deployment: gpt-5.4-nano · 24 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 11:56:26,861 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 11:56:37,281 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 11:56:38,240 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 11:56:38,524 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 11:56:38,572 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 12:00:17,153 - INFO    | rag - Cached RAGAS dataset (24 rows) → eval_set_v5__ragas__2026-07-15_0356__dataset.json
+2026-07-15 12:00:17,162 - INFO    | rag - Judges (1): ['gpt-5.4-nano']
+2026-07-15 12:00:17,163 - INFO    | rag - Scoring with judge=gpt-5.4-nano
+2026-07-15 12:00:17,455 - INFO    | rag - Scoring rows 1–5 of 24
+2026-07-15 12:01:02,266 - INFO    | rag -   ✓ checkpoint saved (5/24)
+2026-07-15 12:01:02,267 - INFO    | rag - Scoring rows 6–10 of 24
+2026-07-15 12:01:51,536 - INFO    | rag -   ✓ checkpoint saved (10/24)
+2026-07-15 12:01:51,537 - INFO    | rag - Scoring rows 11–15 of 24
+2026-07-15 12:02:43,103 - INFO    | rag -   ✓ checkpoint saved (15/24)
+2026-07-15 12:02:43,103 - INFO    | rag - Scoring rows 16–20 of 24
+2026-07-15 12:03:52,828 - INFO    | rag -   ✓ checkpoint saved (20/24)
+2026-07-15 12:03:52,829 - INFO    | rag - Scoring rows 21–24 of 24
+2026-07-15 12:05:12,062 - INFO    | rag -   ✓ checkpoint saved (24/24)
+2026-07-15 12:05:12,069 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-15_0356__gpt-5.4-nano__perquestion.csv
+2026-07-15 12:05:12,090 - INFO    | rag - Summary → eval_set_v5__ragas__2026-07-15_0356__summary.json
+2026-07-15 12:08:48,126 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 12:08:48,126 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 12:08:57,248 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 12:08:57,248 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 12:09:02,996 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 12:09:02,996 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 12:09:03,917 - INFO    | rag - Generator deployment: gpt-5.4-nano · 24 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 12:09:03,917 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 12:09:13,225 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 12:09:14,155 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 12:09:14,457 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 12:09:14,499 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 12:12:42,662 - INFO    | rag - Cached RAGAS dataset (24 rows) → eval_set_v5__ragas__2026-07-15_0409__dataset.json
+2026-07-15 12:12:42,670 - INFO    | rag - Judges (2): ['gpt-5.6-luna', 'gpt-5.4-nano']
+2026-07-15 12:12:42,670 - INFO    | rag - Scoring with judge=gpt-5.6-luna
+2026-07-15 12:12:42,670 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.6-luna)
+2026-07-15 12:12:42,945 - INFO    | rag - Scoring rows 1–5 of 24
+2026-07-15 12:13:25,666 - INFO    | rag -   ✓ checkpoint saved (5/24)
+2026-07-15 12:13:25,666 - INFO    | rag - Scoring rows 6–10 of 24
+2026-07-15 12:14:20,206 - INFO    | rag -   ✓ checkpoint saved (10/24)
+2026-07-15 12:14:20,207 - INFO    | rag - Scoring rows 11–15 of 24
+2026-07-15 12:15:10,453 - INFO    | rag -   ✓ checkpoint saved (15/24)
+2026-07-15 12:15:10,454 - INFO    | rag - Scoring rows 16–20 of 24
+2026-07-15 12:16:35,237 - INFO    | rag -   ✓ checkpoint saved (20/24)
+2026-07-15 12:16:35,237 - INFO    | rag - Scoring rows 21–24 of 24
+2026-07-15 12:17:37,369 - INFO    | rag -   ✓ checkpoint saved (24/24)
+2026-07-15 12:17:37,375 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-15_0409__gpt-5.6-luna__perquestion.csv
+2026-07-15 12:17:37,403 - INFO    | rag - Scoring with judge=gpt-5.4-nano
+2026-07-15 12:17:37,403 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 12:17:37,417 - INFO    | rag - Scoring rows 1–5 of 24
+2026-07-15 12:18:18,167 - INFO    | rag -   ✓ checkpoint saved (5/24)
+2026-07-15 12:18:18,167 - INFO    | rag - Scoring rows 6–10 of 24
+2026-07-15 12:18:59,596 - INFO    | rag -   ✓ checkpoint saved (10/24)
+2026-07-15 12:18:59,596 - INFO    | rag - Scoring rows 11–15 of 24
+2026-07-15 12:19:47,967 - INFO    | rag -   ✓ checkpoint saved (15/24)
+2026-07-15 12:19:47,968 - INFO    | rag - Scoring rows 16–20 of 24
+2026-07-15 12:21:02,464 - INFO    | rag -   ✓ checkpoint saved (20/24)
+2026-07-15 12:21:02,465 - INFO    | rag - Scoring rows 21–24 of 24
+2026-07-15 12:21:58,365 - INFO    | rag -   ✓ checkpoint saved (24/24)
+2026-07-15 12:21:58,371 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-15_0409__gpt-5.4-nano__perquestion.csv
+2026-07-15 12:21:58,391 - INFO    | rag - Summary → eval_set_v5__ragas__2026-07-15_0409__summary.json
+2026-07-15 12:35:54,365 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 12:35:54,365 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 12:35:59,937 - INFO    | rag - Loaded 176 eval examples ← eval_set_v5.json
+2026-07-15 12:35:59,938 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 12:36:00,856 - INFO    | rag - Generator deployment: gpt-5.4-nano · 132 Q · cats=['ipc_substantive', 'bns_substantive', 'cross_reference']
+2026-07-15 12:36:00,856 - INFO    | rag - Loading reranker: BAAI/bge-reranker-base (device=cpu)
+2026-07-15 12:36:10,043 - INFO    | rag - initializing vectorstore (provider = chroma, collection=IPC_Corpus)
+2026-07-15 12:36:11,007 - INFO    | rag - Instantiating embedding model for provider: ollama
+2026-07-15 12:36:11,214 - INFO    | rag - initializing vectorstore (provider = chroma, collection=BNS_Corpus)
+2026-07-15 12:36:11,257 - INFO    | rag - PromptManager: loading from /Users/himanshutiwari/github/prodOrag/src/rag_pipeline/prompts/templates
+2026-07-15 12:56:19,091 - INFO    | rag - Cached RAGAS dataset (132 rows) → eval_set_v5__ragas__2026-07-15_0435__dataset.json
+2026-07-15 12:56:19,100 - INFO    | rag - Judges (2): ['gpt-5.6-luna', 'gpt-5.4-nano']
+2026-07-15 12:56:19,100 - INFO    | rag - Scoring with judge=gpt-5.6-luna
+2026-07-15 12:56:19,100 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.6-luna)
+2026-07-15 12:56:19,388 - INFO    | rag - Scoring rows 1–5 of 132
+2026-07-15 12:57:00,794 - INFO    | rag -   ✓ checkpoint saved (5/132)
+2026-07-15 12:57:00,795 - INFO    | rag - Scoring rows 6–10 of 132
+2026-07-15 12:57:42,538 - INFO    | rag -   ✓ checkpoint saved (10/132)
+2026-07-15 12:57:42,538 - INFO    | rag - Scoring rows 11–15 of 132
+2026-07-15 12:58:38,940 - INFO    | rag -   ✓ checkpoint saved (15/132)
+2026-07-15 12:58:38,941 - INFO    | rag - Scoring rows 16–20 of 132
+2026-07-15 13:00:06,074 - INFO    | rag -   ✓ checkpoint saved (20/132)
+2026-07-15 13:00:06,075 - INFO    | rag - Scoring rows 21–25 of 132
+2026-07-15 13:01:17,706 - INFO    | rag -   ✓ checkpoint saved (25/132)
+2026-07-15 13:01:17,707 - INFO    | rag - Scoring rows 26–30 of 132
+2026-07-15 13:02:17,736 - INFO    | rag -   ✓ checkpoint saved (30/132)
+2026-07-15 13:02:17,737 - INFO    | rag - Scoring rows 31–35 of 132
+2026-07-15 13:03:14,024 - INFO    | rag -   ✓ checkpoint saved (35/132)
+2026-07-15 13:03:14,025 - INFO    | rag - Scoring rows 36–40 of 132
+2026-07-15 13:04:06,120 - INFO    | rag -   ✓ checkpoint saved (40/132)
+2026-07-15 13:04:06,121 - INFO    | rag - Scoring rows 41–45 of 132
+2026-07-15 13:05:04,066 - INFO    | rag -   ✓ checkpoint saved (45/132)
+2026-07-15 13:05:04,066 - INFO    | rag - Scoring rows 46–50 of 132
+2026-07-15 13:06:09,242 - INFO    | rag -   ✓ checkpoint saved (50/132)
+2026-07-15 13:06:09,242 - INFO    | rag - Scoring rows 51–55 of 132
+2026-07-15 13:07:35,253 - INFO    | rag -   ✓ checkpoint saved (55/132)
+2026-07-15 13:07:35,254 - INFO    | rag - Scoring rows 56–60 of 132
+2026-07-15 13:08:24,918 - INFO    | rag -   ✓ checkpoint saved (60/132)
+2026-07-15 13:08:24,919 - INFO    | rag - Scoring rows 61–65 of 132
+2026-07-15 13:09:09,839 - INFO    | rag -   ✓ checkpoint saved (65/132)
+2026-07-15 13:09:09,839 - INFO    | rag - Scoring rows 66–70 of 132
+2026-07-15 13:10:05,356 - INFO    | rag -   ✓ checkpoint saved (70/132)
+2026-07-15 13:10:05,357 - INFO    | rag - Scoring rows 71–75 of 132
+2026-07-15 13:10:57,254 - INFO    | rag -   ✓ checkpoint saved (75/132)
+2026-07-15 13:10:57,255 - INFO    | rag - Scoring rows 76–80 of 132
+2026-07-15 13:12:21,946 - INFO    | rag -   ✓ checkpoint saved (80/132)
+2026-07-15 13:12:21,946 - INFO    | rag - Scoring rows 81–85 of 132
+2026-07-15 13:13:14,730 - INFO    | rag -   ✓ checkpoint saved (85/132)
+2026-07-15 13:13:14,731 - INFO    | rag - Scoring rows 86–90 of 132
+2026-07-15 13:14:14,556 - INFO    | rag -   ✓ checkpoint saved (90/132)
+2026-07-15 13:14:14,557 - INFO    | rag - Scoring rows 91–95 of 132
+2026-07-15 13:18:19,163 - INFO    | rag -   ✓ checkpoint saved (95/132)
+2026-07-15 13:18:19,164 - INFO    | rag - Scoring rows 96–100 of 132
+2026-07-15 13:19:55,947 - INFO    | rag -   ✓ checkpoint saved (100/132)
+2026-07-15 13:19:55,948 - INFO    | rag - Scoring rows 101–105 of 132
+2026-07-15 13:21:11,168 - INFO    | rag -   ✓ checkpoint saved (105/132)
+2026-07-15 13:21:11,169 - INFO    | rag - Scoring rows 106–110 of 132
+2026-07-15 13:23:06,415 - INFO    | rag -   ✓ checkpoint saved (110/132)
+2026-07-15 13:23:06,416 - INFO    | rag - Scoring rows 111–115 of 132
+2026-07-15 13:24:30,708 - INFO    | rag -   ✓ checkpoint saved (115/132)
+2026-07-15 13:24:30,709 - INFO    | rag - Scoring rows 116–120 of 132
+2026-07-15 13:26:09,992 - INFO    | rag -   ✓ checkpoint saved (120/132)
+2026-07-15 13:26:09,993 - INFO    | rag - Scoring rows 121–125 of 132
+2026-07-15 13:27:10,814 - INFO    | rag -   ✓ checkpoint saved (125/132)
+2026-07-15 13:27:10,815 - INFO    | rag - Scoring rows 126–130 of 132
+2026-07-15 13:28:38,593 - INFO    | rag -   ✓ checkpoint saved (130/132)
+2026-07-15 13:28:38,593 - INFO    | rag - Scoring rows 131–132 of 132
+2026-07-15 13:29:11,173 - INFO    | rag -   ✓ checkpoint saved (132/132)
+2026-07-15 13:29:11,194 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-15_0435__gpt-5.6-luna__perquestion.csv
+2026-07-15 13:29:11,219 - INFO    | rag - Scoring with judge=gpt-5.4-nano
+2026-07-15 13:29:11,219 - INFO    | rag - Instantiating LLM for provider: azure (deployment=gpt-5.4-nano)
+2026-07-15 13:29:11,232 - INFO    | rag - Scoring rows 1–5 of 132
+2026-07-15 13:29:49,281 - INFO    | rag -   ✓ checkpoint saved (5/132)
+2026-07-15 13:29:49,281 - INFO    | rag - Scoring rows 6–10 of 132
+2026-07-15 13:30:36,683 - INFO    | rag -   ✓ checkpoint saved (10/132)
+2026-07-15 13:30:36,684 - INFO    | rag - Scoring rows 11–15 of 132
+2026-07-15 13:31:25,574 - INFO    | rag -   ✓ checkpoint saved (15/132)
+2026-07-15 13:31:25,574 - INFO    | rag - Scoring rows 16–20 of 132
+2026-07-15 13:38:14,920 - INFO    | rag -   ✓ checkpoint saved (20/132)
+2026-07-15 13:38:14,920 - INFO    | rag - Scoring rows 21–25 of 132
+2026-07-15 13:39:24,514 - INFO    | rag -   ✓ checkpoint saved (25/132)
+2026-07-15 13:39:24,515 - INFO    | rag - Scoring rows 26–30 of 132
+2026-07-15 13:40:18,028 - INFO    | rag -   ✓ checkpoint saved (30/132)
+2026-07-15 13:40:18,028 - INFO    | rag - Scoring rows 31–35 of 132
+2026-07-15 13:41:09,893 - INFO    | rag -   ✓ checkpoint saved (35/132)
+2026-07-15 13:41:09,893 - INFO    | rag - Scoring rows 36–40 of 132
+2026-07-15 13:41:56,599 - INFO    | rag -   ✓ checkpoint saved (40/132)
+2026-07-15 13:41:56,599 - INFO    | rag - Scoring rows 41–45 of 132
+2026-07-15 13:42:41,850 - INFO    | rag -   ✓ checkpoint saved (45/132)
+2026-07-15 13:42:41,850 - INFO    | rag - Scoring rows 46–50 of 132
+2026-07-15 13:46:25,652 - INFO    | rag -   ✓ checkpoint saved (50/132)
+2026-07-15 13:46:25,653 - INFO    | rag - Scoring rows 51–55 of 132
+2026-07-15 13:47:14,278 - INFO    | rag -   ✓ checkpoint saved (55/132)
+2026-07-15 13:47:14,279 - INFO    | rag - Scoring rows 56–60 of 132
+2026-07-15 13:48:00,866 - INFO    | rag -   ✓ checkpoint saved (60/132)
+2026-07-15 13:48:00,866 - INFO    | rag - Scoring rows 61–65 of 132
+2026-07-15 13:48:47,256 - INFO    | rag -   ✓ checkpoint saved (65/132)
+2026-07-15 13:48:47,257 - INFO    | rag - Scoring rows 66–70 of 132
+2026-07-15 13:49:42,942 - INFO    | rag -   ✓ checkpoint saved (70/132)
+2026-07-15 13:49:42,943 - INFO    | rag - Scoring rows 71–75 of 132
+2026-07-15 13:50:31,272 - INFO    | rag -   ✓ checkpoint saved (75/132)
+2026-07-15 13:50:31,272 - INFO    | rag - Scoring rows 76–80 of 132
+2026-07-15 13:51:41,865 - INFO    | rag -   ✓ checkpoint saved (80/132)
+2026-07-15 13:51:41,866 - INFO    | rag - Scoring rows 81–85 of 132
+2026-07-15 13:52:32,799 - INFO    | rag -   ✓ checkpoint saved (85/132)
+2026-07-15 13:52:32,799 - INFO    | rag - Scoring rows 86–90 of 132
+2026-07-15 13:53:27,865 - INFO    | rag -   ✓ checkpoint saved (90/132)
+2026-07-15 13:53:27,865 - INFO    | rag - Scoring rows 91–95 of 132
+2026-07-15 13:54:35,453 - INFO    | rag -   ✓ checkpoint saved (95/132)
+2026-07-15 13:54:35,454 - INFO    | rag - Scoring rows 96–100 of 132
+2026-07-15 13:56:10,205 - INFO    | rag -   ✓ checkpoint saved (100/132)
+2026-07-15 13:56:10,206 - INFO    | rag - Scoring rows 101–105 of 132
+2026-07-15 13:57:17,255 - INFO    | rag -   ✓ checkpoint saved (105/132)
+2026-07-15 13:57:17,255 - INFO    | rag - Scoring rows 106–110 of 132
+2026-07-15 13:59:14,408 - INFO    | rag -   ✓ checkpoint saved (110/132)
+2026-07-15 13:59:14,410 - INFO    | rag - Scoring rows 111–115 of 132
+2026-07-15 14:00:32,726 - INFO    | rag -   ✓ checkpoint saved (115/132)
+2026-07-15 14:00:32,727 - INFO    | rag - Scoring rows 116–120 of 132
+2026-07-15 14:02:07,733 - INFO    | rag -   ✓ checkpoint saved (120/132)
+2026-07-15 14:02:07,734 - INFO    | rag - Scoring rows 121–125 of 132
+2026-07-15 14:03:11,143 - INFO    | rag -   ✓ checkpoint saved (125/132)
+2026-07-15 14:03:11,143 - INFO    | rag - Scoring rows 126–130 of 132
+2026-07-15 14:04:24,899 - INFO    | rag -   ✓ checkpoint saved (130/132)
+2026-07-15 14:04:24,901 - INFO    | rag - Scoring rows 131–132 of 132
+2026-07-15 14:04:57,066 - INFO    | rag -   ✓ checkpoint saved (132/132)
+2026-07-15 14:04:57,090 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-15_0435__gpt-5.4-nano__perquestion.csv
+2026-07-15 14:04:57,121 - INFO    | rag - Summary → eval_set_v5__ragas__2026-07-15_0435__summary.json
