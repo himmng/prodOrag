@@ -54,11 +54,9 @@ class Config(BaseSettings):
 
     # RAGAS role models (blank = fall back to the global azure deployment)
     RAGAS_GEN_DEPLOYMENT:    str = ""      # generator (answers being judged)
-    RAGAS_JUDGE1_DEPLOYMENT: str = ""      # judge 1
-    RAGAS_JUDGE2_DEPLOYMENT: str = ""      # judge 2 (blank = skip)
+    RAGAS_JUDGE_DEPLOYMENTS: str = ""      # all judges
     RAGAS_GEN_TEMPERATURE:         float = 1.0   # generator temperature
-    RAGAS_JUDGE1_TEMPERATURE:       float = 1.0   # judge
-    RAGAS_JUDGE2_TEMPERATURE:       float = 1.0   # judge 2 (blank = skip)
+    RAGAS_JUDGE_TEMPERATURES:       float = 1.0   # judge temperature
 
     # ragas result subdirs
     RAGAS_SUMMARY_DIR:  ClassVar[Path] = EVAL_RESULTS_DIR / "ragas" / "summary"

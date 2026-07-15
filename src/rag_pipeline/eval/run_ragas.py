@@ -60,10 +60,14 @@ def main(subset_n=24):
         cache_path=cfg.RAGAS_PERQ_DIR / f"{base}__dataset.json",
     )
 
-    # 2. Score with each configured judge
-    judges = {"judge1": cfg.RAGAS_JUDGE1_DEPLOYMENT}
-    if cfg.RAGAS_JUDGE2_DEPLOYMENT:
-        judges["judge2"] = cfg.RAGAS_JUDGE2_DEPLOYMENT
+    # 2. Score with every judge in RAGAS_JUDGE_DEPLOYMENTS (comma-separated)
+    judge_deps = [d.strip() for d in cfg.RAGAS_JUDGE_DEPLOYMENTS.split(",") if d.strip()]
+    if not judge_deps:
+        judge_deps = [cfg.RAGAS_GEN_DEPLOYMENT or "default"]   # fall back to self-judge
+    log.info(f"Judges ({len(judge_deps)}): {judge_deps}")
+
+    from rag_pipeline.eval.ragas_runner import get_ragas_judges, get_default_metrics
+    from rag_pipeline.providers import get_embeddings
 
     summary = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -72,11 +76,14 @@ def main(subset_n=24):
         "generator": cfg.RAGAS_GEN_DEPLOYMENT or "default",
         "judges": {},
     }
-    for jname, jdep in judges.items():
-        log.info(f"Scoring with {jname} (deployment={jdep or 'default'})")
-        from rag_pipeline.eval.ragas_runner import get_ragas_judges, get_default_metrics
-        from rag_pipeline.providers import get_embeddings
-        jl, je = get_ragas_judges(get_llm(provider="azure", deployment=jdep or None), get_embeddings())
+
+    for jdep in judge_deps:
+        jname = jdep  # deployment name is the judge key
+        log.info(f"Scoring with judge={jname}")
+        jl, je = get_ragas_judges(
+            get_llm(provider="azure", deployment=jdep or None),
+            get_embeddings(),
+        )
         df = score_ragas_dataset(
             rows=rows,
             judge_llm=jl, judge_emb=je,
@@ -86,7 +93,7 @@ def main(subset_n=24):
         )
         num = df.select_dtypes("number")
         summary["judges"][jname] = {
-            "deployment": jdep or "default",
+            "deployment": jdep,
             "metrics_mean": {k: round(float(v), 4) for k, v in num.mean().items()},
         }
 

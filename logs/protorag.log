@@ -156,3 +156,9 @@
 2026-07-15 01:48:33,006 - INFO    | rag -   ✓ checkpoint saved (24/24)
 2026-07-15 01:48:33,013 - INFO    | rag - Final CSV → /Users/himanshutiwari/github/prodOrag/eval/results/ragas/per_question/eval_set_v5__ragas__2026-07-14_1734__judge2__perquestion.csv
 2026-07-15 01:48:33,015 - INFO    | rag - Summary → eval_set_v5__ragas__2026-07-14_1734__summary.json
+2026-07-15 10:46:13,379 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 10:46:13,379 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 10:46:13,379 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-07-15 10:46:13,379 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 10:46:13,379 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
+2026-07-15 10:46:13,379 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.6-luna | Embedding model: embeddinggemma:latest
