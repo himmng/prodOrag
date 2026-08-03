@@ -178,3 +178,9 @@
 2026-07-20 14:33:46,441 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.4-nano | Embedding model: embeddinggemma:latest
 2026-07-21 13:44:12,952 - INFO    | rag - Project root: /home/thimu/github_vs/prodOrag
 2026-07-21 13:44:12,958 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.4-nano | Embedding model: embeddinggemma:latest
+2026-07-27 14:02:29,297 - INFO    | rag - Project root: /home/thimu/github_vs/prodOrag
+2026-07-27 14:02:29,297 - INFO    | rag - MODEL PROVIDER: ollama, LLM model: deepseek-r1:1.5b | Embedding model: embeddinggemma:latest
+2026-07-27 14:06:13,802 - INFO    | rag - Project root: /home/thimu/github_vs/prodOrag
+2026-07-27 14:06:13,802 - INFO    | rag - MODEL PROVIDER: ollama, LLM model: deepseek-r1:1.5b | Embedding model: embeddinggemma:latest
+2026-08-03 13:58:12,967 - INFO    | rag - Project root: /home/thimu/github_vs/prodOrag
+2026-08-03 13:58:12,967 - INFO    | rag - MODEL PROVIDER: ollama, LLM model: deepseek-r1:1.5b | Embedding model: embeddinggemma:latest
