@@ -1,0 +1,970 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Corpus-agnostic hybrid RAG pipeline for legal corpora">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>HANDOFF.md — prodOrag session handoff - prodOrag</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#handoffmd-prodorag-session-handoff" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="prodOrag" class="md-header__button md-logo" aria-label="prodOrag" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            prodOrag
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              HANDOFF.md — prodOrag session handoff
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/himmng/prodOrag" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    himmng/prodOrag
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../USAGE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Usage Guide
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../PROGRESS/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="prodOrag" class="md-nav__button md-logo" aria-label="prodOrag" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    prodOrag
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/himmng/prodOrag" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    himmng/prodOrag
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USAGE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PROGRESS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progress log
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-where-we-are-phase-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Where we are — phase status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-what-got-done-this-session-all-committed-or-to-be-committed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What got done THIS session (all committed or to-be-committed)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-in-progress-case-file-upload-qa-the-active-thread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. IN PROGRESS — case-file upload + Q&amp;A (the active thread)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-eval-rebuild-required-not-yet-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Eval rebuild — REQUIRED, not yet done
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-corpus-agnostic-refactor-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Corpus-agnostic refactor — DONE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-known-non-blocking-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Known non-blocking issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-github-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. GitHub / workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-recommended-next-step-order-from-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Recommended next-step order (from here)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-first-prompt-to-use-in-claude-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. First prompt to use in Claude Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="handoffmd-prodorag-session-handoff">HANDOFF.md — prodOrag session handoff<a class="headerlink" href="#handoffmd-prodorag-session-handoff" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Snapshot of project state at the point of moving from chat to Claude Code.
+Pair with <code>CLAUDE.md</code> (standing instructions). This file = current state,
+decisions with rationale, and ordered next steps.</p>
+</blockquote>
+<hr />
+<h2 id="1-where-we-are-phase-status">1. Where we are — phase status<a class="headerlink" href="#1-where-we-are-phase-status" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Scope</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Foundation: Docling parse → Chroma → naive retrieval</td>
+<td>✅ done</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Hybrid retrieval: BM25 + dense + RRF + BGE reranker</td>
+<td>✅ done</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Query intelligence (multi-query expansion)</td>
+<td>🟡 built, PARKED (raised refusal 5%→25%)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Agentic router (LangGraph, per-query intent)</td>
+<td>⏳ planned, not started</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Eval framework (hit@k, recall, mrr, refusal)</td>
+<td>✅ done (but eval set NOT rebuilt for IPC+BNS — see §4)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Production hardening: FastAPI, SSE, auth, rate limit, CI, Docker</td>
+<td>✅ done</td>
+</tr>
+<tr>
+<td>5.5</td>
+<td>Streamlit dashboard</td>
+<td>✅ done</td>
+</tr>
+<tr>
+<td>Corpus rebuild (A–E)</td>
+<td>Dual IPC/BNS collections, structural parse, concordance</td>
+<td>✅ done</td>
+</tr>
+<tr>
+<td>Concordance cross-reference feature</td>
+<td>Query-time lookup, separate cross_reference block, page previews</td>
+<td>✅ done (this session)</td>
+</tr>
+<tr>
+<td>Case-file upload + Q&amp;A</td>
+<td>Upload real cases, ask IPC/BNS interpretation, ISOLATED</td>
+<td>✅ done — per-session isolated vector collections + /answer/case</td>
+</tr>
+<tr>
+<td>Corpus-agnostic refactor</td>
+<td>Remove IPC/BNS hardcoding from API/serving layer</td>
+<td>✅ done — RAG_CORPUS env, config-driven serving, /meta, config-gated concordance</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Cloud deploy (Azure models, managed vector store)</td>
+<td>⏳ future — fixes latency ceiling</td>
+</tr>
+<tr>
+<td>7.5</td>
+<td>Contextual layer (committee report + SOR)</td>
+<td>✅ done — BNS_Context collection (904 vec), opt-in on /answer, default on /answer/case</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-what-got-done-this-session-all-committed-or-to-be-committed">2. What got done THIS session (all committed or to-be-committed)<a class="headerlink" href="#2-what-got-done-this-session-all-committed-or-to-be-committed" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Concordance query-time wiring.</strong> Section mentions in a query (e.g. "IPC 420")
+   trigger a deterministic concordance lookup; the mapping is injected into the LLM
+   context so it can answer "IPC 420 corresponds to BNS 318". Files:
+   <code>api/main.py</code> (<code>_concordance_context</code>, <code>_fetch_section_chunk</code>, <code>_concordance_citation</code>).</p>
+</li>
+<li>
+<p><strong>Separate <code>cross_reference</code> response field/event.</strong> Concordance results are no
+   longer mixed into <code>citations</code>. New <code>CrossReference</code> schema
+   (<code>api/schemas.py</code>) carries concordance_row, ipc/bns_section, status, page_number,
+   and the real IPC + BNS section citations. Both <code>/answer</code> and <code>/answer/stream</code>
+   populate it; streaming emits it as its own SSE event before <code>citations</code>.</p>
+</li>
+<li>
+<p><strong>MAIN_CITATION_FLOOR = 0.55.</strong> Filters reranker-noise (~0.50) from main
+   citations so meta-queries show an empty main-citation list + the authoritative
+   cross_reference block, while substantive queries keep their real ~0.72 citations.
+   Applied in BOTH routes in <code>api/main.py</code>.</p>
+</li>
+<li>
+<p><strong>Concordance page tracking.</strong> <code>ConcordanceRow</code> gained <code>row_index</code> and
+   <code>page_number</code> (<code>corpus/concordance.py</code>); parser stamps them; JSON regenerated.
+   <code>/documents/page-image</code> endpoint extended to accept <code>CONCORDANCE</code> and render the
+   concordance PDF page. Row 465 = IPC 420 ↔ BNS 318, concordance page 19.</p>
+</li>
+<li>
+<p><strong>Dashboard rendering</strong> (<code>apps/dashboard/app.py</code>): <code>render_cross_reference</code> panel,
+   <code>_view_page</code> helper (inline PDF page images), Streamlit key-collision fix
+   (<code>key_prefix="live"</code> for streaming, <code>f"hist{i}"</code> for history re-render).</p>
+</li>
+<li>
+<p><strong>Health check fixed.</strong> Was reading a non-existent <code>cfg.OLLAMA_PORT</code> and old
+   <code>_state["chunks"]/["hybrid_r"]</code> keys → now uses <code>cfg.OLLAMA_HOST</code> and
+   <code>_state["by_act"]</code>. Status shows healthy.</p>
+</li>
+<li>
+<p><strong>Contract tests</strong> updated for the <code>by_act</code> state structure and mock metadata.</p>
+</li>
+</ol>
+<p><strong>IMPORTANT — commit before opening Claude Code:</strong>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>-A
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: concordance cross-reference block + citation floor filter + page previews&quot;</span>
+</code></pre></div>
+Verify no <code>.env</code>, <code>chroma_db/</code>, <code>.venv/</code>, <code>data/processed/</code> are staged.</p>
+<hr />
+<h2 id="3-in-progress-case-file-upload-qa-the-active-thread">3. IN PROGRESS — case-file upload + Q&amp;A (the active thread)<a class="headerlink" href="#3-in-progress-case-file-upload-qa-the-active-thread" title="Permanent link">&para;</a></h2>
+<p><strong>Goal.</strong> User uploads a real-life case file (judgment/FIR/charge sheet). They ask
+which IPC/BNS sections apply, why, and how to interpret the case. The uploaded case
+must be <strong>strictly isolated</strong>: never mixed into IPC_Corpus/BNS_Corpus, and never
+leaked across sessions/users.</p>
+<p><strong>Decision (production-grade, deliberate).</strong> Default to <strong>text-in-context</strong>, NOT
+per-session vector collections:
+- Case file → parse → hold full text in a <strong>session-scoped store with TTL</strong>.
+- On query: retrieve relevant IPC/BNS sections (existing pipeline) + inject the case
+  text + concordance into the LLM prompt → interpretation with citations.
+- Case text is CONTEXT; IPC/BNS vectors are never touched. Isolation is structural.
+- Rationale: per-session ChromaDB collections are an isolation <em>liability</em> at scale
+  (orphaned collections, cross-session leak risk, no reliable Streamlit session-end
+  hook, unbounded storage). Escalate to an ephemeral isolated collection ONLY for
+  case files too large for the context window, and only with strict TTL + GC +
+  collision-proof <code>session_{uuid}</code> naming. Build that overflow path later, not now.</p>
+<p><strong>Current state of the code:</strong>
+- <code>POST /documents/upload</code> EXISTS (<code>api/main.py</code> ~line 667): parses pdf/txt/md,
+  stores full text via <code>_state["doc_store"].add(...)</code>. Uses <code>_state["uploaded_parser"]</code>.
+- <code>DocumentStore</code> is in <code>src/rag_pipeline/api/documents.py</code> (class at line 44).
+  <strong>NOT YET REVIEWED for isolation</strong> — the immediate next step is to read this class
+  and determine if it's a flat global dict (leaks across users) or session-scoped.</p>
+<p><strong>NEXT CONCRETE STEP (resume here):</strong>
+1. Read <code>src/rag_pipeline/api/documents.py</code> (the full <code>DocumentStore</code> class).
+2. Add <strong>session-scoping + TTL</strong> to <code>DocumentStore</code> — uploads keyed by a per-client
+   session token so user A's file is invisible to user B. THIS IS THE FIRST FIX,
+   before building anything on top (production isolation must be correct first).
+3. Update <code>/documents/upload</code> to take a session token.
+4. Add <code>POST /answer/case</code>: takes session_id + case_doc_id + question → retrieves
+   relevant IPC/BNS sections for the question → prompt = [CASE TEXT] + [retrieved
+   IPC/BNS sections] + [concordance if sections named] + question → LLM interpretation
+   → returns answer + IPC/BNS citations (case text stays context, never embedded).
+5. Streamlit: file uploader, session-token generation, case-scoped Q&amp;A panel.
+6. TTL/cleanup; interface designed to swap in Redis for cloud.</p>
+<p><strong>Open production parameters (get answers before finalizing design):</strong>
+- Production LLM context budget? (Assume Azure GPT-4o-class 128k in prod, gemma ~8k
+  now → text-in-context is the primary path; vector-overflow rare.)
+- Multi-user concurrent from day one? (Assume yes → DocumentStore MUST be
+  session-scoped now; in-memory now, Redis-backed later.)</p>
+<p>Do this on branch <code>feature/case-upload</code>.</p>
+<hr />
+<h2 id="4-eval-rebuild-required-not-yet-done">4. Eval rebuild — REQUIRED, not yet done<a class="headerlink" href="#4-eval-rebuild-required-not-yet-done" title="Permanent link">&para;</a></h2>
+<p>The eval set was built for the OLD IPC-only corpus. The IPC+BNS rebuild is
+<strong>unmeasured</strong>. Before trusting the new corpus / tuning thresholds:
+- Build 30–50 mixed questions: ~15 IPC-only, ~15 BNS-only, ~10 cross-reference
+  ("what is IPC 420 called in BNS?"), ~10 negatives (out-of-domain).
+- Run <code>/eval/retrieval</code> and <code>/eval/threshold-sweep</code> against the new corpus.
+- Re-calibrate <code>min_score</code> AND <code>MAIN_CITATION_FLOOR</code> (currently 0.55, a heuristic
+  guess) against real data. Add precision@k / nDCG (currently missing).
+- Acceptance target: hit@k ≥ 0.92, mrr ≥ 0.70, refusal ≥ 0.9.
+- Only 6 negatives existed in the old eval → refusal F1 was coarse; expand.</p>
+<hr />
+<h2 id="5-corpus-agnostic-refactor-done">5. Corpus-agnostic refactor — DONE<a class="headerlink" href="#5-corpus-agnostic-refactor-done" title="Permanent link">&para;</a></h2>
+<p>Both the ingest AND the serving layer are now corpus-agnostic. Swap corpus =
+new YAML in <code>configs/corpora/</code> + PDFs + <code>RAG_CORPUS=&lt;name&gt;</code> + re-ingest. No code.</p>
+<p>What was done (all on <code>feature/case-upload</code>, to merge to main):
+- <strong><code>RAG_CORPUS</code> env</strong> (<code>config.py</code>) selects the corpus; the API lifespan calls
+  <code>load_corpus(cfg.RAG_CORPUS)</code> and stores it in <code>_state["corpus"]</code>.
+- <strong>Config-driven serving</strong>: lifespan iterates <code>corpus.sources</code> for collections;
+  prompts use <code>corpus.display_name</code>; <code>/documents/page-image</code> builds its pdf_map
+  from <code>corpus.pdf_map()</code>; context layer loads from <code>corpus.context_collections</code>;
+  eval/health use the first act generically.
+- <strong>Generic schemas</strong>: <code>collections: list[str]</code> (validated at runtime via
+  <code>_resolve_acts</code>, empty = all acts); <code>StatuteChunk.act: str</code>; <code>CrossReference</code>
+  relabeled to <code>source_act/target_act/source_section/target_section/…</code> (act labels
+  are DATA, from <code>concordance.act_a/act_b</code>).
+- <strong>Config-gated concordance</strong>: cross-reference only active when the corpus declares
+  a <code>concordance:</code> block. <code>ConcordanceRow</code>/<code>Concordance</code> gained side-agnostic
+  accessors (<code>section_a/b</code>, <code>title_a/b</code>, <code>lookup_a/b</code>); the IPC/BNS parser remains
+  the one concrete impl (fine — corpora without a concordance just disable it).
+- <strong><code>GET /meta</code></strong> exposes corpus name, display_name, acts, pdf_acts, context_enabled,
+  and cross-reference labels. The <strong>Streamlit dashboard is fully driven by <code>/meta</code></strong>
+  (title, collections multiselect, cross-ref labels, page-view buttons).
+- Registry helpers on <code>CorpusConfig</code>: <code>acts</code>, <code>collection_for</code>, <code>context_collections</code>,
+  <code>has_concordance</code>, <code>pdf_map()</code>.</p>
+<p>Remaining (future, if ever needed): a corpus with a concordance must still be
+2-act IPC/BNS-shaped at the parser level (<code>corpus/concordance.py</code>). N-act or
+alternate table formats would need a pluggable concordance parser — not built,
+not needed for current corpora.</p>
+<hr />
+<h2 id="6-known-non-blocking-issues">6. Known non-blocking issues<a class="headerlink" href="#6-known-non-blocking-issues" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>chapter_number = None</code> on all chunks (chapter regex doesn't match the PDF format).</li>
+<li>40 IPC chunks didn't enrich with concordance (subsection ID format mismatch, e.g.
+  "302" vs "302(1)"). Main section chunk still carries the mapping.</li>
+<li>IPC chunk count 808 &gt; ~511 main sections (subsections double-counted by design).</li>
+<li><code>bns_title='(4)'</code> artifact on some concordance rows (title extraction imperfect;
+  mapping itself is correct).</li>
+<li>Latency ceiling ~30–140s from local Ollama (fixed only by cloud LLM, Phase 6).</li>
+<li>swig DeprecationWarning + token&gt;512 truncation warning — both harmless.</li>
+<li>Reranker on 8GB GPU can OOM if orphaned processes hold VRAM → <code>nvidia-smi</code>, kill,
+  restart; or move reranker to CPU.</li>
+</ul>
+<hr />
+<h2 id="7-github-workflow">7. GitHub / workflow<a class="headerlink" href="#7-github-workflow" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Company repo: <code>Advantev/adv_policy_engine</code>, remote name <code>advantev</code>. Personal:
+  <code>himmng/prodOrag</code> (renamed from <code>protoRAG</code> 2026-07-14), remote <code>origin</code>.</li>
+<li>Code was pushed to <code>advantev</code> <code>main</code> (merged the company's initial commit with
+  <code>--allow-unrelated-histories</code>, then force-pushed the developer's version).</li>
+<li><strong>Going forward: feature branches → PR → merge to main. No direct pushes to main.</strong>
+  Conventional commits. Consider a branch-protection rule requiring CI + PR on <code>main</code>.</li>
+<li>CI (<code>.github/workflows/ci.yml</code>) runs pytest on push/PR. Keep it green before PRs.</li>
+</ul>
+<hr />
+<h2 id="8-recommended-next-step-order-from-here">8. Recommended next-step order (from here)<a class="headerlink" href="#8-recommended-next-step-order-from-here" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Commit this session's work</strong> (§2) so Claude Code sees current state.</li>
+<li><strong>Finish case-upload</strong> (§3) on <code>feature/case-upload</code> — start by reading
+   <code>documents.py</code> and adding session isolation + TTL to <code>DocumentStore</code>.</li>
+<li><strong>Eval rebuild</strong> (§4) — measure the IPC+BNS corpus; recalibrate min_score +
+   MAIN_CITATION_FLOOR on real data.</li>
+<li><strong>Corpus-agnostic refactor</strong> (§5) on <code>feature/corpus-agnostic</code>.</li>
+<li><strong>Cloud deploy</strong> (Phase 6) — <code>MODEL_PROVIDER=azure</code>, managed vector store; fixes
+   the latency ceiling (p95 140s → ~5s).</li>
+<li>Agentic router (Phase 3) + contextual layer (7.5) once the above are solid.</li>
+</ol>
+<hr />
+<h2 id="9-first-prompt-to-use-in-claude-code">9. First prompt to use in Claude Code<a class="headerlink" href="#9-first-prompt-to-use-in-claude-code" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Read <code>CLAUDE.md</code> and <code>docs/HANDOFF.md</code>. We're mid-way through the case-upload
+feature (§3). The next step is adding session-scoping and TTL to <code>DocumentStore</code>
+in <code>src/rag_pipeline/api/documents.py</code> for strict per-user isolation. Show me the
+current <code>DocumentStore</code> class, then propose the isolation fix with exact edits.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top", "content.code.copy", "search.suggest"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
