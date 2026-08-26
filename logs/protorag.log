@@ -654,3 +654,7 @@
 2026-07-16 17:26:58,908 - INFO    | rag - Summary → eval_set_v5__ragas__2026-07-16_0623__summary.json
 2026-08-26 11:49:24,983 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
 2026-08-26 11:49:24,983 - INFO    | rag - MODEL PROVIDER: azure, LLM model: gpt-5.4-nano | Embedding model: embeddinggemma:latest
+2026-08-26 11:54:15,446 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-08-26 11:54:15,447 - INFO    | rag - MODEL PROVIDER: ollama, LLM model: deepseek-r1:1.5b | Embedding model: embeddinggemma:latest
+2026-08-26 11:58:49,036 - INFO    | rag - Project root: /Users/himanshutiwari/github/prodOrag
+2026-08-26 11:58:49,036 - INFO    | rag - MODEL PROVIDER: ollama, LLM model: deepseek-r1:1.5b | Embedding model: embeddinggemma:latest

@@ -70,7 +70,7 @@ def _ollama_llm():
     return ChatOllama(
         model=cfg.OLLAMA_MODEL,
         base_url=cfg.OLLAMA_HOST,
-        temperature=cfg.OLLAMA_TEMPERATURE,
+        temperature=cfg.OLLAMA_MODEL_TEMPERATURE,
 
     )
 
