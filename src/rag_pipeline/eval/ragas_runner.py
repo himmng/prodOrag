@@ -17,20 +17,20 @@ import json
 import warnings
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 import pandas as pd
-from langchain_core.messages import HumanMessage, SystemMessage
 from tqdm import tqdm
 
 from rag_pipeline.config import cfg, log
 from rag_pipeline.eval.schema import EvalExample
-from rag_pipeline.generation.context import build_context
-from rag_pipeline.prompts import get_prompt
+from rag_pipeline.generation.generate import generate_answer
 
 if TYPE_CHECKING:
     from langchain_core.embeddings import Embeddings
     from langchain_core.language_models import BaseChatModel
+    from rag_pipeline.corpus.registry import CorpusConfig
+    from rag_pipeline.corpus.concordance import Concordance
     from rag_pipeline.retrievers.base import BaseRetriever
 
 
@@ -68,37 +68,51 @@ def build_ragas_dataset(
     retriever: "BaseRetriever",
     llm: "BaseChatModel",
     top_k: int | None = None,
-    system_prompt_name: str = "system",
+    concordance: Optional["Concordance"] = None,
+    corpus: Optional["CorpusConfig"] = None,
+    context_retriever: Optional["BaseRetriever"] = None,
+    section_index: dict | None = None,
+    min_score: float | None = 0.55,
+    include_context: bool = False,
     cache_path: Path | None = None,
 ) -> list[dict]:
-    """For each example: retrieve → generate → emit a RAGAS-format row."""
+    """For each example: retrieve → concordance-inject → generate → emit a RAGAS row.
+
+    Calls generate_answer() — the same function the API's /answer route uses —
+    so eval and production can never diverge (cross-reference questions get the
+    same concordance-resolved section texts injected in both places).
+    """
     top_k = top_k or cfg.TOP_K
-    system_prompt = get_prompt(system_prompt_name)
     rows: list[dict] = []
 
     for ex in tqdm(examples, desc="build_ragas_dataset"):
-        results = retriever.retrieve(ex.question, top_k=top_k)
-        contexts = [d.page_content for d, _ in results]
-
-        if results:
-            context_block = build_context(results)
-            user_msg = f"CONTEXT:\n{context_block}\n\nQUESTION: {ex.question}\n\nANSWER:"
-            resp = llm.invoke([
-                SystemMessage(content=system_prompt),
-                HumanMessage(content=user_msg),
-            ])
-            response_text = resp.content
-        else:
-            response_text = "I don't have that information in the provided documents."
+        result = generate_answer(
+            ex.question,
+            retriever,
+            llm,
+            concordance=concordance,
+            corpus=corpus,
+            context_retriever=context_retriever,
+            section_index=section_index,
+            top_k=top_k,
+            min_score=min_score,
+            include_context=include_context,
+        )
+        retrieved_contexts = (
+            ([result.xref_text] if result.xref_text else [])
+            + [d.page_content for d, _ in result.resolved_docs]
+            + [d.page_content for d, _ in result.docs_with_scores]
+        )
 
         rows.append({
             "user_input":         ex.question,
-            "retrieved_contexts": contexts,
-            "response":           response_text,
+            "retrieved_contexts": retrieved_contexts,
+            "response":           result.answer,
             "reference": (
                 ex.reference_answer
                 or (ex.gold_snippets[0] if ex.gold_snippets else "")
             ),
+            "_category":          ex.category or "uncategorized", 
         })
 
     if cache_path:
@@ -158,9 +172,9 @@ def score_ragas_dataset(
     for batch_start in range(start_idx, len(rows), batch_size):
         batch_end = min(batch_start + batch_size, len(rows))
         batch = rows[batch_start:batch_end]
-        log.info(f"Scoring rows {batch_start + 1}–{batch_end} of {len(rows)}")
-
-        dataset = EvaluationDataset.from_list(batch)
+        categories = [r.get("_category", "uncategorized") for r in batch]
+        clean_batch = [{k: v for k, v in r.items() if not k.startswith("_")} for r in batch]
+        dataset = EvaluationDataset.from_list(clean_batch)
         result = evaluate(
             dataset=dataset,
             metrics=metrics,
@@ -169,7 +183,11 @@ def score_ragas_dataset(
             run_config=run_config,
             show_progress=False,
         )
-        all_dfs.append(result.to_pandas())
+        batch_df = result.to_pandas()
+        batch_df["category"] = categories        # ← attach category back
+        all_dfs.append(batch_df)
+
+        log.info(f"Scoring rows {batch_start + 1}–{batch_end} of {len(rows)}")
 
         pd.concat(all_dfs, ignore_index=True).to_csv(checkpoint_path, index=False)
         log.info(f"  ✓ checkpoint saved ({sum(len(d) for d in all_dfs)}/{len(rows)})")

@@ -8,7 +8,6 @@ import os
 import re
 import json as _json, csv as _csv
 from datetime import datetime, timezone
-from functools import lru_cache
 os.environ.setdefault("ANONYMIZED_TELEMETRY", "FALSE")
 from fastapi import Query
 from fastapi.responses import Response as FastAPIResponse
@@ -44,6 +43,14 @@ from rag_pipeline.api.schemas import (
     MetaResponse, CrossRefMeta, ModelInfo,
 )
 from rag_pipeline.generation.context import build_context
+from rag_pipeline.generation.generate import (
+    AnswerResult,
+    build_answer_prompt,
+    concordance_context,
+    context_block as _gen_context_block,
+    fetch_section_chunk,
+    generate_answer,
+)
 from rag_pipeline.config import cfg, log
 from rag_pipeline.generation import answer
 from rag_pipeline.parsers import load_chunks_cache
@@ -72,68 +79,18 @@ _state: dict = {}
 # Call once at module import — before app = FastAPI(...)
 install_json_logging(level="INFO")
 
-@lru_cache(maxsize=8)
-def _section_mention_re(act_a: str, act_b: str) -> "re.Pattern":
-    """Build a section-mention regex from the corpus's two concordance act labels."""
-    alt = f"{re.escape(act_a)}|{re.escape(act_b)}"
-    return re.compile(
-        rf"(?:({alt})\s*)?"
-        r"(?:section|sec\.?|s\.?|§)?\s*"
-        r"(\d+[A-Z]?)"
-        rf"(?:\s*({alt}))?",
-        re.IGNORECASE,
-    )
-
-
 def _concordance_context(query: str) -> tuple[str, list[dict], list]:
     """Detect section mentions, look up cross-references (config-driven labels).
+
+    Delegates to generation.generate.concordance_context — the single
+    implementation shared with generate_answer() and the RAGAS harness.
 
     Returns (prompt_text, resolved, rows):
       - prompt_text: CROSS-REFERENCE lines for the LLM
       - resolved:    [{act, section}] pointing at real section texts to cite
       - rows:        matched ConcordanceRow objects (for table-location citation)
     """
-    concordance = _state.get("concordance")
-    corpus = _state.get("corpus")
-    if concordance is None or corpus is None or not corpus.has_concordance:
-        return "", [], []
-
-    cc = corpus.concordance
-    act_a, act_b = cc.act_a, cc.act_b
-    rx = _section_mention_re(act_a, act_b)
-
-    notes, resolved, rows = [], [], []
-    for m in rx.finditer(query):
-        act_before, section, act_after = m.group(1), m.group(2), m.group(3)
-        act = (act_before or act_after or "").upper()
-        if not section:
-            continue
-
-        if act == act_a.upper():
-            row = concordance.lookup_a(section)
-        elif act == act_b.upper():
-            row = concordance.lookup_b(section)
-        else:
-            row = concordance.lookup_a(section) or concordance.lookup_b(section)
-
-        if row:
-            note = (
-                f"CROSS-REFERENCE: {act_a} Section {row.section_a or '—'} "
-                f"corresponds to {act_b} Section {row.section_b or '—'} "
-                f"(status: {row.status})."
-            )
-            if row.title_a:
-                note += f" {act_a} title: {row.title_a}."
-            if row.title_b:
-                note += f" {act_b} title: {row.title_b}."
-            notes.append(note)
-            rows.append(row)
-            if row.section_a:
-                resolved.append({"act": act_a, "section": row.section_a})
-            if row.section_b:
-                resolved.append({"act": act_b, "section": row.section_b})
-
-    return "\n".join(notes), resolved, rows
+    return concordance_context(query, _state.get("concordance"), _state.get("corpus"))
 
 
 # Prose commentary similarity tops out ~0.3 with embeddinggemma → low floor.
@@ -150,20 +107,11 @@ def _retrieve_context(query: str, top_k: int = 3) -> list:
 
 
 def _context_block(hits: list) -> str:
-    """Format commentary hits as a labeled, clearly-non-authoritative prompt block."""
-    if not hits:
-        return ""
-    lines = []
-    for i, (d, s) in enumerate(hits, 1):
-        src = d.metadata.get("display_name") or d.metadata.get("doc_type", "commentary")
-        page = d.metadata.get("page_number")
-        loc = f", p.{page}" if page and page != -1 else ""
-        lines.append(f"[C{i}] ({src}{loc}) {d.page_content}")
-    return (
-        "LEGISLATIVE CONTEXT / COMMITTEE COMMENTARY (interpretive background — "
-        "NOT statute; do not cite as binding law, use only to explain intent):\n"
-        + "\n\n".join(lines)
-    )
+    """Format commentary hits as a labeled, clearly-non-authoritative prompt block.
+
+    Delegates to generation.generate.context_block.
+    """
+    return _gen_context_block(hits)
 
 
 def _context_snippets(hits: list) -> list["ContextSnippet"]:
@@ -181,12 +129,11 @@ def _context_snippets(hits: list) -> list["ContextSnippet"]:
 
 
 def _fetch_section_chunk(act: str, section: str):
-    """Return (Document, score) for an exact act+section, or None. Vectorstore-agnostic."""
-    c = _state.get("section_index", {}).get((act, section))
-    if c is None:
-        return None
-    from langchain_core.documents import Document
-    return (Document(page_content=c.text, metadata=c.to_langchain_metadata()), 1.0)
+    """Return (Document, score) for an exact act+section, or None. Vectorstore-agnostic.
+
+    Delegates to generation.generate.fetch_section_chunk.
+    """
+    return fetch_section_chunk(_state.get("section_index", {}), act, section)
 
 
 def _concordance_citation(row, n: int) -> Citation:
@@ -229,21 +176,11 @@ def _resolve_acts(requested: list[str]) -> list[str]:
 
 
 def _answer_prompt(query: str, context: str, ctx_block: str) -> str:
-    """Grounded-QA prompt, corpus name pulled from config (no IPC/BNS hardcoding)."""
-    return (
-        f"You are a legal assistant answering questions about {_corpus_display()}. "
-        f"The CONTEXT below contains the FULL TEXT of the relevant statute sections "
-        f"(each block starts with a [n] marker, then the section's complete text). "
-        f"Treat this text as the authoritative source and answer the question directly "
-        f"from it — summarize, compare, and explain the sections as needed. "
-        f"Use any CROSS-REFERENCE lines for section correspondences. "
-        f"Treat LEGISLATIVE CONTEXT as non-binding background. "
-        f"Cite sources by their [n] marker. Only say information is unavailable if the "
-        f"CONTEXT genuinely does not contain it.\n\n"
-        f"CONTEXT:\n{context}"
-        + (f"\n\n{ctx_block}" if ctx_block else "")
-        + f"\n\nQUESTION: {query}\n\nANSWER:"
-    )
+    """Grounded-QA prompt, corpus name pulled from config (no IPC/BNS hardcoding).
+
+    Delegates to generation.generate.build_answer_prompt.
+    """
+    return build_answer_prompt(query, context, ctx_block, _state.get("corpus"))
 
 # Footnote/amendment fragments the statute parser mis-tagged as sections. Their
 # section_title is an editorial marker ("Subs.", "Ins.", "The words '…' omitted",
@@ -589,90 +526,48 @@ def answer_route(
     response: Response,
     req: AnswerRequest,
 ) -> AnswerResponse:
-    """End-to-end RAG: retrieve → contextualize → LLM → return cited answer."""
+    """End-to-end RAG: retrieve → contextualize → LLM → return cited answer.
+
+    Delegates the actual retrieve → concordance-inject → build_context →
+    generate work to generation.generate.generate_answer — the same function
+    the RAGAS harness calls, so eval and production can never diverge.
+    """
     start = time.perf_counter()
 
-    docs_with_scores = _retrieve_across_collections(
-        query=req.query,
+    MAIN_CITATION_FLOOR = 0.55
+    retriever = _MultiCollectionRetriever(
         acts=_resolve_acts(req.collections),
         retriever_kind=req.retriever,
-        top_k=req.top_k,
         min_score=req.min_score,
     )
+    result = generate_answer(
+        req.query,
+        retriever,
+        _state["llm"],
+        concordance=_state.get("concordance"),
+        corpus=_state.get("corpus"),
+        context_retriever=_state.get("context_retriever"),
+        section_index=_state.get("section_index"),
+        top_k=req.top_k,
+        min_score=MAIN_CITATION_FLOOR,
+        include_context=req.include_context,
+    )
 
-    if not docs_with_scores:
-        return AnswerResponse(
-            question=req.query,
-            answer="I don't have that information in the provided documents.",
-            citations=[],
-            retriever=req.retriever,
-            latency_ms=(time.perf_counter() - start) * 1000.0,
-        )
-    MAIN_CITATION_FLOOR = 0.55
-    docs_with_scores = [
-        (d, s) for d, s in docs_with_scores if s >= MAIN_CITATION_FLOOR
-    ]
-    context = build_context(docs_with_scores)
-    
-    # Cross-reference detection
-    xref, resolved, rows = _concordance_context(req.query)
-
-    resolved_context_docs = []
-    for r in resolved:
-        hit = _fetch_section_chunk(r["act"], r["section"])
-        if hit:
-            resolved_context_docs.append(hit)
-    if resolved_context_docs:
-        resolved_context = build_context(resolved_context_docs)
-        context = f"{resolved_context}\n\n{context}"
-    # log.info(f"DEBUG resolved_docs={len(resolved_context_docs)} context_len={len(context)} context_head={context[:200]!r}")
-    if xref:
-        context = f"{xref}\n\n{context}"
-
-    # Interpretive commentary (opt-in for general /answer)
-    ctx_hits = _retrieve_context(req.query) if req.include_context else []
-    ctx_block = _context_block(ctx_hits)
-
-    # Priority citations: concordance row(s) + real section texts
-    priority = []
-    n = 1
-    for row in rows:
-        priority.append(_concordance_citation(row, n)); n += 1
-
-    priority_docs = []
-    for r in resolved:
-        hit = _fetch_section_chunk(r["act"], r["section"])
-        if hit:
-            priority_docs.append(hit)
-
-    prompt = _answer_prompt(req.query, context, ctx_block)
-    # log.info(f"DEBUG prompt_len={len(prompt)} contains_whoever={'Whoever' in prompt} prompt_head={prompt[:300]!r}")
-    llm_resp = _state["llm"].invoke(prompt)
-    answer_text = getattr(llm_resp, "content", None) or str(llm_resp)
-
-    # Assemble: concordance rows → section texts → deduped semantic
-    seen_ids = {d.metadata.get("chunk_id") for d, _ in priority_docs}
-    section_citations = [_enrich_citation(d, s, 0) for d, s in priority_docs]
-    semantic_citations = [
-        _enrich_citation(d, s, 0) for d, s in docs_with_scores
-        if d.metadata.get("chunk_id") not in seen_ids
-    ]
-    keep = priority + section_citations + semantic_citations[: max(0, req.top_k)]
     # Semantic citations ONLY — capped at top_k
     citations = [
         _enrich_citation(doc, score, i + 1)
-        for i, (doc, score) in enumerate(docs_with_scores[:req.top_k])
+        for i, (doc, score) in enumerate(result.docs_with_scores[:req.top_k])
     ]
 
     # Cross-reference lives in its own field, not mixed into citations
-    cross_ref = _build_cross_reference(rows, resolved)
+    cross_ref = _build_cross_reference(result.rows, result.resolved)
 
     return AnswerResponse(
         question=req.query,
-        answer=answer_text,
+        answer=result.answer,
         citations=citations,
         cross_reference=cross_ref,
-        context=_context_snippets(ctx_hits),
+        context=_context_snippets(result.ctx_hits),
         retriever=req.retriever,
         latency_ms=(time.perf_counter() - start) * 1000.0,
     )

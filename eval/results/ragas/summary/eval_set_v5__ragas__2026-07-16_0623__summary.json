@@ -1,0 +1,58 @@
+{
+  "timestamp": "2026-07-16T06:44:33.064724+00:00",
+  "eval_set": "eval_set_v5.json",
+  "n_questions": 128,
+  "generator": "gpt-5.4-nano",
+  "judges": {
+    "gpt-5.6-luna": {
+      "deployment": "gpt-5.6-luna",
+      "metrics_mean": {
+        "faithfulness": 0.5489,
+        "answer_relevancy": 0.6827,
+        "semantic_similarity": 0.7064
+      },
+      "by_category": {
+        "bns_substantive": {
+          "faithfulness": 0.6203,
+          "answer_relevancy": 0.7237,
+          "semantic_similarity": 0.7033
+        },
+        "cross_reference": {
+          "faithfulness": 0.5032,
+          "answer_relevancy": 0.6165,
+          "semantic_similarity": 0.7862
+        },
+        "ipc_substantive": {
+          "faithfulness": 0.5296,
+          "answer_relevancy": 0.7102,
+          "semantic_similarity": 0.6292
+        }
+      }
+    },
+    "gpt-5.4-nano": {
+      "deployment": "gpt-5.4-nano",
+      "metrics_mean": {
+        "faithfulness": 0.5962,
+        "answer_relevancy": 0.704,
+        "semantic_similarity": 0.7064
+      },
+      "by_category": {
+        "bns_substantive": {
+          "faithfulness": 0.6751,
+          "answer_relevancy": 0.7176,
+          "semantic_similarity": 0.7033
+        },
+        "cross_reference": {
+          "faithfulness": 0.4338,
+          "answer_relevancy": 0.671,
+          "semantic_similarity": 0.7862
+        },
+        "ipc_substantive": {
+          "faithfulness": 0.6927,
+          "answer_relevancy": 0.7247,
+          "semantic_similarity": 0.6292
+        }
+      }
+    }
+  }
+}
