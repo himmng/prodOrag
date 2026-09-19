@@ -32,5 +32,8 @@ htmlcov/
 # mkdocs build output
 site/
 
+# Per-session pipeline logs (protorag_<corpus>_<timestamp>.log)
+logs/*.log
+
 # OS
 *.swp

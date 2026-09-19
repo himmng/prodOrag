@@ -7,10 +7,11 @@ PROJECT_ROOT is auto-detected by walking up from this file until pyproject.toml 
 from __future__ import annotations # for forward references in type hints (e.g. in dataclasses)
 import os
 import logging # for logging
+from datetime import datetime # for per-session log filenames
 from pathlib import Path # for filesystem paths
 from typing import ClassVar, Literal, Optional # for class variables in dataclasses
 from pydantic_settings import BaseSettings, SettingsConfigDict # for configuration management with environment variable support
-from pydantic import model_validator
+from pydantic import SecretStr, model_validator
 def _find_project_root(marker: str = "pyproject.toml") -> Path:
     # 1. Explicit env override (containers, deployed environments)
     env_root = os.environ.get("PROJECT_ROOT")
@@ -79,7 +80,7 @@ class Config(BaseSettings):
 
     # Azure OpenAI
     AZURE_FOUNDRY_ENDPOINT:             Optional[str] = None
-    AZURE_FOUNDRY_API_KEY:              Optional[str] = None
+    AZURE_FOUNDRY_API_KEY:              Optional[SecretStr] = None
     AZURE_FOUNDRY_SDK_API_VERSION:          str = "2024-10-21"
     AZURE_FOUNDRY_LLM_MODEL:           Optional[str] = None
     AZURE_FOUNDRY_EMBEDDING_MODEL: Optional[str] = None
@@ -91,7 +92,7 @@ class Config(BaseSettings):
     AWS_BEDROCK_ENDPOINT:           Optional[str] = None
     AWS_BEDROCK_EMBEDDING_MODEL:    Optional[str] = None
     AWS_BEDROCK_LLM_MODEL:              Optional[str] = None
-    AWS_BEDROCK_API_KEY:            Optional[str] = None
+    AWS_BEDROCK_API_KEY:            Optional[SecretStr] = None
     AWS_BEDROCK_LLM_TEMPERATURE:      float = 1.0
     AWS_BEDROCK_EMBEDDING_TEMPERATURE: float = 1.0
 
@@ -104,7 +105,7 @@ class Config(BaseSettings):
     GCP_VERTEX_EMBEDDING_TEMPERATURE: float = 1.0
 
     # OpenAI direct
-    OPENAI_API_KEY:         Optional[str] = None
+    OPENAI_API_KEY:         Optional[SecretStr] = None
     OPENAI_LLM_MODEL:           str = "gpt-4o-mini"
     OPENAI_EMBEDDING_MODEL: str = "text-embedding-3-small"
     OPENAI_LLM_TEMPERATURE:         float = 1.0
@@ -202,10 +203,28 @@ class Config(BaseSettings):
 cfg = Config()
 cfg.ensure_dirs()
 
-def setup_logging(level: str | None = None) -> logging.Logger:
-    """Configure the project-wide 'rag' logger. Console + rotating file. Idempotent."""
+def _session_log_path(corpus_name: str) -> Path:
+    """logs/protorag_<corpus_name>_DDMMYYYY_HH_MM_SS.log"""
+    stamp = datetime.now().strftime("%d%m%Y_%H_%M_%S")
+    return cfg.LOGS_DIR / f"protorag_{corpus_name}_{stamp}.log"
+
+
+def _make_file_handler(corpus_name: str, fmt: logging.Formatter) -> "logging.handlers.RotatingFileHandler":
     from logging.handlers import RotatingFileHandler
 
+    cfg.LOGS_DIR.mkdir(parents=True, exist_ok=True)
+    handler = RotatingFileHandler(
+        _session_log_path(corpus_name),
+        maxBytes=10 * 1024 * 1024,   # 10 MB per file
+        backupCount=5,               # keep 5 rotations (~50 MB total)
+        encoding="utf-8",
+    )
+    handler.setFormatter(fmt)
+    return handler
+
+
+def setup_logging(level: str | None = None) -> logging.Logger:
+    """Configure the project-wide 'rag' logger. Console + one timestamped file per session. Idempotent."""
     log = logging.getLogger("rag")
     if log.handlers:
         return log  # already configured
@@ -218,19 +237,26 @@ def setup_logging(level: str | None = None) -> logging.Logger:
     console.setFormatter(fmt)
     log.addHandler(console)
 
-    # Rotating file — every log line persists to logs/protorag.log
-    cfg.LOGS_DIR.mkdir(parents=True, exist_ok=True)
-    file_handler = RotatingFileHandler(
-        cfg.LOGS_DIR / "protorag.log",
-        maxBytes=10 * 1024 * 1024,   # 10 MB per file
-        backupCount=5,               # keep 5 rotations (~50 MB total)
-        encoding="utf-8",
-    )
-    file_handler.setFormatter(fmt)
-    log.addHandler(file_handler)
+    # One fresh file per run: logs/protorag_<corpus>_<DDMMYYYY_HH_MM_SS>.log
+    log.addHandler(_make_file_handler(cfg.RAG_CORPUS, fmt))
 
     log.propagate = False
     return log
+
+
+def reconfigure_file_log(corpus_name: str) -> None:
+    """Swap the session's log file to match the actual corpus being processed.
+
+    Call this once the real corpus name is known (e.g. after argparse), so the
+    file matches `--corpus`/document set rather than the RAG_CORPUS default
+    picked at import time.
+    """
+    log = logging.getLogger("rag")
+    fmt = logging.Formatter("%(asctime)s - %(levelname)-7s | %(name)s - %(message)s")
+    for handler in [h for h in log.handlers if isinstance(h, logging.FileHandler)]:
+        log.removeHandler(handler)
+        handler.close()
+    log.addHandler(_make_file_handler(corpus_name, fmt))
 
 log = setup_logging()
 log.info(f"Project root: {cfg.PROJECT_ROOT}")

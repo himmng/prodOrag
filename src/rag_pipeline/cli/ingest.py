@@ -18,7 +18,7 @@ import sys
 import time
 from pathlib import Path
 
-from rag_pipeline.config import cfg, log
+from rag_pipeline.config import cfg, log, reconfigure_file_log
 from rag_pipeline.corpus import load_corpus
 from rag_pipeline.corpus.concordance import (
     Concordance, ConcordanceParser, save_rows,
@@ -218,6 +218,7 @@ def main(argv: list[str] | None = None) -> int:
         help="Ingest ONLY the context sources (skip statutes + concordance)",
     )
     args = parser.parse_args(argv)
+    reconfigure_file_log(args.corpus)
 
     t0 = time.time()
     log.info("=" * 60)
