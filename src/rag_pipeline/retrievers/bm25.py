@@ -35,7 +35,9 @@ class BM25Retriever(BaseRetriever):
 
     def retrieve(self, query: str, top_k: int = 5) -> list[tuple["Document", float]]:
         scores = self.bm25.get_scores(_tokenize(query))
-        ranked = sorted(zip(self.documents, scores),
-                        key=lambda x: x[1],
-                        reverse=True,)
+        ranked = sorted(
+            ((document, float(score)) for document, score in zip(self.documents, scores)),
+            key=lambda x: x[1],
+            reverse=True,
+        )
         return ranked[:top_k]

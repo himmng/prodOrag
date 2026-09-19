@@ -27,5 +27,5 @@ def negative_example() -> EvalExample:
         question="What is the capital of France?",
         gold_source_paths=[],
         gold_snippets=[],
-        difficulty="negative",
+        difficulty="easy",
     )

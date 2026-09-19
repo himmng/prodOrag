@@ -17,6 +17,7 @@ import json
 import sys
 import time
 from pathlib import Path
+from typing import Literal, cast
 
 from rag_pipeline.config import cfg, log, reconfigure_file_log
 from rag_pipeline.corpus import load_corpus
@@ -46,7 +47,10 @@ def _enrich_with_concordance(
             row = concordance.lookup_ipc(c.section)
             if row:
                 c.corresponds_to = row.bns_section
-                c.change_status  = row.status
+                c.change_status  = cast(
+                    Literal["new", "changed", "deleted", "unchanged"],
+                    row.status,
+                )
                 enriched += 1
             else:
                 skipped += 1
@@ -54,7 +58,10 @@ def _enrich_with_concordance(
             row = concordance.lookup_bns(c.section)
             if row:
                 c.corresponds_to = row.ipc_section
-                c.change_status  = row.status
+                c.change_status  = cast(
+                    Literal["new", "changed", "deleted", "unchanged"],
+                    row.status,
+                )
                 enriched += 1
             else:
                 skipped += 1
@@ -106,7 +113,9 @@ def _ingest_to_chroma(
         vs.add_texts(texts=documents, metadatas=metadatas, ids=ids)
         log.info(f"  Batch {i // batch_size + 1}/{(n + batch_size - 1) // batch_size}: +{len(batch)}")
 
-    final_count = vs._collection.count()  # underscore is intentional — Chroma API
+    # ``_collection`` is part of LangChain's Chroma implementation but is not
+    # exposed by the generic VectorStore type checker.
+    final_count = getattr(vs, "_collection").count()
     log.info(f"  Collection '{collection_name}' now has {final_count} vectors")
 
 
@@ -135,7 +144,8 @@ def _ingest_ragchunks_to_chroma(
         metadatas = [{**c.to_langchain_metadata(), **extra_meta} for c in batch]
         vs.add_texts(texts=documents, metadatas=metadatas, ids=ids)
         log.info(f"  Batch {i // batch_size + 1}/{(n + batch_size - 1) // batch_size}: +{len(batch)}")
-    log.info(f"  Collection '{collection_name}' now has {vs._collection.count()} vectors")
+    final_count = getattr(vs, "_collection").count()
+    log.info(f"  Collection '{collection_name}' now has {final_count} vectors")
 
 
 def _ingest_context_sources(corpus, args) -> None:

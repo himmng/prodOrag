@@ -18,7 +18,7 @@ import json
 import random
 import re
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 from langchain_core.messages import HumanMessage
 from tqdm import tqdm
@@ -37,16 +37,31 @@ def _strip_json_fences(text: str) -> str:
     return re.sub(r"^```(?:json)?|```$", "", text.strip(), flags=re.MULTILINE).strip()
 
 
+def _message_content_text(content: str | list[str | dict[object, object]]) -> str:
+    """Convert LangChain's string or block-based message content to text."""
+    if isinstance(content, str):
+        return content
+    parts: list[str] = []
+    for block in content:
+        if isinstance(block, str):
+            parts.append(block)
+        elif isinstance(block, dict):
+            text = block.get("text")
+            if isinstance(text, str):
+                parts.append(text)
+    return "".join(parts)
+
+
 def _try_single_passage(
     chunk: "RagChunk",
     llm: "BaseChatModel",
     prompt_name: str,
-    difficulty: str,
+    difficulty: Literal["easy", "medium"],
 ) -> EvalExample | None:
     prompt = render_prompt(prompt_name, passage=chunk.text)
     try:
         resp = llm.invoke([HumanMessage(content=prompt)])
-        data = json.loads(_strip_json_fences(resp.content))
+        data = json.loads(_strip_json_fences(_message_content_text(resp.content)))
         return EvalExample(
             question=data["question"].strip(),
             gold_source_paths=[chunk.source_path],
@@ -67,7 +82,7 @@ def _try_two_passage(
     prompt = render_prompt("qgen_hard", passage_a=chunk_a.text, passage_b=chunk_b.text)
     try:
         resp = llm.invoke([HumanMessage(content=prompt)])
-        data = json.loads(_strip_json_fences(resp.content))
+        data = json.loads(_strip_json_fences(_message_content_text(resp.content)))
         snippets = data.get("gold_snippets", [])
         if not isinstance(snippets, list):
             snippets = [str(snippets)]

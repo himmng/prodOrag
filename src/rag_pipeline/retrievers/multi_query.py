@@ -49,9 +49,10 @@ class MultiQueryRetriever(BaseRetriever):
         prompt = render_prompt(self.prompt_name, n=self.n_variants, query=query)
         try:
             resp = self.llm.invoke([HumanMessage(content=prompt)])
+            content = resp.content if isinstance(resp.content, str) else json.dumps(resp.content)
             cleaned = re.sub(
                 r"^```(?:json)?|```$", "",
-                resp.content.strip(),
+                content.strip(),
                 flags=re.MULTILINE,
             ).strip()
             data = json.loads(cleaned)

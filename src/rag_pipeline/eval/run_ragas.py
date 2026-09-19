@@ -1,6 +1,7 @@
 """RAGAS run — configurable generator + 1-2 judges. Full output: summary + per-question + plots."""
 import sys, json, random
 from datetime import datetime, timezone
+from typing import Any, cast
 import pandas as pd
 from rag_pipeline.config import cfg, log
 from rag_pipeline.corpus import load_corpus
@@ -33,7 +34,13 @@ class MultiRetriever:
             path = cfg.DATA_PROCESSED_DIR / f"{act.lower()}_chunks.json"
             chunks = [StatuteChunk(**c) for c in json.load(open(path))]
             self.chunks_by_act[act] = chunks
-            ens = EnsembleRetriever([DenseRetriever(collection_name=coll), BM25Retriever(chunks)], fetch_k=20)
+            # These retrievers share the required runtime protocol, but their
+            # generic annotations currently use incompatible concrete types.
+            retrievers = cast(Any, [
+                DenseRetriever(collection_name=coll),
+                BM25Retriever(cast(Any, chunks)),
+            ])
+            ens = EnsembleRetriever(retrievers, fetch_k=20)
             self.setups[act] = RerankedRetriever(ens, rr, fetch_k=20, min_score=None)
 
     def retrieve(self, query, top_k=TOP_K):
@@ -75,9 +82,12 @@ def main(subset_n=24):
     # uses, so cross-reference questions get the same section-text injection
     # instead of being generated from semantic retrieval alone.
     corpus = load_corpus(cfg.RAG_CORPUS)
+    concordance_cfg = corpus.concordance
     concordance = (
-        Concordance.from_json(corpus.concordance.output_json)
-        if corpus.has_concordance and corpus.concordance.output_json.exists()
+        Concordance.from_json(concordance_cfg.output_json)
+        if corpus.has_concordance
+        and concordance_cfg is not None
+        and concordance_cfg.output_json.exists()
         else None
     )
 
@@ -86,13 +96,18 @@ def main(subset_n=24):
     log.info(f"Generator deployment: {cfg.RAGAS_GEN_DEPLOYMENT or 'default'} · {len(subset)} Q · cats={cats}")
     retriever = MultiRetriever()
     rows = build_ragas_dataset(
-        examples=subset, retriever=retriever, llm=gen, top_k=TOP_K,
+        examples=subset, retriever=cast(Any, retriever), llm=gen, top_k=TOP_K,
         concordance=concordance, corpus=corpus, section_index=retriever.section_index(),
         cache_path=cfg.RAGAS_PERQ_DIR / f"{base}__dataset.json",
     )
 
     # 2. Score with every judge in RAGAS_JUDGE_DEPLOYMENTS (comma-separated)
-    judge_deps = [d.strip().strip('"').strip("'") for d in cfg.RAGAS_JUDGE_DEPLOYMENTS.split(",") if d.strip().strip('"').strip("'")]
+    judge_deployments = getattr(cfg, "RAGAS_JUDGE_DEPLOYMENTS", "")
+    judge_deps = [
+        d.strip().strip('"').strip("'")
+        for d in judge_deployments.split(",")
+        if d.strip().strip('"').strip("'")
+    ]
     if not judge_deps:
         judge_deps = [cfg.RAGAS_GEN_DEPLOYMENT or "default"]   # fall back to self-judge
     log.info(f"Judges ({len(judge_deps)}): {judge_deps}")

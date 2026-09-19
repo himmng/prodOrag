@@ -60,6 +60,8 @@ def concordance_context(
         return "", [], []
 
     cc = corpus.concordance
+    if cc is None:
+        return "", [], []
     act_a, act_b = cc.act_a, cc.act_b
     rx = _section_mention_re(act_a, act_b)
 

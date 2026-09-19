@@ -25,6 +25,9 @@ def main():
         print(full[30000:33000] if len(full) > 33000 else "(too short)")
 
     # Concordance separately
+    if corpus.concordance is None:
+        return
+
     print(f"\n{'='*60}")
     print(f"FILE: {corpus.concordance.pdf_path.name}")
     print(f"{'='*60}")

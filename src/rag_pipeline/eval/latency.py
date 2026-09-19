@@ -88,6 +88,8 @@ class LatencyTracker:
         lines = [header, "-" * len(header)]
         for tag in sorted(cls._measurements.keys()):
             s = cls.stats(tag)
+            if s is None:
+                continue
             lines.append(
                 f"{tag:<32s} {s['count']:>4d} "
                 f"{s['mean_ms']:>7.1f}ms {s['p50_ms']:>7.1f}ms "

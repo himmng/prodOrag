@@ -7,6 +7,7 @@ PROJECT_ROOT is auto-detected by walking up from this file until pyproject.toml 
 from __future__ import annotations # for forward references in type hints (e.g. in dataclasses)
 import os
 import logging # for logging
+import logging.handlers # for RotatingFileHandler type annotations
 from datetime import datetime # for per-session log filenames
 from pathlib import Path # for filesystem paths
 from typing import ClassVar, Literal, Optional # for class variables in dataclasses

@@ -21,7 +21,7 @@ from rag_pipeline.eval.retrieval import evaluate_retriever, threshold_sweep
 from rag_pipeline.eval.schema   import load_eval_set 
 import time
 import tempfile
-from typing import Optional
+from typing import Any, Optional, cast
 from fastapi import UploadFile, File
 from rag_pipeline.api.documents import DocumentStore, UploadedDoc
 from rag_pipeline.api.schemas import (
@@ -386,7 +386,7 @@ async def lifespan(app: FastAPI):
         for c in chunks:
             section_index.setdefault((act, c.section), c)
         dense = DenseRetriever(collection_name=collection)
-        bm25  = BM25Retriever(chunks)
+        bm25  = BM25Retriever(cast(list[RagChunk], chunks))
         ensemble = EnsembleRetriever([dense, bm25], fetch_k=20)
 
         collection_setups[act] = {
@@ -401,7 +401,7 @@ async def lifespan(app: FastAPI):
 
     # 3. Concordance / cross-reference — optional, only if the corpus declares it
     concordance = None
-    if corpus.has_concordance:
+    if corpus.has_concordance and corpus.concordance is not None:
         from rag_pipeline.corpus.concordance import Concordance
         conc_path = corpus.concordance.output_json
         concordance = Concordance.from_json(conc_path) if conc_path.exists() else None
@@ -414,9 +414,10 @@ async def lifespan(app: FastAPI):
     for coll in corpus.context_collections:
         try:
             ctx = DenseRetriever(collection_name=coll)
-            if ctx.vectorstore._collection.count() > 0:
+            collection = getattr(ctx.vectorstore, "_collection", None)
+            if collection is not None and collection.count() > 0:
                 context_retriever = ctx
-                log.info(f"Loaded context layer: {coll} ({ctx.vectorstore._collection.count()} vectors)")
+                log.info(f"Loaded context layer: {coll} ({collection.count()} vectors)")
                 break
         except Exception as e:
             log.warning(f"Context layer '{coll}' unavailable: {e}")
@@ -455,7 +456,10 @@ app = FastAPI(
 )
 
 app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_exception_handler(
+    RateLimitExceeded,
+    cast(Any, _rate_limit_exceeded_handler),
+)
 
 log.info(f"API auth: {'ENABLED' if auth_enabled() else 'DISABLED (dev mode)'}")
 app.add_middleware(RequestLoggingMiddleware)
@@ -542,7 +546,7 @@ def answer_route(
     )
     result = generate_answer(
         req.query,
-        retriever,
+        cast(Any, retriever),
         _state["llm"],
         concordance=_state.get("concordance"),
         corpus=_state.get("corpus"),
@@ -759,7 +763,9 @@ def eval_retrieval_route(
     )
 
     start = time.perf_counter()
-    result = evaluate_retriever(retriever, _state["eval_set"], top_k=req.top_k)
+    # The adapter intentionally implements the retriever protocol used by the
+    # evaluator, but does not inherit from the concrete retriever base class.
+    result = evaluate_retriever(cast(Any, retriever), _state["eval_set"], top_k=req.top_k)
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M")
     evalset = cfg.EVAL_SET_FILE.replace(".json", "")
     base = f"{evalset}__{req.retriever}__{stamp}"

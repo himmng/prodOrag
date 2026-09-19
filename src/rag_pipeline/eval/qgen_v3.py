@@ -107,7 +107,13 @@ def _invoke_raw(prompt: str, tag: str) -> dict | None:
     """Invoke the LLM and parse an arbitrary JSON object (for verify prompts)."""
     try:
         resp = _LLM.invoke([HumanMessage(content=prompt)])
-        return json.loads(_strip_json_fences(resp.content))
+        content = resp.content
+        if not isinstance(content, str):
+            content = "".join(
+                part if isinstance(part, str) else str(part.get("text", ""))
+                for part in content
+            )
+        return json.loads(_strip_json_fences(content))
     except Exception as e:  # noqa: BLE001 — a failed judge must not abort the run
         log.warning(f"[qgen_v3-{tag}] verify failed, treating as reject: {e}")
         return None

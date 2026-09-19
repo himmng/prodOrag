@@ -183,7 +183,9 @@ def score_ragas_dataset(
             run_config=run_config,
             show_progress=False,
         )
-        batch_df = result.to_pandas()
+        # RAGAS's type stubs expose ``evaluate`` as an Executor, although the
+        # synchronous call returns an evaluation result with ``to_pandas``.
+        batch_df = result.to_pandas()  # type: ignore[attr-defined]
         batch_df["category"] = categories        # ← attach category back
         all_dfs.append(batch_df)
 

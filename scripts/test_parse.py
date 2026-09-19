@@ -27,7 +27,10 @@ def main():
     # Test 2: Concordance parse
     print("\n--- Parsing concordance ---")
     conc_parser = ConcordanceParser()
-    rows = conc_parser.parse(corpus.concordance.pdf_path)
+    if corpus.concordance is None:
+        raise RuntimeError("Corpus does not define a concordance")
+    concordance = corpus.concordance
+    rows = conc_parser.parse(concordance.pdf_path)
 
     print(f"\nFirst 5 rows:")
     for r in rows[:5]:
@@ -35,7 +38,7 @@ def main():
         print(f"    {r.bns_title} / {r.ipc_title}")
 
     # Save concordance (we'll use it in Stage D)
-    save_rows(rows, corpus.concordance.output_json)
+    save_rows(rows, concordance.output_json)
 
 
 if __name__ == "__main__":

@@ -185,6 +185,8 @@ def stream_answer(api_url, api_key, query, retriever, top_k, fetch_k, min_score,
         for line in r.iter_lines(decode_unicode=True):
             if not line:
                 continue
+            if isinstance(line, bytes):
+                line = line.decode("utf-8", errors="replace")
             if line.startswith("event:"):
                 current_event = line[6:].strip()
             elif line.startswith("data:"):
@@ -352,8 +354,9 @@ def render_cross_reference(cross_ref: dict, container, key_prefix: str = "live")
         page   = cross_ref.get("page_number")
         xmeta  = (st.session_state.get("meta") or {}).get("cross_reference") or {}
         pdf_label = xmeta.get("pdf_label", "CONCORDANCE")
+        status_key = str(status) if status is not None else ""
         badge  = {"new": "🟢 new", "changed": "🟡 changed", "deleted": "🔴 deleted",
-                  "unchanged": "⚪ unchanged"}.get(status, status or "")
+              "unchanged": "⚪ unchanged"}.get(status_key, status_key)
         with st.expander("🔗 Related — corresponding sections (concordance)", expanded=True):
             st.markdown(f"**Concordance Row {row}** — {src_act} §{src} ↔ {tgt_act} §{tgt}  ·  {badge}")
             if page and st.button(f"📄 View concordance table (row {row})", key=f"{key_prefix}_xref_view_{row}"):
@@ -435,8 +438,8 @@ with st.sidebar:
     st.session_state.api_url = st.text_input("API URL", value=st.session_state.api_url)
     st.session_state.api_key = st.text_input("API Key", value=st.session_state.api_key, type="password")
 
-    health = check_health(st.session_state.api_url)
-    st.session_state.meta = fetch_meta(st.session_state.api_url)
+    health = check_health(st.session_state.api_url or "")
+    st.session_state.meta = fetch_meta(st.session_state.api_url or "")
     status = health.get("status", "unknown")
     badge  = {"healthy": "🟢", "degraded": "🟡", "unhealthy": "🔴"}.get(status, "⚫")
     st.markdown(f"**Status:** {badge} `{status}`  ·  Corpus: `{st.session_state.meta.get('corpus','?')}`")
@@ -587,7 +590,7 @@ with monitor_col:
     st.markdown("### 📡 Live Monitor")
 
     badge = {"healthy": "🟢", "degraded": "🟡", "unhealthy": "🔴"}.get(
-        check_health(st.session_state.api_url).get("status", "unknown"), "⚫"
+        check_health(st.session_state.api_url or "").get("status", "unknown"), "⚫"
     )
     st.markdown(f"**API:** {badge}")
 
@@ -724,7 +727,7 @@ with chat_col:
                     token_count   = len(full_answer.split())
                     answer_box.markdown(full_answer)
                     render_case_excerpts(case_excerpts, excerpts_box, key_prefix="live")
-                    render_cross_reference(cross_ref, xref_box, key_prefix="live")
+                    render_cross_reference(cross_ref or {}, xref_box, key_prefix="live")
                     render_context(context, context_box, key_prefix="live")
                     render_citations(citations, citations_box, key_prefix="live")
                     log_event("case", f"answered in {latency_ms/1000:.1f}s")

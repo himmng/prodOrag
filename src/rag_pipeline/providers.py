@@ -105,7 +105,6 @@ def _azure_emb():
         azure_deployment=cfg.AZURE_FOUNDRY_EMBEDDING_MODEL,
         api_version=cfg.AZURE_FOUNDRY_SDK_API_VERSION,     # was azure_api_version
         api_key=cfg.AZURE_FOUNDRY_API_KEY,             # was azure_api_key
-        temperature=cfg.AZURE_FOUNDRY_EMBEDDING_TEMPERATURE,  # was azure_embedding_temperature
     )
 
 # openai direct (optional)
@@ -114,7 +113,7 @@ def _openai_llm():
     _require(cfg.OPENAI_API_KEY, "OPENAI_API_KEY")
     return ChatOpenAI(
         model=cfg.OPENAI_LLM_MODEL,
-        openai_api_key=cfg.OPENAI_API_KEY,
+        api_key=cfg.OPENAI_API_KEY,
         temperature=cfg.OPENAI_LLM_TEMPERATURE,
     )
 
@@ -123,8 +122,7 @@ def _openai_emb():
     _require(cfg.OPENAI_API_KEY, "OPENAI_API_KEY")
     return OpenAIEmbeddings(
         model=cfg.OPENAI_EMBEDDING_MODEL,
-        openai_api_key=cfg.OPENAI_API_KEY,
-        temperature=cfg.OPENAI_EMBEDDING_TEMPERATURE,
+        api_key=cfg.OPENAI_API_KEY,
     )
 
 # AWS Bedrock
@@ -133,9 +131,12 @@ def _aws_llm():
     from langchain_openai import ChatOpenAI
     _require(cfg.AWS_BEDROCK_ENDPOINT, "AWS_BEDROCK_ENDPOINT")
     _require(cfg.AWS_BEDROCK_API_KEY, "AWS_BEDROCK_API_KEY")
-    _require(cfg.AWS_BEDROCK_LLM_MODEL, "AWS_BEDROCK_LLM_MODEL")
+    model = cfg.AWS_BEDROCK_LLM_MODEL
+    _require(model, "AWS_BEDROCK_LLM_MODEL")
+    if not model:
+        raise ValueError("AWS_BEDROCK_LLM_MODEL is required.")
     return ChatOpenAI(
-        model=cfg.AWS_BEDROCK_LLM_MODEL,
+        model=model,
         base_url=cfg.AWS_BEDROCK_ENDPOINT,
         api_key=cfg.AWS_BEDROCK_API_KEY,
         temperature=cfg.AWS_BEDROCK_LLM_TEMPERATURE,
@@ -169,5 +170,4 @@ def _gcp_emb():
         model=cfg.GCP_VERTEX_EMBEDDING_MODEL,
         project=cfg.GCP_PROJECT_ID,
         location=cfg.GCP_REGION,
-        temperature=cfg.GCP_VERTEX_EMBEDDING_TEMPERATURE,
     )

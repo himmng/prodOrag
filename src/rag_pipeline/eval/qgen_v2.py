@@ -27,13 +27,13 @@ import json
 import random
 import re
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 from langchain_core.messages import HumanMessage
 from tqdm import tqdm
 
 from rag_pipeline.config import cfg, log
-from rag_pipeline.eval.schema import EvalExample, load_eval_set, save_eval_set
+from rag_pipeline.eval.schema import Difficulty, EvalExample, load_eval_set, save_eval_set
 from rag_pipeline.prompts import render_prompt
 from rag_pipeline.providers import get_llm
 
@@ -136,7 +136,15 @@ def _invoke_json(llm: "BaseChatModel", prompt: str, tag: str) -> dict | None:
     """
     try:
         resp = llm.invoke([HumanMessage(content=prompt)])
-        data = json.loads(_strip_json_fences(resp.content))
+        content = resp.content
+        if not isinstance(content, str):
+            content = "".join(
+                part if isinstance(part, str) else part.get("text", "")
+                for part in content
+                if isinstance(part, str)
+                or (isinstance(part, dict) and isinstance(part.get("text"), str))
+            )
+        data = json.loads(_strip_json_fences(content))
         q = (data.get("question") or "").strip()
         if not q:
             raise KeyError("question")
@@ -181,7 +189,8 @@ def _build_substantive(
         gold = [{"act": act, "section": c["section"]}]
         notes = f"auto-gen from chunk {c['chunk_id']}"
     return EvalExample(
-        question=parsed["question"], category=category, difficulty=difficulty,
+        question=parsed["question"], category=category,
+        difficulty=cast(Difficulty, difficulty),
         gold_sections=gold, reference_answer=parsed["reference_answer"], notes=notes,
     )
 
@@ -206,7 +215,8 @@ def _build_cross_reference(
     if not parsed:
         return None
     return EvalExample(
-        question=parsed["question"], category="cross_reference", difficulty=difficulty,
+        question=parsed["question"], category="cross_reference",
+        difficulty=cast(Difficulty, difficulty),
         gold_sections=[{"act": "IPC", "section": ipc_sec},
                        {"act": "BNS", "section": bns_sec}],
         reference_answer=parsed["reference_answer"],
@@ -224,7 +234,8 @@ def _build_negative(difficulty: str, rng: random.Random) -> EvalExample | None:
     if not parsed:
         return None
     return EvalExample(
-        question=parsed["question"], category="negative", difficulty=difficulty,
+        question=parsed["question"], category="negative",
+        difficulty=cast(Difficulty, difficulty),
         gold_sections=[], reference_answer=parsed["reference_answer"],
         notes=f"auto-gen negative ({domain})",
     )
