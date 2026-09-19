@@ -54,9 +54,9 @@ class Config(BaseSettings):
 
     # RAGAS role models (blank = fall back to the global azure deployment)
     RAGAS_GEN_DEPLOYMENT:    str = ""      # generator (answers being judged)
-    RAGAS_JUDGE_DEPLOYMENTS: str = ""      # all judges
+    RAGAS_JUDGE_DEPLOYMENT: str = ""      # all judges
     RAGAS_GEN_TEMPERATURE:         float = 1.0   # generator temperature
-    RAGAS_JUDGE_TEMPERATURES:       float = 1.0   # judge temperature
+    RAGAS_JUDGE_TEMPERATURE:       float = 1.0   # judge temperature
 
     # ragas result subdirs
     RAGAS_SUMMARY_DIR:  ClassVar[Path] = EVAL_RESULTS_DIR / "ragas" / "summary"
@@ -71,35 +71,44 @@ class Config(BaseSettings):
     EMBEDDING_PROVIDER: Literal["ollama", "azure", "openai", "gcp", "aws"] = "ollama"
 
     # Ollama
-    OLLAMA_HOST:            str = "http://localhost:11434"
-    OLLAMA_MODEL:           str = "gemma-4-e4b:latest"
-    OLLAMA_MODEL_TEMPERATURE: float = 1.0
+    OLLAMA_ENDPOINT:            str = "http://localhost:11434"
+    OLLAMA_LLM_MODEL:           str = "gemma-4-e4b:latest"
+    OLLAMA_LLM_TEMPERATURE: float = 1.0
     OLLAMA_EMBEDDING_MODEL: str = "embeddinggemma:latest"
     OLLAMA_EMBEDDING_TEMPERATURE: float = 1.0
 
     # Azure OpenAI
-    AZURE_OPENAI_ENDPOINT:             Optional[str] = None
-    AZURE_OPENAI_API_KEY:              Optional[str] = None
-    AZURE_OPENAI_API_VERSION:          str = "2024-10-21"
-    AZURE_OPENAI_DEPLOYMENT:           Optional[str] = None
-    AZURE_OPENAI_EMBEDDING_DEPLOYMENT: Optional[str] = None
-    AZURE_OPENAI_DEPLOYMENT_TEMPERATURE:      float = 1.0
+    AZURE_FOUNDRY_ENDPOINT:             Optional[str] = None
+    AZURE_FOUNDRY_API_KEY:              Optional[str] = None
+    AZURE_FOUNDRY_SDK_API_VERSION:          str = "2024-10-21"
+    AZURE_FOUNDRY_LLM_MODEL:           Optional[str] = None
+    AZURE_FOUNDRY_EMBEDDING_MODEL: Optional[str] = None
+    AZURE_FOUNDRY_EMBEDDING_TEMPERATURE:      float = 1.0
+    AZURE_FOUNDRY_LLM_TEMPERATURE:      float = 1.0
 
     # AWS Bedrock
     AWS_REGION:                     str = "us-east-1"
-    AWS_BEDROCK_MODEL_ID:           Optional[str] = None
-    AWS_BEDROCK_EMBEDDING_MODEL_ID: Optional[str] = None
+    AWS_BEDROCK_ENDPOINT:           Optional[str] = None
+    AWS_BEDROCK_EMBEDDING_MODEL:    Optional[str] = None
+    AWS_BEDROCK_LLM_MODEL:              Optional[str] = None
+    AWS_BEDROCK_API_KEY:            Optional[str] = None
+    AWS_BEDROCK_LLM_TEMPERATURE:      float = 1.0
+    AWS_BEDROCK_EMBEDDING_TEMPERATURE: float = 1.0
 
     # GCP Vertex
     GCP_PROJECT_ID:             Optional[str] = None
     GCP_REGION:                 str = "us-central1"
     GCP_VERTEX_MODEL:           Optional[str] = None
     GCP_VERTEX_EMBEDDING_MODEL: Optional[str] = None
+    GCP_VERTEX_TEMPERATURE:     float = 1.0
+    GCP_VERTEX_EMBEDDING_TEMPERATURE: float = 1.0
 
     # OpenAI direct
     OPENAI_API_KEY:         Optional[str] = None
-    OPENAI_MODEL:           str = "gpt-4o-mini"
+    OPENAI_LLM_MODEL:           str = "gpt-4o-mini"
     OPENAI_EMBEDDING_MODEL: str = "text-embedding-3-small"
+    OPENAI_LLM_TEMPERATURE:         float = 1.0
+    OPENAI_EMBEDDING_TEMPERATURE: float = 1.0
 
     # Reranker (cross-encoder, always local/HuggingFace regardless of LLM_PROVIDER)
     RERANKER_MODEL: str = "BAAI/bge-reranker-base"
@@ -118,11 +127,11 @@ class Config(BaseSettings):
     @property
     def MODEL(self) -> Optional[str]:
         return {
-            "ollama": self.OLLAMA_MODEL,
-            "azure":  self.AZURE_OPENAI_DEPLOYMENT,
-            "openai": self.OPENAI_MODEL,
+            "ollama": self.OLLAMA_LLM_MODEL,
+            "azure":  self.AZURE_FOUNDRY_LLM_MODEL,
+            "openai": self.OPENAI_LLM_MODEL,
             "gcp":    self.GCP_VERTEX_MODEL,
-            "aws":    self.AWS_BEDROCK_MODEL_ID,
+            "aws":    self.AWS_BEDROCK_LLM_MODEL,
         }[self.LLM_PROVIDER]
 
     @property
@@ -133,10 +142,10 @@ class Config(BaseSettings):
     def EMBEDDING_MODEL(self) -> Optional[str]:
         return {
             "ollama": self.OLLAMA_EMBEDDING_MODEL,
-            "azure":  self.AZURE_OPENAI_EMBEDDING_DEPLOYMENT,
+            "azure":  self.AZURE_FOUNDRY_EMBEDDING_MODEL,
             "openai": self.OPENAI_EMBEDDING_MODEL,
             "gcp":    self.GCP_VERTEX_EMBEDDING_MODEL,
-            "aws":    self.AWS_BEDROCK_EMBEDDING_MODEL_ID,
+            "aws":    self.AWS_BEDROCK_EMBEDDING_MODEL,
         }[self.EMBEDDING_PROVIDER]
 
     @property
@@ -152,14 +161,34 @@ class Config(BaseSettings):
         """Fail fast if the selected provider is missing required creds."""
         if self.LLM_PROVIDER == "azure":
             missing = [n for n, v in [
-                ("AZURE_OPENAI_ENDPOINT", self.AZURE_OPENAI_ENDPOINT),
-                ("AZURE_OPENAI_API_KEY", self.AZURE_OPENAI_API_KEY),
-                ("AZURE_OPENAI_DEPLOYMENT", self.AZURE_OPENAI_DEPLOYMENT),
-                ("AZURE_OPENAI_DEPLOYMENT_TEMPERATURE", self.AZURE_OPENAI_DEPLOYMENT_TEMPERATURE),
+                ("AZURE_FOUNDRY_ENDPOINT", self.AZURE_FOUNDRY_ENDPOINT),
+                ("AZURE_FOUNDRY_LLM_MODEL_API_KEY", self.AZURE_FOUNDRY_API_KEY),
+                ("AZURE_FOUNDRY_LLM_MODEL", self.AZURE_FOUNDRY_LLM_MODEL),
+                ("AZURE_FOUNDRY_LLM_TEMPERATURE", self.AZURE_FOUNDRY_LLM_TEMPERATURE),
             ] if not v]
-            if missing:
-                raise ValueError(f"LLM_PROVIDER=azure requires: {', '.join(missing)}")
-        # (add similar blocks for openai/gcp/aws if you want strict validation)
+        elif self.LLM_PROVIDER == "aws":
+            missing = [n for n, v in [
+                ("AWS_REGION", self.AWS_REGION),
+                ("AWS_BEDROCK_LLM_MODEL", self.AWS_BEDROCK_LLM_MODEL),
+                ("AWS_BEDROCK_API_KEY", self.AWS_BEDROCK_API_KEY),
+                ("AWS_BEDROCK_LLM_MODEL_TEMPERATURE", self.AWS_BEDROCK_LLM_TEMPERATURE),
+                ("AWS_BEDROCK_ENDPOINT", self.AWS_BEDROCK_ENDPOINT),
+            ] if not v]
+        elif self.LLM_PROVIDER == "gcp":
+            missing = [n for n, v in [
+                ("GCP_PROJECT_ID", self.GCP_PROJECT_ID),
+                ("GCP_REGION", self.GCP_REGION),
+                ("GCP_VERTEX_MODEL", self.GCP_VERTEX_MODEL),
+            ] if not v]
+
+        elif self.LLM_PROVIDER == "openai":
+            missing = [n for n, v in [
+                ("OPENAI_API_KEY", self.OPENAI_API_KEY),
+                ("OPENAI_LLM_MODEL", self.OPENAI_LLM_MODEL),
+            ] if not v]
+        else:
+            missing = []
+            raise ValueError(f"Unsupported LLM_PROVIDER: {self.LLM_PROVIDER}")
         return self
 
     def ensure_dirs(self) -> None:

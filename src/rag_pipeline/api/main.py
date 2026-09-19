@@ -472,7 +472,7 @@ def health() -> HealthResponse:
     }
     # Ollama reachability check — OLLAMA_HOST already includes host:port
     import httpx
-    ollama_url = cfg.OLLAMA_HOST.rstrip("/")
+    ollama_url = cfg.OLLAMA_ENDPOINT.rstrip("/")
     try:
         r = httpx.get(f"{ollama_url}/api/tags", timeout=2.0)
         ollama_status = "ok" if r.status_code == 200 else f"http {r.status_code}"

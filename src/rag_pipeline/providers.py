@@ -68,45 +68,44 @@ def _require(value, name: str) -> None:
 def _ollama_llm():
     from langchain_ollama import ChatOllama
     return ChatOllama(
-        model=cfg.OLLAMA_MODEL,
-        base_url=cfg.OLLAMA_HOST,
-        temperature=cfg.OLLAMA_MODEL_TEMPERATURE,
-
+        model=cfg.OLLAMA_LLM_MODEL,
+        base_url=cfg.OLLAMA_ENDPOINT,
+        temperature=cfg.OLLAMA_LLM_TEMPERATURE,
     )
 
 def _ollama_emb():
     from langchain_ollama import OllamaEmbeddings
     return OllamaEmbeddings(
         model=cfg.OLLAMA_EMBEDDING_MODEL,
-        base_url=cfg.OLLAMA_HOST,
+        base_url=cfg.OLLAMA_ENDPOINT,
         temperature=cfg.OLLAMA_EMBEDDING_TEMPERATURE,
     )
 
 # azure openai
 def _azure_llm(deployment: str | None = None):
     from langchain_openai import AzureChatOpenAI
-    _require(cfg.AZURE_OPENAI_ENDPOINT, "AZURE_OPENAI_ENDPOINT")
-    _require(cfg.AZURE_OPENAI_API_KEY, "AZURE_OPENAI_API_KEY")
-    dep = deployment or cfg.AZURE_OPENAI_DEPLOYMENT
-    _require(dep, "AZURE_OPENAI_DEPLOYMENT")
+    _require(cfg.AZURE_FOUNDRY_ENDPOINT, "AZURE_FOUNDRY_ENDPOINT")
+    _require(cfg.AZURE_FOUNDRY_API_KEY, "AZURE_FOUNDRY_API_KEY")
+    dep = deployment or cfg.AZURE_FOUNDRY_LLM_MODEL
+    _require(dep, "AZURE_FOUNDRY_LLM_MODEL")
     return AzureChatOpenAI(
-        azure_endpoint=cfg.AZURE_OPENAI_ENDPOINT,
+        azure_endpoint=cfg.AZURE_FOUNDRY_ENDPOINT,
         azure_deployment=dep,
-        api_version=cfg.AZURE_OPENAI_API_VERSION,
-        api_key=cfg.AZURE_OPENAI_API_KEY,
-        temperature=cfg.AZURE_OPENAI_DEPLOYMENT_TEMPERATURE,
+        api_version=cfg.AZURE_FOUNDRY_SDK_API_VERSION,
+        api_key=cfg.AZURE_FOUNDRY_API_KEY,
+        temperature=cfg.AZURE_FOUNDRY_LLM_TEMPERATURE,
     )
 def _azure_emb():
     from langchain_openai import AzureOpenAIEmbeddings
-    _require(cfg.AZURE_OPENAI_ENDPOINT, "AZURE_OPENAI_ENDPOINT")
-    _require(cfg.AZURE_OPENAI_API_KEY, "AZURE_OPENAI_API_KEY")
-    _require(cfg.AZURE_OPENAI_EMBEDDING_DEPLOYMENT, "AZURE_OPENAI_EMBEDDING_DEPLOYMENT")
+    _require(cfg.AZURE_FOUNDRY_ENDPOINT, "AZURE_FOUNDRY_ENDPOINT")
+    _require(cfg.AZURE_FOUNDRY_API_KEY, "AZURE_FOUNDRY_API_KEY")
+    _require(cfg.AZURE_FOUNDRY_EMBEDDING_MODEL, "AZURE_FOUNDRY_EMBEDDING_MODEL")
     return AzureOpenAIEmbeddings(
-        azure_endpoint=cfg.AZURE_OPENAI_ENDPOINT,
-        azure_deployment=cfg.AZURE_OPENAI_EMBEDDING_DEPLOYMENT,
-        api_version=cfg.AZURE_OPENAI_API_VERSION,     # was azure_api_version
-        api_key=cfg.AZURE_OPENAI_API_KEY,             # was azure_api_key
-        temperature=cfg.AZURE_OPENAI_EMBEDDING_TEMPERATURE,  # was azure_embedding_temperature
+        azure_endpoint=cfg.AZURE_FOUNDRY_ENDPOINT,
+        azure_deployment=cfg.AZURE_FOUNDRY_EMBEDDING_MODEL,
+        api_version=cfg.AZURE_FOUNDRY_SDK_API_VERSION,     # was azure_api_version
+        api_key=cfg.AZURE_FOUNDRY_API_KEY,             # was azure_api_key
+        temperature=cfg.AZURE_FOUNDRY_EMBEDDING_TEMPERATURE,  # was azure_embedding_temperature
     )
 
 # openai direct (optional)
@@ -114,9 +113,9 @@ def _openai_llm():
     from langchain_openai import ChatOpenAI
     _require(cfg.OPENAI_API_KEY, "OPENAI_API_KEY")
     return ChatOpenAI(
-        model=cfg.OPENAI_MODEL,
+        model=cfg.OPENAI_LLM_MODEL,
         openai_api_key=cfg.OPENAI_API_KEY,
-        temperature=cfg.OPENAI_TEMPERATURE,
+        temperature=cfg.OPENAI_LLM_TEMPERATURE,
     )
 
 def _openai_emb():
@@ -131,22 +130,22 @@ def _openai_emb():
 # AWS Bedrock
 
 def _aws_llm():
-    from langchain_aws import ChatBedrock
-    _require(cfg.AWS_BEDROCK_MODEL_ID, "AWS_BEDROCK_MODEL_ID")
-    return ChatBedrock(
-        model_id=cfg.AWS_BEDROCK_MODEL_ID,
-        region_name=cfg.AWS_REGION,
-        temperature=cfg.AWS_BEDROCK_TEMPERATURE,
+    from langchain_openai import ChatOpenAI
+    _require(cfg.AWS_BEDROCK_ENDPOINT, "AWS_BEDROCK_ENDPOINT")
+    _require(cfg.AWS_BEDROCK_API_KEY, "AWS_BEDROCK_API_KEY")
+    _require(cfg.AWS_BEDROCK_LLM_MODEL, "AWS_BEDROCK_LLM_MODEL")
+    return ChatOpenAI(
+        model=cfg.AWS_BEDROCK_LLM_MODEL,
+        base_url=cfg.AWS_BEDROCK_ENDPOINT,
+        api_key=cfg.AWS_BEDROCK_API_KEY,
+        temperature=cfg.AWS_BEDROCK_LLM_TEMPERATURE,
     )
 
 def _aws_emb():
-    from langchain_aws import BedrockEmbeddings
-    _require(cfg.AWS_BEDROCK_EMBEDDING_MODEL_ID, "AWS_BEDROCK_EMBEDDING_MODEL_ID")
-    return BedrockEmbeddings(
-        model_id=cfg.AWS_BEDROCK_EMBEDDING_MODEL_ID,
-        region_name=cfg.AWS_REGION,
-        temperature=cfg.AWS_BEDROCK_EMBEDDING_TEMPERATURE,
-    )
+    # Embeddings: keep local for now
+    from sentence_transformers import SentenceTransformer
+    _require(cfg.EMBEDDING_MODEL, "EMBEDDING_MODEL")
+    return SentenceTransformer(cfg.EMBEDDING_MODEL)
 
 
 # GCP Vertex AI

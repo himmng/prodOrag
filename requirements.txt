@@ -26,11 +26,16 @@ PyYAML>=6.0
 
 # LangChain stack
 langchain>=0.3
+langchain-aws>=0.2.14
+langchain-openai>=0.2.14
+langchain-google-vertexai>=2.0
+langchain-openai>=0.2.14
 langchain-core>=0.3
 langchain-ollama>=0.2
 langchain-community>=0.3
 langchain-chroma>=0.1.4
 langchain-text-splitters>=0.3
+langchain-community<0.4.2
 
 # vector store + embeddings + reranker
 chromadb>=0.5
@@ -57,7 +62,6 @@ datasets>=3.0
 matplotlib
 # ragas 0.4.x unconditionally imports langchain_community.chat_models.vertexai,
 # which langchain-community dropped in 0.4.2 — cap until ragas fixes this upstream.
-langchain-community<0.4.2
 
 # ── optional: cloud model providers (uncomment as needed) ────────────
 # langchain-openai>=0.2
