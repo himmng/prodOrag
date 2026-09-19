@@ -5,7 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
 
 # Streamlit + HTTP client only — no ML deps needed for the dashboard
-RUN pip install --no-cache-dir "streamlit>=1.38" "requests>=2.31"
+RUN pip install --no-cache-dir --timeout 120 --retries 10 "streamlit>=1.38" "requests>=2.31"
 
 # Copy just the dashboard
 COPY apps/dashboard/ ./apps/dashboard/

@@ -59,6 +59,10 @@ dependencies = [
     # Data
     "pandas>=2.2",
     "openpyxl>=3.1",      # if you use pd.read_excel anywhere
+
+    # Dashboard
+    "streamlit>=1.30",
+
 ]
 
 # ─────────────────────────────────────────────────────────────────────
