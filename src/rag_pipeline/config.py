@@ -161,7 +161,12 @@ class Config(BaseSettings):
     @model_validator(mode="after")
     def _validate_active_provider_config(self):
         """Fail fast if the selected provider is missing required creds."""
-        if self.LLM_PROVIDER == "azure":
+        if self.LLM_PROVIDER == "ollama":
+            missing = [n for n, v in [
+                ("OLLAMA_ENDPOINT", self.OLLAMA_ENDPOINT),
+                ("OLLAMA_LLM_MODEL", self.OLLAMA_LLM_MODEL),
+            ] if not v]
+        elif self.LLM_PROVIDER == "azure":
             missing = [n for n, v in [
                 ("AZURE_FOUNDRY_ENDPOINT", self.AZURE_FOUNDRY_ENDPOINT),
                 ("AZURE_FOUNDRY_LLM_MODEL_API_KEY", self.AZURE_FOUNDRY_API_KEY),
@@ -182,15 +187,16 @@ class Config(BaseSettings):
                 ("GCP_REGION", self.GCP_REGION),
                 ("GCP_VERTEX_MODEL", self.GCP_VERTEX_MODEL),
             ] if not v]
-
         elif self.LLM_PROVIDER == "openai":
             missing = [n for n, v in [
                 ("OPENAI_API_KEY", self.OPENAI_API_KEY),
                 ("OPENAI_LLM_MODEL", self.OPENAI_LLM_MODEL),
             ] if not v]
         else:
-            missing = []
             raise ValueError(f"Unsupported LLM_PROVIDER: {self.LLM_PROVIDER}")
+
+        if missing:
+            raise ValueError(f"LLM_PROVIDER={self.LLM_PROVIDER} requires: {', '.join(missing)}")
         return self
 
     def ensure_dirs(self) -> None:
