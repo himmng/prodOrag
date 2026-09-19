@@ -1,45 +1,24 @@
-"""Structured JSON logging for the FastAPI app.
+"""Request-scoped logging for the FastAPI app.
 
 - Generates a request_id per request (or uses incoming X-Request-ID)
-- Propagates it via contextvar so handler logs auto-carry it
+- Propagates it via contextvar so every log line emitted during the request
+  (access log, retrieval, generation, ...) carries it automatically
 - Emits one JSON envelope per request (method, path, status, latency_ms)
-- Replaces the root logger's formatter with JSON (call install_json_logging())
+- Widens the same JSON format (rag_pipeline.logging_utils) to the root logger,
+  so uvicorn/fastapi/third-party logs match the app's own log shape
+  (call install_json_logging() once at startup).
 """
 
 from __future__ import annotations
 
-import json
 import logging
 import time
 import uuid
-from contextvars import ContextVar
-from datetime import datetime, timezone
 
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 
-
-# Propagated to every log line emitted during a request handler
-request_id_var: ContextVar[str] = ContextVar("request_id", default="-")
-
-
-class JSONFormatter(logging.Formatter):
-    """Single-line JSON per log record."""
-
-    def format(self, record: logging.LogRecord) -> str:
-        out: dict = {
-            "ts":     datetime.now(timezone.utc).isoformat(timespec="milliseconds"),
-            "level":  record.levelname,
-            "logger": record.name,
-            "msg":    record.getMessage(),
-            "req_id": request_id_var.get(),
-        }
-        # Merge any custom extra fields
-        if hasattr(record, "extra_fields"):
-            out.update(record.extra_fields)  # type: ignore[arg-type]
-        if record.exc_info:
-            out["exc"] = self.formatException(record.exc_info)
-        return json.dumps(out, default=str)
+from rag_pipeline.logging_utils import JSONLogFormatter, quiet_noisy_loggers, request_id_var
 
 
 class RequestLoggingMiddleware(BaseHTTPMiddleware):
@@ -83,22 +62,38 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
 
 
 def install_json_logging(level: str = "INFO") -> None:
-    """Replace handlers everywhere with a single JSON one. Call once at startup."""
-    handler = logging.StreamHandler()
-    handler.setFormatter(JSONFormatter())
+    """Route every logger (root, so uvicorn/fastapi/etc. included) through the same
+    JSON formatter and the same per-session log file config.py opened. Call once at
+    startup, before the FastAPI app is constructed.
+    """
+    from logging.handlers import RotatingFileHandler
+    from rag_pipeline.config import SESSION_LOG_PATH
 
     root = logging.getLogger()
     for h in root.handlers[:]:
         root.removeHandler(h)
-    root.addHandler(handler)
+
+    fmt = JSONLogFormatter()
+
+    console = logging.StreamHandler()
+    console.setFormatter(fmt)
+    root.addHandler(console)
+
+    # Keep writing to the same per-session file config.py opened.
+    if SESSION_LOG_PATH is not None:
+        file_handler = RotatingFileHandler(
+            SESSION_LOG_PATH, maxBytes=10 * 1024 * 1024, backupCount=5, encoding="utf-8",
+        )
+        file_handler.setFormatter(fmt)
+        root.addHandler(file_handler)
+
     root.setLevel(level.upper())
 
-    # Strip any pre-existing handler from "rag" so it propagates to root
+    # "rag" now propagates to root instead of using its own console+file handlers,
+    # so every logger in the process shares one format and one file.
     rag_log = logging.getLogger("rag")
     for h in rag_log.handlers[:]:
         rag_log.removeHandler(h)
     rag_log.propagate = True
 
-    # Quiet noisy libs
-    for noisy in ("urllib3", "httpx", "httpcore", "chromadb.telemetry"):
-        logging.getLogger(noisy).setLevel("WARNING")
+    quiet_noisy_loggers()

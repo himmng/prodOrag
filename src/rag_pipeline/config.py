@@ -204,6 +204,11 @@ class Config(BaseSettings):
 cfg = Config()
 cfg.ensure_dirs()
 
+# Path of the current session's log file — read by install_json_logging()
+# so the API server's JSON logging still lands in this same file.
+SESSION_LOG_PATH: Path | None = None
+
+
 def _session_log_path(corpus_name: str) -> Path:
     """logs/protorag_<corpus_name>_DDMMYYYY_HH_MM_SS.log"""
     stamp = datetime.now().strftime("%d%m%Y_%H_%M_%S")
@@ -211,11 +216,13 @@ def _session_log_path(corpus_name: str) -> Path:
 
 
 def _make_file_handler(corpus_name: str, fmt: logging.Formatter) -> "logging.handlers.RotatingFileHandler":
+    global SESSION_LOG_PATH
     from logging.handlers import RotatingFileHandler
 
     cfg.LOGS_DIR.mkdir(parents=True, exist_ok=True)
+    SESSION_LOG_PATH = _session_log_path(corpus_name)
     handler = RotatingFileHandler(
-        _session_log_path(corpus_name),
+        SESSION_LOG_PATH,
         maxBytes=10 * 1024 * 1024,   # 10 MB per file
         backupCount=5,               # keep 5 rotations (~50 MB total)
         encoding="utf-8",
@@ -225,13 +232,16 @@ def _make_file_handler(corpus_name: str, fmt: logging.Formatter) -> "logging.han
 
 
 def setup_logging(level: str | None = None) -> logging.Logger:
-    """Configure the project-wide 'rag' logger. Console + one timestamped file per session. Idempotent."""
+    """Configure the project-wide 'rag' logger. Structured JSON, console + one
+    timestamped file per session. Idempotent."""
+    from rag_pipeline.logging_utils import JSONLogFormatter, quiet_noisy_loggers
+
     log = logging.getLogger("rag")
     if log.handlers:
         return log  # already configured
     log.setLevel(level or cfg.LOG_LEVEL)
 
-    fmt = logging.Formatter("%(asctime)s - %(levelname)-7s | %(name)s - %(message)s")
+    fmt = JSONLogFormatter()
 
     # Console
     console = logging.StreamHandler()
@@ -242,6 +252,7 @@ def setup_logging(level: str | None = None) -> logging.Logger:
     log.addHandler(_make_file_handler(cfg.RAG_CORPUS, fmt))
 
     log.propagate = False
+    quiet_noisy_loggers()
     return log
 
 
@@ -252,8 +263,10 @@ def reconfigure_file_log(corpus_name: str) -> None:
     file matches `--corpus`/document set rather than the RAG_CORPUS default
     picked at import time.
     """
+    from rag_pipeline.logging_utils import JSONLogFormatter
+
     log = logging.getLogger("rag")
-    fmt = logging.Formatter("%(asctime)s - %(levelname)-7s | %(name)s - %(message)s")
+    fmt = JSONLogFormatter()
     for handler in [h for h in log.handlers if isinstance(h, logging.FileHandler)]:
         log.removeHandler(handler)
         handler.close()
