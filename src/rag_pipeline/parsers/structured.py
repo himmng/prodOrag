@@ -12,10 +12,11 @@ Routing by extension:
 from __future__ import annotations
 import json
 from pathlib import Path
+from typing import cast
 
 from rag_pipeline.config import cfg, log 
 from rag_pipeline.parsers.base import BaseParser
-from rag_pipeline.schemas import RagChunk
+from rag_pipeline.schemas import RagChunk, SourceFormat
 
 
 class StructuredDataParser(BaseParser):
@@ -60,7 +61,7 @@ class StructuredDataParser(BaseParser):
                 out.append(RagChunk(
                     text=window.to_csv(index=False),
                     source_path=str(path.resolve()),
-                    source_format=ext.lstrip("."),
+                    source_format=cast(SourceFormat, ext.lstrip(".")),
                     sheet_name=sheet_name,
                     row_range=f"{start}-{start + len(window) - 1}",
                     element_type="rows",
@@ -82,7 +83,7 @@ class StructuredDataParser(BaseParser):
                 out.append(RagChunk(
                     text=json.dumps(obj, ensure_ascii=False, indent=2),
                     source_path=str(path.resolve()),
-                    source_format=path.suffix.lower().lstrip("."),
+                    source_format=cast(SourceFormat, path.suffix.lower().lstrip(".")),
                     row_range=f"{i}-{i}",
                     element_type="record",
                 ))

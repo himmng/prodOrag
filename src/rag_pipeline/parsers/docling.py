@@ -11,9 +11,10 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
+from typing import cast
 
 from rag_pipeline.parsers.base import BaseParser
-from rag_pipeline.schemas import RagChunk
+from rag_pipeline.schemas import RagChunk, SourceFormat
 
 # suppress docling's cuda kernel JIT-compile noise.
 # (transforers/kernels/deformable_detr CUDA kernel fails on pyTorch 2.x)
@@ -34,7 +35,7 @@ class DoclingHybridParser(BaseParser):
     ):
         # heavy imports done in __init__ so unused parsers don't pull in touch
         from docling.document_converter import DocumentConverter
-        from docling.chunking import HybridChunker
+        from docling_core.transforms.chunker.hybrid_chunker import HybridChunker
         from docling_core.transforms.chunker.tokenizer.huggingface import HuggingFaceTokenizer
         from transformers import AutoTokenizer
 
@@ -50,7 +51,10 @@ class DoclingHybridParser(BaseParser):
     def parse(self, path: Path) -> list[RagChunk]:
         doc = self._converter.convert(path).document
         suffix = path.suffix.lower().lstrip(".")
-        source_format = "html" if suffix == "htm" else suffix # normalize .htm -> .html
+        source_format = cast(
+            SourceFormat,
+            "html" if suffix == "htm" else suffix,
+        )  # normalize .htm -> .html
 
         out: list[RagChunk] = []
         for dc in self._chunker.chunk(doc):
@@ -59,13 +63,15 @@ class DoclingHybridParser(BaseParser):
             # page number from first prov of first doc item
 
             page = None
-            if dc.meta.doc_items:
-                first = dc.meta.doc_items[0]
+            doc_items = getattr(dc.meta, "doc_items", None)
+            if doc_items:
+                first = doc_items[0]
                 if first.prov:
                     page = first.prov[0].page_no
 
             # deepest heading in the hierarchy
-            section_title = dc.meta.headings[-1] if dc.meta.headings else None
+            headings = getattr(dc.meta, "headings", None)
+            section_title = headings[-1] if headings else None
 
             out.append(RagChunk(
                 text=text,

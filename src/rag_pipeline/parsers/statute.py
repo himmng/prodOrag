@@ -21,7 +21,7 @@ from typing import Iterator, Optional
 from rag_pipeline.config import log
 from rag_pipeline.corpus.registry import ParserConfig
 from rag_pipeline.parsers.docling import DoclingHybridParser
-from rag_pipeline.schemas import StatuteChunk
+from rag_pipeline.schemas import ChunkType, StatuteChunk
 
 
 # ── Block-type detectors ──────────────────────────────────────────────
@@ -31,7 +31,7 @@ from rag_pipeline.schemas import StatuteChunk
 # body with finditer, so `^` must anchor at every line start, not just pos 0.
 # Without it, mid-body markers are never found and sections never split
 # (this is what merged all of BNS:303 into one 6kb chunk).
-_BLOCK_PATTERNS: list[tuple[str, re.Pattern]] = [
+_BLOCK_PATTERNS: list[tuple[ChunkType, re.Pattern[str]]] = [
     ("illustration", re.compile(r"^\s*Illustration[s]?\b", re.IGNORECASE | re.MULTILINE)),
     ("explanation",  re.compile(r"^\s*Explanation\s*\d*\.?", re.IGNORECASE | re.MULTILINE)),
     ("exception",    re.compile(r"^\s*Exception[s]?\b",     re.IGNORECASE | re.MULTILINE)),
@@ -46,7 +46,7 @@ _BLOCK_PATTERNS: list[tuple[str, re.Pattern]] = [
 ]
 
 
-def _classify_block(text: str) -> str:
+def _classify_block(text: str) -> ChunkType:
     """Identify the chunk_type of a text block."""
     head = text.lstrip()[:80]   # only check the start
     for label, pat in _BLOCK_PATTERNS:
@@ -140,14 +140,14 @@ def _chapter_for_offset(
 
 # ── Sub-block splitting within a section ──────────────────────────────
 
-def _split_subblocks(body: str) -> list[tuple[str, str]]:
+def _split_subblocks(body: str) -> list[tuple[ChunkType, str]]:
     """Split a section body into (chunk_type, text) sub-blocks.
 
     Splits at the START of recognized block markers (Illustration, Explanation, etc.).
     The pre-marker text is the "main" section body (offence + punishment).
     """
     # Find all block-marker positions
-    cuts: list[tuple[int, str]] = []
+    cuts: list[tuple[int, ChunkType]] = []
     for label, pat in _BLOCK_PATTERNS:
         for m in pat.finditer(body):
             # Only count if at start of a line
@@ -159,7 +159,7 @@ def _split_subblocks(body: str) -> list[tuple[str, str]]:
         return [(_classify_block(body), body.strip())]
 
     cuts.sort()
-    blocks: list[tuple[str, str]] = []
+    blocks: list[tuple[ChunkType, str]] = []
 
     # Main body = everything before the first cut
     first_cut_pos = cuts[0][0]
@@ -244,8 +244,9 @@ class StatuteParser:
         running = 0
         kept_pages = 0
         for dc in doc_chunks:
+            metadata = getattr(dc, "metadata", None) or {}
             page = getattr(dc, "page_number", None) or \
-                   (dc.metadata or {}).get("page_number", 1)
+                metadata.get("page_number", 1)
             if page < body_start_page:
                 continue
             text = dc.text if hasattr(dc, "text") else str(dc)
